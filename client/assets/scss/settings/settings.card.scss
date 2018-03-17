@@ -1,0 +1,20 @@
+///* ========================================================================
+//   #CARD
+//   ======================================================================== */
+
+$card-border-width: $base-border-width !default;
+$card-border-color: $base-border-color !default;
+$card-border-radius: $base-border-radius !default;
+$card-background-color: $base-background-color !default;
+
+$card-header-padding: rem(25px) $spacer !default;
+$card-header-background-color: $secondary-background-color !default;
+
+$card-title-font-size: $h5-font-size !default;
+$card-meta-color: $color-mute !default;
+$card-meta-font-size: $text-small-font-size !default;
+
+$card-icon-font-size: $h2-font-size !default;
+$card-icon-color: $white !default;
+
+$card-body-padding: $spacer !default;

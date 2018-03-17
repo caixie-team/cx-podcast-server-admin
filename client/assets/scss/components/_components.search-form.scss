@@ -1,0 +1,27 @@
+/* ==========================================================================
+   #SEARCH FORM
+   ========================================================================== */
+
+/**
+ * Used in browse.html page.
+ */
+
+.c-search-form {
+	margin-bottom: $spacer;
+	padding: rem(20px);
+	border-radius: $base-border-radius;
+	background-color: $base-background-color;
+}
+
+
+.c-search-form__label {
+	margin-bottom: $spacer-xsmall;
+	color: $color-mute;
+	font-size: $text-small-font-size;
+	font-weight: $font-weight-bold;
+	text-transform: uppercase;
+}
+
+.c-search-form__section {
+	margin-bottom: $spacer-small;
+}

@@ -1,0 +1,62 @@
+/* ==========================================================================
+   #CREDIT CARD
+   ========================================================================== */
+
+/**
+ * Used in account-settings.html page
+ */
+
+.c-credit-card {
+	display: flex;
+	min-height: 196px; // to align it with `faq` card
+}
+
+.c-credit-card__card {
+	position: absolute;
+	width: 50%;
+	margin-right: $spacer;
+	margin-left: $spacer;
+	padding: rem(25px) $spacer;
+	border: 2px solid $color-info;
+	border-radius: $base-border-radius * 2;
+	background-color: $base-background-color;
+}
+
+.c-credit-card__logo {
+	margin-bottom: $spacer-small;
+}
+
+.c-credit-card__number {
+	margin-bottom: rem(5px);
+	color: $heading-color;
+	font-size: $h4-font-size;
+	font-weight: $font-weight-bold;
+}
+
+.c-credit-card__status {
+	margin: 0;
+	color: $color-mute;
+	font-size: $text-font-size;
+}
+
+.c-credit-card__user {
+	align-self: flex-end;
+	width: 100%;
+	max-height: 195px;
+	padding: 30px 0;
+	padding-left: calc(50% + 60px);
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background-color: $base-background-color;
+}
+
+.c-credit-card__user-title {
+	margin-bottom: 20px;
+	font-size: 18px;
+	font-weight: $font-weight-bold;
+}
+
+.c-credit-card__user-meta {
+	margin: 0 0 5px;
+	font-size: $text-font-size;
+}

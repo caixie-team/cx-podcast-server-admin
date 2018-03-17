@@ -1,0 +1,522 @@
+.c-sidebar {
+  color: var( --sidebar-color );
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding: 0;
+  background: var( --sidebar-background );
+  position: fixed;
+  top: 47px;
+  bottom: 0;
+  left: 0;
+
+  @include breakpoint( ">960px" ) {
+    border-right: 1px solid #D8D8D8;
+    //border-right: 1px solid darken( $sidebar-bg-color, 10% );
+    width: $sidebar-width-max;
+  }
+
+  @include breakpoint( "<660px" ) {
+    left: -100%;
+    width: 100%;
+    overflow-x: hidden;
+    max-height: calc( 100% - 47px );
+    pointer-events: none;
+    transform: translateX( 0 );
+    transition: all 0.15s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+
+    .focus-sidebar & {
+      pointer-events: auto;
+      -webkit-overflow-scrolling: touch;
+      transform: translateX( 100% );
+    }
+
+    .focus-sites & {
+      transform: translateX( 100% );
+    }
+  }
+
+  @include breakpoint( ">660px" ) {
+    &.has-regions {
+      overflow: hidden;
+    }
+  }
+}
+
+
+// Clearing out the sidebar list styles
+.c-sidebar {
+  margin: 0;
+
+  .current-site,
+  .c-sidebar__footer {
+    flex-shrink: 0;	// prevents items from squishing together under their initial height in Safari
+  }
+
+  ul {
+    flex-shrink: 0;
+    list-style: none;
+    margin: 0;
+  }
+
+  li {
+    flex-shrink: 0;
+    position: relative;
+  }
+}
+
+// Sidebar group headings
+.c-sidebar__heading {
+  color: var( --sidebar-heading-color );
+  font-size: 13px;
+  margin: 16px 8px 6px 8px;
+  display: flex;
+  //background: #FFF;
+}
+
+// Menu Links
+.c-sidebar__menu {
+  display: block;
+  //@include breakpoint( "<660px" ) {
+  //  margin-top: 24px;
+  //}
+  li {
+    height: 46px;
+    display: flex;
+    //border-top: 1px solid #EBEBEB;
+    //&:first-child {
+    //  border-top: none;
+    //}
+    //li{border-top:1px solid #000;}
+    //li:first-child{border-top:none;}
+    //@include breakpoint( "<660px" ) {
+    //  background-color: $gray-light;
+    //  border-bottom: 1px solid lighten( $gray, 25 );
+    //
+    //  &:first-child {
+    //    border-top: 1px solid lighten( $gray, 25 );
+    //  }
+    //}
+  }
+
+  a:first-child {
+    flex: 1 0 auto;
+    width: 0;
+
+    // Fade overlay for longer labels
+    &:after {
+      //text-align: left;
+      //position: absolute;
+      //top: 0;
+      //left: 0;
+      //right: 0;
+      //bottom: 0;
+      //width: 15%;
+
+      //background: overflow-gradient( var( --sidebar-menu-a-first-child-after-background ) );
+
+      //@include breakpoint( "<660px" ) {
+
+        //background: linear-gradient(
+        //    to right,
+        //    rgba( $gray-light, 0 ),
+        //    rgba( $gray-light, 1 ) 50% );
+      //}
+    }
+  }
+
+  a {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    position: relative;
+    padding: 11px 16px 11px 18px;
+    color: var( --sidebar-color );
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+
+    &:focus {
+      outline: none;
+      //box-shadow: inset 0 0 0 1px #010;
+      //&:after {
+      //  top: 2px;
+      //  right: 2px;
+      //  bottom: 2px;
+      //}
+    }
+
+    -webkit-tap-highlight-color: rgba( $gray-dark, .2 );
+
+    .c-sidebar__menu-link-secondary-text {
+      padding: 3px 8px 4px 8px;
+      margin-right: 8px;
+      align-self: center;
+      font-weight: 600;
+      font-size: 12px;
+      position: absolute;
+      right: 0;
+      z-index: z-index( 'icon-parent', '.c-sidebar__menu .gridicon.gridicons-external' );
+      color: var( --sidebar-menu-link-secondary-text-color );
+    }
+  }
+
+  .gridicon,
+  .jetpack-logo {
+    fill: var( --sidebar-gridicon-fill );
+    height: 24px;
+    width: 24px;
+    margin-right: 6px;
+    flex-shrink: 0;
+
+    // External indicator for sections that aren't available in Calypso
+    &.gridicons-external {
+      position: absolute;
+      top: 13px;
+      right: 8px;
+      left: auto;
+      z-index: z-index( 'icon-parent', '.c-sidebar__menu .gridicon.gridicons-external' );
+      height: 18px;
+      margin-right: 0;
+
+
+    }
+  }
+}
+
+a.c-sidebar__button, form.c-sidebar__button {
+  display: flex;
+  position: relative;
+  align-self: center;
+  box-sizing: border-box;
+  overflow: visible;
+  padding: 2px 8px 3px 8px;
+  height: 24px;
+  margin-right: 8px;
+  line-height: 18px;
+  background-color: $white;
+  color: $gray-darken-20;
+  font-size: 12px;
+  //font-weight: 600;
+  border-radius: 3px;
+  border: 1px solid $gray-lighten-20;
+
+  @include breakpoint( "<660px" ) {
+    font-size: 14px;
+    height: 30px;
+    line-height: 23px;
+  }
+}
+
+// Expanding clickable area of mini buttons
+a.c-sidebar__button:after,
+form.c-sidebar__button input {
+  content: '';
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  right: -10px;
+  left: -10px;
+  width: 100%;
+}
+
+// Selected Menu
+@include breakpoint( ">660px" ) {
+  .c-sidebar__menu .selected {
+    //background-color: var( --sidebar-menu-selected-background-color );
+    //outline: none;
+    //box-shadow: inset 2px 0 0 0 $primary;
+    //background: $primary-dark;
+    //background: #FFF;
+    //background-color: #EDEDED;
+    background-color: #F6F8F9;
+    border-top: 1px solid #E0E6E8;
+    border-bottom: 1px solid #e0e6e8;
+    box-sizing: border-box;
+    //&:after {
+    //  top: 0px;
+    //  right: 2px;
+    //  bottom: 0px;
+    //}
+    a {
+      font-weight: 600;
+      //color: var( --sidebar-menu-selected-a-color );
+      //color: var( --sidebar-menu-selected-a-color );
+      //color: #010;
+      color: #323232;
+      .c-sidebar__menu-link-secondary-text {
+        color: inherit;
+      }
+
+      &:first-child:after {
+        //content: '';
+        //left: 0;
+
+        //  background: overflow-gradient( var( --sidebar-menu-selected-a-first-child-after-background ) );
+      }
+    }
+
+    .c-sidebar__button {
+      color: #666;
+      border: 1px solid #EAEAEA;
+      //border: 1px solid #010;
+      &:hover {
+        color: $primary-300;
+      }
+    }
+
+    .gridicon {
+      fill: var( --sidebar-menu-selected-a-color );
+    }
+
+    &.is-action-button-selected a {
+      &:first-child:after {
+        //background: #fff;
+        background: linear-gradient(
+            to right,
+            rgba( #FAFAFA, 0 ),
+            rgba( #FAFAFA, 1 ) 50% );
+      }
+    }
+  }
+}
+
+
+// Menu Hover
+.notouch .c-sidebar__menu li:hover {
+  &:not(.selected) {
+    color: $primary;
+    background-color: #FFF;
+    a,
+    form {
+      &:first-child:after {
+        background: linear-gradient(
+            to right,
+            rgba( lighten( #FAFAFA, 3% ), 0 ),
+            rgba( lighten( #FAFAFA, 3% ), 1 ) 100% );
+      }
+
+      &.c-sidebar__button {
+        background-color: #FFF;
+        //background-color: lighten( #FAF, 10% );
+        color: $sidebar-text-color;
+      }
+    }
+  }
+
+  @include breakpoint( "<660px" ) {
+    background-color: $gray-light;
+
+    a,
+    form {
+      color: $blue-medium;
+
+      &:first-child:after {
+        background: linear-gradient(
+            to right,
+            rgba( $gray-light, 0 ),
+            rgba( $gray-light, 1 ) 50% );
+      }
+
+      &.c-sidebar__button {
+        background-color: $white;
+        color: $gray-dark;
+      }
+    }
+
+    .gridicon {
+      fill: $blue-medium;
+    }
+  }
+}
+
+.notouch .c-sidebar__menu li:not(.selected) {
+  a,
+  form {
+    &.c-sidebar__button:hover {
+      color: $primary;
+    }
+  }
+
+  form.c-sidebar__button:hover {
+    border-color: darken( $sidebar-bg-color, 10% );
+  }
+
+  a:hover, form:hover {
+    color: $primary;
+
+    .c-sidebar__menu-link-secondary-text {
+      color: inherit;
+    }
+
+    .gridicon,
+    .jetpack-logo {
+      fill: #010;
+    }
+  }
+}
+
+.c-sidebar .c-sidebar__separator {
+  //border-bottom: 1px solid darken( $sidebar-bg-color, 10% );
+  border-bottom: 1px solid #EBEBEB;
+}
+
+.c-sidebar .c-sidebar__footer {
+  align-items: center;
+  padding: 0;
+  border-top: 1px solid darken( $sidebar-bg-color, 10% );
+  margin: auto 0 0;
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+
+  @include breakpoint( "<660px" ) {
+    margin-top: 16px;
+  }
+
+}
+
+.c-sidebar .c-sidebar__footer .button {
+  box-sizing: border-box;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 8px;
+  color: var( --sidebar-footer-button-color );
+  line-height: 2.1;
+  margin-right: auto;
+
+  &.inline-help {
+    border-radius: 0;
+    border-left: 1px solid #c8d7e1;
+    flex: 0 1 40px;
+    margin-right: 0;
+    margin-left: auto;
+    outline: 0;
+
+    @include breakpoint( "<660px" ) {
+      flex: 0 1 56px;
+    }
+
+    .gridicon {
+      margin: 0 auto;
+      float: none;
+    }
+  }
+
+  &.is-active {
+    background: $blue-medium;
+
+    .gridicon {
+      fill: $white;
+    }
+  }
+
+  &.c-sidebar__footer-chat {
+    border-left: 1px solid darken( $sidebar-bg-color, 10% );
+    flex: 0 1 40px;
+    margin-right: 0;
+    margin-left: 0;
+    outline: 0;
+
+    @include breakpoint( "<660px" ) {
+      flex: 0 1 56px;
+    }
+
+  }
+
+  &.c-sidebar__footer-chat.has-unread {
+    color: $gray-dark;
+    position: relative;
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 6px;
+      left: 3px;
+      width: 10px;
+      height: 10px;
+      border: 2px solid $gray-lighten-30;
+      border-radius: 50%;
+      background: $orange-jazzy;
+
+      @include breakpoint( "<660px" ) {
+        top: 14px;
+        left: 11px;
+      }
+
+    }
+
+  }
+
+  &:hover {
+    color: $gray-dark;
+  }
+
+  @include breakpoint( "<660px" ) {
+    padding: 16px;
+  }
+
+  .gridicon {
+    display: block;
+    float: left;
+    margin-right: 6px;
+    top: auto;
+    margin-top: auto;
+  }
+
+}
+
+.c-sidebar__region {
+  flex-shrink: 0;
+  @include breakpoint( ">660px" ) {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    transform: translateX( 0 ); /* workaround for safari scrollbar rendering bug */
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.c-sidebar__menu {
+  .is-placeholder {
+    cursor: default;
+    pointer-events: none;
+
+    .gridicon, span, .c-sidebar__button {
+      animation: loading-fade 1.6s ease-in-out infinite;
+      background-color: lighten( $gray, 25% );
+      color: transparent;
+    }
+
+    .gridicon {
+      fill: transparent;
+      stroke: transparent;
+    }
+
+    a {
+      &:after {
+        display: none;
+      }
+    }
+  }
+}
+.c-sidebar__chevron-right {
+  position: absolute;
+  right: 0;
+  pointer-events: none;
+
+  .gridicon {
+    padding-top: 10px;
+  }
+
+  :hover + & .gridicon {
+    fill: $blue-medium;
+  }
+}

@@ -1,0 +1,24 @@
+///* ========================================================================
+//   #PROGRESS
+//   ======================================================================== */
+
+$progress-height: 20px !default;
+$progress-margin: 0 0 15px 0 !default;
+$progress-border-radius: 20px !default;
+$progress-background-color: #E2E7EE !default;
+
+// size variations
+$progress-xsmall-height: 2px !default;
+$progress-small-height:  4px !default;
+$progress-medium-height: 8px !default;
+
+// color variations
+$progress-bar-primary-gradient: $gunmetal-100, $gunmetal-400 !default;
+$progress-bar-success-gradient: #5AD946, #2BB415 !default;
+$progress-bar-info-gradient: #2DA1F8, #1991EB !default;
+$progress-bar-danger-gradient: $red-100, $red-300 !default;
+$progress-bar-warning-gradient: #F8CF5D, #FDC018 !default;
+$progress-bar-fancy-gradient: #9D90E4, #8261E6 !default;
+
+
+

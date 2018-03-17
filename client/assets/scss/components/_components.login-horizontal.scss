@@ -1,0 +1,108 @@
+/* ==========================================================================
+   #LOGIN HORIZONTAL
+   ========================================================================== */
+
+.c-login-horizontal {
+	display: flex;
+	width: 100%;
+
+	.c-login__content-wrapper,
+	.c-login__content-image {
+		width: 50%;
+
+		@include respond-to($breakpoint-tablet) {
+			width: 100%;
+		}
+	}
+
+	.c-login__header {
+		position: relative;
+		padding: $spacer 0 0;
+		padding-left: 1.875rem;
+		border: 0;
+		background-color: transparent;
+
+		@include respond-to($breakpoint-tablet) {
+			padding-top: $spacer-large;
+		}
+	}
+
+	.c-login__icon {
+		display: flex;
+		position: absolute;
+		top: -35px;
+		right: 0;
+		left: 0;
+		align-items: center;
+		justify-content: center;
+		width: 70px;
+		height: 70px;
+		margin: 0 auto;
+		border-radius: 100%;
+		color: $white;
+		font-size: $h4-font-size;
+		@include linear-gradient(to bottom, $gradient-info);
+	}
+
+	.c-login__icon--left {
+		right: initial;
+		left: 30px;
+	}
+
+	.c-login__icon--rounded {
+		top: -25px;
+		width: 45px;
+		height: 45px;
+		border-radius: $base-border-radius;
+	}
+
+
+	.c-login__title {
+		margin: 0;
+		font-size: 24px;
+		text-align: left;
+	}
+
+	.c-login__content {
+		padding: $spacer-small $spacer $spacer $spacer;
+	}
+
+	.c-login__content-image {
+		display: flex;
+		position: relative;
+		flex-flow: column;
+		justify-content: flex-end;
+		padding: $spacer;
+		border-top-right-radius: $base-border-radius;
+		border-bottom-right-radius: $base-border-radius;
+		background-color: #49515D;
+		color: $white;
+		overflow: hidden;
+
+		img {
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: .2;
+		}
+
+		h3,
+		p {
+			color: $white;
+		}
+
+		p {
+			font-size: $h6-font-size;
+			opacity: .9;
+		}
+
+		@include respond-to($breakpoint-tablet) {
+			display: none;
+		}
+	}
+}

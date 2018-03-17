@@ -1,0 +1,51 @@
+.c-back-top {
+  position: fixed;
+  bottom: 50px;
+  right: 16px;
+  border-radius: 50px;
+  background: $primary;
+  background: rgba(20, 170, 245, .6);
+  cursor: pointer;
+  padding: 4px;
+  font-size: 13px;
+  z-index: z-index( 'root', '.c-back-top' );
+  display: none;
+  //box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  transition: all .2s ease-in-out;
+  //&.is-active {
+  //  background: $orange-jazzy;
+  //}
+  &:hover {
+    background: $primary;
+  }
+  &--show {
+    display: block;
+  }
+}
+
+.c-back-top__button {
+  align-items: center;
+  color: $white;
+  text-decoration: none;
+  outline: 0;
+  display: flex;
+  .svg-icon path[pid="1"] {
+    fill: #FFF;
+  }
+  &:hover {
+    color: $white;
+    fill: #fff;
+    .c-back-top__text {
+      transition: all 0.15s ease-in-out;
+      width: auto;
+      margin-right: 6px;
+      padding: 0 2px;
+    }
+  }
+}
+
+.c-back-top__text {
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}

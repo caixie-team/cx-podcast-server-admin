@@ -1,0 +1,40 @@
+/* ==========================================================================
+   #NOTIFICATIONS
+   ========================================================================== */
+
+/**
+ * 1. Allow notification to have a dropdown menu.
+ * 2. Fix additional space added by positioning number absolutely.
+ */
+
+.c-notification {
+	display: inline-block;
+	position: relative; /* [1] */
+	margin-right: $spacer-xsmall; /* [2] */
+}
+
+.c-notification__icon {
+	color: $notification-icon-color;
+	font-size: $notification-icon-font-size;
+}
+
+
+/**
+ * 1. Align number with notifcation icon properly.
+ */
+
+.c-notification__number {
+	display: inline-block;
+	position: absolute;
+	top: -3px; /* [1] */
+	right: -$spacer-xsmall; /* [1] */
+	min-width: $notification-number-width;
+	height: $notification-number-height;
+	padding: $notification-number-padding;
+	border-radius: $notification-number-border-radius;
+	background-color: $notification-number-background-color;
+	color: $notification-number-color;
+	font-size: $notification-number-font-size;
+	line-height: $notification-number-line-height;
+	text-align: center;
+}

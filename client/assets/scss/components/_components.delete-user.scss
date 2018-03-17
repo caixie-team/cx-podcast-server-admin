@@ -1,0 +1,25 @@
+.c-delete-user__select-placeholder {
+  border-bottom: 1px solid $gray;
+}
+
+.c-delete-user__explanation {
+  color: $gray;
+}
+
+.c-delete-user__single-site .c-author-selector__author-toggle .gravatar {
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.c-delete-user__reassign-user-name {
+  margin: 0 3px 0 8px
+}
+
+.c-delete-user__remove-user .gridicon {
+  margin: -2px 4px 0 0;
+  vertical-align: middle;
+}
+
+.c-delete-user__remove-user {
+  cursor: pointer;
+}

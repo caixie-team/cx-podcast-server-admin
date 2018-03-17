@@ -1,0 +1,153 @@
+//@import "../settings/settings.field";
+$field-addon-width: rem(42px) !default;
+
+/* ==========================================================================
+   #FIELD
+   ========================================================================== */
+
+/**
+ * Form field `c-field` component is used as a wrapper for more complex inputs
+ * that contain an icon, addon, form feedback and form message.
+ *
+ * 1. Take up (full width - width of field addon).
+ */
+
+.c-field {
+	position: relative;
+	width: 100%;
+
+	&.has-addon-left,
+	&.has-addon-right {
+		display: flex;
+		flex-flow: row nowrap;
+
+		> .c-input {
+			flex-basis: calc(100% - 42px); /* [1] */
+		}
+	}
+
+	&.has-addon-left {
+		> .c-field__addon {
+			border-right: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+
+		> .c-input {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+	}
+
+	&.has-addon-right {
+		> .c-field__addon {
+			border-left: 0;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+
+		> .c-input {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+	}
+
+	&.has-icon-left,
+	&.has-icon-right {
+		> .c-field__icon {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			color: $field-icon-color;
+			font-size: $field-icon-font-size;
+		}
+	}
+
+	&.has-icon-left {
+		> .c-input {
+			padding-left: 40px;
+		}
+
+		> .c-field__icon {
+			left: 15px;
+		}
+	}
+
+	&.has-icon-right {
+		> .c-input {
+			padding-right: 40px;
+		}
+
+		> .c-field__icon {
+			right: 15px;
+		}
+	}
+}
+
+/**
+ * Inline fields don't take up whole width 
+ *
+ * Used with search input in the navbar & toolbar.
+ */
+
+.c-field--inline {
+	width: 270px;
+
+	@include respond-to($breakpoint-tablet) {
+		width: 100%;
+	}
+}
+
+
+/**
+ * Labels are used with inputs, always use labels with inputs for better 
+ * accesibility. Hide labels using `u-hidden-visually` to display it for 
+ * screen readers.
+ *
+ * USAGE: <label class="c-field__label u-hidden-visually"></label>
+ */
+
+.c-field__label {
+	display: block;
+	flex-basis: 100%;
+	margin: $field-label-margin;
+	color: $field-label-color;
+	font-size: $field-label-font-size;
+	font-weight: $field-label-font-weight;
+}
+
+
+/**
+ * Addon is an icon placed in box next to input, used as a visual indicator
+ */
+
+.c-field__addon {
+	@include linear-gradient(to bottom, $field-addon-gradient);
+	display: inline-flex;
+	flex-basis: $field-addon-width;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	border: $field-addon-border-width solid $field-addon-border-color;
+	border-radius: $base-border-radius;
+	color: $field-addon-color;
+	font-size: rem(18px);
+	text-align: center;
+}
+
+
+/**
+ * Field message used as a helper note or feedback.
+ */
+
+.c-field__message {
+	display: inline-block;
+	margin: $field-message-margin;
+	padding: $field-message-padding;
+	color: $field-message-color;
+	font-size: $field-message-font-size;
+
+	> i {
+		margin-right: rem(5px);
+	}
+}

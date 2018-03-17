@@ -1,0 +1,150 @@
+/* ==========================================================================
+   #TOOLBAR
+   ========================================================================== */
+
+.c-toolbar {
+	display: flex;
+	align-content: center;
+	align-items: center;
+	padding: $toolbar-padding;
+	background-color: $toolbar-background-color;
+	box-shadow: $toolbar-box-shadow;
+
+	@include respond-to($breakpoint-tablet) {
+		padding: 20px 15px;
+	}
+}
+
+.c-toolbar__title {
+	display: inline-flex;
+	align-content: center;
+	align-items: center;
+	margin: 0;
+	color: $toolbar-title-color;
+	font-size: $toolbar-title-font-size;
+
+	&.has-divider::after {
+		display: block;
+		width: $toolbar-divider-width;
+		height: $toolbar-divider-height;
+		margin: $toolbar-divider-margin;
+		background-color: $toolbar-divider-background-color;
+		content: " ";
+	}
+}
+
+.c-toolbar__meta {
+	margin: 0;
+	color: $toolbar-meta-color;
+	font-size: $toolbar-meta-font-size;
+}
+
+.c-toolbar__icon {
+	display: block;
+	color: $toolbar-icon-color;
+	font-size: $toolbar-icon-font-size;
+
+	&.is-active {
+		color: $blue-300;
+	}
+
+	&.has-divider::after {
+		display: inline-block;
+		position: relative;
+		top: 0; // proper alignment
+		width: $toolbar-divider-width;
+		height: $toolbar-divider-height;
+		margin: $toolbar-divider-margin;
+		background-color: $toolbar-divider-background-color;
+		content: " ";
+	}
+}
+
+.c-toolbar__link {
+	color: $toolbar-link-color;
+	font-size: $toolbar-link-font-size;
+
+	&.has-dropdown::after {
+		display: inline-block;
+		margin-left: 10px;
+		color: inherit;
+		font-family: $base-icon-font;
+		font-size: 12px;
+		content: "\f3d0"; // ion-ios-arrow-down
+	}
+}
+
+
+/**
+ * Toolbar (tab-like) Navigation
+ */
+
+// We reuse scss variables from `c-tabs` component.
+.c-toolbar__nav {
+	@media only screen and (max-width: $breakpoint-mobile) {
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
+
+.c-toolbar__nav-item {
+	margin-right: 25px;
+	padding: 0 0 27px;
+	color: $tabs-link-color;
+	font-size: $tabs-link-font-size;
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+	&:hover {
+		color: $tabs-link-hover-color;
+		text-decoration: none;
+	}
+
+	&.is-active {
+		border-bottom: $tabs-link-active-border-width solid $tabs-link-active-border-color;
+		color: $tabs-link-active-color;
+		font-weight: $font-weight-bold;
+	}
+
+	@media only screen and (max-width: $breakpoint-mobile) {
+		padding-bottom: 20px;
+	}
+}
+
+/**
+ * Toolbar stats
+ *
+ * Numbers & states placed in the toolbar, used in performance.html page
+ */
+
+.c-toolbar__state {
+	border-right: $base-border-width solid $base-border-color;
+	text-align: center;
+
+	@include respond-to($breakpoint-tablet) {
+		margin-bottom: $spacer;
+		border-right: 0;
+
+		&:nth-child(3),
+		&:nth-child(4) {
+			margin-bottom: 0;
+		}
+	}
+
+	&:last-child {
+		border-right: 0;
+	}
+}
+
+.c-toolbar__state-number {
+	margin-bottom: 0;
+	font-size: $h2-font-size;
+}
+
+.c-toolbar__state-title {
+	color: $color-mute;
+	font-size: $text-font-size;
+	text-transform: uppercase;
+}

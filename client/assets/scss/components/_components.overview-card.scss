@@ -1,0 +1,31 @@
+/* ==========================================================================
+   #OVERVIEW CARD
+   ========================================================================== */
+
+/**
+ * Not really a reusable component, but it fixes responsive issues with 
+ * `Dashboard Overview` section in index.html page.
+ */
+
+// sass-lint:disable no-important
+
+.c-overview-card {
+	@media (max-width: $breakpoint-tablet) {
+		.u-border-right,
+		.u-border-left {
+			border: 0 !important;
+		}
+	}
+}
+
+.c-overview-card__section {
+	@media (max-width: $breakpoint-tablet) {
+		margin-bottom: 30px;
+
+		h3 {
+			font-size: $h4-font-size;
+		}
+	}
+}
+
+// sass-lint:enable no-important

@@ -1,0 +1,231 @@
+/* ==========================================================================
+   #BOARDS
+   ========================================================================== */
+
+
+/**
+ * Boards consist of 2 main components:
+ *
+ * 1. Board 
+ * 2. Task
+ *
+ * NOTE: We didn't seperate these components into their own files as it's 
+ * intended to be used togther.
+ */
+
+
+/* 1. Board
+   ========================================================================== */
+
+.c-board {
+	position: relative;
+	margin-bottom: $spacer-large;
+}
+
+.c-board__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: $spacer-xsmall;
+}
+
+.c-board__title {
+	margin-bottom: 0;
+	font-size: $text-large-font-size;
+	font-weight: $font-weight-bold;
+}
+
+.c-board__actions {
+	display: block;
+	position: relative;
+
+	> a {
+		color: $grey-500;
+	}
+}
+
+/**
+ * A wrapper for board's tasks.
+ */
+
+// sass-lint:disable no-duplicate-properties
+.c-board__content {
+	position: relative;
+	padding: 10px;
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background-color: $secondary-background-color;// $grey-100;
+	overflow-y: auto;
+}
+// sass-lint:enable no-duplicate-properties
+
+.c-board__btn {
+	display: block;
+	position: absolute;
+	bottom: -16px;
+	left: 16px;
+	width: 32px;
+	height: 32px;
+	border-radius: 100%;
+	color: $white;
+	font-size: $text-font-size;
+	line-height: 32px;
+	text-align: center;
+	z-index: $z-index-200;
+	@include linear-gradient(to bottom, $blue-300, $blue-400);
+
+	&:hover {
+		color: $white;
+	}
+}
+
+/**
+ * Add a board button
+ */
+
+.c-add-board {
+	display: block;
+	width: 100%;
+	margin-top: rem(34px); // height of board header
+	margin-bottom: $spacer;
+	padding: $spacer-small rem(20px);
+	border-radius: $base-border-radius;
+	background-color: $grey-600;
+	color: $white;
+	font-size: $text-font-size;
+	font-weight: $font-weight-bold;
+	opacity: .8;
+
+	> i {
+		margin-right: $spacer-xsmall;
+	}
+
+	&:hover {
+		color: $white;
+		text-decoration: none;
+		opacity: 1;
+	}
+}
+
+/**
+ * Board style variations
+ *
+ * Add a border with a specific color to indicate the status of the board.
+ */
+
+.c-board--info,
+.c-board--success,
+.c-board--warning,
+.c-board--danger {
+	.c-board__content {
+		border-top: 3px solid $color-info;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+}
+
+.c-board--info {
+	.c-board__content {
+		border-top-color: $color-info;
+	}
+}
+
+.c-board--success {
+	.c-board__content {
+		border-top-color: $color-success;
+	}
+}
+
+.c-board--warning {
+	.c-board__content {
+		border-top-color: $color-warning;
+	}
+}
+
+.c-board--danger {
+	.c-board__content {
+		border-top-color: $color-danger;
+	}
+}
+
+
+/* 2. Task
+   ========================================================================== */
+
+.c-task {
+	margin-bottom: $spacer-xsmall;
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background-color: $base-background-color;
+	cursor: grabbing;
+	overflow: hidden;
+
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+}
+
+.c-task__img {
+	display: block;
+}
+
+.c-task__content {
+	margin: 0;
+	padding: $spacer-small $spacer-xsmall $spacer-xsmall;
+	color: $heading-color;
+	font-size: $text-font-size;
+	font-weight: $font-weight-bold;
+}
+
+.c-task__indicators {
+	display: flex;
+	align-items: center;
+	padding: 0 0 $spacer-xsmall $spacer-xsmall;
+}
+
+.c-task__indicator {
+	display: inline-flex;
+	align-items: center;
+	margin-right: $spacer-small;
+	color: $color-mute;
+	font-size: $text-small-font-size;
+	font-weight: $font-weight-bold;
+
+	> i {
+		display: inline-block;
+		margin-right: rem(5px);
+		color: $grey-500;
+		font-size: $text-large-font-size;
+	}
+}
+
+/**
+ * Task style variations
+ *
+ * Add a border with a specific color to indicate the status of the task.
+ */
+
+.c-task--info,
+.c-task--success,
+.c-task--warning,
+.c-task--danger {
+	border-left: 3px solid $color-info;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.c-task--info {
+	border-left-color: $color-info;
+}
+
+.c-task--success {
+	border-left-color: $color-success;
+}
+
+.c-task--warning {
+	border-left-color: $color-warning;
+}
+
+.c-task--danger {
+	border-left-color: $color-danger;
+}

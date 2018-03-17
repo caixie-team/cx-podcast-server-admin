@@ -1,0 +1,19 @@
+.editor-sticky.button {
+  opacity: 0;
+  cursor: default;
+  transition: opacity 200ms;
+  &.is-sticky {
+    color: $orange-jazzy;
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+.editor-sticky__explanation {
+  display: block;
+  font-size: 11px;
+}
+
+.editor-sticky__tooltip .popover__inner {
+  white-space: nowrap;
+}

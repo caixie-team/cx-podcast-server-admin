@@ -1,0 +1,171 @@
+/* ==========================================================================
+   #DATATABLES CUSTOM STYLES
+   ========================================================================== */
+
+// sass-lint:disable-all
+
+/**
+ * Dashboard's custom styles for datatables plugin.
+ */
+
+.dataTable .sorting,
+.dataTable .sorting_asc,
+.dataTable .sorting_desc {
+	position: relative;
+	cursor: pointer;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.dataTables_filter {
+	margin-bottom: $spacer-small;
+	color: $text-color;
+
+	// customize select2 default input
+	input {
+		display: inline-block;
+		width: 100%;
+		max-width: 230px;
+		margin-left: $spacer-xsmall;
+		padding: $input-padding;
+		transition: all .3s;
+		border: $input-border-width solid $input-border-color;
+		border-radius: $input-border-radius;
+		background-color: $input-background-color;
+		color: $input-focus-color;
+		font-size: $input-font-size;
+		font-weight: $input-font-weight;
+		resize: none;
+
+		&:focus {
+			border-color: $input-focus-border-color;
+			outline: none;
+		}
+	}
+}
+
+
+.dataTable thead .sorting:before,
+.dataTable thead .sorting:after,
+.dataTable thead .sorting_asc:before,
+.dataTable thead .sorting_asc:after,
+.dataTable thead .sorting_desc:before,
+.dataTable thead .sorting_desc:after {
+	position: absolute;
+	display: inline-block;
+	content: "\f0d8"; // fa-caret-up
+	color: $color-mute;
+	font-family: $base-icon-font;
+}
+
+.dataTable thead .sorting:before,
+.dataTable thead .sorting_asc:before,
+.dataTable thead .sorting_desc:before {
+	right: 10px;
+	top: 25%;
+}
+
+.dataTable thead .sorting:after,
+.dataTable thead .sorting_asc:after,
+.dataTable thead .sorting_desc:after  {
+	right: 10px;
+	bottom: 25%;
+	content: "\f0d7"; // fa-caret-down
+}
+
+.dataTable thead.c-table__head--slim .sorting:before,
+.dataTable thead.c-table__head--slim .sorting_asc:before,
+.dataTable thead.c-table__head--slim .sorting_desc:before {
+	right: 10px;
+	top: 6px;
+}
+
+.dataTable thead.c-table__head--slim .sorting:after,
+.dataTable thead.c-table__head--slim .sorting_asc:after,
+.dataTable thead.c-table__head--slim .sorting_desc:after  {
+	right: 10px;
+	bottom: 6px;
+	content: "\f0d7"; // fa-caret-down
+}
+
+.dataTable thead .sorting:last-child:after,
+.dataTable thead .sorting_asc:last-child:after,
+.dataTable thead .sorting_desc:last-child:after,
+.dataTable thead .sorting:last-child:before,
+.dataTable thead .sorting_asc:last-child:before,
+.dataTable thead .sorting_desc:last-child:before  {
+	right: 20px;
+} 
+
+.dataTable thead .sorting_asc:after {
+	opacity: 0.5;
+}
+
+.dataTable thead .sorting_desc:before {
+	opacity: 0.5;
+}
+
+
+.dataTables_info {
+	font-size: $text-font-size;
+	margin-top: $spacer-small;
+	float: left;
+	color: $color-mute;
+}
+
+.dataTables_empty {
+	padding: $spacer;
+	color: $text-color;
+}
+
+.dataTables_paginate {
+	display: flex;
+	margin-top: $spacer-small;
+	float: right;
+
+	span {
+		display: flex;
+	}
+
+	.paginate_button {
+		display: block;
+		height: $pagination-control-height; /* [1] */
+		padding: $pagination-control-padding;
+		border: $pagination-control-border-width solid $pagination-control-border-color;
+		background-color: $pagination-control-background-color;
+		color: $pagination-link-color;
+		font-size: $pagination-control-font-size;
+		font-weight: $pagination-control-font-weight;
+		line-height: $pagination-control-height; /* [1] */
+		text-align: center;
+
+		&:hover {
+			color: $heading-color;
+			text-decoration: none;
+		}
+
+		&.current {
+			color: $pagination-link-active-color;
+		}
+
+		& + .paginate_button {
+			border-left: 0;
+		}
+
+		&.previous {
+			border-radius: $base-border-radius;
+			border-right: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+
+		&.next {
+			border-radius: $base-border-radius;
+			border-left: 0;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+	}
+}

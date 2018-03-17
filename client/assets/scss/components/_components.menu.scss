@@ -1,0 +1,46 @@
+/* ==========================================================================
+   #MENU
+   ========================================================================== */
+
+/**
+ * A list of horizontal or vertical links, and unlike `c-menu` component, this 
+ * component shouldn't be used inside a sidebar or any other component.
+ */
+
+.c-menu {}
+
+.c-menu__title {
+	margin: 0 0 $spacer-xsmall 20px;
+	color: $color-mute;
+	font-size: $text-small-font-size;
+	font-weight: $font-weight-normal;
+	text-transform: uppercase;
+}
+
+.c-menu__link {
+	display: inline-block;
+	width: 100%;
+	padding: 5px 0 5px 20px;
+	border-radius: $base-border-radius;
+	color: $heading-color;
+	font-size: $text-font-size;
+	font-weight: $font-weight-normal;
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	&.is-active {
+		background-color: $color-info;
+		color: $white;
+	}
+}
+
+.c-menu__icon {
+	margin-right: $spacer-xsmall;
+	color: $color-mute;
+
+	.c-menu__link:hover & {
+		color: $link-color;
+	}
+}

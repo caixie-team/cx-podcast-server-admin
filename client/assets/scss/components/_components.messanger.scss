@@ -1,0 +1,200 @@
+/* ==========================================================================
+   #MESSANGER
+   ========================================================================== */
+
+/**
+ * Components used to build messanger page.
+ *
+ * Table of content:
+ *
+ * 1. Messages
+ * 2. Chat 
+ */
+
+/* 1. Messages
+   ========================================================================== */
+
+/**
+ * A container for the messanger app.
+ */
+
+.c-messanger {
+	background-color: $base-background-color;
+}
+
+/**
+ * A container for inbox messages.
+ */
+
+.c-messages {
+	@include scrollbar;
+	height: calc(100vh - (69px + 70px));
+	border-right: $base-border-width solid $base-border-color;
+	overflow-y: auto;
+}
+
+.c-message {
+	display: block;
+	position: relative;
+	padding: 15px 20px 15px 30px;
+	border-bottom: $base-border-width solid $base-border-color;
+	color: $heading-color;
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	&.is-active {
+		border-left: 3px solid $blue-200;
+	}
+}
+
+.c-message__title {
+	margin: 0;
+	color: $heading-color;
+	font-size: 16px;
+}
+
+.c-message__title-meta {
+	display: block;
+	color: $color-mute;
+	font-size: $text-font-size;
+}
+
+.c-message__time {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	color: $color-mute;
+	font-size: 14px;
+}
+
+/**
+ * Make room for messages counter
+ */
+.c-message__snippet {
+	margin: 10px 40px 0 0; /* [1] */
+}
+
+.c-message__counter {
+	display: inline-block;
+	position: absolute;
+	right: 20px;
+	bottom: 25px;
+	width: 24px;
+	height: 24px;
+	border-radius: 100%;
+	background-color: $blue-200;
+	color: $white;
+	font-size: 14px;
+	line-height: 24px;
+	text-align: center;
+}
+
+/* 2. Chat
+   ========================================================================== */
+
+/**
+ * A container for chat.
+ */
+
+.c-chat {
+	display: flex;
+	flex-flow: column;
+	overflow-y: auto;
+	height: calc(100vh - (69px + 70px));
+}
+
+.c-chat__body {
+	flex: 1;
+	overflow-y: auto;
+	@include scrollbar;
+}
+
+.c-chat__post {
+	flex: 0 0 60px;
+}
+
+.c-chat__message {
+	padding: 20px 80px 20px 30px;
+}
+
+.c-chat__message-author {
+	display: inline-block;
+	margin-bottom: 10px;
+	color: $heading-color;
+	font-size: $h6-font-size;
+	font-weight: $font-weight-semibold;
+}
+
+.c-chat__message-time {
+	margin-left: 8px;
+	color: $color-mute;
+	font-size: 14px;
+}
+
+.c-chat__message-content {
+	margin: 0;
+	color: $text-color;
+}
+
+
+/**
+ * Chat Divider
+ */
+
+.c-chat__divider {
+	display: block;
+	position: relative;
+	color: $color-mute;
+	font-size: $text-font-size;
+	text-align: center;
+
+	&::before,
+	&::after {
+		position: absolute;
+		top: 50%; // at the center
+		width: 42%;
+		height: 1px;
+		background-color: $base-border-color;
+		content: "";
+	}
+
+	&::before {
+		left: 0;
+	}
+
+	&::after {
+		right: 0;
+	}
+
+	&.is-active {
+		color: #1A91EB;
+
+		&::before,
+		&::after {
+			background-color: #1A91EB;
+		}
+	}
+}
+
+/**
+  * Chat Message Composer
+  *
+  * a form to compose a new message.
+  */
+
+.c-chat__composer {
+	display: flex;
+	justify-content: center;
+	width: calc(100% - 60px);
+	height: 60px;
+	margin: 0 auto 20px;
+	padding: 0;
+	background-color: $base-background-color;
+
+	// customize addon to suite composer's design
+	.c-field__addon {
+		padding: 5px 25px;
+	}
+}

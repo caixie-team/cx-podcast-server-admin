@@ -1,0 +1,148 @@
+/* ==========================================================================
+   #CHAT DIALOGUE
+   ========================================================================== */
+
+/**
+ * A pop-up dialogue for different purposes like chat and customer support.
+ * This component is used in chat-dialogue.html page.
+ */
+
+
+.c-chat-dialogue {
+	position: fixed;
+	right: $spacer;
+	bottom: $spacer;
+}
+
+.c-chat-dialogue__btn {
+	@include linear-gradient(to bottom, $blue-300, $blue-400);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 60px;
+	height: 60px;
+	border-radius: 100%;
+	border-color: $blue-500;
+	color: $white;
+	font-size: $h3-font-size;
+	box-shadow: 0 2px 7px 0 rgba(34,44,60,0.40);
+	cursor: pointer;
+
+	.c-chat-dialogue__btn-close {
+		display: none;
+	}
+
+	&.is-open {
+		.c-chat-dialogue__btn-open {
+			display: none;
+		}
+
+		.c-chat-dialogue__btn-close {
+			display: block;
+		}
+	}
+}
+
+.c-chat-dialogue__header {
+	display: flex;
+	flex-shrink: 0;
+	padding: $spacer;
+	border-bottom: $base-border-width solid $base-border-color;
+}
+
+.c-chat-dialogue__team {
+	position: relative;
+	flex-shrink: 0;
+	width: 35%;
+
+	.c-avatar {
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		&:nth-child(2) {
+			transform: translateX(20px);
+		}
+
+		&:nth-child(3) {
+			transform: translateX(40px);
+		}
+	}
+}
+
+.c-chat-dialogue__body {
+	position: absolute;
+	right: 0;
+	bottom: 70px;
+	width: 350px;
+	transform: translateY(-20px);
+	transition: all 0.3s;
+	border-radius: $base-border-radius;
+	background-color: $base-background-color;
+	box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.35);
+	opacity: 0;
+	overflow: hidden;
+	visibility: hidden;
+
+	&.is-active {
+		transform: translateY(0);
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.c-chat-dialogue__messages {
+	height: 400px;
+	padding: 0 rem(20px);
+	background-color: $secondary-background-color;
+	overflow-y: auto;
+}
+
+.c-chat-dialogue__message {
+	padding: 10px 20px;
+}
+
+.c-chat-dialogue__message-content {
+	position: relative;
+	max-width: 80%;
+	padding: 15px 20px;
+	border-radius: $base-border-radius * 2;
+	color: $white;
+	font-size: $text-font-size;
+	@include linear-gradient(to bottom, $blue-300, $blue-400);
+	word-wrap: break-word;
+
+	&::before {
+		position: absolute;
+		top: 30%;
+		right: 100%;
+		transform: translate(0, -50%);
+		border: 6px solid transparent;
+		border-right-color: $blue-300;
+		content: " ";
+	}
+}
+
+.c-chat-dialogue__message--self {
+	text-align: right;
+
+	.c-chat-dialogue__message-content {
+		margin-left: auto;
+		border: $base-border-width solid $base-border-color;
+		background: $base-background-color;
+		color: $heading-color;
+
+		// arrow
+		&::before {
+			left: 100%;
+			border: 6px solid transparent;
+			border-left-color: $base-background-color;
+		}
+	}
+}
+
+.c-chat-dialogue__footer {
+	padding: rem(20px);
+	border-top: $base-border-width solid $base-border-color;
+	background-color: $base-background-color;
+}

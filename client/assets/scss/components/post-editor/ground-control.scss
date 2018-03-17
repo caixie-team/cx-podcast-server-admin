@@ -1,0 +1,298 @@
+.editor-ground-control {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-bottom: 0;
+  transition: 0.3s box-shadow;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: z-index( 'root', '.c-editor-ground-control' );
+
+  @include breakpoint( "<660px" ) {
+    padding-top: 0;
+  }
+}
+
+.editor-ground-control .c-app,
+.editor-ground-control .editor-ground-control__status,
+.editor-ground-control .editor-ground-control__history,
+.editor-ground-control .editor-ground-control__action-buttons {
+  height: 46px;
+  line-height: 46px;
+}
+
+.editor-ground-control .c-app {
+  flex: 0 0 auto;
+  max-width: $sidebar-width-max;
+
+  @include breakpoint( "<660px" ) {
+    display: none;
+  }
+}
+
+.editor-ground-control .c-app .c-app__title::after,
+.editor-ground-control .c-app .c-app__domain::after {
+  width: 16px;
+}
+
+.editor-ground-control .c-app .c-app__info {
+  width: auto;
+}
+
+.editor-ground-control__separator {
+  margin: 0 -16px;
+  background: lighten( $gray, 30 );
+}
+
+.editor-ground-control__status {
+  display: flex;
+  min-height: 20px;
+  justify-content: space-between;
+  position: relative;
+  padding-left: 16px;
+}
+
+.editor-ground-control__quick-save {
+  border-left: 1px solid lighten( $gray, 25% );
+  display: flex;
+
+  // Hide the ground-control save buttons on mobile
+  @include breakpoint( "<660px" ) {
+    display: none;
+  }
+}
+
+// Inline save buttons for mobile
+.post-editor__site .editor-ground-control__quick-save {
+  border-left: none;
+  display: none;
+
+  .editor-ground-control__save,
+  .editor-ground-control__save-status {
+    display: block;
+    padding: 12px 16px;
+  }
+
+  @include breakpoint( "<660px" ) {
+    display: block;
+  }
+}
+
+.editor-ground-control__history {
+  display: flex;
+  min-height: 20px;
+  justify-content: space-between;
+  position: relative;
+  padding-left: 16px;
+
+  @include breakpoint( "<660px" ) {
+    display: none;
+  }
+}
+
+.editor-ground-control__action-buttons {
+  margin-left: auto;
+  align-items: center;
+  display: flex;
+  padding: 0 12px;
+  line-height: 32px;
+}
+
+.editor-ground-control__action-buttons .c-button.is-borderless {
+  padding: 0 8px;
+  line-height: 46px;
+
+  @include breakpoint( ">660px" ) {
+    padding: 0 12px;
+  }
+}
+
+.editor-ground-control__action-buttons .c-button.is-borderless svg {
+  top: 4px;
+}
+
+.editor-ground-control__preview-button {
+  display: block;
+  flex-grow: 1;
+  padding: 7px 12px;
+
+  @include breakpoint( ">660px" ) {
+    min-width: 100px;
+    padding: 7px 16px;
+  }
+}
+
+.editor-ground-control__toggle-sidebar {
+  margin: 3px 8px 3px 0;
+  height: 38px;
+  line-height: 1;
+  transition: all 0.15s ease-in-out;
+}
+
+.editor-ground-control__toggle-sidebar svg {
+  transition: transform 0.3s ease-in-out;
+}
+
+.editor-ground-control__toggle-sidebar:hover,
+.editor-ground-control__toggle-sidebar:focus {
+  background: $gray-light;
+}
+
+.focus-sidebar .editor-ground-control__toggle-sidebar:hover,
+.focus-sidebar .editor-ground-control__toggle-sidebar:focus,
+.focus-sidebar .editor-ground-control__toggle-sidebar {
+  color: $white;
+  background: $gray-dark;
+}
+
+.focus-sidebar .editor-ground-control__toggle-sidebar svg {
+  transform: rotate( 45deg );
+}
+
+.editor-ground-control__toggle-sidebar.button.is-borderless,
+.editor-ground-control__preview-button.button.is-borderless {
+  font-size: 13px;
+}
+
+.editor-ground-control__publish-button {
+  flex-grow: 1;
+  display: flex;
+}
+
+.editor-ground-control .editor-publish-button {
+  border-radius: 4px;
+  padding: 7px 12px;
+  margin: 0 0 0 8px;
+
+  @include breakpoint( ">660px" ) {
+    min-width: 120px;
+    padding: 7px 16px;
+    margin: 0 8px;
+  }
+}
+
+.editor-ground-control__time-button {
+  border-radius: 0 4px 4px 0;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: -1px;
+}
+
+.editor-ground-control__time-button-label {
+  padding-left: 8px;
+  display: none;
+}
+
+.editor-ground-control__history-button.c-button.is-link,
+.editor-ground-control__save.c-button.is-link,
+.editor-ground-control__save-status {
+  font-size: 13px;
+}
+
+.editor-ground-control__save-status {
+  text-decoration: none;
+  color: $gray-lighten-20;
+}
+
+.editor-ground-control .edit-post-status {
+  border-top: 1px solid $gray-lighten-30;
+  border-bottom: 1px solid $gray-lighten-30;
+  margin: 0 -16px 16px;
+  padding: 16px;
+}
+
+.editor-ground-control__view-site-tooltip {
+  font-size: 12px;
+}
+
+.editor-ground-control__email-verification-notice {
+  font-size: 13px;
+  padding: 8px 8px 8px 40px;
+  background: white;
+  position: relative;
+  color: $blue-wordpress;
+  border: 1px solid $gray-lighten-20;
+  cursor: pointer;
+  fill: $blue-wordpress;
+  position: absolute;
+  z-index: 1;
+  right: 16px;
+  top: 40px;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba($gray-dark, 0.2);;
+  max-width: 264px;
+  box-sizing: border-box;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: white;
+    position: absolute;
+    top: -6px;
+    right: 48px;
+    transform: translate(-50%) rotate(45deg);
+    border-top: 1px solid $gray-lighten-20;
+    border-left: 1px solid $gray-lighten-20;
+  }
+
+  &:focus:not(:active) {
+    box-shadow: 0 0 0 2px $blue-light;
+    z-index: 1;
+    border-top-color: $gray;
+    border-bottom: 1px solid $gray;
+  }
+
+  &:hover {
+    color: $blue-medium;
+    fill: $blue-medium;
+  }
+}
+
+.editor-ground-control__email-verification-notice-icon {
+  position: absolute;
+  left: 8px;
+  top: 11px;
+}
+
+.editor-ground-control__email-verification-notice-more {
+  text-decoration: underline;
+}
+
+.editor-ground-control__back.c-button.is-borderless {
+  border-right: 1px solid lighten( $gray, 25% );
+  padding: 6px 16px;
+  min-width: 80px;
+  height: 46px;
+  border-radius: 0;
+  color: $blue-wordpress;
+
+  @include breakpoint( ">960px" ) {
+    padding: 6px 32px;
+  }
+
+  &:hover {
+    color: $primary-dark;
+  }
+
+  .gridicon {
+    top: 4px;
+  }
+}
+
+.editor-ground-control__button-label {
+  .post-status {
+    display: none;
+  }
+
+}
+
+.popover {
+  &.editor-ground-control__post-schedule-popover {
+    /* applying a lower z-index to ensure it is layered behind global notice */
+    z-index: z-index( 'root', '.popover.editor-ground-control__post-schedule-popover' );
+  }
+}

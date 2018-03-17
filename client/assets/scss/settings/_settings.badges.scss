@@ -1,0 +1,26 @@
+///* ========================================================================
+//   #BADGES
+//   ======================================================================== */
+
+
+$badge-padding: rem(4px) rem(12px) !default;
+$badge-small-padding: rem(4px) rem(10px) !default;
+$badge-xsmall-padding: rem(2px) rem(5px) !default;
+
+$badge-border-radius: $base-border-radius !default;
+
+$badge-small-font-size: 10px !default;
+$badge-font-size: $text-small-font-size !default;
+$badge-font-weight: $font-weight-bold !default;
+$badge-color: $white !default;
+
+// Style variants
+$badge-success-background-color: $color-success !default;
+$badge-info-background-color: $color-info !default;
+$badge-danger-background-color: $color-danger !default;
+$badge-warning-background-color: $color-warning !default;
+$badge-primary-background-color: $gunmetal-100 !default;
+$badge-secondary-background-color: $grey-600 !default;
+
+$badge-secondary-color: $white !default;
+

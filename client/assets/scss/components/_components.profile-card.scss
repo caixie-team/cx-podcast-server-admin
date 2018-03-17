@@ -1,0 +1,151 @@
+/* ==========================================================================
+   #PROFILE
+   ========================================================================== */
+
+.c-profile-card {
+	margin: 0 0 $spacer-small;
+	padding: $spacer-xsmall;
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background-color: $base-background-color;
+}
+
+.c-profile-card__cover {
+	height: 100px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	overflow: hidden;
+
+	> img {
+		display: block;
+	}
+}
+
+
+/**
+ * Profile card main content.
+ */
+
+.c-profile-card__user {
+	display: flex;
+	position: relative;
+	top: -20px;
+}
+
+.c-profile-card__avatar {
+	position: relative;
+	flex-shrink: 0;
+	width: 75px;
+	height: 75px;
+	margin: 0 $spacer-small 0 0;
+	border: 2px solid $white;
+	border-radius: 100%;
+	overflow: hidden;
+
+	> img {
+		display: block;
+	}
+}
+
+.c-profile-card__name {
+	align-self: flex-end;
+	margin: $spacer-small 0 0;
+	font-size: $h6-font-size;
+	line-height: 1.25; /* 20px / 16px */
+}
+
+.c-profile-card__username {
+	display: block;
+	color: $color-mute;
+	font-size: $text-font-size;
+}
+
+.c-profile-card__stats {
+	display: flex;
+
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+/**
+ * Profile Card stats/numbers like: followers, following..
+ */
+.c-profile-card__state {
+	margin-right: 30px;
+	color: $color-mute;
+	font-size: $text-small-font-size;
+	font-weight: $font-weight-bold;
+	line-height: 1.375;
+	text-transform: uppercase;
+
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+.c-profile-card__state-number {
+	display: block;
+	margin: 0;
+	color: $heading-color;
+	font-size: $h4-font-size;
+	font-weight: $font-weight-bold;
+}
+
+.c-profile-card__social {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 $spacer-xsmall 12px;
+	border-bottom: $base-border-width solid $base-border-color;
+}
+
+/**
+ * Use brand color utilities to set the background-color of every icon.
+ *
+ * Example: 
+ * 		<a class="c-profile__social-icon u-bg-dribbble" href="#">
+ *     		<i class="fa fa-dribbble"></i>
+ * 		</a>
+ */
+
+.c-profile-card__social-icon {
+	display: block;
+	width: 38px;
+	height: 38px;
+	border-radius: 100%;
+	color: $white;
+	line-height: 38px;
+	text-align: center;
+
+	&:hover {
+		color: $white;
+	}
+}
+
+
+/**
+ * A list of meta of information about the profile.
+ */
+
+.c-profile-card__meta {
+	padding: $spacer-small $spacer-xsmall 0;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.c-profile-card__meta-item {
+	display: flex;
+	align-items: center;
+	margin: 0 0 $spacer-xsmall;
+	color: $text-color;
+	font-size: $text-font-size;
+
+	// icon
+	> i {
+		margin-right: rem(12px);
+		color: $color-mute;
+		font-size: $text-large-font-size;
+	}
+}

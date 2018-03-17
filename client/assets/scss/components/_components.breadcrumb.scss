@@ -1,0 +1,29 @@
+/* ==========================================================================
+   #BREADCRUMB
+   ========================================================================== */
+
+.c-breadcrumb {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+.c-breadcrumb__item {
+	display: inline-block;
+	color: $breadcrumb-item-color;
+
+	> a {
+		color: inherit;
+	}
+
+	// divider
+	&:not(:last-child)::after {
+		margin: $breadcrumb-divider-margin;
+		color: $breadcrumb-divider-color;
+		content: "/";
+	}
+
+	&.is-active {
+		color: $breadcrumb-item-active-color;
+	}
+}

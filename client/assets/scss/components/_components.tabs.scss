@@ -1,0 +1,99 @@
+/* ==========================================================================
+   #TABS
+   ========================================================================== */
+
+/**
+ * A wrapper for tabs navigation and content.
+ */
+
+.c-tabs {}
+
+
+/**
+ * 1. Works as a wrapper for tabs navigation links.
+ */
+
+.c-tabs__list { /* [1] */
+	padding: $tabs-list-padding;
+	border: $tabs-list-border-width solid $tabs-list-border-color;
+	border-top-left-radius: $tabs-list-border-radius;
+	border-top-right-radius: $tabs-list-border-radius;
+	background-color: $tabs-list-background-color;
+
+	li {
+		display: inline-block;
+	}
+}
+
+
+.c-tabs__link {
+	margin: $tabs-item-margin;
+	padding: $tabs-link-padding;
+	color: $tabs-link-color;
+	font-size: $tabs-link-font-size;
+
+	&:hover {
+		color: $tabs-link-hover-color;
+		text-decoration: none;
+	}
+
+	&.is-active,
+	&.active {
+		border-bottom: $tabs-link-active-border-width solid $tabs-link-active-border-color;
+		color: $tabs-link-active-color;
+		font-weight: $font-weight-bold;
+	}
+}
+
+/**
+ * Splitted-style of tabs navigation list
+ */
+
+.c-tabs__list--splitted {
+	display: flex;
+	padding: 0;
+	border: 0;
+	background-color: transparent;
+
+	.c-tabs__item {
+		align-self: flex-end;
+		margin: 0;
+	}
+
+	.c-tabs__link {
+		display: inline-block;
+		align-self: flex-end;
+		margin-right: 4px;
+		padding: 15px 30px;
+		border: 1px solid $tabs-list-border-color;
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+		font-size: 14px;
+		@include linear-gradient(to bottom, $tabs-splitted-link-gradient);
+
+		&.is-active,
+		&.active {
+			padding: 20px 35px;
+			border-bottom-color: $base-background-color;
+			background: $base-background-color;
+			font-size: 18px;
+		}
+	}
+}
+
+.c-tabs__pane {
+	display: none;
+	margin: $tabs-pane-margin;
+	padding: $tabs-pane-padding;
+	border: $tabs-pane-border-width solid $tabs-pane-border-color;
+	border-top: 0;
+	border-bottom-left-radius: $tabs-pane-border-radius;
+	border-bottom-right-radius: $tabs-pane-border-radius;
+	background-color: $tabs-pane-background-color;
+	color: $tabs-pane-color;
+
+	&.is-active,
+	&.active {
+		display: block;
+	}
+}

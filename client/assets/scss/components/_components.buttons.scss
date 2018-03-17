@@ -1,0 +1,533 @@
+/* ==========================================================================
+   #BUTTONS
+   ========================================================================== */
+
+/**
+ * 1. Apply (c-btn--info) background if `c-btn--{style}` class isn't specified.
+ * 2. Align icon (if placed inside button) with text properly.
+ * 3. Add dropdown icon/arrow to button with `has-dropdown` class, it depends
+ *    on (FontAwesome) icon font so make sure to modify it if you changed your
+ *    base icon font.
+ * 4. Use `disabled` property on <button> elements, and `is-disabled` class on
+ *    <a> elements as they don't support `disabled` property.
+ */
+// ==========================================================================
+// Buttons
+// ==========================================================================
+
+// resets button styles
+button {
+  background: transparent;
+  border: none;
+  outline: 0;
+  padding: 0;
+  font-size: 14px;
+  -webkit-appearance: none;
+  appearance: none;
+  vertical-align: baseline;
+}
+
+.c-button {
+  background: $white;
+  border-color: $gray-lighten-20;
+  border-style: solid;
+  border-width: 1px 1px 2px;
+  color: $gray-dark;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  outline: 0;
+  overflow: hidden;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  vertical-align: top;
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 21px;
+  border-radius: 4px;
+  padding: 7px 14px 9px;
+  -webkit-appearance: none;
+  appearance: none;
+
+  &:hover {
+    border-color: $gray-lighten-10;
+    color: $gray-dark;
+  }
+  &:active {
+    border-width: 2px 1px 1px;
+  }
+  &:visited {
+    color: $gray-dark;
+  }
+  &[disabled],
+  &:disabled,
+  &.disabled {
+    color: $gray-lighten-30;
+    background: $white;
+    border-color: $gray-lighten-30;
+    cursor: default;
+
+    &:active {
+      border-width: 1px 1px 2px;
+    }
+  }
+  .accessible-focus &:focus {
+    border-color: $primary-medium;
+    box-shadow: 0 0 0 2px $primary-light;
+  }
+  &.is-compact {
+    padding: 7px;
+    color: $gray-text-min;
+    font-size: 12px;
+    line-height: 1;
+
+    &:disabled {
+      color: $gray-lighten-30;
+    }
+    .gridicon {
+      top: 5px;
+      margin-top: -8px;
+      margin-right: 4px;
+    }
+    // Make the left margin of the small plus icon visually less huge
+    .gridicons-plus-small {
+      margin-left: -4px;
+    }
+    // Reset the left margin if the button contains only the plus icon
+    .gridicons-plus-small:last-of-type {
+      margin-left: 0;
+    }
+    // Make plus icon nudged closer to adjacent icons for add-people and add-plugin type buttons
+    .gridicons-plus-small + .gridicon {
+      margin-left: -4px;
+    }
+  }
+  &.is-busy {
+    animation: button__busy-animation 3000ms infinite linear;
+    background-size: 120px 100%;
+    background-image: linear-gradient(-45deg, $gray-lighten-30 28%, $white 28%, $white 72%, $gray-lighten-30 72%);
+  }
+  &.hidden {
+    display: none;
+  }
+  .gridicon {
+    position: relative;
+    top: 4px;
+    margin-top: -2px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+// Primary buttons
+.c-button.is-primary {
+  background: $primary;
+  color: $white;
+  //border-color: $primary-500;
+  border-color: #008ce3;
+  //color: #fff;
+  fill: #fff;
+  &:hover,
+  &:focus {
+    //background-color: #008ce3;
+    //border-color: #008ce3;
+    border-color: $primary-dark;
+    color: $white;
+  }
+  &.is-compact {
+    color: $white;
+  }
+  &[disabled],
+  &:disabled,
+  &.disabled {
+    color: $gray-lighten-30;
+    background: $white;
+    border-color: $gray-lighten-30;
+  }
+  &.is-busy {
+    background-size: 120px 100%;
+    background-image: linear-gradient(-45deg, $primary-medium 28%, darken($primary-medium, 5%) 28%, darken($primary-medium, 5%) 72%, $primary-medium 72%);
+    border-color: darken($primary-medium, 8%);
+  }
+}
+
+// Scary buttons
+.c-button.is-scary {
+  color: $alert-red;
+
+  &:hover,
+  &:focus {
+    border-color: $alert-red;
+  }
+
+  .accessible-focus &:focus {
+    box-shadow: 0 0 0 2px lighten($alert-red, 20%);
+  }
+
+  &[disabled],
+  &:disabled {
+    color: lighten($alert-red, 30%);
+    border-color: $gray-lighten-30;
+  }
+}
+
+.c-button.is-primary.is-scary {
+  background: $alert-red;
+  border-color: darken($alert-red, 20%);
+  color: $white;
+
+  &:hover,
+  &:focus {
+    border-color: darken($alert-red, 40%);
+  }
+  &[disabled],
+  &:disabled {
+    background: lighten($alert-red, 20%);
+    border-color: tint($alert-red, 30%);
+  }
+  &.is-busy {
+    background-size: 120px 100%;
+    background-image: linear-gradient(-45deg, $alert-red 28%, darken($alert-red, 5%) 28%, darken($alert-red, 5%) 72%, $alert-red 72%);
+    border-color: darken($alert-red, 8%);
+  }
+}
+
+.c-button.is-borderless {
+  border: none;
+  background: none;
+  color: var(--button-is-borderless-color);
+  padding-left: 0;
+  padding-right: 0;
+
+  &:hover,
+  &:focus {
+    color: $gray-dark;
+  }
+
+  .gridicon {
+    width: 24px;
+    height: 24px;
+    top: 6px;
+  }
+
+  &[disabled],
+  &:disabled {
+    color: $gray-lighten-30;
+    cursor: default;
+
+    &:active {
+      border-width: 0;
+    }
+  }
+  &.is-scary {
+    color: $alert-red;
+
+    &:hover,
+    &:focus {
+      color: darken($alert-red, 20%);
+    }
+
+    &[disabled] {
+      color: lighten($alert-red, 30%);
+    }
+  }
+
+  &.is-primary {
+    color: $primary;
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: $link-highlight;
+    }
+
+    &[disabled] {
+      color: $gray-lighten-30;
+    }
+  }
+
+  &.is-compact {
+    .gridicon {
+      width: 18px;
+      height: 18px;
+      top: 5px;
+    }
+
+    //arrows sit 1px low in their svg bounding box, need a nudge
+    .gridicons-arrow-left {
+      top: 4px;
+      margin-right: 4px;
+    }
+
+    .gridicons-arrow-right {
+      top: 4px;
+      margin-left: 4px;
+    }
+  }
+}
+
+// ==========================================================================
+// Resets
+// ==========================================================================
+
+// Turn Reset 'buttons' into regular text links
+.layout__content input,
+.dialog__content input {
+  &[type=reset],
+  &[type=reset]:hover,
+  &[type=reset]:active,
+  &[type=reset]:focus {
+    background: 0 0;
+    border: 0;
+    padding: 0 2px 1px;
+    width: auto;
+    box-shadow: none;
+  }
+}
+
+// Buttons within sentences sit on the text baseline.
+.layout__content p .button,
+.dialog__content p .button {
+  vertical-align: baseline;
+}
+
+// Firefox Junk
+.layout__content button::-moz-focus-inner,
+.layout__content input[type=reset]::-moz-focus-inner,
+.layout__content input[type=button]::-moz-focus-inner,
+.layout__content input[type=submit]::-moz-focus-inner,
+.dialog__content button::-moz-focus-inner,
+.dialog__content input[type=reset]::-moz-focus-inner,
+.dialog__content input[type=button]::-moz-focus-inner,
+.dialog__content input[type=submit]::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+// ==========================================================================
+// Deprecated styles
+// ==========================================================================
+
+.c-button.is-link {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  //color: $blue-medium;
+  font-weight: 400;
+  font-size: inherit;
+  line-height: 1.65;
+
+  &:hover,
+  &:focus,
+  &:active {
+    //color: $gray-dark;
+    color: $link-highlight;
+    box-shadow: none;
+  }
+}
+
+@keyframes button__busy-animation {
+  0% {
+    background-position: 240px 0;
+  }
+}
+
+.c-btn {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+  margin: 0;
+  padding: $btn-padding;
+  transition: all 0.15s ease-in-out;
+  border: $btn-border-width solid;
+  border-radius: $btn-border-radius;
+  border-color: $btn-border-color; /* [1] */
+  color: $btn-color; /* [1] */
+  font-size: $btn-font-size;
+  font-weight: $btn-font-weight;
+  line-height: $btn-line-height;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
+  vertical-align: middle;
+  appearance: none;
+  user-select: none;
+  @include linear-gradient(to bottom, $gradient-info); /* [1] */
+
+  &:hover,
+  &:focus {
+    outline: 0;
+    color: $btn-hover-color;
+    text-decoration: none;
+  }
+
+  i {
+    position: relative;
+    bottom: -1px; /* [2] */
+    font-size: 16px;
+  }
+
+  &.has-dropdown {
+    position: relative;
+    padding-right: 2.5rem;
+
+    &::after { /* [3] */
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      margin-left: 1.25rem;
+      padding: 0.5rem 8px;
+      border-left: 1px solid;
+      border-color: inherit;
+      color: inherit;
+      font-family: $base-icon-font;
+      content: "\f107"; // fa-angle-down
+    }
+  }
+
+  &.is-disabled,
+  &:disabled { /* [4] */
+    border-color: $btn-disabled-border-color;
+    background: $btn-disabled-background-color;
+    color: $btn-disabled-color;
+
+    &:hover,
+    &:focus {
+      border-color: $btn-disabled-border-color;
+      background: $btn-disabled-background-color;
+      color: $btn-disabled-color;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.c-btn--fullwidth {
+  width: 100%;
+}
+
+/**
+ * 1. Reduce spacing between the icon and text in small buttons.
+ */
+
+.c-btn--small {
+  padding: $btn-small-padding;
+  font-size: $btn-small-font-size;
+
+  i {
+    margin-right: 5px; /* [1] */
+  }
+}
+
+.c-btn--large {
+  padding: $btn-large-padding;
+  font-size: $btn-large-font-size;
+}
+
+/* Style variants
+   ========================================================================== */
+
+/**
+ * Buttons have a simple, nice gradient on the background, we use
+ * sass's `darken()` method to generate a dark shade of the requested color,
+ * then we use our `linear-gradient` mixin to generate the gradient background.
+ */
+
+.c-btn--primary {
+  @include linear-gradient(to bottom, $btn-primary-gradient);
+  border-color: $btn-primary-border-color;
+
+  &:hover {
+    @include linear-gradient(to bottom, $btn-primary-hover-gradient);
+  }
+
+  &:focus {
+    @include linear-gradient(to bottom, $btn-primary-focus-gradient);
+  }
+}
+
+.c-btn--secondary {
+  @include linear-gradient(to bottom, $btn-secondary-gradient);
+  border-color: $btn-secondary-border-color;
+  color: $btn-secondary-color;
+
+  &:hover {
+    @include linear-gradient(to bottom, $btn-secondary-hover-gradient);
+    color: $btn-secondary-hover-color;
+  }
+
+  &:focus {
+    @include linear-gradient(to bottom, $btn-secondary-focus-gradient);
+    color: $btn-secondary-hover-color;
+  }
+}
+
+.c-btn--info {
+  @include linear-gradient(to bottom, $blue-300, $blue-400);
+  border-color: $blue-500;
+
+  &:hover {
+    @include linear-gradient(to bottom, darken($blue-300, 4%), darken($blue-400, 4%));
+  }
+
+  &:focus {
+    @include linear-gradient(to bottom, darken($blue-300, 6%), darken($blue-400, 6%));
+  }
+}
+
+.c-btn--success {
+  @include linear-gradient(to bottom, $green-300, $green-400);
+  border-color: $green-500;
+
+  &:hover {
+    @include linear-gradient(to bottom, darken($green-300, 4%), darken($green-400, 4%));
+  }
+
+  &:focus {
+    @include linear-gradient(to bottom, darken($green-300, 6%), darken($green-400, 6%));
+  }
+}
+
+.c-btn--fancy {
+  @include linear-gradient(to bottom, $purple-300, $purple-500);
+  border-color: $purple-500;
+
+  &:hover {
+    @include linear-gradient(to bottom, darken($purple-300, 4%), darken($purple-500, 4%));
+  }
+
+  &:focus {
+    @include linear-gradient(to bottom, darken($purple-300, 6%), darken($purple-500, 6%));
+  }
+}
+
+.c-btn--warning {
+  @include linear-gradient(to bottom, $orange-300, $orange-500);
+  border-color: $orange-500;
+
+  &:hover {
+    @include linear-gradient(to bottom, darken($orange-300, 4%), darken($orange-500, 4%));
+  }
+
+  &:focus {
+    @include linear-gradient(to bottom, darken($orange-300, 6%), darken($orange-500, 6%));
+  }
+}
+
+.c-btn--danger {
+  @include linear-gradient(to bottom, $red-100, $red-300);
+  border-color: $red-300;
+
+  &:hover {
+    @include linear-gradient(to bottom, darken($red-100, 4%), darken($red-300, 4%));
+  }
+
+  &:focus {
+    @include linear-gradient(to bottom, darken($red-100, 6%), darken($red-300, 6%));
+  }
+}

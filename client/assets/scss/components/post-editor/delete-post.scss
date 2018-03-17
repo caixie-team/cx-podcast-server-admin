@@ -1,0 +1,35 @@
+.editor-delete-post__tooltip .popover__inner {
+  white-space: nowrap;
+}
+
+
+.editor-delete-post {
+  display: block;
+}
+
+.editor-delete-post__button.button.is-borderless {
+  color: $gray-text-min;
+  padding: 0;
+
+  &.is-trashing {
+    color: $orange-fire;
+    .gridicon {
+      color: $orange-fire;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: $orange-fire;
+    outline: none;
+
+    .gridicon {
+      color: $orange-fire;
+    }
+  }
+
+  .gridicon {
+    color: $gray-text-min;
+    margin-right: 4px;
+  }
+}

@@ -1,0 +1,283 @@
+/*!
+ * Dashboard UI Kit - v2.0
+ * Copyright 2018 ZawiaStudio
+ * @zawiastudio | zawiastudio.com
+ */
+
+//
+// Table of content:
+//
+// Tools........... Dashboard's scss mixins & functions
+// Settings........ Dashboard's scss variables
+// Themes.......... Override default scss variables to apply different themes.
+// Base............ Resets, bare elements styling
+// Vendors......... Exteneral assests e.g. bootstrap-grid
+// Objects......... Layout-specific
+// Components...... UI-Kit, admin dashboard components
+// Utilities....... Helper classes e.g. display utilities
+//
+
+
+//
+// TOOLS
+//
+@import "tools/tools.rem";
+@import "tools/tools.clear-fix";
+@import "tools/tools.clear-text";
+@import "tools/tools.hex-to-rgb";
+@import "tools/tools.overflow-gradient";
+@import "tools/tools.linear-gradient";
+@import "tools/tools.respond-to";
+@import "tools/tools.calc";
+@import "tools/tools.breakpoints";
+@import "tools/tools.z-index";
+@import "tools/tools.placeholder";
+@import "tools/tools.long-content-fade";
+
+
+//
+// SETTINGS
+//
+
+// Global Settings
+@import "settings/settings.color";
+@import "settings/settings.color-schemes";
+@import "settings/settings.global";
+
+// UI-Kit Settings
+@import "settings/settings.alerts";
+@import "settings/settings.avatars";
+@import "settings/settings.badges";
+@import "settings/settings.breadcrumb";
+@import "settings/settings.buttons";
+@import "settings/settings.calendar";
+@import "settings/settings.card";
+@import "settings/settings.choice";
+@import "settings/settings.close";
+@import "settings/settings.divider";
+@import "settings/settings.dropdown";
+@import "settings/settings.field";
+@import "settings/settings.inputs";
+@import "settings/settings.forms";
+@import "settings/settings.modals";
+@import "settings/settings.nav";
+@import "settings/settings.navbar";
+@import "settings/settings.notifications";
+@import "settings/settings.pagination";
+@import "settings/settings.popovers";
+@import "settings/settings.progress";
+@import "settings/settings.range";
+@import "settings/settings.scrollbar";
+@import "settings/settings.select";
+@import "settings/settings.switches";
+@import "settings/settings.tables";
+@import "settings/settings.tabs";
+@import "settings/settings.toggle";
+@import "settings/settings.toolbar";
+@import "settings/settings.tooltips";
+
+@import "tools/tools.scrollbar";
+
+
+//
+// THEMES
+//
+//@import "themes/themes.dark"; // <== uncomment to use the dark theme
+
+
+//
+// BASE
+//
+@import "base/base.global";
+@import "base/base.typography";
+@import "base/base.icon";
+
+//
+// VENDORS
+//
+//@import "vendor/bootstrap-grid";
+//@import "vendor/fontawesome";
+//@import "vendor/fullcalendar";
+//@import "vendor/fullcalendar-custom"; // override `fullcalendar` default styles
+//@import "vendor/dragula";
+//@import "vendor/select2";
+//@import "vendor/select2-custom"; // override `select2` default styles
+//@import "vendor/dropzone";
+//@import "vendor/dropzone-custom"; // override `dropzone` default styles
+//@import "vendor/datatables-custom"; // override `datatables` default styles
+//@import "vendor/datepicker";
+//@import "vendor/datepicker-custom"; // override `datepicker` default styles
+//@import "vendor/jqvmap";
+//@import "vendor/jqvmap-custom"; // override `jqvmap` default styles
+
+//
+// OBJECTS
+//
+@import "objects/objects.page";
+@import "objects/objects.layout";
+@import "objects/objects.media";
+@import "objects/objects.line";
+@import "objects/objects.ratio";
+
+
+//
+// COMPONENTS
+//
+
+// UI-Kit Components
+@import "components/components.alerts";
+@import "components/components.avatars";
+@import "components/components.badges";
+@import "components/components.breadcrumb";
+@import "components/components.button-group";
+@import "components/components.buttons";
+@import "components/components.card";
+@import "components/components.choice";
+@import "components/components.close";
+@import "components/components.dropdown";
+@import "components/components.field";
+@import "components/components.form-fieldset";
+@import "components/components.form-legend";
+@import "components/components.form-section-heading";
+@import "components/components.form-setting-explanation";
+@import "components/components.form-text-input-with-affixes";
+@import "components/_components.form-button";
+
+@import "components/components.icon";
+//@import "components/components.inputs";
+//@import "components/components.modal";
+//@import "components/components.nav";
+//@import "components/components.navbar";
+//@import "components/components.notifications";
+//@import "components/components.pagination";
+//@import "components/components.popover";
+//@import "components/components.progress";
+//@import "components/components.ranges";
+//@import "components/components.switch";
+//@import "components/components.switch";
+//@import "components/components.tables";
+//@import "components/components.tabs";
+//@import "components/components.toggle";
+//@import "components/components.toolbar";
+//@import "components/components.tooltips";
+
+// Dashboard/Admin-Related Components
+//@import "components/components.profile-card";
+//@import "components/components.event";
+//@import "components/components.sidebar";
+//@import "components/components.projects";
+//@import "components/components.post";
+//@import "components/components.stream";
+//@import "components/components.gallery-card";
+//@import "components/components.state";
+//@import "components/components.todo";
+//@import "components/components.messanger";
+//@import "components/components.credit-card";
+//@import "components/components.search-result";
+//@import "components/components.search-form";
+//@import "components/components.graph-card";
+@import "components/components.divider";
+@import "components/components.list-end";
+//@import "components/components.progress-card";
+@import "components/components.panel";
+//@import "components/components.state-card";
+//@import "components/components.summary";
+//@import "components/components.chart";
+//@import "components/components.project-card";
+//@import "components/components.menu";
+//@import "components/components.boards";
+//@import "components/components.plans";
+//@import "components/components.fileitem";
+//@import "components/components.overview-card";
+//@import "components/components.invoice";
+//@import "components/components.feed";
+//@import "components/components.rating";
+//@import "components/components.map";
+//@import "components/components.candidate";
+//@import "components/components.stage";
+//@import "components/components.counter-nav";
+//@import "components/components.chat-dialogue";
+//@import "components/components.login-horizontal";
+@import "components/components.count";
+@import "components/components.async-load";
+@import "components/components.header-cake";
+@import "components/components.popover";
+@import "components/components.hero";
+
+@import "components/components.main";
+@import "components/components.form-input-validation";
+@import "components/components.masterbar";
+@import "components/components.sidebar";
+@import "components/components.login";
+
+// BLOCKS COMPONENTS
+@import "components/components.app";
+@import "components/components.app-icon";
+@import "components/components.app-icon-setting";
+@import "components/components.app-selector";
+@import "components/components.dialog";
+@import "components/components.external-link";
+@import "components/components.ellipsis-menu";
+
+@import "components/components.back-top";
+
+// avatar
+@import "components/components.edit-avatar";
+
+// APPS
+@import "components/components.all-apps";
+@import "components/components.current-app";
+
+// PAGE
+@import "components/components.app-settings";
+
+// SECTION COMPONENTS
+@import "components/components.section-header";
+@import "components/components.section-nav";
+
+@import "components/components.search";
+@import "components/components.search-card";
+@import "components/components.spinner";
+@import "components/components.header-button";
+
+//@import "components/components.author-selector";
+// POSTS COMPOMENTS
+@import "components/components.post";
+@import "components/components.post-icon";
+@import "components/components.post-item";
+@import "components/components.posts";
+@import "components/components.posts-browser";
+@import "components/components.posts-browser-item";
+@import "components/components.posts-browser-list";
+
+
+// Taxonomy
+@import "components/components.taxonomy-manager";
+@import "components/components.term-form-dialog";
+
+
+// People
+@import "components/components.profile";
+@import "components/components.profile-avatar";
+@import "components/components.profile-card";
+@import "components/people/style";
+//@import "components/post-editor/style";
+
+@import "components/components.drop-zone";
+//
+// UTILITIES
+//
+@import "utilities/utilities.typography";
+@import "utilities/utilities.floats";
+@import "utilities/utilities.clearfix";
+@import "utilities/utilities.spacing";
+@import "utilities/utilities.colors";
+@import "utilities/utilities.display";
+@import "utilities/utilities.borders";
+@import "utilities/utilities.flex";
+@import "utilities/utilities.responsive";
+@import "utilities/utilities.opacity";
+@import "utilities/utilities.sizes";
+@import "utilities/utilities.overflow";
+//@import "utilities/utilities.bootstrap";
+

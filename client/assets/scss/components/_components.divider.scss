@@ -1,0 +1,54 @@
+/* ==========================================================================
+   #DIVIDER
+   ========================================================================== */
+
+.c-divider {
+	display: block;
+	position: relative;
+	height: $divider-line-height;
+	background-color: $divider-line-background-color;
+	color: $divider-color;
+	font-size: $divider-font-size;
+	font-weight: $divider-font-weight;
+	text-align: center;
+	text-transform: uppercase;
+
+	/**
+	 * When divider has a text in its center.
+	 */
+	&.has-text {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: transparent;
+
+		&::before,
+		&::after {
+			width: 42%;
+			height: $divider-line-height;
+			background-color: $divider-line-background-color;
+			content: "";
+		}
+	}
+
+	@include respond-to ($breakpoint-tablet) {
+		&::before,
+		&::after {
+			width: 30%;
+		}
+	}
+}
+
+.c-divider--small {
+	font-size: $text-font-size;
+	text-transform: none;
+
+	&.has-text {
+		&::before,
+		&::after {
+			width: 25%;
+			height: 1px;
+			background-color: $divider-line-background-color;
+		}
+	}
+}

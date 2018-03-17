@@ -1,0 +1,31 @@
+///* ========================================================================
+//   #FIELD
+//   ======================================================================== */
+
+
+// Field
+$field-margin: 0 0 rem(20px) 0 !default;
+
+// Field label
+$field-label-font-weight: $font-weight-normal !default;
+$field-label-font-size: $text-font-size !default;
+$field-label-color: $grey-800 !default;
+$field-label-margin: 0 0 rem(5px) 0 !default;
+
+// Field addon
+$field-addon-width: rem(42px) !default;
+$field-addon-border-width: $base-border-width !default;
+$field-addon-border-color: $grey-400 !default;
+$field-addon-color: #CED0DA !default;
+$field-addon-gradient: #FFF, #F2F4F7 !default;
+
+// Field icon
+$field-icon-color: #CED0DA !default;
+$field-icon-font-size: rem(18px) !default;
+
+// Field message
+$field-message-margin: 0 rem(5px) 0 0 !default;
+$field-message-padding: 0 !default;
+
+$field-message-color: rgba($text-color, 0.5) !default;
+$field-message-font-size: $text-small-font-size !default;

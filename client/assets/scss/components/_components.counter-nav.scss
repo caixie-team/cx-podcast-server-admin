@@ -1,0 +1,93 @@
+/* ==========================================================================
+   #COUNTER NAV
+   ========================================================================== */
+
+/**
+ * Counter nav is a different style of navigation, every navigation link has 
+ * an icon (that contains current number) before it. 
+ *
+ * This component is used in project-overview.html page.
+ */
+
+.c-counter-nav {
+	display: flex;
+	align-content: center;
+	align-items: center;
+}
+
+.c-counter-nav__title {
+	margin-right: $spacer-xsmall;
+	color: $color-mute;
+}
+
+.c-counter-nav__item {
+	margin-right: rem(20px);
+}
+
+.c-counter-nav__link {
+	color: $color-mute;
+	font-size: 14px;
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	&.is-active {
+		color: $heading-color;
+	}
+}
+
+.c-counter-nav__counter {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	margin-right: 10px;
+	border: $base-border-width solid $base-border-color;
+	border-radius: 100%;
+	background-color: $secondary-background-color;
+	color: $color-mute;
+	text-align: center;
+
+	.c-counter-nav__link.is-active & {
+		@include linear-gradient(to bottom, #2EA1F8, #1990EA);
+		border-color: #2EA1F8;
+		color: $white;
+	}
+}
+
+/**
+ * Inverse 
+ *
+ * Use `.c-counter-nav--inverse` when using this component on a dark background.
+ */
+
+.c-counter-nav--inverse {
+	.c-counter-nav__counter {
+		border-radius: 100%;
+		border-color: #313C4D;
+		background-color: #313C4D;
+		color: #828A96;
+		text-align: center;
+
+		.c-counter-nav__link.is-active & {
+			color: $white;
+		}
+	}
+
+	.c-counter-nav__link.is-active {
+		color: $white;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+

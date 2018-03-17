@@ -1,0 +1,239 @@
+///* ========================================================================
+//   #GLOBAL
+//   ======================================================================== */
+
+//
+// Set up global Dashboard's variables.
+//
+// Don't change it here, instead, copy settings from this file into your custom
+// settings' file to override Dashboard's default settings.
+//
+
+//
+// Table of Content:
+//
+// 1. Color System
+// 2. Typography
+// 3. Borders
+// 4. Icon Fonts
+// 5. Z-index System
+// 6. Spacing
+// 7. Breakpints
+//
+
+//
+// 1. Color System
+// ========================================================================== */
+$primary:                #14aaf5;
+//$primary-100: #FFD1E9;
+//$primary-200: #FF9DCF;
+//$primary-300: #FA4EA9;
+//$primary-400: #EA3493;
+//$primary-500: #C9287C;
+$primary-100: #86CAFF !default;
+$primary-200: #53b2f9 !default;
+$primary-300: #2ea1f8 !default; // main
+$primary-400: #1990ea !default;
+$primary-500: #1a91eb !default;
+
+$grey-100: #f5f8fa !default;
+$grey-200: #f2f4f7 !default;
+$grey-300: #e6eaee !default;
+$grey-400: #dfe3e9 !default;
+$grey-500: #bbc5d5 !default;
+$grey-600: #b7c0cd !default;
+$grey-700: #9fa9ba !default;
+$grey-800: #7f8fa4 !default;
+
+$gunmetal-100: #475364 !default;
+$gunmetal-200: #354052 !default;
+$gunmetal-300: #2d3848 !default;
+$gunmetal-400: #273142 !default;
+$gunmetal-500: #1d2531 !default;
+
+$white: #fff !default;
+$black: #000 !default;
+
+$blue-100: #86CAFF !default;
+$blue-200: #53b2f9 !default;
+$blue-300: #2ea1f8 !default; // main
+$blue-400: #1990ea !default;
+$blue-500: #1a91eb !default;
+
+$green-100: #65dc52 !default;
+$green-200: #1bb934 !default;
+$green-300: #39b54a !default;
+$green-400: #34aa44 !default;
+$green-500: #249533 !default;
+
+$purple-100: #9d8fe3 !default;
+$purple-200: #a388e3 !default;
+$purple-300: #886ce6 !default;
+$purple-400: #8261e6 !default;
+$purple-500: #7d5be2 !default;
+
+$red-100: #f95359 !default;
+$red-200: #ed1c24 !default;
+$red-300: #d35847 !default;
+$red-400: #ed1c24 !default;
+$red-500: #db161e !default;
+
+$orange-100: #f8c95d !default;
+$orange-200: #f7bf47 !default;
+$orange-300: #fd9a18 !default;
+$orange-400: #ff7800 !default;
+$orange-500: #f16911 !default;
+
+// states
+$color-success: $green-200 !default;
+$color-info:    $blue-300 !default;
+$color-warning: $orange-300 !default;
+$color-danger:  $red-400 !default;
+$color-fancy:   $purple-400 !default;
+$color-mute:    $grey-800 !default;
+
+// gradients
+$gradient-info:     $blue-300, $blue-400 !default;
+$gradient-success:  $green-300, $green-400 !default;
+$gradient-fancy:    $purple-300, $purple-500 !default;
+$gradient-danger:   $red-100, $red-300 !default;
+$gradient-warning:  $orange-300, $orange-500 !default;
+
+// brands
+$color-facebook:  #2492E4 !default;
+$color-twitter:   #0AF !default;
+$color-pinterest: #E30F27 !default;
+$color-behance:   #187AC6 !default;
+$color-dribbble:  #ea4c89 !default;
+$color-linkedin:  #222 !default;
+
+// backgrounds
+$body-background-color:      #F6F8F9;
+$base-background-color:      $white !default;
+$secondary-background-color: #FAFAFA !default;
+
+
+//
+// 2. Typography
+// ========================================================================== */
+
+$base-font-family: "PingFang SC","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Microsoft Yahei","微软雅黑",STHeiti,"华文细黑",sans-serif;
+$base-font-size: 16px !default;
+$base-line-height: 24px !default;
+
+// Font Weights
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-semibold: 500 !default;
+$font-weight-bold: 600 !default;
+
+// Paragraphs
+$text-tiny-font-size: rem(10px) !default;
+$text-small-font-size: rem(12px) !default;
+$text-font-size: rem(14px) !default;
+$text-large-font-size: rem(16px) !default;
+
+$text-color: $gunmetal-200 !default;
+$text-strong-color: $gunmetal-200 !default;
+$text-mark-color: $white !default;
+$text-mark-background-color: #ff0 !default;
+$text-mute-color: $color-mute !default;
+
+// Headings
+$h1-font-size: rem(36px) !default;
+$h2-font-size: rem(28px) !default;
+$h3-font-size: rem(24px) !default;
+$h4-font-size: rem(20px) !default;
+$h5-font-size: rem(18px) !default;
+$h6-font-size: rem(16px) !default;
+
+$heading-margin-bottom: rem(8px) !default;
+$heading-color: #888 !default;
+$heading-font-weight: $font-weight-light !default;
+
+// Links
+$link-color: #4A4A4A !default;
+$link-text-decoration: none !default;
+$link-hover-color: $primary !default;
+$link-hover-text-decoration: underline !default;
+
+
+//
+// 3. Borders
+// ========================================================================== */
+$base-border-radius: 4px !default;
+$base-border-style:  solid !default;
+//$base-border-color:  $grey-300 !default;
+$base-border-color:  #E0E6E8 !default;
+$base-border-width:  1px !default;
+
+
+//
+// 4. Icon Fonts
+// ========================================================================== */
+$base-icon-font: "FontAwesome" !default;
+
+
+//
+// 5. Z-index System
+// ========================================================================== */
+$z-index-100: 100 !default; // over content
+$z-index-200: 200 !default; // over control
+$z-index-300: 300 !default; // over page
+$z-index-400: 400 !default; // over screen
+$z-index-500: 500 !default; // over everything
+
+
+//
+// 6. Spacing
+// ========================================================================== */
+
+$spacer-xsmall: rem(10px) !default;
+$spacer-small:  rem(15px) !default;
+$spacer:        rem(30px) !default;
+$spacer-large:  rem(50px) !default;
+$spacer-xlarge: rem(100px) !default;
+
+
+//
+// 7. Breakpoints
+// ========================================================================== */
+
+// Use these breakpoints with media-queries to create responsive website, these
+// numbers are based on Bootstrap's grid breakpoints
+
+$breakpoint-xs: 0 !default;
+$breakpoint-sm: 576px !default;
+$breakpoint-md: 768px !default;
+$breakpoint-lg: 992px !default;
+$breakpoint-xl: 1200px !default;
+
+$breakpoint-mobile:  $breakpoint-sm !default;
+$breakpoint-tablet:  $breakpoint-md !default;
+$breakpoint-desktop: $breakpoint-lg !default;
+$breakpoint-wide:    $breakpoint-xl !default;
+
+// Typeface Variables
+
+$monospace: "Courier 10 Pitch", Courier, monospace;
+$code: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", $monospace;
+
+$serif-fallback: Georgia, "Times New Roman", Times, serif;
+$serif: "Noto Serif", $serif-fallback;
+
+$sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
+$sans-rtl: Tahoma, $sans;
+
+%content-font {
+  font-family: $serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: darken( $gray, 30 );
+}
+
+
+// NOTE:
+// If there are exceptions to these stacks,
+// please mark them with a //typography-exception comment
+// so we can easily search for them later.

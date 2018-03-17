@@ -1,0 +1,12 @@
+.editor-post-type {
+  &.is-loading {
+    @include placeholder;
+  }
+
+  .post-status__text {
+    display: none;
+    color: darken( $gray, 10% );
+    margin-left: 4px;
+    vertical-align: baseline;
+  }
+}

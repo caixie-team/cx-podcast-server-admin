@@ -1,0 +1,128 @@
+.c-posts-browser-item {
+  border-left: 1px solid $gray-lighten-30;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  float: left;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+
+  &.is-placeholder,
+  &.is-empty {
+    cursor: default;
+  }
+
+  .c-posts-browser-item__link {
+    padding: 16px 16px 48px;
+    display: block;
+    &:hover {
+      background-color: #FAFAFA;
+    }
+  }
+
+  @include breakpoint( ">960px" ) {
+    width: 33.33%;
+
+    &:nth-child( 3n + 1 ) {
+      border-left: 0;
+    }
+
+    &:nth-child( n + 4 ) {
+      border-top: 1px solid $gray-lighten-30;
+    }
+  }
+
+  @include breakpoint( "<960px" ) {
+    width: 100%;
+
+    &:nth-child( n + 2 ) {
+      border-top: 1px solid $gray-lighten-30;
+    }
+
+    &.is-empty {
+      display: none;
+    }
+  }
+}
+
+.c-posts-browser-item {
+  .c-post-icon {
+    width: 48px;
+    height: 48px;
+
+    &.is-placeholder {
+      animation: loading-fade 1.6s ease-in-out infinite;
+    }
+  }
+}
+
+.c-posts-browser-item__info {
+  overflow: hidden; // lazy clearfix
+}
+
+.c-posts-browser-item__title,
+.c-posts-browser-item__author {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: 60px;
+
+  .is-placeholder & {
+    color: transparent;
+    background-color: $gray-lighten-30;
+    animation: loading-fade 1.6s ease-in-out infinite;
+  }
+}
+
+.c-posts-browser-item__title {
+  color: $gray-dark;
+  //font-weight: 600;
+  font-size: 15px;
+  margin-top: 3px;
+}
+
+.c-posts-browser-item__author {
+  color: $gray-text-min;
+  font-size: 13px;
+}
+
+.c-posts-browser-item .c-post-icon.is-placeholder,
+.c-posts-browser-item .c-post-icon[style*='undefined'] {
+  &::before {
+    width: 40px;
+    height: 40px;
+    font: normal 40px/40px Noticons;
+  }
+}
+
+.c-posts-browser-item .c-post-icon {
+  margin-right: 0;
+}
+
+.c-posts-browser-item .rating {
+  margin-top: 12px;
+  position: absolute;
+}
+
+.c-posts-browser-item__installed {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  color: $alert-green;
+  font-size: 12px;
+  font-weight: 500;
+  animation: appear .15s ease-in;
+
+  .gridicon {
+    margin-right: 3px;
+  }
+}
+
+.button.c-posts-browser-item__upgrade-button {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}

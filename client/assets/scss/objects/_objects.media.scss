@@ -1,0 +1,32 @@
+/* ==========================================================================
+   #MEDIA OBJECT
+   ========================================================================== */
+
+.o-media {
+	@include clear-fix;
+	display: block;
+}
+
+/**
+ * 1. Spacing between the image and the text should be declared through
+ *    the component, usually using a `spacing` utility class.
+ */
+
+.o-media__img { /* [1] */
+	float: left;
+
+	> img {
+		display: block;
+	}
+}
+
+.o-media__body {
+	display: block;
+	overflow: hidden;
+
+	&,
+	> :last-child {
+		margin-bottom: 0;
+	}
+}
+

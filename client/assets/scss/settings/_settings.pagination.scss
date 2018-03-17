@@ -1,0 +1,37 @@
+///* ========================================================================
+//   #PAGINATION
+//   ======================================================================== */
+
+$pagination-height: rem(35px) !default; // [1]
+$pagination-margin-bottom: 15px !default;
+$pagination-border-radius: $base-border-radius !default;
+$pagination-background-color: $white !default;
+$pagination-color: #354052 !default;
+
+
+// pagination control
+$pagination-control-height: $pagination-height !default; // [1]
+$pagination-control-padding: 0 16px !default;
+$pagination-control-border-width: $base-border-width !default;
+$pagination-control-border-color: $grey-300 !default;
+$pagination-control-border-radius: $base-border-radius !default;
+$pagination-control-background-color: $white !default;
+$pagination-control-color: #CED0DA !default;
+$pagination-control-font-size: $text-font-size !default;
+$pagination-control-font-weight: $font-weight-bold !default;
+
+// pagination link
+$pagination-link-height: $pagination-height !default; // [1]
+$pagination-link-padding: 0 16px !default;
+
+$pagination-link-border-width: $base-border-width !default;
+$pagination-link-border-color: $grey-300 !default;
+
+$pagination-link-background-color: $white !default;
+$pagination-link-color: rgba(#354052, 0.5) !default;
+$pagination-link-active-color: rgba(#354052, 1) !default;
+$pagination-link-font-size: 14px !default;
+
+// pagination counter
+$pagination-counter-padding: 8px 15px !default;
+$pagination-counter-color: $color-mute !default;

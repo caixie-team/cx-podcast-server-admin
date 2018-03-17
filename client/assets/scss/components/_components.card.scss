@@ -1,0 +1,83 @@
+/* ==========================================================================
+   #CARD
+   ========================================================================== */
+
+/**
+ * A simple component to apply card-like style, used with genearal widgets that
+ * have sub-components in it.
+ */
+
+.c-card {
+  display: block;
+  position: relative;
+  margin: 0 auto 10px auto;
+  padding: 16px;
+  box-sizing: border-box;
+  //border-radius: 3px;
+  background: $white;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.15);
+  //box-shadow: 0 1px 3px 0 transparentize( #d1d1d1, .5 ),0 1px 2px $gray-lighten-30;
+
+  @include clear-fix;
+
+  @include breakpoint( ">480px" ) {
+    margin-bottom: 16px;
+    padding: 24px;
+  }
+
+  // Compact Card
+  &.is-compact {
+    margin-bottom: 1px;
+    padding: 16px 24px;
+  }
+  &.is-card-link {
+    padding-right: 48px;
+  }
+
+  &.is-error {
+    box-shadow: inset 3px 0 0 $color-danger;
+  }
+
+  &.is-info {
+    box-shadow: inset 3px 0 0 $color-info;
+  }
+
+  &.is-success {
+    box-shadow: inset 3px 0 0 $color-success;
+  }
+
+  &.is-warning {
+    box-shadow: inset 3px 0 0 $color-warning;
+  }
+}
+
+// Clickable Card
+.c-card__link-indicator {
+  color: $gray-text-min;
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 16px;
+
+  html[dir="rtl"] & {
+    &.gridicons-chevron-right {
+      transform: scaleX( -1 );
+    }
+  }
+
+}
+
+a.c-card:hover {
+  .c-card__link-indicator {
+    color: $gray-text;
+  }
+}
+
+a.c-card:focus {
+  outline: 0;
+
+  .c-card__link-indicator {
+    color: $link-highlight;
+  }
+}

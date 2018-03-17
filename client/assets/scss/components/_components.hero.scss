@@ -1,0 +1,116 @@
+.c-hero {
+  width: 100%
+}
+
+.c-hero__img {
+  position: relative
+}
+
+.c-hero__title {
+  font-weight: 600;
+  font-size: 36px
+}
+
+.c-hero__laptop {
+  position: relative;
+  z-index: 2
+}
+
+.c-hero__circle1 {
+  top: 20px;
+  left: 45px;
+  width: 50px;
+  height: 50px;
+  z-index: 2;
+  background: #00a6ff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00a6ff), to(#00e1ff));
+  background: linear-gradient(180deg, #00a6ff, #00e1ff);
+  -webkit-animation: a 8s infinite;
+  animation: a 8s infinite
+}
+
+.c-hero__circle1, .c-hero__circle2 {
+  position: absolute;
+  display: block;
+  border-radius: 100%
+}
+
+.c-hero__circle2 {
+  right: 15px;
+  top: -10px;
+  width: 140px;
+  height: 140px;
+  background: #2d3ee6;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2d3ee6), to(#6a77ff));
+  background: linear-gradient(180deg, #2d3ee6, #6a77ff)
+}
+
+.c-hero__circle2, .c-hero__circle3 {
+  z-index: 1;
+  -webkit-animation: a 10s infinite;
+  animation: a 10s infinite
+}
+
+.c-hero__circle3 {
+  left: 15px;
+  bottom: 10px;
+  width: 120px;
+  height: 120px;
+  background: #1548dc;
+  background: -webkit-gradient(linear, left top, left bottom, from(#1548dc), to(#2083fe));
+  background: linear-gradient(180deg, #1548dc, #2083fe)
+}
+
+.c-hero__circle3, .c-hero__circle4 {
+  position: absolute;
+  display: block;
+  border-radius: 100%
+}
+
+.c-hero__circle4 {
+  right: 15px;
+  bottom: 30px;
+  width: 90px;
+  height: 90px;
+  z-index: 2;
+  background: #f95c75;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f95c75), to(#f98e9f));
+  background: linear-gradient(180deg, #f95c75, #f98e9f);
+  -webkit-animation: a 8s infinite;
+  animation: a 8s infinite
+}
+
+@-webkit-keyframes a {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
+  }
+  50% {
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px)
+  }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
+  }
+}
+
+@keyframes a {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
+  }
+  50% {
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px)
+  }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
+  }
+}
+
+.c-hero .c-btn svg {
+  position: relative;
+  bottom: -4px
+}

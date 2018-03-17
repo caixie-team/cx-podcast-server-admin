@@ -1,0 +1,24 @@
+///* ========================================================================
+//   #MODALS
+//   ======================================================================== */
+
+
+// Modal sizes (different sizes of the modal based on its width)
+$modal-width: (
+	xsmall: 350px,
+	small:  450px,
+	medium: 550px,
+	large:  650px,
+	xlarge: 750px,
+	huge: 950px
+);
+
+
+$modal-dialog-margin: $spacer auto !default;
+$modal-subheader-background-color: #222C3C !default;
+$modal-body-padding: $spacer !default;
+$modal-body-background-color: $base-background-color !default;
+$modal-maximized-height: 450px !default;
+$modal-backdrop-background-color: rgba($gunmetal-500, .9) !default;
+
+

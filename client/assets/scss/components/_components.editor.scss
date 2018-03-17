@@ -1,0 +1,63 @@
+/* ==========================================================================
+   #ALERTS
+   ========================================================================== */
+
+.c-alert {
+	display: flex;
+	position: relative;
+	width: 100%;
+	margin: $alert-margin;
+	padding: $alert-padding;
+	transition: all 0.3s;
+	border-radius: $alert-border-radius;
+	color: $alert-color;
+
+	.c-close {
+		position: absolute;
+		top: $alert-close-top;
+		right: $alert-close-right;
+	}
+
+
+	&.fade {
+		transition: opacity 0.3s;
+		opacity: 0;
+
+		&.show {
+			opacity: 1;
+		}
+	}
+}
+
+
+/**
+ * 1. Align icon with text properly.
+ */
+
+.c-alert__icon {
+	position: relative;
+	bottom: -4px; /* [1] */
+	margin-right: $alert-icon-margin-right;
+	font-size: $alert-icon-font-size;
+	opacity: $alert-icon-opacity;
+}
+
+
+/* Style variants
+   ========================================================================== */
+
+.c-alert--success {
+	background-color: $alert-success-background-color;
+}
+
+.c-alert--info {
+	background-color: $alert-info-background-color;
+}
+
+.c-alert--warning {
+	background-color: $alert-warning-background-color;
+}
+
+.c-alert--danger {
+	background-color: $alert-danger-background-color;
+}

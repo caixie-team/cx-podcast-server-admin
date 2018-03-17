@@ -1,0 +1,101 @@
+/* ==========================================================================
+   #STATE CARD
+   ========================================================================== */
+
+.c-state-card {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-bottom: $spacer;
+	padding: $spacer;
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background-color: $base-background-color;
+}
+
+.c-state-card__icon {
+	display: flex;
+	position: relative;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	width: 60px;
+	height: 60px;
+	margin-right: rem(20px);
+	border-radius: 100%;
+	background-color: $grey-600;
+	color: $white;
+	font-size: $h4-font-size;
+	text-align: center;
+
+	/**
+	 * Icon's inside border
+	 */
+	&::after {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 52px;
+		height: 52px;
+		margin: auto;
+		border: 2px solid $white;
+		border-radius: 100%;
+		content: "";
+		opacity: 0.2;
+	}
+}
+
+
+/**
+ * Icon style variations
+ */
+
+.c-state-card__icon--info {
+	@include linear-gradient(to bottom, $blue-300, $blue-400);
+}
+
+.c-state-card__icon--fancy {
+	@include linear-gradient(to bottom, $purple-300, $purple-500);
+}
+
+.c-state-card__icon--warning {
+	@include linear-gradient(to bottom, $orange-300, $orange-500);
+}
+
+.c-state-card__icon--success {
+	@include linear-gradient(to bottom, $green-300, $green-400);
+}
+
+.c-state-card__number {
+	display: inline-block;
+	position: relative;
+	margin: 0;
+	font-size: 30px;
+	font-weight: $font-weight-normal;
+}
+
+.c-state-card__status {
+	display: flex;
+	position: absolute;
+	top: 15px;
+	right: -20px;
+	align-items: center;
+	justify-content: center;
+	width: 14px;
+	height: 14px;
+	border-radius: 100%;
+	background-color: $grey-500;
+	color: $white;
+	font-size: $text-tiny-font-size;
+	text-align: center;
+}
+
+.c-state-card__meta {
+	margin: 0;
+	color: $color-mute;
+	font-size: $text-small-font-size;
+	font-weight: $font-weight-semibold;
+	text-transform: uppercase;
+}

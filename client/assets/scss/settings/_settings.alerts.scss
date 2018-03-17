@@ -1,0 +1,21 @@
+///* ========================================================================
+//   #ALERTS
+//   ======================================================================== */
+
+
+$alert-margin: 0 0 rem(15px) 0 !default;
+$alert-padding: rem(12px) rem(32px) rem(12px) rem(12px) !default;
+$alert-border-radius: $base-border-radius !default;
+$alert-color: $white !default;
+
+$alert-close-top: rem(12px) !default;
+$alert-close-right: rem(16px) !default;
+
+$alert-icon-margin-right: rem(10px) !default;
+$alert-icon-font-size: rem(18px) !default;
+$alert-icon-opacity: 0.7 !default;
+
+$alert-success-background-color: $color-success !default;
+$alert-info-background-color: $color-info !default;
+$alert-warning-background-color: $color-warning !default;
+$alert-danger-background-color: $color-danger !default;

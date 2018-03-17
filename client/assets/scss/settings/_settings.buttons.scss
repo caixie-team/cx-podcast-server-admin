@@ -1,0 +1,49 @@
+///* ========================================================================
+//   #BUTTONS
+//   ======================================================================== */
+
+
+$btn-padding: rem(8px) rem(20px) !default;
+$btn-border-width: $base-border-width !default;
+$btn-border-color: $blue-500 !default;
+$btn-border-radius: $base-border-radius !default;
+$btn-color: $white !default;
+$btn-font-size: rem(14px) !default;
+$btn-font-weight: $font-weight-normal !default;
+$btn-line-height: $base-line-height / $base-font-size !default;
+$btn-hover-color: $white !default;
+
+$btn-small-font-size: $text-small-font-size !default;
+$btn-small-padding: rem(4px) rem(18px) !default;
+
+$btn-large-font-size: $text-large-font-size !default;
+$btn-large-padding: rem(8px) rem(30px) !default;
+
+
+//
+// Color Variants
+//
+// only primary, secondary are here as other variations (success, danger..) are 
+// the same in the default and dark theme
+
+$btn-primary-gradient: $gunmetal-100, $gunmetal-400 !default;
+$btn-primary-border-color: $gunmetal-200 !default;
+
+$btn-primary-hover-gradient: darken($gunmetal-100, 4%), darken($gunmetal-500, 4%) !default;
+$btn-primary-focus-gradient: darken($gunmetal-100, 6%), darken($gunmetal-500, 6%) !default;
+
+
+$btn-secondary-gradient: $white, $grey-200 !default;
+$btn-secondary-border-color: $grey-400 !default;
+$btn-secondary-color: $gunmetal-200 !default;
+
+$btn-secondary-hover-gradient: darken($white, 1%), darken($grey-200, 2%) !default;
+$btn-secondary-hover-color: $gunmetal-200 !default;
+
+$btn-secondary-focus-gradient: darken($white, 2%), darken($grey-200, 3%) !default;
+$btn-secondary-focus-color: $gunmetal-200 !default;
+
+// Disabled State
+$btn-disabled-color: rgba($gunmetal-200, .5) !default;
+$btn-disabled-background-color: $grey-100 !default;
+$btn-disabled-border-color: $grey-300 !default;

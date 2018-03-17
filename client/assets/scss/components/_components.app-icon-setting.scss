@@ -1,0 +1,28 @@
+.c-form-label.c-app-icon-setting__heading {
+  display: flex;
+  align-items: center;
+
+  .c-info-popover {
+    margin-left: 8px;
+  }
+
+  .gridicon {
+    display: block;
+  }
+}
+
+.c-app-icon-setting__icon {
+  cursor: pointer;
+  display: block;
+  margin: 1px;
+}
+
+.c-app-icon-setting__icon:hover .c-app-icon {
+  opacity: 0.8;
+}
+
+.c-app-icon-setting__button {
+  min-width: 98px;
+  margin-top: 4px;
+  text-align: center;
+}

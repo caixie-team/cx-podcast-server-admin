@@ -1,0 +1,18 @@
+/* ==========================================================================
+   #CHART
+   ========================================================================== */
+
+/**
+ * This works as a wrapper for charts.
+ */
+
+.c-chart-container {
+	position: relative;
+	height: 95px;
+}
+
+.c-chart__title {
+	margin: 0;
+	color: $color-mute;
+	font-size: $text-small-font-size;
+}

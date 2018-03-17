@@ -1,0 +1,153 @@
+/* ==========================================================================
+   #NAV
+   ========================================================================== */
+
+/**
+ * Nav sits within the main navbar area. It’s fully responsive as it holds 
+ * navigation items/links that will be collapsed, toggled in small 
+ * screens via `c-nav-toggle` component.
+ */
+
+.c-nav {
+	display: block;
+
+	/**
+	 * Responsive Nav
+	 *
+	 * 1. Remove extra margin when `u-mr-auto` utility is used. 
+	 */
+	@include respond-to($breakpoint-tablet) {
+		position: relative;
+		flex: 1 0 100%;
+		order: 2;
+		margin-top: $spacer-small;
+		margin-right: -$spacer-small !important; /* [1] */
+		margin-left: -$spacer-small;
+		border-top: $base-border-width solid $base-border-color;
+
+		/**
+		 * Bootstrap classes used to show and hide nav.
+		 * This behaviour depends on collapse.js plugin.
+		 */
+		&.collapse {
+			display: none;
+		}
+
+		&.show {
+			display: block;
+		}
+
+		&.collapsing {
+			position: relative;
+			height: 0;
+			transition: height 0.6s;
+			overflow: hidden;
+		}
+	}
+}
+
+.c-nav__list {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	align-items: center;
+}
+
+
+/** 
+ * 1. Allow positioning dropdown menus inside nav items.
+ */
+
+.c-nav__item {
+	position: relative; /* [1] */
+	margin: $nav-item-margin;
+
+	@include respond-to($breakpoint-tablet) {
+		flex-basis: 100%;
+		margin-right: 0;
+		padding: 15px;
+		border-bottom: 1px solid $base-border-color;
+	}
+
+	&:last-child {
+		margin-right: 0;
+
+		@include respond-to($breakpoint-tablet) {
+			padding-bottom: 5px;
+			border-bottom: 0;
+		}
+	}
+}
+
+.c-nav__link {
+	color: $nav-link-color;
+	font-size: $nav-link-font-size;
+	font-weight: $nav-link-font-weight;
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	&.is-active {
+		color: $nav-link-active-color;
+	}
+
+	@include respond-to($breakpoint-tablet) {
+		display: block;
+		color: $heading-color;
+		font-size: $text-large-font-size;
+	}
+}
+
+
+/* Nav Toggle
+   ========================================================================== */
+
+/**
+ * Nav toggle is the popular hamburger-like icon that would show/hide `c-nav` 
+ * via javascript through `js-nav-toggle` to toggle `is-open` class.
+ * 
+ * 1. Remove default button styles.
+ * 2. Show only on small screens, hide on large screen.
+ */
+
+.c-nav-toggle {
+	display: none;
+	position: relative;
+	width: $nav-toggle-width;
+	height: $nav-toggle-height;
+	margin: 0 0 0 $spacer-small; /* [1] */
+	padding: 0; /* [1] */
+	border: 0; /* [1] */
+	outline: none;
+	background-color: transparent; /* [1] */
+	cursor: pointer;
+
+	@include respond-to($breakpoint-tablet) {
+		display: block; /* [2] */
+	}
+}
+
+
+/**
+ * The hamburger icon itself, 3 bars stacked on top of each other. 
+ */
+
+.c-nav-toggle__bar {
+	display: block;
+	position: relative;
+	width: $nav-toggle-bar-width;
+	height: $nav-toggle-bar-height;
+	transition: all .3s;
+	border-radius: $nav-toggle-bar-border-radius;
+	background-color: $nav-toggle-bar-background-color;
+
+
+	&:first-child {
+		transform: translateY(-6px);
+	}
+
+	&:last-child {
+		transform: translateY(6px);
+	}
+}

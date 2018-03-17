@@ -1,0 +1,333 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+html {
+  font-size: 62.5%; /* Corrects text resizing oddly in IE6/7 when body font-size is set using em units http://clagnut.com/blog/348/#c790 */
+  overflow-y: scroll; /* Keeps page centred in all browsers regardless of content height */
+  -webkit-text-size-adjust: 100%; /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
+  -ms-text-size-adjust: 100%; /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
+}
+body {
+  background: $body-background-color;
+  //background-image: linear-gradient(to bottom, #f6f8f9, #edf1f2);
+  //background-repeat:no-repeat;
+  //background-attachment:fixed;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  display: block;
+}
+ol, ul {
+  list-style: none;
+}
+table { /* tables still need 'cellspacing="0"' in the markup */
+  border-collapse: separate;
+  border-spacing: 0;
+}
+caption, th, td {
+  font-weight: normal;
+  text-align: left;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+}
+blockquote, q {
+  quotes: "" "";
+}
+a:focus {
+  outline: thin dotted;
+}
+a:hover,
+a:active { /* Improves readability when focused and also mouse hovered in all browsers people.opera.com/patrickl/experiments/keyboard/test */
+  outline: 0;
+}
+a img {
+  border: 0;
+}
+
+// Reset the default styling on form inputs in Webkit/iOS
+input,
+textarea {
+  border-radius: 0;
+  appearance: none;
+}
+input[type="radio"],
+input[type="checkbox"] {
+  -webkit-appearance: none;
+}
+
+
+/**
+ * General styles
+ */
+
+$sidebar-width-max: 272px;
+$sidebar-width-min: 228px;
+
+.wpcom-site__logo {
+  color: $gray-lighten-20;
+  font-size: 12vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate( -50%, -50% );
+
+  @include breakpoint( ">960px" ) {
+    font-size: 120px;
+  }
+}
+
+
+/* =Global
+----------------------------------------------- */
+
+@-webkit-viewport { width : device-width; }
+@-moz-viewport { width : device-width; }
+@-ms-viewport { width : device-width; }
+@-o-viewport { width : device-width; }
+@viewport { width : device-width; }
+
+// make sure layout can fill the viewport
+html,
+body,
+.wpcom-site {
+  height: 100%;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba( 0, 0, 0, 0);
+}
+
+body {
+  -ms-overflow-style: scrollbar;
+
+  // This fixes an issue with the `click-outside` package not working on mobile.
+  // Specifically, this makes clicking outside a popover work on touch devices. -shaun
+  @include breakpoint( "<660px" ) {
+    cursor: pointer;
+  }
+}
+
+::selection {
+  background: $primary;
+  //background: rgba( $primary, 0.7 );
+  color: $white;
+}
+
+body,
+button,
+input,
+select,
+textarea,
+.button,
+#footer,
+#footer a.readmore {
+  font-family: $base-font-family;
+}
+
+
+.notifications {
+  display: inherit;
+}
+
+body {
+  color: #151b26;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+noscript {
+  text-align: center;
+  margin-top: 3em;
+  display:block;
+}
+
+/* Headings */
+h1,h2,h3,h4,h5,h6 {
+  clear: both;
+}
+hr {
+  background: $gray-lighten-20;
+  border: 0;
+  height: 1px;
+  margin-bottom: 1.5em;
+}
+
+/* Text elements */
+p {
+  margin-bottom: 1.5em;
+}
+ul, ol {
+  margin: 0 0 1.5em 3em;
+}
+ul {
+  list-style: disc;
+}
+ol {
+  list-style: decimal;
+}
+ul ul, ol ol, ul ol, ol ul {
+  margin-bottom: 0;
+  margin-left: 1.5em;
+}
+dt {
+  font-weight: 600;
+}
+dd {
+  margin: 0 1.5em 1.5em;
+}
+b, strong {
+  font-weight: 600;
+}
+dfn, cite, em, i {
+  font-style: italic;
+}
+blockquote {
+  margin: 10px 0 0 0;
+  background: $gray-light;
+  padding: 10px 10px 1px;
+  border-radius: 2px;
+}
+address {
+  margin: 0 0 1.5em;
+}
+pre {
+  background: $gray-light;
+  font-family: $monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  padding: 1.6em;
+  overflow: auto;
+  max-width: 100%;
+}
+code, kbd, tt, var {
+  font: 15px $code;
+}
+abbr, acronym {
+  border-bottom: 1px dotted $gray-darken-20;
+  cursor: help;
+  // Prevent double underline in Chrome
+  text-decoration: none;
+}
+mark, ins {
+  background: lighten( $alert-yellow, 23% );
+  text-decoration: none;
+}
+small {
+  font-size: 75%;
+}
+big {
+  font-size: 125%;
+}
+figure {
+  margin: 0;
+}
+table {
+  margin: 0 0 1.5em;
+  width: 100%;
+}
+th {
+  font-weight: 600;
+}
+
+.hide, .hidden { display: none; }
+
+/* Links */
+a,
+a:visited {
+  color: $link-color;
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: $link-hover-color;
+}
+
+.link--caution,
+.link--caution:visited,
+.is-link.link--caution,
+.is-link.link--caution:visited {
+
+  &,
+  &:hover,
+  &:focus,
+  &:active  {
+    color: $alert-red;
+  }
+}
+
+html.iframed {
+  overflow: hidden;
+}
+
+/* Emoji and smileys */
+img.emoji,
+img.wp-smiley {
+  height: 1em;
+  max-height: 1em;
+  display: inline;
+  margin: 0;
+  padding: 0 0.2em;
+  vertical-align: -0.1em;
+  width: 1em;
+}
+
+/* =Media
+----------------------------------------------- */
+
+img {
+  max-width: 100%; /* Fluid images for posts, comments, and widgets */
+  height: auto;
+}
+
+/* Make sure embeds and iframes fit their containers */
+embed,
+iframe,
+object {
+  max-width: 100%;
+}
+
+/* Netter min-height for the SoundCloud embeds */
+.wpcom-soundcloud-player,
+.embed-soundcloud iframe {
+  min-height: 150px;
+}
+
+@include breakpoint( "<960px" ) {
+  // Don't show environment badge on smaller screens. It just gets in the way.
+  .environment-badge {
+    display: none;
+  }
+}
+
+// added to the html element when we don't want the background content to scroll
+html.no-scroll {
+  overflow: hidden;
+}

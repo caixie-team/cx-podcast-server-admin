@@ -1,0 +1,84 @@
+/* ==========================================================================
+   #DROPDOWN
+   ========================================================================== */
+
+/**
+ * A wrapper for the dropdown
+ */
+
+.c-dropdown {
+	display: inline-block;
+	position: relative;
+}
+
+
+/**
+ * Dropdown Menu
+ * 
+ * 1. No matter what size is the dropdown toggle `dropdown-toggle` (a class from
+ *    bootstrap), dropdown menu should be positioned properly.
+ */
+
+.c-dropdown__menu {
+	position: absolute;
+	top: 100%; /* [1] */
+	right: 0;
+	width: $dropdown-menu-width;
+	margin: 5px 0 0;
+	transition: visibility 0.3s ease, opacity 0.3s ease;
+	border: $dropdown-menu-border-width solid $dropdown-menu-border-color;
+	border-radius: $dropdown-menu-border-radius;
+	background-color: $dropdown-menu-background-color;
+	text-align: left;
+	box-shadow: $dropdown-menu-box-shadow;
+	z-index: $z-index-400;
+
+	.c-dropdown &,
+	.dropdown & {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	.c-dropdown.show &,
+	.dropdown.show & {
+		opacity: 1;
+		visibility: visible;
+    }
+}
+
+
+/**
+ * A larger dropdown menu for dropdowns used in navbar.
+ */
+
+.c-dropdown__menu--large {
+	width: $dropdown-menu-large-width;
+
+	.c-dropdown__item {
+		padding: $dropdown-item-large-padding;
+	}
+}
+
+/**
+ * 1. Remove border from last item to prevent it from collapsing with dropdown
+ *    menu's last border.
+ */
+
+.c-dropdown__item {
+	display: block;
+	padding: $dropdown-item-padding;
+	border-bottom: $dropdown-item-border-width solid $dropdown-item-border-color;
+	color: $dropdown-item-color;
+	font-size: $text-font-size;
+	font-weight: $dropdown-item-font-weight;
+
+	&:hover {
+		background-color: $dropdown-item-hover-background-color;
+		color: $dropdown-item-hover-color;
+		text-decoration: none;
+	}
+
+	&:last-child {
+		border-bottom: 0; /* [1] */
+	}
+}

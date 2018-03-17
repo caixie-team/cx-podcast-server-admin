@@ -1,0 +1,40 @@
+/* ==========================================================================
+   #PROJECT CARD
+   ========================================================================== */
+
+/**
+ * used in `home-overview.html`
+ */
+
+.c-project-card {
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background-color: $base-background-color;
+	overflow: hidden;
+}
+
+.c-project-card__img {
+	display: block;
+}
+
+.c-project-card__head {
+	padding: rem(20px) $spacer;
+	border-bottom: $base-border-width solid $base-border-color;
+}
+
+.c-project-card__title {
+	margin: 0;
+	font-size: $h6-font-size;
+}
+
+.c-project-card__info {
+	margin: 0;
+	color: $color-mute;
+	font-size: $text-small-font-size;
+}
+
+.c-project-card__meta {
+	display: flex;
+	justify-content: space-between;
+	padding: rem(20px) $spacer;
+}

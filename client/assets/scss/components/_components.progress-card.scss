@@ -1,0 +1,58 @@
+/* ==========================================================================
+   #PROGRESS CARD
+   ========================================================================== */
+
+.c-progress-card {
+	margin: 0 0 $spacer;
+	padding: $spacer;
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background-color: $base-background-color;
+}
+
+.c-progress-card__title {
+	margin: 0;
+	font-size: $h5-font-size;
+}
+
+.c-progress-card__date {
+	margin: 0 0 $spacer;
+	color: $color-mute;
+	font-size: $text-small-font-size;
+}
+
+.c-progress-card__item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 0 $spacer-small;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.c-progress-card__label {
+	flex-basis: 20%;
+	color: $color-mute;
+	font-size: $text-font-size;
+}
+
+.c-progress-card__progress {
+	flex-basis: 80%;
+	margin: 0;
+}
+
+.c-progress-card__legends {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.c-progress-card__legend {
+	display: inline-block;
+	width: 10px;
+	height: 2px;
+	margin: 0 $spacer-xsmall 0 0;
+	vertical-align: middle;
+}

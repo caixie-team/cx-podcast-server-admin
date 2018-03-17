@@ -1,0 +1,404 @@
+$image-height: 47px;
+$c-form-whitespace: 16px;
+$c-form-whitespace-480: 24px;
+$c-form-whitespace-660: 100px;
+.is-section-login {
+  //padding-bottom: $image-height;
+  position: relative;
+  //min-height: calc( 100% - #{$image-height} );
+  .o-layout__content {
+    position: static;
+  }
+}
+
+.c-login__main {
+  position: relative;
+  z-index: 2;
+  max-width: 400px;
+  margin: auto;
+}
+.c-main {
+  .c-hero {
+    margin: auto;
+    max-width: 520px;
+  }
+}
+
+.c-card.c-login__form {
+  margin-bottom: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.c-login__form-social .c-card {
+  margin-bottom: 0;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.c-login__form-userdata {
+  label {
+    color: $gray-dark;
+    display: block;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  input {
+    margin-bottom: 20px;
+    transition: none;
+
+    &.is-error {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.c-login__form-change-username .gridicon {
+  margin-right: 3px;
+  vertical-align: sub;
+}
+
+.c-login__form .c-form-input-validation {
+  margin-bottom: 5px;
+}
+
+.c-login__form-action {
+  margin-top: 10px;
+  overflow: auto;
+
+  button {
+    width: 100%;
+  }
+}
+
+.c-login__form-header-wrapper {
+  text-align: center;
+
+  .gridicon {
+    color: $blue-wordpress;
+  }
+}
+
+.c-login__form-header {
+  font-size: 22px;
+  margin-bottom: 24px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.c-login__form-terms,
+.c-login__form-signup-link {
+  font-size: 11px;
+  text-align: center;
+
+  a {
+    white-space: pre;
+  }
+}
+
+.c-login__form-signup-link {
+  font-size: 13px;
+  margin-top: 20px;
+
+  &.disabled {
+    a, a:hover {
+      pointer-events: none;
+      color: $gray;
+    }
+  }
+}
+
+.c-login__links,
+.c-login__footer {
+  a, button {
+    color: $gray-darken-20;
+    text-decoration: none;
+  }
+}
+
+.c-login__links {
+  a, button {
+    border-bottom: 1px solid $gray-lighten-20;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-weight: 500;
+    line-height: 4em;
+    padding: 0 24px;
+    text-align: left;
+    width: 100%;
+  }
+
+  a:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.c-login__footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: $image-height;
+  line-height: $image-height;
+  width: 100%;
+}
+
+.c-login__footer--jetpack {
+  background: #fff;
+  border-top: solid 1px #f9fbfc;
+  text-align: center;
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.c-login__footer--oauth {
+  display: flex;
+  justify-content: center;
+
+  a {
+    padding: 0 1em;
+  }
+}
+
+.card.c-login__private-site {
+  margin-bottom: 0;
+}
+
+.c-login__private-site-image {
+  height: 92px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.c-login__private-site-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.c-form-password-input .c-form-password-input__toggle-visibility {
+  top: 18px;
+}
+
+.c-login__form-header-wrapper {
+  text-align: center;
+}
+
+.c-login__form-header {
+  font-size: 22px;
+  margin-bottom: 24px;
+  margin-top: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.c-login__social-buttons {
+  button {
+    width: 100%;
+  }
+
+  svg {
+    margin-top: -2px;
+
+    &.disabled {
+      display: none;
+    }
+  }
+}
+
+.c-login__form-terms,
+.c-login__form-signup-link {
+  font-size: 11px;
+  text-align: center;
+
+  a {
+    white-space: pre;
+  }
+}
+
+.c-login__social-buttons {
+  button {
+    width: 100%;
+  }
+
+  svg {
+    margin-top: -2px;
+
+    &.disabled {
+      display: none;
+    }
+  }
+}
+
+.c-login-buttons__button:disabled {
+  svg.enabled {
+    display: none;
+  }
+
+  svg.disabled {
+    display: inline;
+  }
+}
+
+.c-login-buttons__service-error {
+  color: $alert-red;
+  font-size: 11px;
+  margin: 0 10px 10px;
+}
+
+.c-login__form-action,
+.c-login__social-buttons,
+.c-magic-login__form-action {
+  text-align: center;
+}
+
+.c-logged-out-form {
+  max-width: 100%;
+}
+
+//.c-logged-out-form label,
+//.c-login__form-userdata label {
+//  font-size: 16px;
+//  font-weight: normal;
+//}
+
+.c-login__form-signup-link {
+  font-size: 15px;
+}
+
+.c-login__links {
+  a, button {
+    font-size: 14px;
+
+    &:hover {
+      color: $primary-medium;
+    }
+  }
+  .gridicon {
+    vertical-align: text-bottom;
+  }
+}
+
+.c-login__form-social-divider {
+  margin-bottom: -11px;
+  margin-top: -11px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+
+  span {
+    background: $white;
+    color: $gray;
+    font-size: 14px;
+    padding-left: 8px;
+    padding-right: 8px;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.c-login__links,
+.c-login__footer {
+  a, button {
+    color: $gray-darken-20;
+    text-decoration: none;
+  }
+}
+
+.c-login__links {
+  a, button {
+    border-bottom: 1px solid $gray-lighten-20;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-weight: 500;
+    line-height: 4em;
+    padding: 0 24px;
+    text-align: left;
+    width: 100%;
+  }
+
+  a:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.c-social-buttons__service-name {
+  margin-left: 9px;
+}
+
+.c-social-buttons__error {
+  .popover__inner {
+    padding: 10px;
+    max-width: 200px;
+  }
+}
+
+.c-social-icons {
+  margin-top: -2px;
+  vertical-align: middle;
+}
+
+.c-social-icons--disabled {
+  path {
+    fill: $gray-lighten-30;
+  }
+}
+.c-form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+
+  .c-form-label__required {
+    color: $orange-fire;
+    font-weight: normal;
+    margin-left: 6px;
+  }
+}
+
+.c-form-label input[type="checkbox"] + span,
+.c-form-label input[type="radio"] + span {
+  font-weight: normal;
+}
+
+.c-form-password-input {
+  position: relative;
+
+  .c-form-text-input {
+    padding-right: 32px;
+  }
+
+  .c-form-password-input__toggle {
+    display: none;
+  }
+
+  .c-form-password-input__toggle-visibility {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    right: 8px #{"/*rtl:ignore*/"};
+    top: 8px;
+    user-select: none;
+
+    .gridicon {
+      fill: $gray-lighten-10;
+
+      &:hover {
+        fill: $gray-darken-10;
+      }
+    }
+  }
+}
+
+input[type="email"].form-text-input,
+input[type="password"].form-text-input,
+input[type="url"].form-text-input,
+input[type="text"].form-text-input { // input[type="text"] is needed to override the default styles
+  -webkit-appearance: none;
+}

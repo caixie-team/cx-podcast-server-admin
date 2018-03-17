@@ -1,0 +1,51 @@
+/* ==========================================================================
+   #DROPZONE CUSTOM STYLES
+   ========================================================================== */
+
+// sass-lint:disable-all
+
+/**
+ * Instead of modifying `_dropzone.scss` directly, we add Dashboard's custom
+ * styles for dropzone plugin here.
+ */
+
+.dropzone {
+	display: flex;
+	position: relative;
+    align-items: center;
+    justify-content: center;
+	background-color: $base-background-color;
+	color: $color-mute;
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;	
+	padding: 5px;
+	transition: border-color 0.3s;
+
+	&:hover {
+		border-color: $link-color;
+	}
+}
+
+.dropzone .dz-message {
+	display: flex;
+	flex-flow: column;
+	position: absolute;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+	width: calc(100% - 10px);
+	height: calc(100% - 10px);
+	margin: auto;
+	border-radius: $base-border-radius;
+	border: 2px dashed rgba(206, 208, 218, 0.5);
+}
+
+.dz-icon {
+	display: block;
+	margin-bottom: 10px;
+	font-size: 30px;
+	color: #E2E3E9;
+}

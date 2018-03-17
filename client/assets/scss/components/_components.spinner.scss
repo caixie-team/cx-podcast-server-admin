@@ -1,0 +1,36 @@
+// If making changes in this file, please also open a PR in
+// the https://github.com/Automattic/notifications-panel repo,
+// which uses this same code for its spinner.
+// src/boot/stylesheets/spinner.scss
+
+@keyframes rotate-spinner {
+  100% {
+    transform: rotate( 360deg );
+  }
+}
+
+.c-spinner {
+  display: flex;
+  align-items: center;
+}
+
+.c-spinner__outer, .c-spinner__inner {
+  margin: auto;
+  box-sizing: border-box;
+  border: 0.1em solid transparent;
+  border-radius: 50%;
+  animation: 3s linear infinite;
+  animation-name: rotate-spinner;
+}
+
+.c-spinner__outer {
+  border-top-color: $primary;
+}
+
+.c-spinner__inner {
+  width: 100%;
+  height: 100%;
+  border-top-color: $primary;
+  border-right-color: $primary;
+  opacity: 0.4;
+}

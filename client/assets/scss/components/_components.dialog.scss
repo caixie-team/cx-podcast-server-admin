@@ -1,0 +1,115 @@
+.c-dialog__backdrop {
+  align-items: center;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  right: 0;
+  top: 46px;
+  transition: background-color .2s ease-in;
+  z-index: z-index( 'root', '.c-dialog__backdrop' ); // try to ensure that dialogs are on top of everything else
+
+  &.c-dialog-enter,
+  &.c-dialog-leave.c-dialog-leave-active {
+    background-color: rgba( $gray-lighten-30, 0 );
+  }
+
+  &,
+  &.c-dialog-enter.c-dialog-enter-active,
+  &.c-dialog-leave {
+    background-color: rgba( $gray-lighten-30, 0.8 );
+  }
+
+  // covers the masterbar as well
+  &.is-full-screen {
+    top: 0;
+  }
+}
+
+.c-dialog.c-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  max-height: 90%;
+  margin: auto 0; // IE needs a horizontal margin values to properly center flex item
+  padding: 0;
+  opacity: 1;
+  transition: opacity .2s ease-in;
+
+  .c-dialog-enter &,
+  .c-dialog-leave.c-dialog-leave-active & {
+    opacity: 0;
+  }
+
+  &,
+  .c-dialog-enter.c-dialog-enter-active &,
+  .c-dialog-leave & {
+    opacity: 1;
+  }
+}
+
+.c-dialog__content {
+  padding: 16px;
+  overflow-y: auto;
+  p {
+    color: $text-color;
+    font-size: 15px;
+  }
+  @include breakpoint( ">480px" ) {
+    padding: 24px;
+  }
+
+  &:last-child {
+    bottom: 0;
+  }
+
+  h1 {
+    color: $gray-dark;
+    font-size: 1.375em;
+    font-weight: 600;
+    height: 2em;
+    line-height: 2em;
+    margin-bottom: .5em;
+  }
+}
+
+.c-dialog__action-buttons {
+  position: relative;
+  border-top: 1px solid $gray-lighten-30;
+  padding: 16px;
+  margin: 0;
+  text-align: right;
+
+  @include breakpoint( ">480px" ) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 100%;
+    left: 16px;
+    right: 16px;
+    height: 24px;
+    background: linear-gradient( to bottom, rgba( 255,255,255, 0 ) 0%, rgba( 255,255,255, 1 ) 100% );
+    margin-bottom: 1px;
+  }
+}
+
+.c-dialog__action-buttons .c-button {
+  margin-left: 10px;
+  min-width: 80px;
+
+  .is-left-aligned {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+}
+
+.c-dialog__action-buttons .is-left-aligned {
+  float: left;
+}

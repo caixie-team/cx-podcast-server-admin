@@ -1,0 +1,43 @@
+///* ========================================================================
+//   #SELECT
+//   ======================================================================== */
+
+//
+// These scss variables are used for customizing (select) component which is 
+// powered by select2 jquer plugin.
+//
+// You can find these variables in use: [ vendor/_select2-custom.scss ]
+//
+
+$select-height: 39px !default;
+
+$select-margin: 0 !default;
+$select-padding: 12px 15px !default;
+
+$select-font-size: $text-font-size !default;
+$select-font-weight: $font-weight-semibold !default;
+
+$select-background-color: $white, $grey-200 !default;
+$select-color: rgba($gunmetal-200, .5) !default;
+$select-hover-color: $gunmetal-200 !default;
+
+$select-border-color: $grey-400 !default;
+$select-hover-border-color: $blue-300 !default;
+$select-border-width: $base-border-width !default;
+
+$select-option-background-color: #fff !default;
+$select-option-highlighted-background-color: #F1F4F8 !default;
+
+// mutliple selection
+$select-multiple-background-color: #fff !default;
+
+$select-multiple-choice-background-color: #F1F4F8 !default;
+$select-multiple-choice-border-color: #D5DCE6 !default;
+$select-multiple-choice-color: #354052 !default;
+
+
+// Disabled state
+$select-disabled-color: rgba(#354052, 0.7) !default;
+$select-disabled-background-color: #EAEEF1 !default;
+$select-disabled-border-color: #DFE3E9 !default;
+

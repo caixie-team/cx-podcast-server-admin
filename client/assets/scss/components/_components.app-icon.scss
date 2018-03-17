@@ -1,0 +1,30 @@
+.c-app-icon {
+  position: relative;
+  overflow: hidden;
+  align-self: center;
+  margin: 0;
+  text-align: center;
+
+  // Globe icon for sites without an icon
+  &.is-blank {
+    background: $gray-lighten-20;
+    .gridicon {
+      color: $white;
+      z-index: z-index( 'root', '.c-app-icon.is-blank .gridicon' );
+    }
+  }
+}
+
+.c-app-icon.is-transient .spinner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba( $white, 0.75 );
+}
+
+.c-app-icon__img {
+  background: $transparent;
+  position: relative;
+}

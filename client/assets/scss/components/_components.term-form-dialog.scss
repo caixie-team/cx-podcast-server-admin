@@ -1,0 +1,21 @@
+.c-term-form-dialog .c-dialog__content {
+  min-width: 40vw;
+}
+
+.c-term-form-dialog .c-form-input-validation {
+  padding-bottom: 0;
+}
+
+@include breakpoint( "<660px" ) {
+  .c-term-form-dialog {
+    width: 90%;
+  }
+
+  .c-term-form-dialog .c-dialog__content {
+    min-width: none;
+  }
+}
+
+.c-term-form-dialog textarea {
+  resize: vertical;
+}

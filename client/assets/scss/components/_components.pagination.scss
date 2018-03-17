@@ -1,0 +1,111 @@
+/* ==========================================================================
+   #PAGINATION
+   ========================================================================== */
+
+/**
+ * 1. Use flex utilitites with `c-pagination` for proper alignement of its
+ *    children.
+ */
+
+.c-pagination { /* [1] */
+	display: flex;
+	align-content: center;
+	align-items: center;
+	margin-bottom: $pagination-margin-bottom;
+	text-align: center;
+}
+
+
+/**
+ * 1. Remove wierd space between list items.
+ */
+
+.c-pagination__list {
+	display: flex;
+	font-size: 0; /* [1] */
+}
+
+.c-pagination__item {
+	display: inline-block;
+	margin-left: -1px; /* [1] */
+
+	&:first-child .c-pagination__control {
+		border-right: 0;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	&:last-child .c-pagination__control {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+}
+
+
+/**
+ * 1. Line height of pagination control should equal its height for proper
+ *    vertical alignment.
+ */
+
+.c-pagination__control {
+	display: block;
+	height: $pagination-control-height; /* [1] */
+	padding: $pagination-control-padding;
+	border: $pagination-control-border-width solid $pagination-control-border-color;
+	border-radius: $base-border-radius;
+	background-color: $pagination-control-background-color;
+	color: $pagination-control-color;
+	font-size: $pagination-control-font-size;
+	font-weight: $pagination-control-font-weight;
+	line-height: $pagination-control-height; /* [1] */
+	text-align: center;
+
+	/**
+	 * 1. You may resize this icon if you used another icon font.
+	 */
+	i {
+		position: relative;
+		bottom: -1px;
+		transition: color .15s;
+		color: $pagination-control-color;
+		font-size: 16px; /* [1] */
+	}
+
+	&:hover {
+		color: $heading-color;
+		text-decoration: none;
+
+		i {
+			color: $heading-color;
+		}
+	}
+}
+
+.c-pagination__link {
+	display: block;
+	height: $pagination-link-height;
+	padding: $pagination-link-padding;
+	border: $pagination-link-border-width solid $pagination-link-border-color;
+	background-color: $pagination-link-background-color;
+	color: $pagination-link-color;
+	font-size: $pagination-link-font-size;
+	line-height: $pagination-link-height;
+	text-align: center;
+
+	&.is-active {
+		color: $pagination-link-active-color;
+	}
+
+	&:hover {
+		color: $heading-color;
+		text-decoration: none;
+	}
+}
+
+.c-pagination__counter {
+	display: inline-block;
+	margin: 0;
+	padding: $pagination-counter-padding;
+	color: $pagination-counter-color;
+	vertical-align: middle;
+}

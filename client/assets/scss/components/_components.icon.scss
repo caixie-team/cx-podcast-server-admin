@@ -1,0 +1,75 @@
+/* ==========================================================================
+   #ICONS
+   ========================================================================== */
+
+/**
+ * Add rounded/circular box background to any icon.
+ *
+ * USAGE: 
+ *      
+ * <div class="c-icon c-icon--large c-icon--success">
+ *     <i class="fa fa-facebook"></i>
+ * </div>
+ */
+
+.c-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 50px;
+	height: 50px;
+	border-radius: $base-border-radius;
+	background: $color-info;
+	color: $white;
+	font-size: $h4-font-size;
+
+	&:hover {
+		color: $white;
+		text-decoration: none;
+	}
+}
+
+// circular icon
+.c-icon--circle {
+	border-radius: 100%;
+}
+
+
+/* Size variants
+   ========================================================================== */
+
+.c-icon--large {
+	width: 60px;
+	height: 60px;
+	font-size: $h3-font-size;
+}
+
+.c-icon--small {
+	width: 40px;
+	height: 40px;
+	font-size: $h6-font-size;
+}
+
+
+/* Style variants
+   ========================================================================== */
+
+.c-icon--success {
+	@include linear-gradient(to bottom, $gradient-success);
+}
+
+.c-icon--info {
+	@include linear-gradient(to bottom, $gradient-info);
+}
+
+.c-icon--warning {
+	@include linear-gradient(to bottom, $gradient-warning);
+}
+
+.c-icon--danger {
+	@include linear-gradient(to bottom, $gradient-danger);
+}
+
+.c-icon--fancy {
+	@include linear-gradient(to bottom, $gradient-fancy);
+}

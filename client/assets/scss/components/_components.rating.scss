@@ -1,0 +1,30 @@
+/* ==========================================================================
+   #RATING
+   ========================================================================== */
+
+/**
+ * A list of starts aligned horizontally to show the current rating of an item.
+ *
+ * EXAMPLE:
+ *
+ * <div class="c-rating">
+ *      <i class="c-rating__icon is-active fa fa-star"></i>
+ *      <i class="c-rating__icon is-active fa fa-star"></i>
+ *      <i class="c-rating__icon is-active fa fa-star"></i>
+ *      <i class="c-rating__icon is-active fa fa-star"></i>
+ *      <i class="c-rating__icon fa fa-star"></i>
+ *  </div>
+ */
+
+.c-rating {
+	display: block;
+}
+
+.c-rating__icon {
+	color: #BBBFC5;
+	font-size: $text-small-font-size;
+
+	&.is-active {
+		color: #FDBC0E;
+	}
+}

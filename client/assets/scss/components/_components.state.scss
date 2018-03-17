@@ -1,0 +1,91 @@
+/* ==========================================================================
+   #STATE
+   ========================================================================== */
+
+.c-state {
+	position: relative;
+	margin-bottom: $spacer;
+	padding: $spacer-small;
+	border-radius: $base-border-radius;
+}
+
+.c-state__title {
+	margin: $spacer-xsmall 0 0 $spacer-small;
+	color: $white;
+	font-size: $text-small-font-size;
+	text-transform: uppercase;
+	opacity: 0.7;
+}
+
+.c-state__number {
+	display: block;
+	margin: 0 0 20px $spacer-small;
+	color: $white;
+	font-size: $h1-font-size;
+	font-weight: $font-weight-normal;
+}
+
+.c-state__status {
+	margin: 0;
+	padding: $spacer-xsmall 0 0 $spacer-small;
+	border-top: $base-border-width solid rgba($white, 0.2);
+	color: $white;
+	font-size: $text-small-font-size;
+	font-weight: $font-weight-normal;
+	text-transform: uppercase;
+}
+
+
+/**
+ * 1. Equals padding of `.c-state`.
+ */
+
+.c-state__indicator {
+	display: inline-block;
+	position: absolute;
+	top: $spacer-small; /* [1] */
+	right: $spacer-small; /* [1] */
+	color: $white;
+	font-size: 38px;
+	opacity: 0.2;
+
+	// icon
+	> i {
+		display: block;
+	}
+}
+
+
+/* Style variants
+   ========================================================================== */
+
+/**
+ * 1. If `c-state--{color}` isn't specified, (info) background color will 
+ *    be applied.
+ */
+
+//
+// 2. Redefine style colors(success, warning, danger) to suite with 
+//    state's component design.
+//
+
+.c-state,
+.c-state--info { /* [1] */
+	$color-info: #3B517C;
+	background-color: $color-info; // [2]
+}
+
+.c-state--success {
+	$color-success: #66B92E; // [2] 
+	background-color: $color-success;
+}
+
+.c-state--warning {
+	$color-warning: #DA932C; // [2] 
+	background-color: $color-warning;
+}
+
+.c-state--danger {
+	$color-danger: #D65B4A; // [2] 
+	background-color: $color-danger;
+}

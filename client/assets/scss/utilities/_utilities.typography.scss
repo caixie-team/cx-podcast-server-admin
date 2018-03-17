@@ -1,0 +1,132 @@
+/* ==========================================================================
+   #TYPOGRAPHY UTILITIES
+   ========================================================================== */
+
+// sass-lint:disable no-important
+
+/**
+ * Headings
+ *
+ * Redefine all of our basic heading styles against utility classes so as to
+ * allow for double stranded heading hierarchy, e.g. we semantically need an H2,
+ * but we want it to be sized like an H1:
+ *
+ *   <h2 class="u-h1"></h2>
+ *
+ */
+
+.u-h1 {
+	font-size: $h1-font-size;
+}
+
+.u-h2 {
+	font-size: $h2-font-size;
+}
+
+.u-h3 {
+	font-size: $h3-font-size;
+}
+
+.u-h4 {
+	font-size: $h4-font-size;
+}
+
+.u-h5 {
+	font-size: $h5-font-size;
+}
+
+.u-h6 {
+	font-size: $h6-font-size;
+}
+
+/**
+ * Text Utilitites
+ */
+
+/**
+ * Text Colors
+ */
+.u-text-mute {
+	color: $text-mute-color !important;
+}
+
+.u-text-danger {
+	color: $color-danger !important;
+}
+
+.u-text-success {
+	color: #45B854 !important;
+}
+
+.u-text-dark {
+	color: $text-color;
+}
+
+.u-text-white {
+	color: $white;
+}
+
+/**
+  * Text Sizes
+  */
+.u-text-tiny {
+	font-size: $text-tiny-font-size !important;
+}
+
+.u-text-xsmall {
+	font-size: $text-small-font-size !important;
+}
+
+.u-text-small {
+	font-size: $text-font-size !important;
+}
+
+.u-text-large {
+	font-size: $h6-font-size !important;
+}
+
+// This class is used for 404 text only, we just couldn't find a better way
+// for implementing it
+.u-text-big {
+	font-size: $h1-font-size * 1.5;
+	font-weight: $font-weight-bold;
+	line-height: 48px;
+}
+
+
+/**
+  * Font Weights
+  */
+.u-text-bold {
+	font-weight: $font-weight-bold !important;
+}
+
+/**
+  * Aligning Text
+  */
+.u-text-right {
+	text-align: right !important;
+}
+
+.u-text-left {
+	text-align: left !important;
+}
+
+.u-text-center {
+	text-align: center !important;
+}
+
+/**
+ * Transforming Text
+ */
+.u-text-uppercase {
+	text-transform: uppercase !important;
+}
+
+.u-text-lowercase {
+	text-transform: lowercase !important;
+}
+
+.u-text-capitalize {
+	text-transform: capitalize !important;
+}

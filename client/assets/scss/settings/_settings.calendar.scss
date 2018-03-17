@@ -1,0 +1,31 @@
+///* ========================================================================
+//   #CALENDAR
+//   ======================================================================== */
+
+
+$calendar-width: 224px !default;
+$calendar-padding: $spacer-xsmall !default;
+$calendar-border-color: $grey-400 !default;
+$calendar-border-width: $base-border-width !default;
+$calendar-border-radius: $base-border-radius !default;
+$calendar-background-color: $white !default;
+
+$calendar-header-font-size: $text-font-size !default;
+
+$calendar-control-color: $grey-500 !default;
+
+$calendar-day-font-size: $text-small-font-size !default;
+$calendar-day-color: rgba($gunmetal-200, 0.5) !default;
+
+$calendar-date-padding: $spacer-xsmall !default;
+$calendar-date-color: $gunmetal-200 !default;
+$calendar-date-background-color: $grey-300 !default;
+
+$calendar-date-hover-width: 32px !default;
+$calendar-date-hover-height: 32px !default;
+$calendar-date-hover-background-color: #f5f7f8 !default;
+$calendar-date-hover-color: $white !default;
+
+$calendar-date-active-color: $white !default;
+$calendar-date-active-background-color: $blue-500 !default;
+

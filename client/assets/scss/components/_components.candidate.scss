@@ -1,0 +1,100 @@
+/* ==========================================================================
+   #CANDIDATE
+   ========================================================================== */
+
+/**
+ * Used in candidates.html page
+ */
+
+
+.c-candidate {
+	margin-bottom: $spacer;
+	padding: $spacer-small;
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background-color: $base-background-color;
+}
+
+
+/**
+ * 1. Remove weird extra space.
+ */
+
+.c-candidate__cover {
+	max-height: 150px;
+	border-top-left-radius: $base-border-radius / 2;
+	border-top-right-radius: $base-border-radius / 2;
+	font-size: 0; /* [1] */
+	overflow: hidden;
+}
+
+.c-candidate__info {
+	display: flex;
+	position: relative;
+	top: -$spacer-small;
+	align-items: flex-end;
+	padding-bottom: $spacer-small;
+	border-bottom: $base-border-width solid $base-border-color;
+}
+
+
+.c-candidate__avatar {
+	display: inline-flex;
+	position: relative;
+	flex-shrink: 0;
+	margin-right: $spacer-small;
+	margin-left: $spacer-xsmall;
+	border: 4px solid $base-background-color;
+	border-radius: 100%;
+	overflow: hidden;
+}
+
+.c-candidate__meta {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.c-candidate__title {
+	margin: 0;
+	font-size: $h6-font-size;
+}
+
+.c-candidate__country {
+	display: block;
+	color: $color-mute;
+
+	i {
+		margin-right: $spacer-xsmall;
+	}
+}
+
+.c-candidate__actions {
+	align-self: center;
+	margin-right: $spacer-xsmall;
+
+	a {
+		transition: opacity 0.3s;
+		color: $color-mute;
+		opacity: .5;
+
+		&:last-child {
+			margin-left: $spacer-xsmall / 2;
+		}
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+.c-candidate__footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.c-candidate__status {
+	margin-right: 5%;
+	font-size: $text-font-size;
+}

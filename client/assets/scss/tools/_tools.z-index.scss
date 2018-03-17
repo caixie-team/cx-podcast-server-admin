@@ -1,0 +1,292 @@
+// ==========================================================================
+// A nested map of all of our z-index values.
+//
+// Please add new values relative to their parent stacking context. For
+// example the values of 'root' are elements with a stacking context that have no
+// parents with a stacking context, other than the default html root.
+//
+// A Stacking Context is created when:
+// 1. It's the root element (HTML)
+// 2. Has a position other than static, with a z-index value
+// 3. position:fixed
+// 4. Has one of the following css properties: (transform, opacity<1, mix-blend-mode, filter)
+// 5. isolation:isolate
+// 6: -webkit-overflow-scrolling: touch
+//
+// So before adding a new z-index:
+// 1. You'll want to make sure the element actually creates a stacking context
+// 2. Look up what its parent stacking context is
+// There's a Chrome devtools extension that can help you find both:
+// https://chrome.google.com/webstore/detail/z-context/jigamimbjojkdgnlldajknogfgncplbh
+//
+// For readability please sort values from lowest to highest.
+//
+// Usage:
+// .environment-badge {
+//     z-index: z-index( 'root', '.environment-badge' );
+// }
+//
+// For a refresher on stacking contexts see:
+// https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
+// ==========================================================================
+
+$z-layers: (
+	'root': (
+		'.c-community-translator__translator-invitation:before': -1,
+		'.NuxWelcome:before': -1,
+		'.c-list-end:before': -1,
+		'.c-is-group-editor::before': -1,
+		'.c-site-icon.is-blank .gridicon': 0,
+    '.c-app-icon.is-blank .gridicon': 0,
+		'.c-chart__bar-section.is-spacer': 0,
+		'.c-gear-dropdown:after': 0,
+		'.c-reader__featured-post': 0,
+		'.c-search-stream__input-card': 0,
+		'.c-reader-search-card': 0,
+		'.c-reader-featured-image': 0,
+		'.c-reader-post-card__title': 0,
+		'.c-reader-feed-header': 0,
+		'.c-reader-feed-header__back-and-follow': 0,
+		'.c-reader-related-card.card': 0,
+		'.c-list-stream__header-follow': 0,
+		'.c-following__intro-close-icon-bg' : 0,
+		'.c-media-library .c-search.is-expanded-to-container': 1,
+		'.c-ribbon': 1,
+		'.c-reader__featured-post-title': 1,
+		'.c-reader-list-gap__button': 1,
+		'.c-reader-following-search': 1,
+		'.c-following-manage__url-follow': 1,
+		'.c-following__intro-close-icon': 1,
+		'.c-post-trends__title': 1,
+		'.c-post-trends__scroll': 1,
+		'.c-post-item__label': 1,
+		'.c-wp-editor-tools': 1,
+		'.c-plan .gridicons-checkmark-circle': 1,
+		'.c-plan-discount-message': 1,
+		'.c-post-editor__switch-mode': 1,
+		'.c-auth__form .form-fieldset input': 1,
+		'.c-chart__empty': 1,
+		'.c-chart__bar-marker': 1,
+		'.c-chart__bar-section.is-ghost::after': 1,
+		'.c-module-content-table::after': 1,
+		'.c-stats-popular__empty': 1,
+		'.c-people-list-item__label': 1,
+		'.is-actionable .theme__active-focus': 1,
+		'.accessible-focus .current-theme__button:focus': 1,
+		'.c-signup-processing-screen__processing-step.is-processing:before': 1,
+		'.c-accessible-focus .theme__more-button button:focus': 1,
+		'.c-domain-suggestion.is-clickable:hover': 1,
+		'.c-editor-html-toolbar': 1,
+		'.c-thank-you-card__header': 1,
+		'.c-card.c-comment.is-bulk-mode:hover': 1,
+		'.c-card.c-comment.accessible-focus:focus': 1,
+		'.c-web-preview__loading-message-wrapper': 1,
+		'.c-comment-detail.card.is-collapsed:hover': 1,
+		'.c-comment-detail.card.accessible-focus:focus': 1,
+		'.c-web-preview__inner .c-spinner-line': 1,
+		'.c-google-my-business__stats-nudge.dismissible-card__close-icon': 1,
+		'.c-editor-sidebar': 2,
+		'.c-editor-action-bar .c-editor-status-label': 2,
+		'.is-installing .theme': 2,
+		'.c-people-list-item .c-card__link-indicator': 2,
+		'.c-updated-confirmation': 2,
+		'.c-auth__form .form-fieldset input:focus': 2,
+		'.c-chart__bar-section': 2,
+		'.c-module-content-table tbody th:first-child': 2,
+		'ul.c-module-header-actions .c-module-header-action-link': 2,
+		'.c-stats-module.is-loading .c-module-header-title::after': 2,
+		'ul.c-module-content-list-item-action-submenu': 2,
+		'ul.c-module-content-list-item-actions': 2,
+		'.c-editor-word-count': 3,
+		'.c-app-indicator__button': 3,
+		'ul.c-module-content-list-item-actions.collapsed': 3,
+		'.c-auth__input-wrapper .gridicon': 3,
+		'.c-auth__self-hosted-instructions': 4,
+		'.c-auth__form .c-form-password-input__toggle-visibility': 4,
+    '.c-app-selector': 10,
+    '.c-main-selector': 10,
+		'.c-editor-featured-image__preview.is-transient::after': 10,
+		'.o-layout__secondary .c-app-selector': 10,
+		'.c-range__label': 10,
+		'.c-sticky-panel.is-sticky .c-sticky-panel__content': 20,
+		'.c-editor-featured-image .c-editor-drawer-well__remove': 20,
+		'.c-main': 20, //TODO: this doesn't always have a stacking context
+		//'tinymce-toolbar': 20, client/components/tinymce/index.jsx
+		'.c-search': 22,
+		'.c-reader-update-notice': 22,
+		'.c-editor-ground-control': 22,
+		'.c-search-stream__sort-picker': 23,
+		'.c-billing-history-page .c-filter-popover-content': 23,
+		'.c-reader-mobile-sidebar': 23,
+		'.c-back-top': 99,
+		'.c-author-selector__popover.c-popover': 100,
+		'.c-select-dropdown.is-open .c-select-dropdown__container': 170,
+		'.c-accessible-focus .c-select-dropdown.is-open .c-select-dropdown__container': 170,
+		'.c-apps-dropdown.is-open .c-apps-dropdown__wrapper' : 170,
+		'.c-editor-publish-date.is-open .c-editor-publish-date__wrapper': 170,
+		'.c-first-view': 175,
+		'.c-editor-confirmation-sidebar__overlay': 176,
+		'.c-editor-confirmation-sidebar__sidebar': 177,
+		'.c-popover.c-comment__author-more-info-popover': 178,
+		'.c-popover.c-editor-ground-control__post-schedule-popover': 178,
+		'.c-popover.c-editor-visibility__popover': 179,
+		'.c-feature-example__gradient': 179,
+		'.c-global-notices': 179,
+		'.c-editor-preview': 179,
+		'.c-web-preview .c-editor-notice': 179,
+		'.c-app-banner': 180,
+		'.c-notices-list.is-pinned': 180,
+		'.c-notices-list.is-pinned .notice': 180,
+		'.c-masterbar': 180,
+		'.c-detail-page__backdrop': 190,
+		'.c-layout__loader': 200,
+		'.c-offline-status': 200,
+		'.c-environment-badge': 999,
+		'.c-customizer-loading-panel__placeholder-change-theme': 999,
+		'.c-module-overlay': 1000,
+		'.c-drop-zone': 1000,
+		'.c-popover': 1000,
+		'.c-sharing-buttons-preview-buttons__more': 1000,
+		'.c-sortable-list__item.is-draggable.is-active': 1000,
+		'.c-chart__tooltip': 1000,
+		'.c-drop-zone__content': 1010,
+		'.c-dropdown-menu': 9999,
+		'.c-main.customize.is-iframe': 9999,
+		'.c-happychat__container.is-open': 9999,
+		'.c-fullscreen-overlay': 100005,
+		'#wp_editbtns': 100020,
+		'#wp-fullscreen-body': 100010,
+		'.wp-fullscreen-wrap': 100015,
+		'#wp-fullscreen-statusbar': 100020,
+		'#fullscreen-topbar': 100020,
+		'.c-wp-fullscreen-active #TB_overlay': 100050,
+		'.c-wp-fullscreen-active #TB_window': 100051,
+		'div.c-mce-inline-toolbar-grp': 100100,
+		'.c-dialog__backdrop': 100200,
+    '.v--modal-overlay': 100200,
+		'.c-wplink__dialog.c-dialog.c-card': 100200,
+		'.c-web-preview': 100200,
+		'.c-design-menu.is-visible': 100201,
+		'.c-popover.c-gallery__order-popover': 100300,
+		'c-popover.is-dialog-visible': 100300,
+		'body .c-webui-popover': 100300,
+		'.c-fullscreen-fader': 200000,
+		'.c-guided-tours__overlay': 200050,
+		'.c-guided-tours__step': 201000,
+		'.c-wpcom-app__global-noscript': 300000, // JS off always visible
+		'.is-section-woocommerce .c-global-notices': 999999, //render notices on top of dialogs
+		'.c-webpack-build-monitor': 99999999,
+	),
+	'.ribbon': (
+		'.ribbon__title::before': -1,
+		'.ribbon__title::after': -1
+	),
+	'.environment-badge': (
+		'.environment-badge .environment::before': -1,
+		'.environment-badge .bug-report': 1000
+	),
+	'.c-masterbar': (
+		'.c-masterbar__notifications-bubble': 99999,
+		'.c-reader-back': 99999,
+		'.c-reader-visit-app': 99999,
+		'.c-reader-profile': 100000
+	),
+	'.c-detail-page__backdrop': (
+		'.c-detail-page__action-buttons': 200
+	),
+	'.c-popover': (
+		'.c-input-chrono__container .gridicons-calendar': 0,
+		'input.c-input-chrono': 1,
+		'.c-popover .c-popover__arrow': 1,
+		'.c-post-schedule__header': 1
+	),
+	'.c-search': (
+		'.c-search__input': 10,
+		'.c-search.is-searching .c-spinner': 20,
+		'.c-search .c-search__open-icon': 20,
+		'.c-search .c-search__close-icon': 20
+	),
+	'.c-profile-gravatar__edit-label-wrap': (
+		'.c-profile-gravatar__edit-label-wrap:after': 0,
+		'.c-profile-gravatar__edit-label': 1000
+	),
+	'.c-media-library__list-item': (
+		'.c-media-library__list-item.is-selected::after': 10,
+		'.c-media-library__list-item.is-transient .c-media-library__list-item-figure::after': 10,
+		'.c-media-library__list-item-selected-icon .gridicon': 20,
+		'.c-media-library__list-item-spinner': 20,
+	),
+	'.c-dialog__backdrop': (
+		'.c-editor-media-modal .c-section-nav': 10,
+		'.c-editor-media-modal .c-notice': 10,
+		'.c-editor-contact-form-modal .c-section-nav': 10,
+		'.c-editor-media-modal-gallery__preview-toggle': 100
+	),
+	'.c-app-settings__taxonomies': (
+		'.c-card__link-indicator': 1
+	),
+	'.c-reader-feed-header': (
+		'.c-reader-feed-header__site': 0,
+		'.c-reader-feed-header__follow': 1
+	),
+	'.c-reader-feed-header__back-and-follow': (
+		'.c-card.c-header-cake': 1,
+		'.c-reader-feed-header__follow': 1
+	),
+	'.c-reader-related-card.card': (
+		'.c-reader-related-card__meta': 1
+	),
+	'.c-reader-related-card__meta': (
+		'.c-follow-button': 1
+	),
+	'.c-list-stream__header-follow': (
+		'.c-follow-button': 1
+	),
+	'.c-stats-post-summary': (
+		'.c-section-nav': 1
+	),
+	'.c-thank-you-card__header' : (
+		'.c-thank-you-card__background-icons .gridicon': 1,
+		'.c-thank-you-card__main-icon': 2,
+		'.c-thank-you-card__header-detail': 2
+	),
+
+	// The following may be inserted into different areas.
+	// The parent stacking context may be root, or something else depending on where it is inserted.
+	'icon-parent': (
+		'.c-sidebar__menu .gridicon.gridicons-external': 1
+	),
+	'c-screen-reader-text-parent': (
+		'.c-screen-reader-text:focus': 100000
+	),
+	'c-button-group-parent': (
+		'.c-button-group .button:focus': 1
+	),
+	'c-progress-indicator-parent': (
+		'.c-progress-indicator__cancel.c-noticon:before': 1,
+		'.c-progress-indicator .is-success': 2
+	),
+	'c-section-nav-tabs__dropdown-parent': (
+		'.c-section-nav-tabs__dropdown': 3,
+		'.c-section-nav-tabs__dropdown.is-open': 4
+	),
+	'c-reader-card-follow-button-parent': (
+		'.c-reader__card.card .follow-button': 1
+	)
+);
+
+// allows us to do a nested fetch
+@function map-deep-get( $map, $keys... ) {
+	@each $key in $keys {
+		@if not map-has-key( $map, $key) {
+			@warn "No layer found for `#{$key}` of `[#{ $keys }]` in $z-layers map. Property omitted.";
+			@return map-get( $map, $key );
+		}
+		$map: map-get( $map, $key );
+	}
+	@return $map;
+}
+
+@function z-index( $keys... ) {
+	@return map-deep-get( $z-layers, $keys... );
+}

@@ -1,0 +1,107 @@
+/* ==========================================================================
+   #STREAM
+   ========================================================================== */
+
+/**
+ * Used in news-feed.html page
+ */
+
+.c-stream {
+	margin: 0 0 $spacer;
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background-color: $base-background-color;
+}
+
+.c-stream-item {
+	padding: $spacer-small 20px $spacer-small 12px;
+	border-bottom: $base-border-width solid $base-border-color;
+}
+
+
+/**
+ * Stream item header
+ */
+
+.c-stream-item__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: rem(5px);
+}
+
+.c-stream-item__name {
+	color: $heading-color;
+	font-weight: $font-weight-normal;
+}
+
+.c-stream-item__username {
+	margin: 0 0 0 rem(5px);
+	color: $color-mute;
+	font-size: $text-font-size;
+	font-weight: $font-weight-normal;
+
+	/**
+	 * 1. Remove text-decoration from username when the link is hovered.
+	 */
+	.c-stream-item__name:hover & { /* [1] */
+		display: inline-block;
+		text-decoration: none;
+	}
+}
+
+.c-stream-item__time {
+	color: $color-mute;
+	font-size: $text-font-size;
+}
+
+
+/**
+ * Stream item gallery
+ */
+
+.c-stream-item__gallery {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: $spacer-small;
+
+	> img {
+		width: 49%;
+		border-radius: $base-border-radius;
+	}
+}
+
+
+/**
+ * A list of icons to perform certain actions like: (love, comment, reply).
+ */
+
+.c-stream-item__actionlist {
+	display: inline-block;
+}
+
+.c-stream-item__action {
+	display: inline-block;
+	margin: 0 $spacer 0 0;
+	color: $color-mute;
+	vertical-align: middle;
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	// action icon
+	> i {
+		margin-right: rem(5px);
+		font-size: $text-font-size;
+	}
+}
+
+
+.c-strem-item__actiontoggle {
+	display: flex;
+	position: relative;
+	bottom: rem(-3px);
+	align-items: center;
+	color: $color-mute;
+}

@@ -1,0 +1,71 @@
+/* ==========================================================================
+   #SUMMARY
+   ========================================================================== */
+
+/**
+ * Used in invoices.html page
+ */
+
+.c-summary {
+	position: relative;
+	padding: 0 0 $spacer $spacer;
+
+	&.has-divider {
+		&::after {
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: $base-border-width;
+			height: 100%;
+			content: "";
+			@include linear-gradient(to top, $base-border-color, $base-background-color);
+
+			@include respond-to($breakpoint-tablet) {
+				top: initial;
+				bottom: 15px;
+				width: 100%;
+				height: 1px;
+			}
+		}
+	}
+}
+
+.c-summary__title {
+	margin-bottom: $spacer-small;
+	color: $color-mute;
+	font-size: $text-font-size;
+	font-weight: $font-weight-semibold;
+	text-transform: uppercase;
+}
+
+.c-summary__number {
+	display: inline-block;
+	position: relative;
+	margin: 0;
+	font-size: rem(30px);
+	font-weight: $font-weight-normal;
+}
+
+.c-summary__status {
+	display: block;
+	position: absolute;
+	top: $spacer-small;
+	right: rem(-20px);
+	width: 14px;
+	height: 14px;
+	border-radius: 100%;
+	background-color: $grey-500;
+	color: $white;
+	font-size: rem(10px);
+	line-height: 14px;
+	text-align: center;
+}
+
+.c-summary__meta {
+	margin: 0;
+	color: $color-mute;
+	font-size: $text-small-font-size;
+	font-weight: $font-weight-normal;
+	text-transform: uppercase;
+}

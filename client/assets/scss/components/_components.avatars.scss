@@ -1,0 +1,94 @@
+/* ==========================================================================
+   #AVATARS
+   ========================================================================== */
+
+/**
+ * 1. Enable avatars to act like a dropdown toggle.
+ * 2. Small arrow (icon) used in avatars with dropdowns.
+ * 3. Remove default link decoration when avatar is used as a dropdown toggle.
+ */
+
+.c-avatar {
+	display: flex;
+	position: relative;
+	flex-shrink: 0;
+	align-content: center;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	user-select: none;
+
+	&.has-dropdown { /* [1] */
+		cursor: pointer;
+		overflow: visible;
+
+		&::after { /* [2] */
+			display: block;
+			padding-left: 10px;
+			color: $avatar-arrow-color;
+			font-family: $base-icon-font;
+			content: "\f107"; // fa-angle-down
+		}
+
+		&:hover {
+			text-decoration: none; /* [3] */
+		}
+	}
+
+	.c-avatar__img {
+		width: $avatar-img-width;
+		height: $avatar-img-height;
+	}
+}
+
+.c-avatar__img {
+	border-radius: 100%;
+	overflow: hidden;
+}
+
+
+/* Size variants
+   ========================================================================== */
+
+.c-avatar--xsmall {
+	.c-avatar__img {
+		width: $avatar-img-xsmall-width;
+		height: $avatar-img-xsmall-height;
+	}
+}
+
+.c-avatar--small {
+	.c-avatar__img {
+		width: $avatar-img-small-width;
+		height: $avatar-img-small-height;
+	}
+}
+
+.c-avatar--medium {
+	.c-avatar__img {
+		width: $avatar-img-medium-width;
+		height: $avatar-img-medium-height;
+	}
+}
+
+.c-avatar--large {
+	.c-avatar__img {
+		width: $avatar-img-large-width;
+		height: $avatar-img-large-height;
+	}
+}
+
+.c-avatar--xlarge {
+	.c-avatar__img {
+		width: $avatar-img-xlarge-width;
+		height: $avatar-img-xlarge-height;
+	}
+}
+
+.c-avatar--super {
+	.c-avatar__img {
+		width: $avatar-img-super-width;
+		height: $avatar-img-super-height;
+	}
+}

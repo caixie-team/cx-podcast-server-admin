@@ -1,0 +1,42 @@
+/* ==========================================================================
+   #GALLERY CARD
+   ========================================================================== */
+
+.c-gallery-card {
+	margin: 0 0 $spacer;
+	padding: 10px;
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background: $base-background-color;
+}
+
+.c-gallery-card__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 0 $spacer-small;
+}
+
+.c-gallery-card__title {
+	display: inline-block;
+	margin: 0;
+	font-size: $text-large-font-size;
+}
+
+.c-gallery-card__items {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+
+/**
+ * 1. Set width of gallery image to be half of its container minus (5px) as 
+ *    a spacing between images.
+ */
+
+.c-gallery-card__img {
+	width: calc(50% - 5px); /* [1] */
+	margin: 0 0 $spacer-xsmall;
+	border-radius: $base-border-radius;
+}

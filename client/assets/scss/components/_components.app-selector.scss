@@ -1,0 +1,206 @@
+/**
+ * Site Selector
+ * @component `selector`
+ */
+.c-app-selector {
+  overflow: visible;
+  position: static;
+  pointer-events: auto;
+  border: none;
+  z-index: z-index( 'root', '.c-app-selector' );
+
+  &.is-large .c-search {
+    display: flex;
+    position: relative;
+    opacity: 1;
+    pointer-events: initial;
+  }
+
+  &.is-large .c-app-selector__apps {
+    border-top: 1px solid $gray-lighten-20;
+  }
+
+  .c-app.is-loading {
+    .c-app-icon,
+    .c-app__title,
+    .c-app__domain {
+      background-color: lighten( $gray, 35% );
+    }
+
+  }
+
+}
+
+// Styles for Site elements within the Selector
+.c-app-selector .c-app,
+.c-app-selector .c-all-apps {
+  font-size: 14px;
+
+  // Highlight selected site
+  &.is-selected {
+    background-color: $gray;
+
+    .c-app__badge {
+      color: $white;
+    }
+
+    .c-app__title,
+    .c-app__domain {
+      color: $white;
+      &::after {
+        @include long-content-fade( $color: $gray );
+      }
+    }
+
+    .c-count {
+      border-color: $white;
+      color: $white;
+    }
+
+    &.is-private .c-app__title::before {
+      color: $white;
+    }
+  }
+}
+
+// Highlight & hover effects
+.c-app-selector .c-app.is-highlighted,
+.c-app-selector .c-all-apps.is-highlighted,
+.notouch .c-app-selector.is-hover-enabled .c-app:hover,
+.notouch .c-app-selector.is-hover-enabled .c-all-apps:hover {
+  background: $primary;
+  cursor: pointer;
+
+  .c-app__badge {
+    color: $white;
+  }
+
+  .c-app__title,
+  .c-app__domain {
+    color: white;
+    &::after {
+      @include long-content-fade( $color: $primary );
+    }
+  }
+
+  .c-app__title:before {
+    color: white;
+  }
+
+  .c-count {
+    border-color: $white;
+    color: $white;
+  }
+}
+
+.c-app-selector .c-search {
+  margin: 8px;
+  width: auto;
+  height: 33px;
+  border: 1px solid $gray-lighten-20;
+  display: block;
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+
+  .c-search__input[type="search"] {
+    font-size: 13px;
+  }
+
+  .c-search__open-icon,
+  .c-search__close-icon {
+    color: $gray;
+    width: 32px;
+    height: 18px;
+  }
+
+}
+
+// The actual list of sites
+.c-app-selector__apps {
+  max-height: calc( 100% - 93px );
+  overflow-y: auto;
+
+  @include breakpoint( "<660px" ) {
+    max-height: calc( 100% - 109px );
+  }
+}
+
+.c-app-selector__no-results {
+  color: $gray;
+  font-style: italic;
+  padding: 10px 20px;
+}
+
+.c-app-selector__add-new-app {
+  padding: 0;
+  border-top: 1px solid darken( $sidebar-bg-color, 10% );
+  margin: auto 0 0;
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+
+  @include breakpoint( "<660px" ) {
+    margin-top: 16px;
+  }
+}
+
+.c-app-selector__add-new-app .button {
+  box-sizing: border-box;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 8px;
+  color: $gray-darken-10;
+  line-height: 2.1;
+
+  &:hover {
+    color: $gray-dark;
+  }
+
+  @include breakpoint( "<660px" ) {
+    padding: 16px;
+  }
+
+  .gridicon {
+    display: block;
+    float: left;
+    margin-right: 6px;
+    top: auto;
+    margin-top: auto;
+  }
+}
+
+// Containers in the list of apps are larger
+.c-app-selector .c-app-action {
+  padding-top: 15px;
+}
+
+.c-app-selector .c-all-apps {
+  border-bottom: 1px solid #e0e6e8;
+}
+
+.c-app-selector__recent {
+  border-bottom: 1px solid #e0e6e8;
+
+  &:empty {
+    border-bottom-width: 0;
+  }
+}
+
+.c-app-selector__hidden-apps-message {
+  color: $gray;
+  display: block;
+  font-size: 12px;
+  padding: 16px 16px 24px;
+
+  .c-app-selector__manage-hidden-apps {
+    color: $gray;
+    text-decoration: underline;
+  }
+}
+
+.c-app-selector__no-results + .c-app-selector__hidden-apps-message {
+  display: none;
+}

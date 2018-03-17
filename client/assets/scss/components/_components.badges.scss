@@ -1,0 +1,60 @@
+/* ==========================================================================
+   #BADGES
+   ========================================================================== */
+
+.c-badge {
+	display: inline-block;
+	margin: 0;
+	padding: $badge-padding;
+	border-radius: $badge-border-radius;
+	color: $badge-color;
+	font-size: $badge-font-size;
+	font-weight: $badge-font-weight;
+	text-transform: uppercase;
+
+	/**
+	 * Badges with icons
+	 */
+	> i {
+		margin-right: rem(5px);
+	}
+}
+
+.c-badge--small {
+	padding: $badge-small-padding;
+	font-size: $badge-small-font-size;
+}
+
+.c-badge--xsmall {
+	padding: $badge-xsmall-padding;
+	font-size: $badge-small-font-size;
+}
+
+
+/* Style variants
+   ========================================================================== */
+
+.c-badge--success {
+	background-color: $badge-success-background-color;
+}
+
+.c-badge--info {
+	background-color: $badge-info-background-color;
+}
+
+.c-badge--warning {
+	background-color: $badge-warning-background-color;
+}
+
+.c-badge--danger {
+	background-color: $badge-danger-background-color;
+}
+
+.c-badge--primary {
+	background-color: $badge-primary-background-color;
+}
+
+.c-badge--secondary {
+	background-color: $badge-secondary-background-color;
+	color: $badge-secondary-color;
+}

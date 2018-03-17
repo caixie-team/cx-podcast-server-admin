@@ -1,0 +1,11 @@
+.c-edit-team-member-form__form {
+  border-top: 1px solid $gray-lighten-30;
+  padding-top: 24px;
+  margin-top: 24px;
+}
+
+.c-edit-team-member-form__user-profile {
+  .c-form-fieldset:last-child {
+    margin-bottom: 0;
+  }
+}

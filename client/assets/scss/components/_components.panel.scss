@@ -1,0 +1,39 @@
+/* ==========================================================================
+   #PANEL
+   ========================================================================== */
+
+/**
+ * Panels acts like a secondry sidebar, usually placed on the opposite side of
+ * sidebar, in the case of Dashboad's design it's placed in the right.
+ *
+ * 1. Remove top border from panel to avoid collapsing with navbar's border.
+ */
+
+.c-panel {
+	height: 100%;
+	margin: 0;
+	padding: $spacer;
+	border: $base-border-width solid $base-border-color;
+	border-top: 0; /* [1] */
+	background-color: $base-background-color;
+}
+
+.c-panel__title {
+	margin-bottom: $spacer;
+	font-size: $text-large-font-size;
+}
+
+.c-panel__widget {
+	&::after {
+		display: block;
+		height: $base-border-width; // because it acts like a border
+		margin: $spacer 0;
+		background-color: $base-border-color;
+		content: " ";
+		opacity: 0.5;
+	}
+
+	&:last-child::after {
+		content: none;
+	}
+}

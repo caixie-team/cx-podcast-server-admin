@@ -1,0 +1,132 @@
+.c-taxonomy-manager {
+  box-shadow: 0 0 0 1px transparentize($gray-lighten-20, .5),
+  0 1px 2px $gray-lighten-30;
+}
+
+.c-taxonomy-manager__header {
+  display: flex;
+  box-shadow: 0 0 0 1px transparentize($gray-lighten-20, .5),
+  0 1px 2px $gray-lighten-30;
+  background: $white;
+}
+
+.c-taxonomy-manager__header .c-search-card {
+  margin-bottom: 1px;
+  display: flex;
+  flex-grow: 1;
+  box-shadow: none;
+}
+
+.c-taxonomy-manager__header .c-search-card .c-search {
+  height: 58px;
+}
+
+.c-taxonomy-manager__actions {
+  flex-grow: 0;
+  padding: 16px 24px;
+}
+
+.c-taxonomy-manager__nested-list {
+  margin-left: 2em;
+}
+
+.c-taxonomy-manager__list-item {
+  background-color: $gray-light;
+}
+
+.c-taxonomy-manager__list-item-card {
+  cursor: pointer;
+}
+
+.c-taxonomy-manager__list-item-card.c-card.is-compact {
+  padding: 0;
+}
+
+.c-taxonomy-manager__item {
+  display: flex;
+  flex-direction: row;
+  .c-taxonomy__term-thumbnail-wrapper {
+    //display: none;
+    position: relative;
+    width: 50px;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+    overflow: hidden;
+    margin: 8px 0;
+    display: block;
+    background: #f5f5f5;
+  }
+  .c-taxonomy__term-thumbnail {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    max-height: 40px;
+    max-width: none;
+  }
+  .c-taxonomy-manager__icon {
+    padding: 15px;
+    color: $gray;
+    .gridicon {
+      display: block;
+    }
+  }
+  &.is-default .c-taxonomy-manager__icon {
+    //fill: $primary;
+    path[pid="1"] {
+      fill: $primary;
+    }
+  }
+
+  .c-taxonomy-manager__label {
+    line-height: 54px;
+    white-space: nowrap;
+    overflow: hidden;
+    flex-grow: 1;
+    position: relative;
+
+    &::after {
+      @include long-content-fade();
+    }
+
+    .c-taxonomy-manager__list-item.is-placeholder & {
+      color: transparent;
+      background-color: $gray-lighten-30;
+      animation: loading-fade 1.6s ease-in-out infinite;
+    }
+
+    .c-taxonomy-manager__default-label {
+      text-transform: uppercase;
+      color: $primary;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+  }
+
+  .c-count {
+    margin: 18px 2px;
+  }
+
+  .c-ellipsis-menu {
+    .c-ellipsis-menu__toggle.c-button.is-borderless {
+      cursor: pointer;
+      font-size: 24px;
+      color: $gray;
+      padding: 15px 24px;
+      min-width: 24px;
+      .gridicon {
+        top: 2px;
+      }
+    }
+
+    &.is-menu-visible .c-ellipsis-menu__toggle.c-button.is-borderless {
+      color: $blue-medium;
+    }
+  }
+}
+
+.c-taxonomy-manager .c-virtual-list__list-row.is-empty {
+  padding: 16px 24px;
+  box-shadow: 0 0 0 1px rgba(200, 215, 225, 0.5), 0 1px 2px #e9eff3;
+}

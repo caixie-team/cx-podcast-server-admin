@@ -1,0 +1,109 @@
+/* ==========================================================================
+   #PROJECT
+   ========================================================================== */
+
+/**
+ * Used in projects-board.html page.
+ */
+
+.c-project {
+	margin-bottom: $spacer;
+	padding: $spacer-xsmall $spacer-xsmall 20px;
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background: $base-background-color;
+
+	&:hover {
+		.c-project__profile:nth-child(n) {
+			transform: translateX(0);
+		}
+	}
+}
+
+.c-project__img {
+	position: relative;
+	margin-bottom: rem(12px);
+	border-radius: $base-border-radius;
+	overflow: hidden;
+
+	> img {
+		display: block;
+	}
+}
+
+.c-project__title {
+	margin: 0;
+	padding-left: $spacer-xsmall;
+	font-size: $h6-font-size;
+	font-weight: $font-weight-semibold;
+}
+
+.c-project__status {
+	display: block;
+	margin: 0;
+	color: $color-mute;
+	font-size: $text-small-font-size;
+}
+
+.c-project__team {
+	display: flex;
+	margin-top: rem(20px);
+	padding-left: $spacer-xsmall;
+}
+
+
+/**
+ * On hover, expand project profiles.
+ * Maximum number of profiles is 4, more profiles should be hidden.
+ *
+ * 1. Hover animation will only work on large viewports.
+ */
+
+.c-project__profile {
+	display: block;
+	position: relative;
+	width: 32px;
+	height: 32px;
+	margin-right: rem(5px);
+	transition: transform 0.3s;
+	text-align: center;
+
+	&:nth-child(2) {
+		transform: translateX(-20px);
+	}
+
+	&:nth-child(3) {
+		transform: translateX(calc(-20px * 2));
+	}
+
+	&:nth-child(4) {
+		transform: translateX(calc(-20px * 3));
+	}
+
+	&:nth-child(5) {
+		transform: translateX(calc(-20px * 4));
+	}
+
+	@media (max-width: $breakpoint-xl) {
+		&:nth-child(n) {
+			transform: translateX(0); /* [1] */
+		}
+	}
+
+	img {
+		border-radius: 100%;
+	}
+}
+
+.c-project__profile--btn {
+	border-radius: 100%;
+	background-color: $grey-300;
+	color: $color-mute;
+	font-size: $text-font-size;
+	line-height: 32px;
+
+	&:hover {
+		background-color: $color-success;
+		color: $white;
+	}
+}

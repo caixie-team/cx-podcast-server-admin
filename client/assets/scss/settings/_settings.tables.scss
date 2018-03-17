@@ -1,0 +1,25 @@
+///* ========================================================================
+//   #TABLES
+//   ======================================================================== */
+
+$table-border-width: 1px !default;
+$table-border-color: #E6EAEE !default;
+
+$table-border-radius: $base-border-radius !default;
+$table-background-color: $white !default;
+
+$table-title-background-color: #fff;
+$table-title-color: $heading-color !default;
+
+
+$table-head-slim-background-color: #F5F8FA !default;
+$table-head-cell-padding: 10px 0 10px 30px !default;
+
+
+$table-cell-padding: 20px 0 20px 30px !default;
+$table-cell-color: $text-color !default;
+$table-cell-font-size: $text-font-size !default;
+$table-cell-font-weight: $font-weight-semibold !default;
+
+$table-zebra-row-background-color: rgba($table-border-color, 0.3) !default;
+$table-highlight-row-background-color: rgba($table-border-color, 0.3) !default;

@@ -1,0 +1,153 @@
+/* ==========================================================================
+   #FEED
+   ========================================================================== */
+
+/**
+ * User Activity Feed
+ * 
+ * This component is used to show a stream of the user's activities and it's 
+ * used in user-profile.html page.
+ */
+
+.c-feed {
+	position: relative;
+	margin-bottom: $spacer;
+	padding-left: 32px;
+	overflow: hidden;
+
+	&::before {
+		position: absolute;
+		top: 4px;
+		left: 6px;
+		width: $base-border-width;
+		height: 100%;
+		background-color: $base-border-color;
+		content: "";
+	}
+
+	&.has-icons {
+		padding-left: 47px;
+
+		&::before {
+			left: 14px;
+		}
+	}
+}
+
+.c-feed__item {
+	position: relative;
+	margin-bottom: 25px;
+
+	/**
+	 * The small circle (dot) before every item of the feed
+	 */
+	&::before {
+		position: absolute;
+		top: 4px;
+		left: -32px;
+		width: 12px;
+		height: 12px;
+		border-radius: 100%;
+		background-color: $color-info;
+		content: "";
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+
+		&::after {
+			position: absolute;
+			top: 16px;
+			left: -32px;
+			width: 12px;
+			height: 100%;
+			border-radius: 0;
+			background-color: $base-background-color;
+			content: "";
+		}
+	}
+
+	&.has-icon {
+		&::before {
+			display: none;
+		}
+
+		.c-feed__item-icon {
+			display: block;
+			position: absolute;
+			top: 4px;
+			left: -47px;
+			width: 30px;
+			height: 30px;
+			border-radius: 100%;
+			background-color: $color-info;
+			color: $white;
+			font-size: $text-font-size;
+			line-height: 30px;
+			text-align: center;
+		}
+
+		&:last-child::after {
+			top: 34px;
+			left: -47px;
+			width: 30px;
+		}
+	}
+}
+
+.c-feed__comment {
+	display: inline-block;
+	margin: $spacer-xsmall 0;
+	padding: $spacer-xsmall;
+	border: $base-border-width solid $base-border-color;
+	border-radius: $base-border-radius;
+	background-color: $secondary-background-color;
+}
+
+
+.c-feed__gallery {
+	display: flex;
+	margin-top: $spacer-xsmall;
+}
+
+.c-feed__gallery-item {
+	width: 80px;
+	height: 80px;
+	margin: 0 $spacer-xsmall $spacer-xsmall 0;
+	border-radius: $base-border-radius;
+	overflow: hidden;
+}
+
+
+.c-feed__meta {
+	display: block;
+	color: $color-mute;
+	font-size: $text-font-size;
+}
+
+/* Style variants
+   ========================================================================== */
+
+.c-feed__item--fancy {
+	&::before {
+		@include linear-gradient(to bottom, $purple-300, $purple-500);
+	}
+}
+
+.c-feed__item--info {
+	&::before {
+		@include linear-gradient(to bottom, $blue-300, $blue-400);
+	}
+}
+
+.c-feed__item--success {
+	&::before {
+		@include linear-gradient(to bottom, $green-300, $green-400);
+	}
+}
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+//* ==========================================================================
+//   #SCROLLBAR
+// ========================================================================== */
+
+
+// sass-lint:disable no-vendor-prefixes
+
+@mixin scrollbar {
+	&::-webkit-scrollbar { /* [2] */
+		width: $scrollbar-width;
+		background-color: transparent;
+	}
+
+	&::-webkit-scrollbar-thumb { /* [2] */
+		border-radius: $scrollbar-thumb-border-radius;
+		background-color: $scrollbar-thumb-background-color;
+	}
+}

@@ -1,0 +1,25 @@
+.c-header-button {
+  align-items: center;
+  border: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  font-weight: normal;
+  justify-content: center;
+  min-width: 140px;
+  min-height: 46px;
+  padding: 0 16px;
+
+  &:hover {
+    background-color: $gray-light;
+  }
+}
+
+.c-header-button .gridicon.gridicons-cloud-upload {
+  top: 6px;
+}
+
+.c-header-button__text {
+  margin-top: 3px;
+  white-space: nowrap;
+}

@@ -1,0 +1,74 @@
+/* ==========================================================================
+   #POST
+   ========================================================================== */
+
+/**
+ * Used in: news-feed.html
+ */
+
+.c-post {
+	width: 100%;
+	min-width: 100%;
+	margin: 0 0 $spacer-small;
+	border-radius: $base-border-radius;
+}
+
+.c-post__content {
+	width: 100%;
+	min-width: 100%;
+	min-height: 120px;
+	padding: $spacer-xsmall $spacer $spacer-xsmall 20px;
+	border: $base-border-width solid $base-border-color;
+	background-color: $base-background-color;
+	color: $heading-color;
+	font-size: $text-font-size;
+	overflow-y: auto;
+	resize: none;
+}
+
+.c-post__toolbar {
+	padding: 12px;
+	border: $base-border-width solid $base-border-color;
+	border-top: 0;
+	background-color: $secondary-background-color;
+	overflow: hidden;
+}
+
+
+/**
+ * Customize submit button
+ */
+
+.c-post__submit {
+	margin-right: 12px;
+	padding-right: 0.8rem;
+	padding-left: 0.8rem;
+}
+
+.c-post__time {
+	position: relative;
+	padding: 0 0 0 12px;
+
+	/**
+	 * Vertical divier to seperate (submit button) from (post time).
+	 */
+	&::before {
+		display: inline-block;
+		position: absolute;
+		top: -24px;
+		left: 0;
+		width: $base-border-width;
+		height: 70px;
+		background-color: $base-border-color;
+		content: "";
+	}
+
+	// icon
+	i {
+		margin-right: 5px;
+	}
+
+	@include respond-to($breakpoint-mobile) {
+		display: none;
+	}
+}
