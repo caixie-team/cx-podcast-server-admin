@@ -90,15 +90,22 @@
         list: [],
       }
     },
+    mounted () {
+      console.log(this.uploadAction)
+    },
     computed: {
       requestHeader () {
         return {'Authorization': 'Bearer ' + this.$auth.token}
       },
       uploadAction () {
-        const appId = this.$store.getters.appId
-        const baseURL = process.env.baseURL
-        const action = `${baseURL}/apps/${appId}/file`
-        return action
+        if (!this.action) {
+          const appId = this.$store.getters.appId
+          const baseURL = process.env.baseURL
+          const action = `${baseURL}/apps/${appId}/file`
+          return action
+        }
+
+        return this.action
       }
     },
     methods: {

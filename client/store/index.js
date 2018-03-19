@@ -118,22 +118,31 @@ export const actions = {
   // POSTS
   //
   async getPostsShortList ({commit}, category) {
-    commit('posts/REQUEST_CATEGORY_LIST', category)
+    commit('posts/REQUEST_SHORT_LIST')
     const data = (await this.$axios.get(`/apps/${this.getters.appId}/posts?pagesize=6&category=${category}`)).data.data
     commit('posts/GET_SHORT_LIST', {category: category, data: data.data})
   },
-  async getPostsFullList ({commit}, category) {
-    commit('posts/REQUEST_CATEGORY_LIST', category)
-    const data = (await this.$axios.get(`/apps/${this.getters.appId}/posts?pagesize=20&category=${category}&status=auto-draft`)).data.data
-    commit('posts/GET_FULL_LIST', {category: category, data: data.data})
+
+  async getPostsFullList ({commit}, params = {page: 1, status: 'auto-draft'}) {
+    params.pagesize = 12
+    console.log('dispathc.....')
+    commit('posts/REQUEST_FULL_LIST')
+    const {data} = await this.$axios.get(`/apps/${this.getters.appId}/posts`, {params})
+    if (data && data.errno === 0) {
+      const isFirstPage = params.page && params.page > 1
+      // ADD_FULL_LIST_SUCCESS
+      const commitName = `posts/${isFirstPage ? 'ADD' : 'GET'}_FULL_LIST_SUCCESS`
+      commit(commitName, data)
+    } else {
+      commit('posts/GET_FULL_LIST_FAILURE')
+    }
+    // commit('posts/GET_FULL_LIST', {category: params.category, data: data.data})
   },
 
   // USERS
   async loadUsers ({commit}, params = {page: 1}) {
-    console.log('load users...')
     commit('users/REQUEST_LIST')
     const {data} = await this.$axios.get(`/apps/${this.getters.appId}/users`, {params})
-    // console.warn(data)
     if (data && data.errno === 0) {
       const isFirstPage = params.page && params.page > 1
       const commitName = `users/${isFirstPage ? 'ADD' : 'GET'}_LIST_SUCCESS`

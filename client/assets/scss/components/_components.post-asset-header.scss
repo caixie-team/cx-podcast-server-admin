@@ -1,0 +1,121 @@
+.c-post-asset__header {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+
+  .c-post-asset__header-content {
+    display: flex;
+    flex-wrap: nowrap;
+    width: calc(100% - 36px);
+  }
+
+  &.is-preview {
+    cursor: pointer;
+    padding: 8px 8px;
+
+    .c-post-asset__order {
+      padding-right: 8px;
+    }
+    @include breakpoint("<960px") {
+      .c-post-asset__header-content {
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  &.is-bulk-edit {
+    .c-post-asset__header-content {
+      width: 100%;
+    }
+
+    .c-post-asset__checkbox {
+      padding-right: 12px;
+      .form-checkbox {
+        margin: 0;
+      }
+    }
+    .c-post-asset__info-preview {
+      .external-link:hover,
+      .external-link:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .c-post-asset__action-collapse .gridicon {
+    fill: $gray;
+    transform: rotate(180deg);
+    transition: transform .15s cubic-bezier(0.175, .885, .32, 1.275), color .20s ease-in;
+  }
+  .c-post-asset__action-collapse:hover .gridicon {
+    fill: $blue-medium;
+  }
+
+  &.is-preview {
+    &:hover .c-post-asset__action-collapse .gridicon {
+      fill: $blue-medium;
+    }
+    .c-post-asset__action-collapse {
+      flex: none;
+      margin-top: -6px;
+      text-align: center;
+      width: 36px;
+
+      .gridicon {
+        transform: rotate(0deg);
+      }
+    }
+  }
+
+  &:not( .is-preview ) .c-button.is-borderless {
+    padding: 12px 8px;
+
+    .gridicon {
+      margin-top: 0;
+      top: 0;
+    }
+
+    &.c-post-asset__action-collapse {
+      flex-grow: 1;
+      padding-right: 12px;
+      text-align: right;
+    }
+  }
+
+  .c-post-asset.is-expanded & {
+    border-bottom: 1px solid lighten($gray, 30%);
+  }
+
+  .c-post-asset__content-preview {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 0 16px;
+
+    .c-post-asset__content-info {
+      line-height: 1.4;
+      //padding: 0 8px;
+
+      @include breakpoint( "<960px" ) {
+        padding-right: 0;
+      }
+    }
+  }
+  //.c-post-asset__info-preview {
+  //  box-sizing: border-box;
+  //  padding: 0 8px;
+  //  width: 50%;
+  //
+  //  @include breakpoint("<960px") {
+  //    width: 100%;
+  //  }
+  //
+  //  .external-link {
+  //    color: $gray-text-min;
+  //    &:hover,
+  //    &:focus {
+  //      color: $link-highlight;
+  //    }
+  //  }
+  //}
+}

@@ -5,7 +5,7 @@
     <masterbar-logged-in :title="title" :sectionName="name"/>
     <div id="content" class="o-layout__content">
       <div id="primary" class="o-layout__primary">
-        <nuxt/>
+        <nuxt />
       </div>
       <div id="secondary" class="o-layout__secondary">
         <div class="editor-sidebar">

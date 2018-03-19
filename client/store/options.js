@@ -8,12 +8,12 @@ export const state = () => {
   return {
     // 页面焦点
     layoutFocus: 'sidebar',
-
+    layoutStatus: '',
     // 页面的栏目展示类型（3栏/2栏）
     fullColumn: false,
     errorColumn: false,
     fullWideLayout: false,
-
+    isGroupEditor: false,
     // 是否为移动端
     mobileLayout: false,
     // 移动端侧边栏
@@ -54,7 +54,14 @@ export const mutations = {
     state.fullWideLayout = action
   },
   SET_LAYOUT_FOCUS (state, action) {
-    state.layoutFocus = action
+    state.layoutFocus = 'focus-' + action
+  },
+  SET_LAYOUT_STATUS(state, action) {
+    if (action === 'post' || action === 'post-id') {
+      state.layoutStatus = 'is-group-editor is-section-post-editor'
+    } else {
+      state.layoutStatus = 'is-group-apps'
+    }
   },
   SET_NEXT_LAYOUT_FOCUS (state, action) {},
   ACTIVATE_NEXT_LAYOUT_FOCUS (state, action) {},

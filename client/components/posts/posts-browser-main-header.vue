@@ -1,6 +1,10 @@
 <template>
   <div class="c-posts-browser__main-header">
-    <section-nav :navs="navs" @input-change="change"></section-nav>
+    <section-nav basePath="/posts/term"
+                 :defaultNav="defaultNav"
+                 :navs="navs"
+                 :isSearch="isSearch"
+                 @input-change="change" />
     <div class="c-posts__header-buttons ">
       <nuxt-link to="/settings/taxonomies/category" class="c-button c-header-button">
         <span class="c-header-button__text">分类管理</span>
@@ -33,12 +37,16 @@
     data () {
       return {
         isOpen: false,
-        isFocus: false
+        isFocus: false,
+        isSearch: true,
+        defaultNav: {
+          name: '全部',
+          slug: '/posts'
+        }
       }
     },
     components: {
       SectionNav
-      // DemoLoginModal
     },
     methods: {
       change (v) {

@@ -1,0 +1,183 @@
+// Multisite
+.c-foldable-card.c-card {
+  @include clear-fix;
+  position: relative;
+  transition: margin .15s linear;
+  padding: 0;
+
+  &.is-expanded {
+    margin: 8px 0;
+  }
+}
+
+.c-foldable-card__header {
+  min-height: 64px;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  &.is-clickable {
+    cursor: pointer;
+  }
+
+  &.has-border{
+    .c-foldable-card__summary,
+    .c-foldable-card__summary-expanded {
+      margin-right: 48px;
+    }
+
+    .c-foldable-card__expand {
+      border-left: 1px $gray-light solid;
+    }
+  }
+}
+
+.c-foldable-card.is-compact .c-foldable-card__header {
+  padding: 8px 16px;
+  min-height: 40px;
+}
+
+.c-foldable-card.is-expanded .c-foldable-card__header {
+  margin-bottom: 0px;
+  height: inherit;
+  min-height: 64px;
+}
+
+.c-foldable-card.is-expanded.is-compact .c-foldable-card__header {
+  min-height: 40px;
+}
+
+.c-foldable-card.is-disabled .c-foldable-card__header {
+  opacity: 0.2;
+}
+
+.c-foldable-card__action {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+.c-foldable-card.is-expanded .c-foldable-card__action {
+  height: 100%;
+}
+
+.c-foldable-card.is-disabled .c-foldable-card__action {
+  cursor: default;
+}
+
+.accessible-focus .c-foldable-card__action:focus {
+  outline: thin dotted;
+}
+
+button.c-foldable-card__action {
+  cursor: pointer;
+}
+
+.c-foldable-card__main {
+  max-width: calc( 100% - 36px );
+  display: flex;
+  align-items: center;
+  flex: 2 1;
+  margin-right: 5px;
+
+  @include breakpoint( '<480px' ) {
+    flex: 1 1;
+  }
+}
+
+.c-foldable-card__secondary {
+  display: flex;
+  align-items: center;
+  flex: 1 1;
+  justify-content: flex-end;
+
+  @include breakpoint( '<480px' ) {
+    flex: 0 1;
+  }
+}
+
+.c-foldable-card__expand {
+  width: 48px;
+
+  .gridicon {
+    fill: $gray;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    vertical-align: middle;
+
+    transition: transform .15s cubic-bezier(0.175, .885, .32, 1.275), color .20s ease-in;
+  }
+
+  .gridicon:hover {
+    fill: $gray;
+  }
+
+  &:hover .gridicon {
+    fill: $blue-medium;
+  }
+}
+
+.c-foldable-card.is-expanded .c-foldable-card__expand .gridicon {
+  transform: rotate( 180deg );
+}
+
+.c-foldable-card__content {
+  display: none;
+}
+
+.c-foldable-card.is-expanded .c-foldable-card__content {
+  display: block;
+  padding: 16px;
+  border-top: 1px solid $gray-light;
+}
+
+.c-foldable-card.is-compact .c-foldable-card.is-expanded .c-foldable-card__content {
+  padding: 8px;
+}
+
+.c-foldable-card__summary,
+.c-foldable-card__summary-expanded {
+  margin-right: 40px;
+  color: $gray-text-min;
+  font-size: 12px;
+  transition: opacity 0.2s linear;
+  display: inline-block;
+
+  @include breakpoint( "<480px" ) {
+    display: none;
+  }
+}
+
+.c-foldable-card.has-expanded-summary .c-foldable-card__summary,
+.c-foldable-card.has-expanded-summary .c-foldable-card__summary-expanded {
+  transition: none;
+  flex: 2;
+  text-align: right;
+}
+
+.c-foldable-card__summary {
+  opacity: 1;
+  display: inline-block;
+}
+
+.c-foldable-card.is-expanded .c-foldable-card__summary {
+  display: none;
+}
+
+.has-expanded-summary .c-foldable-card.is-expanded .c-foldable-card__summary {
+  display: none;
+}
+
+.c-foldable-card__summary-expanded {
+  display: none;
+}
+
+.c-foldable-card.is-expanded .c-foldable-card__summary-expanded {
+  display: inline-block;
+}

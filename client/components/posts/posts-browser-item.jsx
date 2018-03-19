@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-parens */
 export default {
   props: {
     isPlaceholder: {
@@ -11,6 +12,9 @@ export default {
       type: String
     },
     author: {
+      type: String
+    },
+    date: {
       type: String
     },
     link: {
@@ -60,7 +64,12 @@ export default {
               )}
             </div>
             <div class="c-posts-browser-item__title">{this.title}</div>
-            <div class="c-posts-browser-item__author">{this.author}</div>
+            <div class="c-posts-browser-item__author">-{this.author}</div>
+          </div>
+          <div class="c-posts-browser-item__meta">
+            <div class="c-posts-browser-item__meta-date">
+              {this.date}
+            </div>
           </div>
         </nuxt-link>
       </li>

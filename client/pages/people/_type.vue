@@ -27,7 +27,7 @@
           <nuxt-link
             type="user"
             class="c-card c-people-list-item is-compact is-card-link"
-            :to="'/people/' + profile.id" v-for="profile in users.data" :key="profile.id">
+            :to="'/people/edit/' + profile.id" v-for="profile in users.data" :key="profile.id">
             <svg class="gridicon gridicons-chevron-right c-card__link-indicator" height="24" width="24"
                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <g>
@@ -50,15 +50,15 @@
                   <div class="c-people-profile__login">
                     <span>{{getAddress(profile)}}</span>
                   </div>
-                  <div class="c-people-profile__subscribed">{{$moment(profile.user_registered).format('LL')}}</div>
+                  <div class="c-people-profile__subscribed">{{$moment(profile.user_registered).locale('zh-ch').format('LL')}}</div>
 
                   <div class="c-people-profile__badges">
-                    <div class="c-people-profile__role-badge" :class="profile.type === 'wechat' ? 'type-wechat' : ''">
-                      <span>{{ getType(profile) }}</span>
-                    </div>
-                    <div class="c-people-profile__role-badge c-role-administrator">
-                      <span>{{ getRole(profile) }}</span>
-                    </div>
+                    <!--<div class="c-people-profile__role-badge" :class="profile.type === 'wechat' ? 'type-wechat' : ''">-->
+                      <!--<span>{{ getType(profile) }}</span>-->
+                    <!--</div>-->
+                    <!--<div class="c-people-profile__role-badge c-role-administrator">-->
+                      <!--<span>{{ getRole(profile) }}</span>-->
+                    <!--</div>-->
                   </div>
                 </div>
               </div>
@@ -68,7 +68,6 @@
       </div>
 
     </div>
-    <!--<infinite-loading @infinite="infiniteHandler"></infinite-loading>-->
     <div class="c-scroll-loader u-flex u-mt-large u-align-items-center u-justify-center u-text-mute"
          :style="fetching ? 'padding-bottom: 20px;' : 'padding-bottom: 0px;' ">
       <div :class="{'c-scroll-loader-wrapper': true, 'c-scroll-loader-wrapper--active' : fetching }"
@@ -87,7 +86,7 @@
 <script>
   // import CScroll from '~/components/scroll'
   import Spinner from '~/components/spinner'
-  import InfiniteLoading from 'vue-infinite-loading/src/components/InfiniteLoading.vue';
+  // import InfiniteLoading from 'vue-infinite-loading/src/components/InfiniteLoading.vue';
   import BackTop from '~/components/back-top'
 
   import '~/icons/gridicons-status'
@@ -109,7 +108,7 @@
     },
     components: {
       // CScroll,
-      InfiniteLoading,
+      // InfiniteLoading,
       Spinner,
       BackTop
     },
@@ -152,13 +151,6 @@
         await this.$store.dispatch('loadUsers', {type: 'wechat', page: this.page})
 
         this.busy = false
-        console.log('is busy...')
-        // setTimeout(() => {
-        //   for (let i = 0, j = 10; i < j; i++) {
-        //     this.data.push({name: count++});
-        //   }
-        //   this.busy = false;
-        // }, 1000);
       },
       async fetchData () {
         this.loading = true
@@ -219,27 +211,3 @@
     }
   }
 </script>
-<style lang="scss">
-  .c-scroll-content-loading {
-    opacity: 0.5;
-  }
-
-  .c-scroll-loader {
-    text-align: center;
-    padding: 0;
-    transition: padding .5s;
-  }
-
-  .c-scroll-loader-wrapper {
-    padding: 5px 0;
-    height: 0;
-    background-color: inherit;
-    transform: scale(0);
-    transition: opacity .3s, transform .5s, height .5s;
-
-    &--active {
-      height: 40px;
-      transform: scale(1);
-    }
-  }
-</style>

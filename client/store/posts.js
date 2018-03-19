@@ -55,13 +55,6 @@ export const state = () => {
         'popular': [],
         'new': []
       }
-      // data: {
-      //   'count': 0,
-      //   'totalPages': 0,
-      //   'pagesize': 10,
-      //   'currentPage': 1,
-      //   'data': []
-      // }
     },
     detail: {
       fetching: false,
@@ -71,14 +64,38 @@ export const state = () => {
 }
 
 export const mutations = {
-  REQUEST_CATEGORY_LIST(state) {
+  REQUEST_FULL_LIST(state) {
     state.fullList.featching = true
+    console.log(state.fullList.featching)
   },
-  GET_FULL_LIST(state, data) {
-    while (data.data.length % 3 !== 0 || data.data.length % 2 !== 0) {
-      data.data.push({})
+  GET_FULL_LIST_FAILURE (state) {
+    state.fullList.fetching = false
+  },
+  GET_FULL_LIST_SUCCESS (state, action) {
+    state.fullList.fetching = false
+    state.fullList.data = action.data
+  },
+  ADD_FULL_LIST_SUCCESS (state, action) {
+    state.fullList.fetching = false
+    state.fullList.data.data.push.apply(state.fullList.data.data, action.data.data)
+    state.fullList.data.count = action.data.count
+    state.fullList.data.currentPage = action.data.currentPage
+    state.fullList.data.totalPages = action.data.totalPages
+    if (state.fullList.data.count === state.fullList.data.data.length) {
+      while (state.fullList.data.data.length % 3 !== 0 || state.fullList.data.data.length % 2 !== 0) {
+        state.fullList.data.data.push({})
+      }
     }
-    state.fullList = data
+
+  },
+  // GET_FULL_LIST(state, data) {
+  //   while (data.data.length % 3 !== 0 || data.data.length % 2 !== 0) {
+  //     data.data.push({})
+  //   }
+  //   state.fullList = data
+  // },
+  REQUEST_SHORT_LIST(state) {
+    state.shortLists.featching = true
   },
   GET_SHORT_LIST (state, data) {
     while (data.data.length % 3 !== 0 || data.data.length % 2 !== 0) {

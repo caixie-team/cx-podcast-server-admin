@@ -1,13 +1,12 @@
 <template>
   <div>
-    <header-cake title="添加新成员"/>
-
+    <header-cake :title="form.user_nicename"/>
     <div class="c-card c-section-header is-compact">
       <div class="c-section-header__label">
-        <span class="c-section-header__label-text">成员资料</span></div>
+        <span class="c-section-header__label-text">{{form.user_nicename}} 的资料</span></div>
       <div class="c-section-header__actions"></div>
     </div>
-    <div class="c-card c-me-profile-settings">
+    <div class="c-card c-me-profile-settings" v-if="!isSubscriber">
       <div class="c-edit-gravatar">
         <upload
           :action="uploadAction"
@@ -19,17 +18,6 @@
           :on-success="handleSuccess">
           <div data-tip-target="c-edit-gravatar"
                class="c-edit-gravatar__image-container">
-            <div class="drop-zone">
-              <div class="drop-zone__content">
-                <div>
-                    <span class="drop-zone__content-icon">
-                      <svgicon name="gridicons-cloud-upload" class="gridicon" style="width: 48px; height: 48px;"/>
-                    </span>
-                  <span class="drop-zone__content-text">拖放以上传个人资料照片</span>
-                </div>
-              </div>
-            </div>
-
             <img alt="头像"
                  class="gravatar"
                  :src="form.avatarUrl"
@@ -59,12 +47,7 @@
                  v-validate="'required|email'"
                  :class="{'c-input': true, 'is-error': errors.has('user_email') }"
                  type="email"
-                 placeholder="用户名">
-          <form-input-validation
-            :isError="errors.has('user_email')"
-            v-show="errors.has('user_email')">
-            {{ errors.first('user_email') }}
-          </form-input-validation>
+                 placeholder="用户名" disabled>
         </fieldset>
         <fieldset class="c-form-fieldset">
           <label for="user_pass" class="c-form-label">密码</label>
@@ -74,8 +57,8 @@
                  value="abcd1234"
                  class="c-form-text-input" disabled>
           <p class="c-form-setting-explanation">
-            新用户默认登录密码
-            <nuxt-link to="/settings">更改?</nuxt-link>
+            默认登录密码
+            <nuxt-link to="/settings">重置?</nuxt-link>
           </p>
         </fieldset>
         <fieldset class="c-form-fieldset">
@@ -85,7 +68,7 @@
           </label>
           <input type="text"
                  id="user_nicename"
-                 name="display_name"
+                 name="user_nicename"
                  v-model="form.user_nicename"
                  placeholder="对外展示的昵称"
                  class="c-form-text-input">
@@ -113,11 +96,34 @@
             class="c-form-textarea"></textarea>
         </fieldset>
         <p>
-          <button type="submit" class="c-button c-form-button is-primary">添加</button>
+          <button type="submit"
+                  class="c-button c-form-button is-primary"
+                  disabled="isChange">更新成员信息
+          </button>
         </p>
       </form>
     </div>
-
+    <div v-else>
+      <div class="c-card c-section-header is-compact">
+        <div class="c-section-header__label">
+          <span class="c-section-header__label-text"></span>
+        </div>
+        <div class="c-section-header__actions">
+          <div>
+            <button class="c-button c-popover-icon is-compact" type="button">
+              <svg class="gridicon gridicons-add-outline" height="24" width="24" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 24 24">
+                <g>
+                  <path
+                    d="M12 4c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8 3.59-8 8-8m0-2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm5 9h-4V7h-2v4H7v2h4v4h2v-4h4v-2z"></path>
+                </g>
+              </svg>
+              添加
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </template>
@@ -137,11 +143,17 @@
       FormInputValidation,
       Upload
     },
+    async fetch ({store, params}) {
+      if (params.id && !Object.is(Number(params.id), NaN)) {
+        await store.dispatch('getUser', params.id)
+      }
+    },
     data () {
       return {
         size: 1024 * 1024 * 10,
         accept: 'image/png,image/gif,image/jpeg',
         uploading: false,
+        isChange: false,
         form: {
           id: '',
           approach: 'pc',
@@ -159,13 +171,22 @@
         isVisible: false
       }
     },
+    mounted () {
+      this.form = Object.assign({}, this.form, this.detail)
+    },
     computed: {
+      isSubscriber () {
+        return this.detail.role.toString() === 'subscriber'
+      },
       uploadAction () {
         const baseURL = process.env.baseURL
         return baseURL + '/file'
       },
+      detail () {
+        return this.$store.state.users.detail.data
+      },
       uploadLabel () {
-        return this.form.avatarUrl ? '点击替换头像' : '点击上传头像'
+        return this.form.avatar ? '点击替换头像' : '点击上传头像'
       },
       requestHeader () {
         return {'Authorization': 'Bearer ' + this.$store.state.token}
@@ -179,15 +200,15 @@
     },
     methods: {
       handlePreview (url) {
-        this.form.avatarUrl = url
+        this.form.avatar = url
       },
       handleProgress (progress) {
         this.uploading = true
       },
       handleSuccess (success, data) {
         this.uploading = false
-        this.form.avatarUrl = data.url + '?imageMogr2/thumbnail/300x300/q/90/format/jpg/interlace/1'
-        this.form.avatar = data.id
+        this.form.avatar = data.url + '?imageMogr2/thumbnail/300x300/q/90/format/jpg/interlace/1'
+        this.form.meta.avatar = data.id
         console.log(this.form.avatar)
       },
       async handleSubmit () {

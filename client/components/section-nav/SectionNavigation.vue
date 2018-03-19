@@ -4,17 +4,19 @@
       <span class="c-section-nav__mobile-header-text">建议搜索</span></div>
     <div class="c-section-nav__panel">
       <div class="c-section-nav-group">
-        <div class="c-section-nav-tabs has-siblings"><h6 class="c-section-nav-group__label">Suggested Searches</h6>
+        <div class="c-section-nav-tabs has-siblings">
+          <h6 class="c-section-nav-group__label">Suggested Searches</h6>
           <ul class="c-section-nav-tabs__list" role="menu">
-<!--            <nuxt-link to="/posts" tag="li" class="c-section-nav-tab">
+            <nuxt-link :to="defaultNav.slug" tag="li" class="c-section-nav-tab" v-if="defaultNav">
               <a class="c-section-nav-tab__link">
-                  <span class="c-section-nav-tab__text">
-                  全部
-                  </span>
+                <span class="c-section-nav-tab__text">
+                  {{defaultNav.name}}
+                </span>
               </a>
-            </nuxt-link>-->
+            </nuxt-link>
+
             <nuxt-link
-              :to="`/${item.slug}`"
+              :to="basePath ? `${basePath}/${item.slug}` : `/${item.slug}`"
               tag="li"
               class="c-section-nav-tab"
               v-for="item in navs" :key="item.slug">
@@ -69,6 +71,12 @@
       isSearch: {
         type: Boolean,
         default: false
+      },
+      basePath: {
+        type: String
+      },
+      defaultNav: {
+        type: Object
       },
       navs: {
         type: Array

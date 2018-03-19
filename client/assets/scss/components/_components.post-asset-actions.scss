@@ -1,0 +1,53 @@
+.c-post-asset__actions {
+  color: $gray;
+  padding-left: 4px;
+  user-select: none;
+
+  .c-button.is-borderless {
+    span {
+      display: none;
+      font-weight: normal;
+
+      @include breakpoint( ">960px" ) {
+        display: inline;
+      }
+    }
+
+    &.c-post-asset__action-like {
+      &:focus,
+      &:hover {
+        color: $orange-jazzy;
+      }
+    }
+
+    &.c-post-asset__action-approve {
+      &:focus,
+      &:hover {
+        color: $alert-green;
+      }
+    }
+
+    &.c-post-asset__action-spam,
+    &.c-post-asset__action-trash,
+    &.c-post-asset__action-delete {
+      &:focus,
+      &:hover {
+        color: $alert-red;
+      }
+    }
+
+    &.is-approved {
+      color: $alert-green;
+    }
+    &.is-liked {
+      color: $orange-jazzy;
+    }
+    &.is-spam {
+      color: $alert-red;
+    }
+    &.is-trash {
+      //color: $gray-dark;
+      color: $grey-500;
+    }
+  }
+}

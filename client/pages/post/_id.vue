@@ -1,47 +1,24 @@
 <template>
-  <div class="post-editor">
-    <div class="post-editor__inner">
-      <div class="c-card editor-ground-control">
-        <button class="c-button editor-ground-control__back is-borderless" type="button">
-          关闭
-        </button>
-        <div class="editor-ground-control__action-buttons">
-          <button class="c-button editor-ground-control__toggle-sidebar is-borderless" type="button">
-            <svg class="gridicon gridicons-cog" height="24" width="24" xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 24 24">
-              <g>
-                <path
-                  d="M20 12c0-.568-.06-1.122-.174-1.656l1.834-1.612-2-3.464-2.322.786c-.82-.736-1.787-1.308-2.86-1.657L14 2h-4l-.48 2.396c-1.07.35-2.04.92-2.858 1.657L4.34 5.268l-2 3.464 1.834 1.612C4.06 10.878 4 11.432 4 12s.06 1.122.174 1.656L2.34 15.268l2 3.464 2.322-.786c.82.736 1.787 1.308 2.86 1.657L10 22h4l.48-2.396c1.07-.35 2.038-.92 2.858-1.657l2.322.786 2-3.464-1.834-1.613c.113-.535.174-1.09.174-1.657zm-8 4c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"></path>
-              </g>
-            </svg>
-          </button>
-          <!--<button class="button editor-ground-control__preview-button" tabindex="4" type="button"><span-->
-          <!--class="editor-ground-control__button-label">预览</span></button>-->
-          <div class="editor-ground-control__publish-button">
-            <button class="c-button editor-publish-button is-primary"
-                    tabindex="5"
-                    type="button">
-              更新
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="c-post-editor">
+    <div class="c-post-editor__inner">
+      <editor-ground-control/>
 
-    <div class="c-main post-editor__content">
-      <div class="post-editor__content-editor">
-        <div class="editor-action-bar">
-          <div class="editor-action-bar__cell is-left"></div>
-          <div class="editor-action-bar__cell is-center">
-            <div class="c-async-load__placeholder" v-if="!users"/>
-            <div class="editor-author editor-author__name" v-else>
+      <div class="c-main c-post-editor__content">
+        <div class="c-post-editor__content-editor">
+          <div class="c-editor-action-bar">
+            <div class="c-editor-action-bar__cell is-left"></div>
+            <div class="c-editor-action-bar__cell is-center">
+
+              <div class="c-async-load__placeholder" v-if="!users"/>
+
+              <div class="c-editor-author" @click="authorToggle" v-else>
                 <span>
-                  <span class="author-selector__author-toggle" tabindex="-1">
+                  <span class="c-author-selector__author-toggle" tabindex="-1">
                   <img
                     class="gravatar"
                     :src="selectedUser.avatar"
                     width="26" height="26">
-                    <span class="editor-author__name">作者：{{selectedUser.user_nicename}}</span>
+                    <span class="c-editor-author__name">作者：{{selectedUser.user_nicename}}</span>
                     <svg
                       ref="reference"
                       class="gridicon gridicons-chevron-down" height="16" width="16" xmlns="http://www.w3.org/2000/svg"
@@ -49,35 +26,104 @@
                       d="M20 9l-8 8-8-8 1.414-1.414L12 14.172l6.586-6.586"></path></g></svg>
                   </span>
                 </span>
-            </div>`
+              </div>
+            </div>
+            <div class="c-editor-action-bar__cell is-right">
+              <button class="c-button c-editor-sticky is-sticky is-borderless" aria-label="将文章固定到头版" type="button">
+                <svg class="gridicon gridicons-bookmark" height="24" width="24" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24">
+                  <g>
+                    <path d="M17 3H7c-1.105 0-2 .896-2 2v16l7-4 7 4V5c0-1.104-.896-2-2-2z"></path>
+                  </g>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <foldable-card expanded>
+            <div slot="header">
+              <h3>{{title}}</h3>
+            </div>
+            <div slot="summary">
+              内容信息
+            </div>
+            <div>
+              <form>
+                <div class="c-form-fieldset">
+                  <label class="c-form-label">标题</label>
+                  <input type="text"
+                         :value="post.title"
+                         autocomplete="off"
+                         placeholder="请输入标题"
+                         @change="updateTitle">
+                </div>
+                <counted-textarea label="内容介绍" v-model="content" name="summary"/>
+              </form>
+            </div>
+          </foldable-card>
+        </div>
+
+        <div class="c-section-nav">
+          <h6 class="c-section-nav-group__label">Suggested Searches</h6>
+          <div class="c-section-nav__panel ">
+            <div class="c-section-nav-group">
+              <div class="c-section-nav-tabs">
+                <ul class="c-section-nav-tabs__list">
+                  <li class="c-section-nav-tab"
+                      :class="{'is-selected':selected === item.id}" v-for="(item, index) in navList"
+                      :key="item.id">
+                    <a class="c-section-nav-tab__link" tabindex="0">
+                  <span class="c-section-nav-tab__text">
+                    {{ item.title }}
+                  </span>
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+            <div class="c-section-header__actions">
+              <button class="c-button is-compact">
+                <svgicon name="gridicons-cloud-upload" class="gridicon needs-offset"/>
+                批量上传
+              </button>
+              <button class="c-button is-compact u-mr-small">
+                <svgicon name="gridicons-plus-small" class="gridicon needs-offset"/>
+                添加
+              </button>
+            </div>
           </div>
         </div>
+        <post-asset :asset="post"/>
       </div>
+
     </div>
+
   </div>
 </template>
 <script>
+  /* eslint-disable no-empty */
+
+  import {EditorGroundControl} from '~/components/post-editor'
+  import '~/icons/gridicons-cloud-upload'
+  import '~/icons/gridicons-plus-small'
+  import FoldableCard from '~/components/foldable-card'
+  import CountedTextarea from '~/components/counted-textarea'
+  import PostAsset from '~/components/post-assets'
+
   export default {
-    layout: 'post-editor',
+    // layout: 'post-editor',
     name: 'PostEditor',
+    components: {
+      EditorGroundControl,
+      FoldableCard,
+      CountedTextarea,
+      PostAsset
+    },
     async asyncData ({app, params}) {
       await app.store.dispatch('loadUsers')
 //      const terms = await app.store.dispatch('getTermsByTaxonomy')
       if (params.id && !Object.is(Number(params.id), NaN)) {
-        // 获取 post 内容
-        // await app.store.dispatch('getPodcast', params.id)
-        // const query = {
-        //   type: 'post_format',
-        //   parent: params.id,
-        //   page: 1
-        // }
-        // const data = (await app.$axios.$get(`/apps/${app.store.getters.appId}/posts`, {params: query})).data
-        // await app.store.dispatch('getEpisodeList', query)
-        // return {
-        //   parent: params.id,
-        //   episodeData: data
-        //   // episodeList: data.data
-        // }
+        console.log('--x-x')
       } else {
         await app.store.commit('podcast/INIT')
         return {
@@ -88,8 +134,21 @@
     },
     data () {
       return {
-        name: 'llala',
-        selectedUser: {}
+        creating: false,
+        isVisible: false,
+        expanded: true,
+        selectedUser: {},
+        selected: 1,
+        isBulkEdit: false,
+        content: '',
+        post: {
+          title: '标题'
+        },
+        navList: [
+          {id: 1, name: 'all', title: '全部'},
+          {id: 2, name: 'unapproved', title: `未审核`},
+          {id: 3, name: 'approved', title: '已审核'},
+          {id: 4, name: 'trash', title: '回收站'}]
       }
     },
     mounted () {
@@ -97,10 +156,28 @@
     },
     computed: {
       user () {
-        return this.$store.state.user
+        return this.$auth.state.user
       },
       users () {
         return this.$store.state.users.list.data
+      },
+      categories () {
+        return this.$store.state.categories.data.list
+      },
+      title () {
+        return this.post.title ? this.post.title : '标题'
+      }
+    },
+    methods: {
+      updateTitle (e) {
+        this.post.title = e.target.value
+      },
+      _selectAuthor (author) {
+        this.selectedUser = author
+        this.isVisible = false
+      },
+      authorToggle () {
+        this.isVisible = !this.isVisible
       }
     }
   }

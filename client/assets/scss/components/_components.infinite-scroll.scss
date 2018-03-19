@@ -1,0 +1,22 @@
+.c-scroll-content-loading {
+  opacity: 0.5;
+}
+
+.c-scroll-loader {
+  text-align: center;
+  padding: 0;
+  transition: padding .5s;
+}
+
+.c-scroll-loader-wrapper {
+  padding: 5px 0;
+  height: 0;
+  background-color: inherit;
+  transform: scale(0);
+  transition: opacity .3s, transform .5s, height .5s;
+
+  &--active {
+    height: 40px;
+    transform: scale(1);
+  }
+}

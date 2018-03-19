@@ -1,5 +1,6 @@
 const apiConfig = require('./api.config')
 const nodeExternals = require('webpack-node-externals')
+const webpack = require('webpack')
 
 module.exports = {
   srcDir: 'client/',
@@ -98,6 +99,19 @@ module.exports = {
           }
         }
       })
+    ],
+    extractCSS: true,
+    filenames: {
+      vendor: 'vendor.[hash:12].js',
+      app: 'caixie.[chunkhash:12].js',
+      css: 'caixie.[contenthash:12].css'
+    },
+    vendor: [
+      'moment'
+    ],
+    plugins: [
+      // new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(zh-cn)$/)
+      new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh|en/)
     ]
   },
   babel: {
@@ -175,15 +189,6 @@ module.exports = {
     //   return config
     // }
   },
-  extractCSS: true,
-  filenames: {
-    vendor: 'vendor.[hash:12].js',
-    app: 'caixie.[chunkhash:12].js',
-    css: 'caixie.[contenthash:12].css'
-  },
-  vendor: [
-    'moment'
-  ],
   plugins: [
     {src: '~plugins/route.js', ssr: false},
     {src: '~/plugins/moment.js'},

@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-parens */
 import {PostsBrowserList} from '~/components/posts'
 
 export default {
@@ -35,7 +36,7 @@ export default {
     getSingleListView (category) {
       this.getShortList(category)
       return (
-        <posts-browser-list category={category} link={`/posts/term/${category.slug}`}></posts-browser-list>
+        <posts-browser-list title={category.name} category={category} link={`/posts/term/${category.slug}`} />
       )
     },
     getShortListView () {

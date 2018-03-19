@@ -1,0 +1,26 @@
+.c-counted-textarea {
+  border: 1px solid $gray-lighten-20;
+  background-color: $gray-light;
+
+  &.is-exceeding-acceptable-length {
+    background: $alert-red;
+
+    .c-counted-textarea__count-panel,
+    .gridicons-info-outline {
+      color: $white;
+    }
+  }
+}
+
+.c-counted-textarea__input {
+  display: block;
+  resize: vertical;
+  border: none;
+  padding: 8px;
+}
+
+.c-counted-textarea__count-panel {
+  padding: 8px;
+  font-size: 12px;
+  color: $gray-darken-20;
+}

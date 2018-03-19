@@ -2,7 +2,7 @@
   <c-main :wideLayout="isWideLayout">
     <posts-browser-main-header :navs="navList" />
     <posts-browser v-if="!$route.params.slug"/>
-    <nuxt-child :key="$route.params.slug"></nuxt-child>
+    <nuxt-child :key="$route.params.slug" />
   </c-main>
 </template>
 <script>

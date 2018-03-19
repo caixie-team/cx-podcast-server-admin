@@ -1,0 +1,75 @@
+.c-post-asset.c-card {
+  font-size: 14px;
+  margin: 0 auto;
+  padding: 0;
+  //transition: margin .15s linear;
+
+  //.accessible-focus &:focus {
+  //  box-shadow: 0 0 0 1px $blue-medium, 0 0 0 3px $blue-light;
+  //  z-index: z-index( 'root', '.c-post-asset.c-card.accessible-focus:focus' );
+  //}
+  &.is-expanded {
+    margin: 16px auto;
+
+    .c-post-asset__header {
+      justify-content: space-between;
+    }
+  }
+  &:before {
+    position: absolute;
+    content: '';
+  }
+  &.is-collapsed {
+    &:before {
+      -webkit-transition: width 250ms ease-out 0s;
+      -o-transition: width 250ms ease-out 0s;
+      transition: width 250ms ease-out 0s;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      background-color: $gunmetal-300;
+      //border-radius: .5rem 0 0 .5rem;
+    }
+    &:hover {
+      //box-shadow: 0 0 0 1px $gray, 0 2px 4px lighten( $gray, 20% );
+      //z-index: z-index( 'root', '.c-post-asset.card.is-collapsed:hover' );
+      &:before {
+        width: 4px;
+      }
+    }
+  }
+  &.is-pending {
+    background: mix($alert-yellow, $white, 8.5%);
+    box-shadow: inset 4px 0 0 0 $alert-yellow, 0 0 0 1px transparentize(lighten($gray, 20%), 0.5),
+    0 1px 2px lighten($gray, 30%);
+  }
+
+  &.is-trash strong {
+    color: $orange-fire;
+  }
+
+  &.is-plain {
+    padding-left: 0;
+    cursor: default;
+  }
+  // If the episode is unapproved and collapsed, color it yellow.
+  &.is-unapproved.is-collapsed {
+    .c-post-asset__header {
+      background: mix( $alert-yellow, $white, 8.5% );
+      box-shadow: inset 4px 0 0 0 $alert-yellow;
+    }
+  }
+
+  .gridicon {
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+
+  .gravatar {
+    border-radius: 50%;
+    display: block;
+    flex-shrink: 0;
+  }
+}

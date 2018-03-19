@@ -1,19 +1,19 @@
 <template>
   <card :class="classes">
     <div :class="headerClasses" @click="headerClickAction">
-      <span class="foldable-card__main">
+      <span class="c-foldable-card__main">
         <slot name="header"></slot>
       </span>
-      <span class="foldable-card__secondary">
-        <span class="foldable-card__summary">
+      <span class="c-foldable-card__secondary">
+        <span class="c-foldable-card__summary">
           <slot name="summary"></slot>
         </span>
-        <span class="foldable-card__summary-expanded">
+        <span class="c-foldable-card__summary-expanded">
           <slot name="expandedSummary"></slot>
         </span>
         <button
           type="button"
-          class="foldable-card__action foldable-card__expand" @click="handleClick">
+          class="c-foldable-card__action c-foldable-card__expand" @click="handleClick">
           <svg
             class="gridicon gridicons-chevron-down" height="24" width="24" xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24">
@@ -25,7 +25,7 @@
 
       </span>
     </div>
-    <div class="foldable-card__content" v-show="isExpanded">
+    <div class="c-foldable-card__content" v-show="isExpanded">
       <slot></slot>
     </div>
   </card>
@@ -94,7 +94,7 @@
       },
       headerClasses () {
         return [
-          'foldable-card__header',
+          'c-foldable-card__header',
           {
             'is-clickable': !!this.clickableHeader,
             'has-border': !!this.$slots.summary
@@ -103,7 +103,7 @@
       },
       classes () {
         return [
-          'foldable-card',
+          'c-foldable-card',
           {
             'is-compact': !!this.compact,
             'is-disabled': !!this.disabled,

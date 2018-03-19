@@ -34,20 +34,25 @@
       }
     },
     computed: {
+      postEditorLayout () {},
       fullWideLayout () {
         return this.$store.state.options.fullWideLayout
       },
+      editorLayout () {},
       currentLayoutFocus () {
         return this.$store.state.options.layoutFocus
       },
       classes () {
         // const focus = this.$store.state.options.layoutFocus
+        // is-default is-group-editor is-section-post-editor focus-sidebar
         const classArray = [
           'notouch',
           'o-layout',
-          'is-group-apps',
-          'is-section-posts-pages',
-          this.currentLayoutFocus === 'apps' ? 'focus-apps' : 'focus-sidebar',
+          'is-default',
+          this.$store.state.options.layoutStatus,
+          // 'is-section-posts-pages',
+          // this.currentLayoutFocus ? this.currentLayoutFocus  : 'focus-sidebar',
+          this.currentLayoutFocus,
           {'has-no-sidebar': this.fullWideLayout}
         ]
         return classArray

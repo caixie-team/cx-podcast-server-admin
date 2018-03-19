@@ -104,7 +104,14 @@
   margin-top: 12px;
   position: absolute;
 }
-
+.c-posts-browser-item__meta {
+  margin-top: 12px;
+  position: absolute;
+  &-date {
+    font-size: 12px;
+    color: $grey-500;
+  }
+}
 .c-posts-browser-item__installed {
   display: flex;
   align-items: center;
