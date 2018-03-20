@@ -11,7 +11,7 @@
 
   &.is-preview {
     cursor: pointer;
-    padding: 8px 8px;
+    padding: 12px 8px;
 
     .c-post-asset__order {
       padding-right: 8px;
@@ -94,7 +94,7 @@
 
     .c-post-asset__content-info {
       line-height: 1.4;
-      //padding: 0 8px;
+      padding: 0 8px;
 
       @include breakpoint( "<960px" ) {
         padding-right: 0;

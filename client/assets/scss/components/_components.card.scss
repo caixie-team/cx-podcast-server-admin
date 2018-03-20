@@ -15,7 +15,7 @@
   box-sizing: border-box;
   //border-radius: 3px;
   background: $white;
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.20);
   //box-shadow: 0 1px 3px 0 transparentize( #d1d1d1, .5 ),0 1px 2px $gray-lighten-30;
 
   @include clear-fix;

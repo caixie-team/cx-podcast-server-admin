@@ -8,22 +8,42 @@
       @trash="handleTrash"
       @toggleApprove="toggleApprove"
       :asset="asset"
-      :order="1"
+      :order="order"
       @toggleExpanded="toggleExpanded"/>
 
-    <div class="c-post-asset__content" v-if="isExpanded"></div>
+    <div class="c-post-asset__content" v-if="isExpanded">
+      <form>
+        <div class="c-form-fieldset">
+          <label for="asset_title">标题</label>
+          <input type="text" id="asset_title" placeholder="请输入内容标题">
+        </div>
+      </form>
+      <a-player
+        theme="#14aaf5"
+        preload="metadata"
+        mode="circulation"
+        :music="asset.audios[0]"
+        :list="asset.audios"
+        v-if="asset.audios"/>
+    </div>
   </card>
 </template>
 <script>
   import {Card} from '~/components/card'
   import PostAssetHeader from './post-asset-header'
+  import APlayer from '~/components/vue-aplayer'
 
   export default {
     components: {
       PostAssetHeader,
-      Card
+      Card,
+      APlayer
     },
     props: {
+      order: {
+        type: Number,
+        default: 1
+      },
       asset: {
         type: Object
       },
@@ -60,9 +80,12 @@
       toggleExpanded () {
         this.isExpanded = !this.isExpanded
       },
-      handleDelete () {},
-      handleTrash () {},
-      toggleApprove () {}
+      handleDelete () {
+      },
+      handleTrash () {
+      },
+      toggleApprove () {
+      }
     }
   }
 </script>

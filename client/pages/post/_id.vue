@@ -2,7 +2,6 @@
   <div class="c-post-editor">
     <div class="c-post-editor__inner">
       <editor-ground-control/>
-
       <div class="c-main c-post-editor__content">
         <div class="c-post-editor__content-editor">
           <div class="c-editor-action-bar">
@@ -49,14 +48,19 @@
             <div>
               <form>
                 <div class="c-form-fieldset">
-                  <label class="c-form-label">标题</label>
+                  <label class="c-form-label">
+                    标题
+                  </label>
                   <input type="text"
                          :value="post.title"
                          autocomplete="off"
                          placeholder="请输入标题"
                          @change="updateTitle">
                 </div>
-                <counted-textarea label="内容介绍" v-model="content" name="summary"/>
+                <counted-textarea label="内容介绍"
+                                  v-model="detail.content"
+                                  name="summary"
+                                  v-if="detail.content"/>
               </form>
             </div>
           </foldable-card>
@@ -93,15 +97,27 @@
             </div>
           </div>
         </div>
-        <post-asset :asset="post"/>
+        <draggable v-model="assetList" v-if="isTopic">
+          <post-asset :asset="item"
+                      :order="assetList.length - index"
+                      v-for="(item,index) in assetList"
+                      :key="item.id"/>
+        </draggable>
+        <a-player
+          theme="#14aaf5"
+          preload="metadata"
+          mode="circulation"
+          :music="detail.audios[0]"
+          :list="detail.audios"
+          v-if="detail.audios"/>
+        <!-- TODO 做排序 、标题修改等 -->
       </div>
-
     </div>
 
   </div>
 </template>
 <script>
-  /* eslint-disable no-empty */
+  /* eslint-disable no-empty prefer-const */
 
   import {EditorGroundControl} from '~/components/post-editor'
   import '~/icons/gridicons-cloud-upload'
@@ -109,23 +125,28 @@
   import FoldableCard from '~/components/foldable-card'
   import CountedTextarea from '~/components/counted-textarea'
   import PostAsset from '~/components/post-assets'
+  import EmptyContent from '~/components/empty-content'
+  import Draggable from 'vuedraggable'
+  import APlayer from '~/components/vue-aplayer'
 
   export default {
     // layout: 'post-editor',
     name: 'PostEditor',
     components: {
+      Draggable,
+      EmptyContent,
       EditorGroundControl,
       FoldableCard,
       CountedTextarea,
-      PostAsset
+      PostAsset,
+      APlayer
     },
     async asyncData ({app, params}) {
       await app.store.dispatch('loadUsers')
-//      const terms = await app.store.dispatch('getTermsByTaxonomy')
       if (params.id && !Object.is(Number(params.id), NaN)) {
-        console.log('--x-x')
+        await app.store.dispatch('getPostDetail', params.id)
       } else {
-        await app.store.commit('podcast/INIT')
+        // await app.store.commit('podcast/INIT')
         return {
           // episodeList: [],
           category: params.category
@@ -153,8 +174,15 @@
     },
     mounted () {
       this.selectedUser = Object.assign({}, this.user)
+      this.getAssets(1)
     },
     computed: {
+      isTopic () {
+        return this.$store.state.post.detail.data.format === 'post-format-topic'
+      },
+      detail () {
+        return this.$store.state.post.detail.data
+      },
       user () {
         return this.$auth.state.user
       },
@@ -165,10 +193,28 @@
         return this.$store.state.categories.data.list
       },
       title () {
-        return this.post.title ? this.post.title : '标题'
+        return this.detail.title ? this.detail.title : '标题'
+      },
+      assets () {
+        return this.$store.state.post.assetList.data
+      },
+      assetList: {
+        get () {
+          return this.$store.state.post.assetList.data.data
+        },
+        set (value) {
+          this.$store.commit('post/UPDATE_ASSET_LIST', value)
+        }
       }
     },
     methods: {
+      getAssets (page) {
+        const params = {
+          id: this.detail.id,
+          page: page
+        }
+        this.$store.dispatch('getPostAssetList', params)
+      },
       updateTitle (e) {
         this.post.title = e.target.value
       },
@@ -182,3 +228,22 @@
     }
   }
 </script>
+<style lang="scss">
+  .sortable-ghost {
+    background: rgba(0, 0, 0, .25);
+    background: linear-gradient(to right, #008ce3, #14aaf5 100%);
+    color: #fff;
+    .svg-icon,
+    .svg-fill,
+    .gridicon {
+      fill: #fff;
+    }
+  }
+
+  .sortable-chosen {
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.10);
+    font-weight: 900;
+    border: 1px dashed #1d2531;
+    transition: all 0.3s;
+  }
+</style>

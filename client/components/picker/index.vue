@@ -98,7 +98,7 @@
         window.scrollTo(0, 0)
       },
       closePicker: function () {
-        if (this.currentLayoutFocus === 'apps') {
+        if (this.currentLayoutFocus === 'focus-apps') {
           this.$store.commit('options/SET_LAYOUT_FOCUS', 'sidebar')
           this.scrollToTop()
         }

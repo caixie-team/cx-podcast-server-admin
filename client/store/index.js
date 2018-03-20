@@ -1,4 +1,3 @@
-
 export const state = () => ({
   backHref: '/',
   toHref: '/'
@@ -36,7 +35,7 @@ export const actions = {
     }
     // await store.commit('org/SET_CURRENT_APP', req.session.__org.apps[0])
   },
-  async nuxtClientInit({ commit }, context) {
+  async nuxtClientInit ({commit}, context) {
   },
 
   // 获取全局配置
@@ -51,10 +50,9 @@ export const actions = {
     return data
   },
 
-  async updateOption ({commit}) {
-
-  },
+  // -----------------------------
   // CATEGORYS
+  // -----------------------------
   /**
    * 获取类别数据
    * @param commit
@@ -114,9 +112,34 @@ export const actions = {
       this.$toast.success('删除成功')
     }
   },
-  //
-  // POSTS
-  //
+
+  // -----------------------------
+  // POST
+  // -----------------------------
+  async getPostDetail ({commit}, postId) {
+    commit('post/REQUEST_DETAIL')
+    const {data} = await this.$axios.get(`/apps/${this.getters.appId}/posts/${postId}`)
+    if (data && data.errno === 0) {
+      commit('post/GET_DETAIL_SUCCESS', data)
+    } else {
+      commit('posts/GET_DETAIL_FAILURE')
+    }
+  },
+  // -----------------------------
+  // POST LIST
+  // -----------------------------
+  async getPostAssetList ({commit}, params) {
+    commit('post/REQUEST_ASSET_LIST')
+    const data = (await this.$axios.get(`/apps/${this.getters.appId}/posts/${params.id}/assets`)).data
+    if (data && data.errno === 0) {
+      const isFirstPage = params.page && params.page > 1
+      const commitName = `post/${isFirstPage ? 'ADD' : 'GET'}_ASSET_LIST_SUCCESS`
+      commit(commitName, data)
+    } else {
+      commit('post/GET_ASSET_LIST_FAILURE')
+    }
+  },
+
   async getPostsShortList ({commit}, category) {
     commit('posts/REQUEST_SHORT_LIST')
     const data = (await this.$axios.get(`/apps/${this.getters.appId}/posts?pagesize=6&category=${category}`)).data.data
@@ -125,7 +148,6 @@ export const actions = {
 
   async getPostsFullList ({commit}, params = {page: 1, status: 'auto-draft'}) {
     params.pagesize = 12
-    console.log('dispathc.....')
     commit('posts/REQUEST_FULL_LIST')
     const {data} = await this.$axios.get(`/apps/${this.getters.appId}/posts`, {params})
     if (data && data.errno === 0) {
@@ -136,10 +158,11 @@ export const actions = {
     } else {
       commit('posts/GET_FULL_LIST_FAILURE')
     }
-    // commit('posts/GET_FULL_LIST', {category: params.category, data: data.data})
   },
 
+  // -----------------------------
   // USERS
+  // -----------------------------
   async loadUsers ({commit}, params = {page: 1}) {
     commit('users/REQUEST_LIST')
     const {data} = await this.$axios.get(`/apps/${this.getters.appId}/users`, {params})

@@ -3,6 +3,8 @@ $sidebar-bg-color: #FAFAFA;
 :root {
   --masterbar-color: #848f99;
   --masterbar-background: $white;
+  //background: -webkit-linear-gradient(left, #008ce3, #14aaf5 100%);
+  //--masterbar-background: linear-gradient(to right, #008ce3, #14aaf5 100%);
   --masterbar-border-color: #D1D1D1;
   --masterbar-item-hover-background: $primary;
   --masterbar-item-active-background: darken( $primary, 10% );

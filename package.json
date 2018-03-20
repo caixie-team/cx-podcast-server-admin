@@ -69,6 +69,9 @@
     "webpack-hmr": "^1.0.2",
     "webpack-loader": "^0.0.1"
   },
+  "optionalDependencies": {
+    "hls.js": "^0.8.9"
+  },
   "repository": "",
   "license": "MIT",
   "engines": {

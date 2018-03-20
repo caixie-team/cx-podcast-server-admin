@@ -1,0 +1,41 @@
+.c-omni-button {
+  background: -webkit-linear-gradient(bottom left, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
+  background: linear-gradient(to top right, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 12px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 24px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 0 15px;
+  position: relative;
+  width: 24px;
+  z-index: 0;
+  &:after {
+    background: -webkit-linear-gradient(bottom left, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
+    background: linear-gradient(to top right, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
+    border-radius: 12px;
+    bottom: 0;
+    content: "";
+    height: 24px;
+    left: 0;
+    opacity: .5;
+    position: absolute;
+    right: 0;
+    top: 0;
+    -webkit-transition: .2s transform;
+    transition: .2s transform;
+    width: 24px;
+    z-index: -1;
+  }
+}

@@ -19,44 +19,7 @@ export const state = () => {
         id: 0
       }
     },
-    item: {
-      creating: false,
-      saving: false,
-      data: {}
-    },
-    hot: {
-      fetching: false,
-      data: {data: []}
-    },
-    list: {
-      fetching: false,
-      data: {
-        'count': 0,
-        'totalPages': 0,
-        'pagesize': 10,
-        'currentPage': 1,
-        'data': []
-      }
-    },
-    fullList: {
-      fetching: false,
-      data: {
-        'count': 0,
-        'totalPages': 0,
-        'pagesize': 10,
-        'currentPage': 1,
-        'data': []
-      }
-    },
-    shortLists: {
-      fetching: false,
-      data: {
-        'featured': [],
-        'popular': [],
-        'new': []
-      }
-    },
-    assetList: {
+    asset: {
       fetching: false,
       data: {
         'count': 0,
@@ -69,62 +32,77 @@ export const state = () => {
     detail: {
       fetching: false,
       data: {}
+    },
+    assetList: {
+      fetching: false,
+      data: {
+        'count': 0,
+        'totalPages': 0,
+        'pagesize': 10,
+        'currentPage': 1,
+        data: []
+      }
     }
   }
 }
 
 export const mutations = {
-  // Category Detail post List
-  REQUEST_FULL_LIST(state) {
-    state.fullList.featching = true
+  CLEAR_DETAIL (state) {
+    state.detail.data = {}
   },
-  GET_FULL_LIST_FAILURE (state) {
-    state.fullList.fetching = false
+  REQUEST_DETAIL (state) {
+    state.detail.fetching = true
   },
-  GET_FULL_LIST_SUCCESS (state, action) {
-    state.fullList.fetching = false
-    state.fullList.data = action.data
+  GET_DETAIL_FAILURE (state) {
+    state.detail.fetching = false
+    state.detail.data = {}
   },
-  ADD_FULL_LIST_SUCCESS (state, action) {
-    state.fullList.fetching = false
-    state.fullList.data.data.push.apply(state.fullList.data.data, action.data.data)
-    state.fullList.data.count = action.data.count
-    state.fullList.data.currentPage = action.data.currentPage
-    state.fullList.data.totalPages = action.data.totalPages
-    if (state.fullList.data.count === state.fullList.data.data.length) {
-      while (state.fullList.data.data.length % 3 !== 0 || state.fullList.data.data.length % 2 !== 0) {
-        state.fullList.data.data.push({})
-      }
+  GET_DETAIL_SUCCESS (state, action) {
+    state.detail.fetching = false
+    state.detail.data = action.data
+  },
+
+  // 喜欢某篇文章
+  LIKE_ARTICLE (state, action) {
+    const article = state.detail.data
+    if (Object.is(article.id, action.id)) {
+      state.detail.data.meta.likes++
     }
   },
-  // Browser List
-  REQUEST_SHORT_LIST(state) {
-    state.shortLists.featching = true
-  },
-  GET_SHORT_LIST (state, data) {
-    while (data.data.length % 3 !== 0 || data.data.length % 2 !== 0) {
-      data.data.push({})
-    }
-    state.shortLists.data[data.category] = data.data
-  },
-  // Asset List
-  REQUEST_ASSET(state) {
-    state.assetList.fetching = true
+  // Asset
+  REQUEST_ASSET (state) {
+    state.asset.fetching = true
   },
   GET_ASSET_FAILURE (state) {
-    state.assetList.fetching = false
+    state.asset.fetching = false
   },
   GET_ASSET_SUCCESS (state, action) {
+    state.asset.fetching = false
+    state.asset.data = action.data
+  },
+
+  // Asset List
+  REQUEST_ASSET_LIST (state) {
+    state.assetList.fetching = true
+  },
+  UPDATE_ASSET_LIST (state, list) {
+    state.assetList.data.data = list
+  },
+  GET_ASSET_LIST_FAILURE (state) {
+    state.assetList.fetching = false
+  },
+  GET_ASSET_LIST_SUCCESS (state, action) {
     state.assetList.fetching = false
     state.assetList.data = action.data
   },
-  ADD_ASSET_SUCCESS (state, action) {
+  ADD_ASSET_LIST_SUCCESS (state, action) {
     state.assetList.fetching = false
     state.assetList.data.data.push.apply(state.assetList.data.data, action.data.data)
     state.assetList.data.count = action.data.count
     state.assetList.data.currentPage = action.data.currentPage
     state.assetList.data.totalPages = action.data.totalPages
   },
+
   SET_POST (state, post) {
     state.post = post
   },
@@ -196,29 +174,5 @@ export const mutations = {
   GET_HOT_LIST_SUCCESS (state, action) {
     state.hot.fetching = false
     state.hot.data = action.result
-  },
-
-  // Detail
-  CLEAR_DETAIL (state) {
-    state.detail.data = {}
-  },
-  REQUEST_DETAIL (state) {
-    state.detail.fetching = true
-  },
-  GET_DETAIL_FAILURE (state) {
-    state.detail.fetching = false
-    state.detail.data = {}
-  },
-  GET_DETAIL_SUCCESS (state, action) {
-    state.detail.fetching = false
-    state.detail.data = action.result
-  },
-
-  // 喜欢某篇文章
-  LIKE_ARTICLE (state, action) {
-    const article = state.detail.data
-    if (Object.is(article.id, action.id)) {
-      state.detail.data.meta.likes++
-    }
   }
 }
