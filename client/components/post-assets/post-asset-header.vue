@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes" @click="handleFullHeaderClick">
+  <div :class="classes">
     <asset-actions
       @toggleApprove="$emit('toggleApprove')"
       @trash="$emit('trash')"
@@ -9,10 +9,11 @@
 
     <div class="c-post-asset__header-content" v-if="!isExpanded">
       <div class="c-post-asset__content-preview">
-        <div class="c-post-asset__order">{{order}}.</div>
         <label class="c-post-asset__checkbox" v-if="isBulkEdit">
           <input type="checkbox" class="c-form-checkbox">
         </label>
+        <div class="c-post-asset__order" v-else>{{order}}.</div>
+
         <div class="c-post-asset__content-info u-text-bold">
           <div class="c-post-asset__title">
             {{asset.title}}
@@ -21,9 +22,12 @@
       </div>
       <div class="c-post-asset__asset-preview">{{asset.content}}</div>
     </div>
-    <button class="c-button c-post-asset__action-collapse is-borderless"
+    <div class="c-post-asset__header__summary">
+      lalal
+    </div>
+    <button class=" c-post-asset__action-collapse c-post-asset__header__expand "
             type="button"
-            v-if="!isBulkEdit">
+            v-if="!isBulkEdit" >
       <svgicon name="gridicons-chevron-down" class="gridicon"/>
     </button>
   </div>

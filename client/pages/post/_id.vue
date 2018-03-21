@@ -65,7 +65,7 @@
             </div>
           </foldable-card>
         </div>
-
+        <!--
         <div class="c-section-nav">
           <h6 class="c-section-nav-group__label">Suggested Searches</h6>
           <div class="c-section-nav__panel ">
@@ -97,20 +97,30 @@
             </div>
           </div>
         </div>
+        -->
         <draggable v-model="assetList" v-if="isTopic">
           <post-asset :asset="item"
                       :order="assetList.length - index"
                       v-for="(item,index) in assetList"
                       :key="item.id"/>
         </draggable>
-        <a-player
+        <post-audio-player
           theme="#14aaf5"
           preload="metadata"
           mode="circulation"
           :music="detail.audios[0]"
           :list="detail.audios"
-          v-if="detail.audios"/>
-        <!-- TODO 做排序 、标题修改等 -->
+          :on-remove="handelRemove"
+          v-if="detail.audios" />
+        <!--<a-player-->
+          <!--theme="#14aaf5"-->
+          <!--preload="metadata"-->
+          <!--mode="circulation"-->
+          <!--:music="detail.audios[0]"-->
+          <!--:list="detail.audios"-->
+          <!--:on-remove="handelRemove"-->
+          <!--v-if="detail.audios"/>-->
+
       </div>
     </div>
 
@@ -128,7 +138,8 @@
   import EmptyContent from '~/components/empty-content'
   import Draggable from 'vuedraggable'
   import APlayer from '~/components/vue-aplayer'
-
+  import {PostAudioPlayer} from '~/components/players'
+  import {CompactCard} from '~/components/card'
   export default {
     // layout: 'post-editor',
     name: 'PostEditor',
@@ -139,7 +150,9 @@
       FoldableCard,
       CountedTextarea,
       PostAsset,
-      APlayer
+      APlayer,
+      CompactCard,
+      PostAudioPlayer
     },
     async asyncData ({app, params}) {
       await app.store.dispatch('loadUsers')
@@ -208,6 +221,10 @@
       }
     },
     methods: {
+      handelRemove (item) {
+        console.log('id remove')
+        console.log(item)
+      },
       getAssets (page) {
         const params = {
           id: this.detail.id,

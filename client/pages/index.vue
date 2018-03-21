@@ -6,6 +6,7 @@
 
 <script>
   import CMain from '~/components/main'
+
   export default {
     middleware: ['auth'],
     components: {

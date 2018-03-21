@@ -4,15 +4,17 @@
   position: relative;
   transition: margin .15s linear;
   padding: 0;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.15);
 
   &.is-expanded {
-    margin: 8px 0;
+    margin: 17px 0;
   }
 }
 
 .c-foldable-card__header {
   min-height: 64px;
-  width: 100%;
+  //width: 100%;
   padding: 16px;
   box-sizing: border-box;
   display: flex;
@@ -116,10 +118,16 @@ button.c-foldable-card__action {
 
   .gridicon:hover {
     fill: $gray;
+    path[pid="1"]{
+      fill: $gray;
+    }
   }
 
   &:hover .gridicon {
     fill: $blue-medium;
+    path[pid="1"]{
+      fill: $primary;
+    }
   }
 }
 

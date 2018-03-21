@@ -41,7 +41,7 @@
         @nextmode="setNextMode"
       />
     </div>
-
+    <toolbar />
     <music-list
       :show="showList && !isMiniMode"
       :current-music="currentMusic"
@@ -60,11 +60,12 @@
 
   import Vue from 'vue'
   import Thumbnail from './components/aplayer-thumbnail.vue'
-  import MusicList from './components/aplayer-list.vue'
+  // import MusicList from './components/aplayer-list.vue'
+  import MusicList from './components/post-audio-list'
   import Controls from './components/aplayer-controller.vue'
   import Lyrics from './components/aplayer-lrc.vue'
+  import Toolbar from './components/post-audio-toolbar'
   import {deprecatedProp, versionCompare, warn} from './utils'
-
   // version badge
   // console.log(`\n\n %c Vue-APlayer ${VERSION} %c vue-aplayer.js.org \n`, 'color: #fff; background:#41b883; padding:5px 0;', 'color: #fff; background: #35495e; padding:5px 0;')
 
@@ -98,6 +99,7 @@
       Controls,
       MusicList,
       Lyrics,
+      Toolbar
     },
     props: {
       // @deprecated, use mini instead
@@ -585,7 +587,7 @@
 
 </script>
 
-<style lang="scss">
+<style lang="scss" >
   @import "./scss/variables";
 
   .aplayer-narrow {
@@ -617,6 +619,9 @@
     &.aplayer {
       .aplayer-info {
         border-bottom: 1px solid #e9e9e9;
+
+        box-sizing: border-box;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,0.15);
       }
 
       .aplayer-list {
@@ -627,14 +632,16 @@
         display: inline !important;
       }
     }
+    .c-section-nav {
+      margin: 0;
+      margin: 0 0 0 0;
+      border-bottom: 1px solid #E0e6e8;
+    }
   }
 
   .aplayer {
+
     font-family: Arial, Helvetica, sans-serif;
-    /*margin: 5px;*/
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.07), 0 1px 5px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 2px;
-    overflow: hidden;
     user-select: none;
     line-height: initial;
 

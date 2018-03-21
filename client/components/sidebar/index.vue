@@ -1,5 +1,6 @@
 <template>
   <div class="c-apps-navigation">
+
     <ul class="c-sidebar has-regions">
       <div class="c-sidebar__region">
         <div class="c-card c-current-app">
@@ -57,9 +58,9 @@
           </li>
         </div>
       </div>
-      <!--
       <div class="c-sidebar__footer">
-        <button class="button inline-help is-borderless" title="帮助" type="button">
+
+        <button class="c-button inline-help is-borderless" title="帮助" type="button">
           <svg class="gridicon gridicons-help-outline" height="24" width="24" xmlns="http://www.w3.org/2000/svg"
                viewBox="0 0 24 24">
             <g>
@@ -68,14 +69,22 @@
             </g>
           </svg>
         </button>
+        <confirm-button />
+
       </div>
-      -->
     </ul>
+
+
   </div>
 </template>
 <script>
+  import ConfirmButton from '~/components/confirm-button'
+
   export default {
     name: 'Sidebar',
+    components: {
+      ConfirmButton
+    },
     data () {
       return {
         menus: [

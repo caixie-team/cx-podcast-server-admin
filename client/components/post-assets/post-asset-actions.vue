@@ -4,8 +4,8 @@
             class="c-button c-post-asset__action-approve is-borderless"
             :class="isApproved ? 'is-approved' : ''"
             @click="$emit('toggleApprove')">
-      <svgicon name="gridicons-checkmark" class="gridicon" v-if="isApproved"/>
-      <svgicon name="gridicons-checkmark-circle" class="gridicon" v-else/>
+      <svgicon name="gridicons-checkmark" class="" v-if="isApproved"/>
+      <svgicon name="gridicons-checkmark-circle" class="" v-else/>
       <span v-if="isApproved">已审核</span>
       <span v-else>已批准</span>
     </button>
@@ -14,7 +14,7 @@
             class="c-button c-post-asset__action-trash is-borderless"
             @click="$emit('trash')"
             v-if="!isTrash">
-      <svgicon name="gridicons-trash" class="gridicon"/>
+      <svgicon name="gridicons-trash" class=""/>
       <span>回收站</span>
     </button>
 
@@ -22,7 +22,7 @@
             class="c-button c-post-asset__action-trash is-borderless is-scary"
             @click="$emit('delete')"
             v-if="isTrash">
-      <svgicon name="gridicons-trash" class="gridicon"/>
+      <svgicon name="gridicons-trash" class=""/>
       <span>删除</span>
     </button>
   </div>

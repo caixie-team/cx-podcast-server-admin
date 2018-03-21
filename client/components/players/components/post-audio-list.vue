@@ -6,31 +6,22 @@
     <div ref="items">
 
     <draggable v-model="musicList">
-<!--      <post-asset :asset="item"
-                  :order="musicList.length - index"
-                  v-for="(item,index) in musicList"
-                  :key="item.id"/>-->
-      <foldable-card
+      <!--&lt;!&ndash;-->
+      <post-audio
         class="play-item"
         v-for="(aMusic, index) of musicList"
         :key="index"
-        :class="{'aplayer-list-light': aMusic === currentMusic}" compact>
-        <div slot="header" @click="$emit('selectsong', aMusic)"
-             class="u-flex u-align-items-center"
-             style="height: 100%; width: 100%; cursor: pointer;">
-          <span class="aplayer-list-cur" :style="{background: theme}"></span>
-          <span class="aplayer-list-index">{{ index + 1}}</span>
-          <span class="aplayer-list-title">{{ aMusic.title }}</span>
-        </div>
-        <div slot="summary">
-          <confirm-button
-            @confirm="$emit('removesong', aMusic)" />
-          <!--<span class="aplayer-list-author">{{ aMusic.author }}</span>-->
-        </div>
-        <div slot="expandedSummary">
-          <span class="aplayer-list-author">{{ aMusic.author }}</span>
-        </div>
-      </foldable-card>
+        :index="index"
+        :aMusic="aMusic"
+        @selectsong="$emit('selectsong', aMusic)"
+        @removesong="$emit('removesong', aMusic)"
+        :class="{'aplayer-list-light': aMusic === currentMusic}" />
+        <!--&ndash;&gt;-->
+      <!--<post-audio-asset-->
+        <!--v-for="(aMusic, index) of musicList"-->
+        <!--:asset="aMusic"-->
+        <!--:key="index"-->
+        <!--:order="index + 1"/>-->
     </draggable>
     </div>
   </div>
@@ -38,16 +29,14 @@
 
 <script>
   import Draggable from 'vuedraggable'
-  import FoldableCard from '~/components/foldable-card'
-  import ConfirmButton from '~/components/confirm-button'
-  import PostAsset from '~/components/post-assets'
+  import PostAudioAsset from '~/components/post-assets/post-audio-asset'
 
+  import PostAudio from './post-audio'
   export default {
     components: {
       Draggable,
-      FoldableCard,
-      ConfirmButton,
-      PostAsset
+      PostAudio,
+      PostAudioAsset
     },
     props: {
       expanded: {
@@ -117,9 +106,9 @@
   $orange-fire: #d54e21;
   .aplayer-list {
     transition: all 0.5s ease;
-    will-change: height;
-    display: none;
-    overflow: hidden;
+    /*will-change: height;*/
+    /*display: none;*/
+    /*overflow: hidden;*/
 
     &.aplayer-list-hide {
       height: 0 !important;
@@ -127,7 +116,7 @@
     .play-item {
       transition: all 0.2s ease;
       &:first-child {
-        border-top: none;
+        /*border-top: none;*/
       }
 
       &:hover {
