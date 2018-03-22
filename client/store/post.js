@@ -30,6 +30,7 @@ export const state = () => {
       }
     },
     detail: {
+      saving: false,
       fetching: false,
       data: {}
     },
@@ -47,6 +48,9 @@ export const state = () => {
 }
 
 export const mutations = {
+  //
+  // REQUEST Detail
+  //
   CLEAR_DETAIL (state) {
     state.detail.data = {}
   },
@@ -62,6 +66,23 @@ export const mutations = {
     state.detail.data = action.data
   },
 
+  //
+  // UPDATE Detail
+  //
+  UPDATE_DETAIL (state) {
+    state.detail.saving = true
+  },
+  CHANGED_AUTHOR (state, author) {
+    state.detail.data.author = author
+    state.detail.saving = false
+  },
+  UPDATE_DETAIL_SUCCESS (state, action) {
+    state.detail= action.data
+    state.detail.saving = false
+  },
+  UPDATE_DETAIL_FAILURE (state) {
+    state.detail.saving = false
+  },
   // 喜欢某篇文章
   LIKE_ARTICLE (state, action) {
     const article = state.detail.data
@@ -69,7 +90,9 @@ export const mutations = {
       state.detail.data.meta.likes++
     }
   },
+  //
   // Asset
+  //
   REQUEST_ASSET (state) {
     state.asset.fetching = true
   },

@@ -7,25 +7,10 @@
           <div class="c-editor-action-bar">
             <div class="c-editor-action-bar__cell is-left"></div>
             <div class="c-editor-action-bar__cell is-center">
-
-              <div class="c-async-load__placeholder" v-if="!users"/>
-
-              <div class="c-editor-author" @click="authorToggle" v-else>
-                <span>
-                  <span class="c-author-selector__author-toggle" tabindex="-1">
-                  <img
-                    class="gravatar"
-                    :src="selectedUser.avatar"
-                    width="26" height="26">
-                    <span class="c-editor-author__name">作者：{{selectedUser.user_nicename}}</span>
-                    <svg
-                      ref="reference"
-                      class="gridicon gridicons-chevron-down" height="16" width="16" xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"><g><path
-                      d="M20 9l-8 8-8-8 1.414-1.414L12 14.172l6.586-6.586"></path></g></svg>
-                  </span>
-                </span>
-              </div>
+              <div class="c-async-load__placeholder" v-if="isUsersFetching"></div>
+              <editor-author
+                :post="detail"
+                :postAuthor="user" v-else />
             </div>
             <div class="c-editor-action-bar__cell is-right">
               <button class="c-button c-editor-sticky is-sticky is-borderless" aria-label="将文章固定到头版" type="button">
@@ -65,39 +50,6 @@
             </div>
           </foldable-card>
         </div>
-        <!--
-        <div class="c-section-nav">
-          <h6 class="c-section-nav-group__label">Suggested Searches</h6>
-          <div class="c-section-nav__panel ">
-            <div class="c-section-nav-group">
-              <div class="c-section-nav-tabs">
-                <ul class="c-section-nav-tabs__list">
-                  <li class="c-section-nav-tab"
-                      :class="{'is-selected':selected === item.id}" v-for="(item, index) in navList"
-                      :key="item.id">
-                    <a class="c-section-nav-tab__link" tabindex="0">
-                  <span class="c-section-nav-tab__text">
-                    {{ item.title }}
-                  </span>
-                    </a>
-                  </li>
-
-                </ul>
-              </div>
-            </div>
-            <div class="c-section-header__actions">
-              <button class="c-button is-compact">
-                <svgicon name="gridicons-cloud-upload" class="gridicon needs-offset"/>
-                批量上传
-              </button>
-              <button class="c-button is-compact u-mr-small">
-                <svgicon name="gridicons-plus-small" class="gridicon needs-offset"/>
-                添加
-              </button>
-            </div>
-          </div>
-        </div>
-        -->
         <draggable v-model="assetList" v-if="isTopic">
           <post-asset :asset="item"
                       :order="assetList.length - index"
@@ -128,10 +80,9 @@
 </template>
 <script>
   /* eslint-disable no-empty prefer-const */
-
   import {EditorGroundControl} from '~/components/post-editor'
-  import '~/icons/gridicons-cloud-upload'
-  import '~/icons/gridicons-plus-small'
+  import AuthorSelector from '~/components/author-selector'
+  import EditorAuthor from '~/components/post-editor/editor-author'
   import FoldableCard from '~/components/foldable-card'
   import CountedTextarea from '~/components/counted-textarea'
   import PostAsset from '~/components/post-assets'
@@ -140,6 +91,9 @@
   import APlayer from '~/components/vue-aplayer'
   import {PostAudioPlayer} from '~/components/players'
   import {CompactCard} from '~/components/card'
+
+  import '~/icons/gridicons-cloud-upload'
+  import '~/icons/gridicons-plus-small'
   export default {
     // layout: 'post-editor',
     name: 'PostEditor',
@@ -147,6 +101,8 @@
       Draggable,
       EmptyContent,
       EditorGroundControl,
+      EditorAuthor,
+      AuthorSelector,
       FoldableCard,
       CountedTextarea,
       PostAsset,
@@ -186,15 +142,21 @@
       }
     },
     mounted () {
-      this.selectedUser = Object.assign({}, this.user)
+      // this.selectedUser = Object.assign({}, this.user)
       this.getAssets(1)
     },
     computed: {
       isTopic () {
         return this.$store.state.post.detail.data.format === 'post-format-topic'
       },
+      isDetailSaving () {
+        return this.$store.state.post.detail.saving
+      },
       detail () {
         return this.$store.state.post.detail.data
+      },
+      isUsersFetching () {
+        return this.$store.state.users.list.fetching
       },
       user () {
         return this.$auth.state.user

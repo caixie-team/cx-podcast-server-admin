@@ -31,6 +31,7 @@
 @import "tools/tools.calc";
 @import "tools/tools.breakpoints";
 @import "tools/tools.z-index";
+@import "tools/tools.animation";
 @import "tools/tools.placeholder";
 @import "tools/tools.long-content-fade";
 
@@ -127,6 +128,7 @@
 // UI-Kit Components
 @import "components/components.alerts";
 @import "components/components.avatars";
+@import "components/components.gravartar";
 @import "components/components.badges";
 @import "components/components.breadcrumb";
 @import "components/components.button-group";
@@ -225,6 +227,8 @@
 @import "components/components.empty-content";
 // avatar
 @import "components/components.edit-avatar";
+@import "components/components.author-selector";
+@import "components/components.user";
 
 // APPS
 @import "components/components.all-apps";

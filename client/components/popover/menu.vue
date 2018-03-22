@@ -21,11 +21,6 @@
         this.$emit('close')
       }
     },
-    watch: {
-      isVisible (val) {
-        console.log(val + 'xxxx')
-      }
-    },
     render () {
       return (
         <popover

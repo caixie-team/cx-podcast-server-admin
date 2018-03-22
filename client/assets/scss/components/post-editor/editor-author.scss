@@ -1,6 +1,6 @@
 .c-editor-author.is-placeholder .c-editor-author__name {
   animation: pulse-light 0.8s ease-in-out infinite;
-  background: lighten( $gray, 20% );
+  background: $gray-lighten-20;
   display: inline-block;
   height: 14px;
   width: 100px;
@@ -10,13 +10,10 @@
 
 .c-editor-author .gravatar {
   vertical-align: middle;
-  width: 26px;
-  height: 26px;
-  border: 2px solid $grey-300;
 }
 
 .c-editor-author__name {
-  color: darken( $gray, 10% );
+  color: $gray-darken-10;
   font-size: 13px;
   margin: 0 8px;
 

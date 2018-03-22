@@ -22,7 +22,7 @@
       </svg>
       <span class="c-masterbar__item-content">
       <img alt="Me" class="gravatar"
-           :src="`${user.avatar}?imageMogr2/thumbnail/150x150/q/90/format/jpg/interlace/1`"
+           :src="`${user.avatarUrl}?imageMogr2/thumbnail/150x150/q/90/format/jpg/interlace/1`"
            width="18" height="18">
         <span class="c-masterbar__item-me-label">我</span>
       </span>

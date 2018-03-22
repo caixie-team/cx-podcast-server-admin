@@ -44,7 +44,8 @@
         default: true
       },
       reference: {
-        type: String
+        type: String,
+        require: true
       },
       autoPosition: {
         type: Boolean,
@@ -141,7 +142,8 @@
     beforeUpdate () {
       this.state.positionClass = this.getPositionClass(this.position)
       this.domContainer = this.$slots.default[0].elm;
-      this.domContext = this.$parent.$parent.$refs.reference
+      // this.domContext = this.$parent.$parent.$refs.reference
+      this.domContext = this.$parent.$refs[this.reference]
 
       this.setPosition();
     },

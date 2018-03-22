@@ -125,6 +125,25 @@ export const actions = {
       commit('posts/GET_DETAIL_FAILURE')
     }
   },
+  async changePostAuthor ({commit}, form) {
+    commit('post/UPDATE_DETAIL')
+    const {data} = await this.$axios.post(`/apps/${this.getters.appId}/posts/${form.id}?action=change-author`, form)
+    if (data && data.errno === 0) {
+      commit('post/CHANGED_AUTHOR', form.data)
+      this.$toast.success('作者更改成功')
+    } else {
+      this.$toast.error('作者更新失败')
+    }
+  },
+  async updatePostDetail ({commit}, {form}) {
+    commit('post/UPDATE_DETAIL')
+    const {data} = await this.$axios.post(`/apps/${this.getters.appId}/posts/${form.id}`, form)
+    if (data && data.errno === 0) {
+      commit('post/UPDATE_DETAIL_SUCCESS', data)
+    } else {
+      commit('post/UPDATE_DETAIL_FAILURE')
+    }
+  },
   // -----------------------------
   // POST LIST
   // -----------------------------
