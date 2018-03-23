@@ -129,7 +129,9 @@
       &:first-child {
         border-top: none;
       }
-
+      .c-card {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .05);
+      }
       &:hover {
         background: mix( $primary, $white, 1.5% );
         /*&:before {*/

@@ -3,22 +3,23 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+const _3669d52a = () => import('../client/pages/test.vue' /* webpackChunkName: "pages/test" */).then(m => m.default || m)
+const _95eac78a = () => import('../client/pages/settings.vue' /* webpackChunkName: "pages/settings" */).then(m => m.default || m)
+const _56ff4217 = () => import('../client/pages/settings/general/index.vue' /* webpackChunkName: "pages/settings/general/index" */).then(m => m.default || m)
+const _54145344 = () => import('../client/pages/settings/taxonomies/_category/index.vue' /* webpackChunkName: "pages/settings/taxonomies/_category/index" */).then(m => m.default || m)
 const _583675eb = () => import('../client/pages/posts.vue' /* webpackChunkName: "pages/posts" */).then(m => m.default || m)
 const _5969d23a = () => import('../client/pages/posts/settings/index.vue' /* webpackChunkName: "pages/posts/settings/index" */).then(m => m.default || m)
 const _3331cdd3 = () => import('../client/pages/posts/settings/general/index.vue' /* webpackChunkName: "pages/posts/settings/general/index" */).then(m => m.default || m)
 const _95e0a826 = () => import('../client/pages/posts/_status.vue' /* webpackChunkName: "pages/posts/_status" */).then(m => m.default || m)
 const _26563db6 = () => import('../client/pages/posts/_term/_slug/index.vue' /* webpackChunkName: "pages/posts/_term/_slug/index" */).then(m => m.default || m)
-const _3669d52a = () => import('../client/pages/test.vue' /* webpackChunkName: "pages/test" */).then(m => m.default || m)
-const _95eac78a = () => import('../client/pages/settings.vue' /* webpackChunkName: "pages/settings" */).then(m => m.default || m)
-const _56ff4217 = () => import('../client/pages/settings/general/index.vue' /* webpackChunkName: "pages/settings/general/index" */).then(m => m.default || m)
-const _54145344 = () => import('../client/pages/settings/taxonomies/_category/index.vue' /* webpackChunkName: "pages/settings/taxonomies/_category/index" */).then(m => m.default || m)
+const _7d2929ec = () => import('../client/pages/apps.vue' /* webpackChunkName: "pages/apps" */).then(m => m.default || m)
+const _5dc996f7 = () => import('../client/pages/home.vue' /* webpackChunkName: "pages/home" */).then(m => m.default || m)
+const _3d77df78 = () => import('../client/pages/login/index.vue' /* webpackChunkName: "pages/login/index" */).then(m => m.default || m)
 const _67c2bca7 = () => import('../client/pages/people.vue' /* webpackChunkName: "pages/people" */).then(m => m.default || m)
 const _45c1103b = () => import('../client/pages/people/new/index.vue' /* webpackChunkName: "pages/people/new/index" */).then(m => m.default || m)
 const _72b4c0cd = () => import('../client/pages/people/edit/_id.vue' /* webpackChunkName: "pages/people/edit/_id" */).then(m => m.default || m)
 const _760be49e = () => import('../client/pages/people/_type.vue' /* webpackChunkName: "pages/people/_type" */).then(m => m.default || m)
-const _3d77df78 = () => import('../client/pages/login/index.vue' /* webpackChunkName: "pages/login/index" */).then(m => m.default || m)
-const _5dc996f7 = () => import('../client/pages/home.vue' /* webpackChunkName: "pages/home" */).then(m => m.default || m)
-const _7d2929ec = () => import('../client/pages/apps.vue' /* webpackChunkName: "pages/apps" */).then(m => m.default || m)
+const _045a2b2c = () => import('../client/pages/post/assets.vue' /* webpackChunkName: "pages/post/assets" */).then(m => m.default || m)
 const _24e3fc6a = () => import('../client/pages/post/default.vue' /* webpackChunkName: "pages/post/default" */).then(m => m.default || m)
 const _4aa0383a = () => import('../client/pages/post/_id.vue' /* webpackChunkName: "pages/post/_id" */).then(m => m.default || m)
 const _a0b2e92c = () => import('../client/pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
@@ -42,6 +43,28 @@ export function createRouter () {
     linkExactActiveClass: 'is-selected',
     scrollBehavior,
     routes: [
+		{
+			path: "/test",
+			component: _3669d52a,
+			name: "test"
+		},
+		{
+			path: "/settings",
+			component: _95eac78a,
+			name: "settings",
+			children: [
+				{
+					path: "general",
+					component: _56ff4217,
+					name: "settings-general"
+				},
+				{
+					path: "taxonomies/:category",
+					component: _54145344,
+					name: "settings-taxonomies-category"
+				}
+			]
+		},
 		{
 			path: "/posts",
 			component: _583675eb,
@@ -70,26 +93,19 @@ export function createRouter () {
 			]
 		},
 		{
-			path: "/test",
-			component: _3669d52a,
-			name: "test"
+			path: "/apps",
+			component: _7d2929ec,
+			name: "apps"
 		},
 		{
-			path: "/settings",
-			component: _95eac78a,
-			name: "settings",
-			children: [
-				{
-					path: "general",
-					component: _56ff4217,
-					name: "settings-general"
-				},
-				{
-					path: "taxonomies/:category",
-					component: _54145344,
-					name: "settings-taxonomies-category"
-				}
-			]
+			path: "/home",
+			component: _5dc996f7,
+			name: "home"
+		},
+		{
+			path: "/login",
+			component: _3d77df78,
+			name: "login"
 		},
 		{
 			path: "/people",
@@ -114,19 +130,9 @@ export function createRouter () {
 			]
 		},
 		{
-			path: "/login",
-			component: _3d77df78,
-			name: "login"
-		},
-		{
-			path: "/home",
-			component: _5dc996f7,
-			name: "home"
-		},
-		{
-			path: "/apps",
-			component: _7d2929ec,
-			name: "apps"
+			path: "/post/assets",
+			component: _045a2b2c,
+			name: "post-assets"
 		},
 		{
 			path: "/post/default",

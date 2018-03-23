@@ -51,8 +51,8 @@
           'is-default',
           this.$store.state.options.layoutStatus,
           // 'is-section-posts-pages',
-          // this.currentLayoutFocus ? this.currentLayoutFocus  : 'focus-sidebar',
-          this.currentLayoutFocus,
+          this.currentLayoutFocus ? this.currentLayoutFocus  : 'focus-sidebar',
+          // this.currentLayoutFocus,
           {'has-no-sidebar': this.fullWideLayout}
         ]
         return classArray

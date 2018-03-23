@@ -115,6 +115,9 @@
     }
     .play-item {
       transition: all 0.2s ease;
+      &.c-card {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .07);
+      }
       &:first-child {
         /*border-top: none;*/
       }

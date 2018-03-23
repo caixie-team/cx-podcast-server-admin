@@ -11,6 +11,9 @@
       position: 'top',
       isVisible: {
         type: Boolean
+      },
+      reference: {
+        type: String
       }
     },
     components: {
@@ -24,6 +27,7 @@
     render () {
       return (
         <popover
+          reference={this.reference}
           isVisible={this.isVisible}
           autoPosition={this.autoPosition}
           on-click-outside={this.hide}

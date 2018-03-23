@@ -149,7 +149,7 @@ export const actions = {
   // -----------------------------
   async getPostAssetList ({commit}, params) {
     commit('post/REQUEST_ASSET_LIST')
-    const data = (await this.$axios.get(`/apps/${this.getters.appId}/posts/${params.id}/assets`)).data
+    const data = (await this.$axios.get(`/apps/${this.getters.appId}/posts/${params.id}/assets?format=${params.format}`)).data
     if (data && data.errno === 0) {
       const isFirstPage = params.page && params.page > 1
       const commitName = `post/${isFirstPage ? 'ADD' : 'GET'}_ASSET_LIST_SUCCESS`

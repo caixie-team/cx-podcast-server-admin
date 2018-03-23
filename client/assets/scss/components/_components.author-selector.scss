@@ -1,6 +1,7 @@
 .c-author-selector__author-toggle {
   cursor: pointer;
-
+  display: flex;
+  align-items: center;
   .gridicon {
     display: inline;
     vertical-align: middle;

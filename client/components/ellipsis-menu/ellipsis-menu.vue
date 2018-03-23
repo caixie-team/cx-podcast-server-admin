@@ -54,7 +54,7 @@
         <span class={this.classes}>
           <button class="c-button c-ellipsis-menu__toggle is-borderless"
                   onClick={this.handleClick}>
-            <span ref="reference">
+            <span ref="ellipsisIcon">
               <svgicon name="gridicons-ellipsis"
                        class="gridicon gridicons-ellipsis c-ellipsis-menu__toggle-icon"
                        color="none #008be8">
@@ -62,7 +62,7 @@
             </span>
           </button>
           <PopoverMenu
-            ref="popover"
+            reference="ellipsisIcon"
             isVisible={this.isMenuVisible}
             position={this.position}
             onClose={this.hideMenu}

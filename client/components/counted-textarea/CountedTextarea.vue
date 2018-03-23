@@ -1,5 +1,5 @@
 <template>
-  <fieldset class="form-fieldset">
+  <fieldset class="c-form-fieldset">
     <label :for="labelFor" class="c-form-label" v-if="label">
       {{label}}
     </label>

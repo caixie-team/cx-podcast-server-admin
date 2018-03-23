@@ -18,12 +18,14 @@
           </ul>
         </div>
       </div>
+      <!--
       <div class="c-section-header__actions">
-        <button class="c-button is-compact u-mr-medium">
-          <svgicon name="gridicons-cloud-upload" class="gridicon needs-offset"/>
-          上传
-        </button>
-      </div>
+              <button class="c-button is-compact u-mr-medium">
+                <svgicon name="gridicons-cloud-upload" class="gridicon needs-offset"/>
+                上传
+              </button>
+            </div>
+            -->
     </div>
   </div>
 </template>

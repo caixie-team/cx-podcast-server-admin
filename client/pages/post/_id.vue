@@ -1,114 +1,95 @@
-<template>
-  <div class="c-post-editor">
-    <div class="c-post-editor__inner">
-      <editor-ground-control/>
-      <div class="c-main c-post-editor__content">
-        <div class="c-post-editor__content-editor">
-          <div class="c-editor-action-bar">
-            <div class="c-editor-action-bar__cell is-left"></div>
-            <div class="c-editor-action-bar__cell is-center">
-              <div class="c-async-load__placeholder" v-if="isUsersFetching"></div>
-              <editor-author
-                :post="detail"
-                :postAuthor="user" v-else />
-            </div>
-            <div class="c-editor-action-bar__cell is-right">
-              <button class="c-button c-editor-sticky is-sticky is-borderless" aria-label="将文章固定到头版" type="button">
-                <svg class="gridicon gridicons-bookmark" height="24" width="24" xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 24 24">
-                  <g>
-                    <path d="M17 3H7c-1.105 0-2 .896-2 2v16l7-4 7 4V5c0-1.104-.896-2-2-2z"></path>
-                  </g>
-                </svg>
-              </button>
-            </div>
-          </div>
-          <foldable-card expanded>
-            <div slot="header">
-              <h3>{{title}}</h3>
-            </div>
-            <div slot="summary">
-              内容信息
-            </div>
-            <div>
-              <form>
-                <div class="c-form-fieldset">
-                  <label class="c-form-label">
-                    标题
-                  </label>
-                  <input type="text"
-                         :value="post.title"
-                         autocomplete="off"
-                         placeholder="请输入标题"
-                         @change="updateTitle">
-                </div>
-                <counted-textarea label="内容介绍"
-                                  v-model="detail.content"
-                                  name="summary"
-                                  v-if="detail.content"/>
-              </form>
-            </div>
-          </foldable-card>
-        </div>
-        <draggable v-model="assetList" v-if="isTopic">
-          <post-asset :asset="item"
-                      :order="assetList.length - index"
-                      v-for="(item,index) in assetList"
-                      :key="item.id"/>
-        </draggable>
-        <post-audio-player
-          theme="#14aaf5"
-          preload="metadata"
-          mode="circulation"
-          :music="detail.audios[0]"
-          :list="detail.audios"
-          :on-remove="handelRemove"
-          v-if="detail.audios" />
-        <!--<a-player-->
-          <!--theme="#14aaf5"-->
-          <!--preload="metadata"-->
-          <!--mode="circulation"-->
-          <!--:music="detail.audios[0]"-->
-          <!--:list="detail.audios"-->
-          <!--:on-remove="handelRemove"-->
-          <!--v-if="detail.audios"/>-->
+<style lang="scss">
+  .c-post-settings__button {
+    .gridicon {
+      top: 4px;
+      margin-left: 4px;
+    }
+    transition: all 0.15s ease-in-out;
+    svg {
+      transition: transform 0.3s ease-in-out;
+    }
+    &:hover {
+      cursor: pointer;
+    }
 
+  }
+
+  .is-focus.c-post-settings__button svg {
+    transform: rotate(45deg);
+  }
+
+  .c-editor-publish-button {
+    min-width: 100px;
+  }
+
+</style>
+
+<template>
+  <div class="c-main ">
+    <header-cake :title="'修改【' + detail.title + '】'">
+      <div slot="action">
+        <!--<button class="c-button is-compact c-editor-publish-button is-primary">发布</button>-->
+        <button class="c-button is-compact c-editor-publish-button is-primary is-busy">出版</button>
+        <!--<button class="c-button is-compact c-editor-publish-button is-primary">更新</button>-->
+      </div>
+
+    </header-cake>
+    <post-header :post="detail"/>
+
+    <div class="c-post-assets__main-header">
+      <span class="c-section-header__label">
+        <span class="c-section-header__label-text">资源列表</span>
+        <span class="c-count" v-if="detail.assets">{{detail.assets.length}}</span>
+      </span>
+      <div class="c-posts__header-buttons">
+        <a class="c-button c-header-button" style="color: #767576; fill: #767576;">
+          <svgicon name="gridicons-cloud-upload"
+                   class="gridicon gridicons-cloud-upload"
+                   style="width: 18px; height: 18px;" color="none #767576;"/>
+          <span class="c-header-button__text">上传资源</span>
+        </a>
       </div>
     </div>
 
+    <!--{{detail}}-->
+<!---->
+    <!--<draggable v-model="assetList" v-if="isTopic">-->
+      <!--<post-asset :asset="item"-->
+                  <!--:order="assetList.length - index"-->
+                  <!--v-for="(item,index) in assetList"-->
+                  <!--:key="item.id"/>-->
+    <!--</draggable>-->
+    <div class="c-async-load__placeholder u-mt-large" v-if="!isLoading"></div>
+    <post-audio-player
+      theme="#14aaf5"
+      preload="metadata"
+      mode="circulation"
+      :defaultPic="detail.featured_image"
+      :music="assetList[0]"
+      :list="assetList"
+      :on-remove="handelRemove"
+      v-else/>
   </div>
 </template>
 <script>
   /* eslint-disable no-empty prefer-const */
-  import {EditorGroundControl} from '~/components/post-editor'
-  import AuthorSelector from '~/components/author-selector'
-  import EditorAuthor from '~/components/post-editor/editor-author'
-  import FoldableCard from '~/components/foldable-card'
-  import CountedTextarea from '~/components/counted-textarea'
-  import PostAsset from '~/components/post-assets'
   import EmptyContent from '~/components/empty-content'
-  import Draggable from 'vuedraggable'
-  import APlayer from '~/components/vue-aplayer'
   import {PostAudioPlayer} from '~/components/players'
-  import {CompactCard} from '~/components/card'
+  import HeaderCake from '~/components/header-cake'
+  import PostHeader from '~/components/post-header/post-header'
 
   import '~/icons/gridicons-cloud-upload'
   import '~/icons/gridicons-plus-small'
+  import '~/icons/gridicons-cog'
+
   export default {
     // layout: 'post-editor',
-    name: 'PostEditor',
+    // name: 'PostEditor',
     components: {
-      Draggable,
+      HeaderCake,
       EmptyContent,
-      EditorGroundControl,
-      EditorAuthor,
-      AuthorSelector,
-      FoldableCard,
-      CountedTextarea,
-      PostAsset,
-      APlayer,
-      CompactCard,
-      PostAudioPlayer
+      PostAudioPlayer,
+      PostHeader
     },
     async asyncData ({app, params}) {
       await app.store.dispatch('loadUsers')
@@ -124,6 +105,7 @@
     },
     data () {
       return {
+        isToggleSetting: false,
         creating: false,
         isVisible: false,
         expanded: true,
@@ -131,9 +113,11 @@
         selected: 1,
         isBulkEdit: false,
         content: '',
+        isLoading: false,
         post: {
           title: '标题'
         },
+        curFeaturedImage: '',
         navList: [
           {id: 1, name: 'all', title: '全部'},
           {id: 2, name: 'unapproved', title: `未审核`},
@@ -146,6 +130,15 @@
       this.getAssets(1)
     },
     computed: {
+      featuredImage () {
+        if (this.curFeaturedImage) {
+          return this.curFeaturedImage
+        } else {
+          this.curFeaturedImage = ''
+          this.curFeaturedImage = this.detail.featured_image
+          return this.curFeaturedImage
+        }
+      },
       isTopic () {
         return this.$store.state.post.detail.data.format === 'post-format-topic'
       },
@@ -171,7 +164,7 @@
         return this.detail.title ? this.detail.title : '标题'
       },
       assets () {
-        return this.$store.state.post.assetList.data
+        return this.$store.state.post.assetList
       },
       assetList: {
         get () {
@@ -183,6 +176,10 @@
       }
     },
     methods: {
+      toggleSetting () {
+        console.log('lalalal')
+        this.isToggleSetting = !this.isToggleSetting
+      },
       handelRemove (item) {
         console.log('id remove')
         console.log(item)
@@ -190,9 +187,11 @@
       getAssets (page) {
         const params = {
           id: this.detail.id,
-          page: page
+          page: page,
+          format: this.detail.format
         }
         this.$store.dispatch('getPostAssetList', params)
+        this.isLoading = this.assets.fetching
       },
       updateTitle (e) {
         this.post.title = e.target.value

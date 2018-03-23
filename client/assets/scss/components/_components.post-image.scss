@@ -1,0 +1,47 @@
+/**
+ * Post Image
+ * - representative image displayed at the top of the post card located on post list pages (posts).
+ */
+
+.c-post-image {
+  position: relative;
+  width: 100%;
+  margin-top: 16px;
+  background-color: $gray-light;
+  text-align: center;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:hover {
+    cursor: zoom-out;
+  }
+
+  &.is-collapsed,
+  &.is-placeholder {
+    height: 144px;
+
+    @include breakpoint( ">480px" ) {
+      height: 232px;
+    }
+  }
+
+  &.is-collapsed {
+    background-size: cover;
+    background-position: center;
+
+    &:hover {
+      cursor: zoom-in;
+    }
+  }
+
+  &.is-placeholder {
+    background-color: lighten( $gray, 30% );
+    animation: loading-fade 1.6s ease-in-out infinite;
+  }
+}
+
+.c-post-image__image {
+  vertical-align: bottom;
+}

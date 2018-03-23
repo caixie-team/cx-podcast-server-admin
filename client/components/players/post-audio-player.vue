@@ -10,7 +10,7 @@
     :style="floatStyleObj"
   >
     <thumbnail
-      :pic="currentMusic.pic"
+      :pic="defaultPic ? defaultPic : currentMusic.pic"
       :playing="isPlaying"
       :enable-drag="enableFloat"
       @toggleplay="toggle"
@@ -62,7 +62,7 @@
   import Thumbnail from './components/aplayer-thumbnail.vue'
   // import MusicList from './components/aplayer-list.vue'
   import MusicList from './components/post-audio-list'
-  import Controls from './components/aplayer-controller.vue'
+  import Controls from './components/post-audio-controller.vue'
   import Lyrics from './components/aplayer-lrc.vue'
   import Toolbar from './components/post-audio-toolbar'
   import {deprecatedProp, versionCompare, warn} from './utils'
@@ -102,6 +102,9 @@
       Toolbar
     },
     props: {
+      defaultPic: {
+        type: String
+      },
       // @deprecated, use mini instead
       narrow: {
         type: Boolean,

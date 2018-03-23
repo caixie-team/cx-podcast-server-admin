@@ -2,25 +2,26 @@
   <card :class="classes">
     <div :class="headerClasses" @click="headerClickAction">
       <span class="c-foldable-card__main">
-
-        <slot name="header" />
+        <slot name="header"/>
       </span>
       <span class="c-foldable-card__secondary">
         <span class="c-foldable-card__summary">
-          <slot name="summary" />
+          <slot name="summary"/>
         </span>
         <span class="c-foldable-card__summary-expanded">
-          <slot name="expandedSummary" />
+          <slot name="expandedSummary"/>
         </span>
-        <button
-          type="button"
-          class="c-foldable-card__action c-foldable-card__expand" @click="handleClick">
-          <svgicon class="gridicon" name="gridicons-chevron-down" />
-        </button>
+        <slot name="action">
+          <button type="button"
+                  class="c-foldable-card__action c-foldable-card__expand" @click="handleClick">
+            <svgicon class="gridicon" name="gridicons-chevron-down"/>
+          </button>
+        </slot>
+
       </span>
     </div>
     <div class="c-foldable-card__content" v-show="isExpanded">
-      <slot />
+      <slot/>
     </div>
   </card>
 
@@ -50,7 +51,9 @@
         type: Boolean,
         default: false
       },
-      clickableHeader: Boolean
+      clickableHeader: {
+        type: Boolean
+      }
     },
     data () {
       return {

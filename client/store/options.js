@@ -56,15 +56,19 @@ export const mutations = {
   SET_LAYOUT_FOCUS (state, action) {
     state.layoutFocus = 'focus-' + action
   },
-  SET_LAYOUT_STATUS(state, action) {
-    if (action === 'post' || action === 'post-id') {
-      state.layoutStatus = 'is-group-editor is-section-post-editor'
-    } else {
+  SET_LAYOUT_STATUS (state, action) {
+    // if (action === 'post' || action === 'post-id') {
+    //   state.layoutStatus = 'is-group-editor is-section-post-editor'
+    // } else {
+    if (action === 'apps') {
       state.layoutStatus = 'is-group-apps'
     }
+    // }
   },
-  SET_NEXT_LAYOUT_FOCUS (state, action) {},
-  ACTIVATE_NEXT_LAYOUT_FOCUS (state, action) {},
+  SET_NEXT_LAYOUT_FOCUS (state, action) {
+  },
+  ACTIVATE_NEXT_LAYOUT_FOCUS (state, action) {
+  },
   // 设置UA
   SET_USER_AGENT (state, action) {
     state.userAgent = action

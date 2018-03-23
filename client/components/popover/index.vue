@@ -139,13 +139,13 @@
         poputil.bindWindowListeners()
       }
     },
-    beforeUpdate () {
+    updated () {
       this.state.positionClass = this.getPositionClass(this.position)
-      this.domContainer = this.$slots.default[0].elm;
-      // this.domContext = this.$parent.$parent.$refs.reference
-      this.domContext = this.$parent.$refs[this.reference]
+      this.domContainer =  this.$slots.default[0].elm;
+      this.domContext = this.$parent.$refs[this.reference] || this.$parent.$parent.$refs[this.reference]
 
-      this.setPosition();
+      this.setPosition()
+
     },
     beforeDestroy () {
       this.unbindClickoutHandler()
@@ -233,8 +233,9 @@
         if (!this.isVisible) {
           return null
         }
-        const {domContainer, domContext} = this
-        if (!domContainer || !domContext) {
+        // const {domContainer, domContext} = this
+        if (!this.domContainer || !this.domContext) {
+          console.log('nulxlxlxlxlxl')
           this.debug('[WARN] no DOM elements to work');
           return null;
         }
@@ -243,12 +244,12 @@
         this.debug('position: %o', suggestedPosition);
 
         if (this.autoPosition) {
-          suggestedPosition = poputil.suggested(suggestedPosition, domContainer, domContext)
+          suggestedPosition = poputil.suggested(suggestedPosition, this.domContainer, this.domContext)
         }
 
         const reposition = Object.assign(
           {},
-          poputil.constrainLeft(poputil.offset(suggestedPosition, domContainer, domContext), domContainer),
+          poputil.constrainLeft(poputil.offset(suggestedPosition, this.domContainer, this.domContext), this.domContainer),
           {positionClass: this.getPositionClass(suggestedPosition)})
         // this.repostion = repostion
         this.debug('updating reposition: ', reposition);
