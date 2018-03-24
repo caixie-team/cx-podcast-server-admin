@@ -91,7 +91,8 @@
       }
     },
     mounted () {
-      console.log(this.uploadAction)
+      console.log('Upload component mounted')
+      // console.log(this.uploadAction)
     },
     computed: {
       requestHeader () {
@@ -111,6 +112,7 @@
     methods: {
       inputFile (newFile, oldFile) {
         if (newFile && !oldFile) {
+          console.log('add file')
           // 添加文件
           this.$emit('add-file')
         }
@@ -118,6 +120,7 @@
           // 更新文件
           // 开始上传
           if (newFile.active !== oldFile.active) {
+            console.log('on load start')
             // console.log('Start upload', newFile.active, newFile)
             // console.log(newFile.size + 'xxlxlxllxlx')
             // 限定最小字节
@@ -129,7 +132,7 @@
 
           // 上传进度
           if (newFile.progress !== oldFile.progress) {
-            // console.log('progress', newFile.progress, newFile)
+            console.log('progress', newFile.progress, newFile)
             this.onProgress(newFile.progress, newFile)
             console.log(newFile.progress)
           }

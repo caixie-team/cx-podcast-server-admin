@@ -254,11 +254,16 @@
 @import "components/components.post";
 @import "components/components.post-icon";
 @import "components/components.post-item";
+@import "components/components.post-time";
 @import "components/components.post-image";
 @import "components/components.posts";
 @import "components/components.posts-browser";
 @import "components/components.posts-browser-item";
 @import "components/components.posts-browser-list";
+
+// POSTS TYPE
+@import "components/components.post-action-counts";
+@import "components/components.post-type-list";
 
 // POST ASSETS
 @import "components/components.post-assets-main";

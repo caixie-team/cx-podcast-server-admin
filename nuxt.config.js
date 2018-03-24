@@ -123,6 +123,8 @@ module.exports = {
     comments: true
   },
   modules: [
+    '@nuxtjs/component-cache',
+    ['@nuxtjs/component-cache', {maxAge: 1000 * 60 * 60}],
     '@nuxtjs/axios',
     '~/modules/auth',
     // '@nuxtjs/proxy',

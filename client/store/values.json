@@ -1,0 +1,474 @@
+{
+  "recordMap": {
+    "block": {
+      "4578ba89-e454-450a-9db3-4e0ee1193965": {
+        "role": "editor",
+        "value": {
+          "id": "4578ba89-e454-450a-9db3-4e0ee1193965",
+          "version": 44,
+          "type": "page",
+          "properties": {
+            "title": [
+              [
+                "采撷科技"
+              ]
+            ]
+          },
+          "content": [
+            "214a10d6-e841-4602-8e86-998bcc286e75",
+            "109b2fca-c1c8-4f02-861b-6152255d838b",
+            "83d9dc17-dfee-41bd-a3e0-c68e586f778c",
+            "48bb0ca9-9c48-4583-9085-ea1bc72172a1",
+            "bb4dae07-d3b1-4330-b342-983c7b3c57ac",
+            "5f372269-7098-4708-90a9-02b3d412a84e",
+            "8e47b1c7-6cdb-4ae0-b719-a304193a0f4b",
+            "575aa204-9e29-42a6-b23e-ea1f4f0d9f11",
+            "45e1f7e2-fa11-40a2-9820-81b9707e0b76",
+            "839c4966-31b1-4896-9bbf-0b2dc9eb9605",
+            "2c3f659d-e138-46b0-979a-f24be6eff493",
+            "85fd7e74-fc8f-49d3-86c6-80e4d42bb751"
+          ],
+          "format": {
+            "page_icon": "💬",
+            "page_cover": "/images/page-cover/rijksmuseum_jansz_1637.jpg",
+            "page_cover_position": 0.118
+          },
+          "permissions": [
+            {
+              "role": "editor",
+              "type": "user_permission",
+              "user_id": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10"
+            }
+          ],
+          "created_by": "33e41f0b-9c5f-4241-9f62-3e90559ab8f2",
+          "created_time": 1518681916354,
+          "last_edited_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "last_edited_time": 1521894782753,
+          "parent_id": "851081ff-0ab1-4f63-aa69-8b258047489a",
+          "parent_table": "space",
+          "alive": true,
+          "copied_from": "dec7a84e-c958-4044-88be-6c06742ca0b0"
+        }
+      },
+      "214a10d6-e841-4602-8e86-998bcc286e75": {
+        "role": "editor",
+        "value": {
+          "id": "214a10d6-e841-4602-8e86-998bcc286e75",
+          "version": 1,
+          "type": "text",
+          "properties": {
+            "title": [
+              [
+                "Right-click the \"Add a Meeting\" button to configure the template."
+              ]
+            ]
+          },
+          "format": {
+            "block_color": "gray"
+          },
+          "created_by": "4b723c12-e06d-4354-9951-aef27cabf6f1",
+          "created_time": 1518681916354,
+          "last_edited_by": "4b723c12-e06d-4354-9951-aef27cabf6f1",
+          "last_edited_time": 1518681916354,
+          "parent_id": "4578ba89-e454-450a-9db3-4e0ee1193965",
+          "parent_table": "block",
+          "alive": true
+        }
+      },
+      "109b2fca-c1c8-4f02-861b-6152255d838b": {
+        "role": "editor",
+        "value": {
+          "id": "109b2fca-c1c8-4f02-861b-6152255d838b",
+          "version": 1,
+          "type": "divider",
+          "created_by": "4b723c12-e06d-4354-9951-aef27cabf6f1",
+          "created_time": 1518681916354,
+          "last_edited_by": "4b723c12-e06d-4354-9951-aef27cabf6f1",
+          "last_edited_time": 1518681916354,
+          "parent_id": "4578ba89-e454-450a-9db3-4e0ee1193965",
+          "parent_table": "block",
+          "alive": true
+        }
+      },
+      "83d9dc17-dfee-41bd-a3e0-c68e586f778c": {
+        "role": "editor",
+        "value": {
+          "id": "83d9dc17-dfee-41bd-a3e0-c68e586f778c",
+          "version": 1,
+          "type": "factory",
+          "properties": {
+            "title": [
+              [
+                "Add a Meeting"
+              ]
+            ]
+          },
+          "content": [
+            "721e2d10-10cb-4507-8562-66be075d42af"
+          ],
+          "created_by": "4b723c12-e06d-4354-9951-aef27cabf6f1",
+          "created_time": 1518681916354,
+          "last_edited_by": "4b723c12-e06d-4354-9951-aef27cabf6f1",
+          "last_edited_time": 1518681916354,
+          "parent_id": "4578ba89-e454-450a-9db3-4e0ee1193965",
+          "parent_table": "block",
+          "alive": true
+        }
+      },
+      "721e2d10-10cb-4507-8562-66be075d42af": {
+        "role": "editor",
+        "value": {
+          "id": "721e2d10-10cb-4507-8562-66be075d42af",
+          "version": 1,
+          "type": "page",
+          "content": [
+            "1e4c8b87-5f69-42ef-acb8-dc6db6d57b33",
+            "af2a3381-0c0d-42c8-9a35-a15a880c9c9b",
+            "3b5f7f1c-5840-4d16-a528-f85afeb86487",
+            "3aeab374-ca91-41cf-9687-c03c764fbf6d",
+            "47669736-e117-4efa-a606-039ce78a2621",
+            "828072dd-8023-40a6-bb2a-8578af4ac82a",
+            "db1f251e-a440-465a-9505-4227b518190f",
+            "fc11627a-6e62-4190-ac0b-06ea4b9e7f59",
+            "a5da73d8-a2bd-47d9-aa48-0b82deaf583c",
+            "ab9459d4-2b10-44e7-a655-6ee5909e4ed2"
+          ],
+          "format": {
+            "page_cover_position": 0.2
+          },
+          "created_by": "33e41f0b-9c5f-4241-9f62-3e90559ab8f2",
+          "created_time": 1518681916354,
+          "last_edited_by": "4b723c12-e06d-4354-9951-aef27cabf6f1",
+          "last_edited_time": 1518681916354,
+          "parent_id": "83d9dc17-dfee-41bd-a3e0-c68e586f778c",
+          "parent_table": "block",
+          "alive": true
+        }
+      },
+      "48bb0ca9-9c48-4583-9085-ea1bc72172a1": {
+        "role": "editor",
+        "value": {
+          "id": "48bb0ca9-9c48-4583-9085-ea1bc72172a1",
+          "version": 4,
+          "type": "embed",
+          "created_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "created_time": 1521889187578,
+          "last_edited_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "last_edited_time": 1521889187578,
+          "parent_id": "4578ba89-e454-450a-9db3-4e0ee1193965",
+          "parent_table": "block",
+          "alive": true
+        }
+      },
+      "bb4dae07-d3b1-4330-b342-983c7b3c57ac": {
+        "role": "editor",
+        "value": {
+          "id": "bb4dae07-d3b1-4330-b342-983c7b3c57ac",
+          "version": 10,
+          "type": "image",
+          "properties": {
+            "source": [
+              [
+                "https://static.notion-static.com/5d2df0f5-1e8c-4040-98d4-e9bf9dde38b1/5-212px.svg"
+              ]
+            ]
+          },
+          "format": {
+            "block_width": 79,
+            "block_height": 18,
+            "display_source": "https://static.notion-static.com/5d2df0f5-1e8c-4040-98d4-e9bf9dde38b1/5-212px.svg",
+            "block_full_width": false,
+            "block_page_width": false,
+            "block_aspect_ratio": 0.22784810126582278,
+            "block_preserve_scale": true
+          },
+          "created_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "created_time": 1521889204499,
+          "last_edited_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "last_edited_time": 1521889374189,
+          "parent_id": "4578ba89-e454-450a-9db3-4e0ee1193965",
+          "parent_table": "block",
+          "alive": true
+        }
+      },
+      "5f372269-7098-4708-90a9-02b3d412a84e": {
+        "role": "editor",
+        "value": {
+          "id": "5f372269-7098-4708-90a9-02b3d412a84e",
+          "version": 6,
+          "type": "file",
+          "properties": {
+            "size": [
+              [
+                "0.2KB"
+              ]
+            ],
+            "title": [
+              [
+                "15059632639162.md"
+              ]
+            ],
+            "source": [
+              [
+                "https://static.notion-static.com/76506702-abc2-4094-a0b6-221c4976f911/15059632639162.md"
+              ]
+            ]
+          },
+          "created_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "created_time": 1521889390982,
+          "last_edited_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "last_edited_time": 1521889405624,
+          "parent_id": "4578ba89-e454-450a-9db3-4e0ee1193965",
+          "parent_table": "block",
+          "alive": true
+        }
+      },
+      "8e47b1c7-6cdb-4ae0-b719-a304193a0f4b": {
+        "role": "editor",
+        "value": {
+          "id": "8e47b1c7-6cdb-4ae0-b719-a304193a0f4b",
+          "version": 42,
+          "type": "quote",
+          "properties": {
+            "title": [
+              [
+                "春天好"
+              ]
+            ]
+          },
+          "created_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "created_time": 1521889405315,
+          "last_edited_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "last_edited_time": 1521892847193,
+          "parent_id": "4578ba89-e454-450a-9db3-4e0ee1193965",
+          "parent_table": "block",
+          "alive": true
+        }
+      },
+      "575aa204-9e29-42a6-b23e-ea1f4f0d9f11": {
+        "role": "editor",
+        "value": {
+          "id": "575aa204-9e29-42a6-b23e-ea1f4f0d9f11",
+          "version": 38,
+          "type": "text",
+          "properties": {
+            "title": [
+              [
+                "这里个好日子啦，"
+              ]
+            ]
+          },
+          "created_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "created_time": 1521894775273,
+          "last_edited_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "last_edited_time": 1521894782480,
+          "parent_id": "4578ba89-e454-450a-9db3-4e0ee1193965",
+          "parent_table": "block",
+          "alive": true
+        }
+      },
+      "45e1f7e2-fa11-40a2-9820-81b9707e0b76": {
+        "role": "editor",
+        "value": {
+          "id": "45e1f7e2-fa11-40a2-9820-81b9707e0b76",
+          "version": 22,
+          "type": "text",
+          "properties": {
+            "title": [
+              [
+                "我相信啦。。。。"
+              ]
+            ]
+          },
+          "created_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "created_time": 1521894782753,
+          "last_edited_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "last_edited_time": 1521894785405,
+          "parent_id": "4578ba89-e454-450a-9db3-4e0ee1193965",
+          "parent_table": "block",
+          "alive": true
+        }
+      },
+      "839c4966-31b1-4896-9bbf-0b2dc9eb9605": {
+        "role": "editor",
+        "value": {
+          "id": "839c4966-31b1-4896-9bbf-0b2dc9eb9605",
+          "version": 84,
+          "type": "code",
+          "properties": {
+            "title": [
+              [
+                "console.log('lalala')"
+              ]
+            ],
+            "language": [
+              [
+                "Javascript"
+              ]
+            ]
+          },
+          "created_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "created_time": 1521892848320,
+          "last_edited_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "last_edited_time": 1521892881444,
+          "parent_id": "4578ba89-e454-450a-9db3-4e0ee1193965",
+          "parent_table": "block",
+          "alive": true
+        }
+      },
+      "2c3f659d-e138-46b0-979a-f24be6eff493": {
+        "role": "editor",
+        "value": {
+          "id": "2c3f659d-e138-46b0-979a-f24be6eff493",
+          "version": 8,
+          "type": "audio",
+          "properties": {
+            "source": [
+              [
+                "https://static.notion-static.com/3318e216-80d6-4527-b23f-998af592882b/bewithyou.mp3"
+              ]
+            ]
+          },
+          "created_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "created_time": 1521893630185,
+          "last_edited_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "last_edited_time": 1521893745322,
+          "parent_id": "4578ba89-e454-450a-9db3-4e0ee1193965",
+          "parent_table": "block",
+          "alive": true
+        }
+      },
+      "85fd7e74-fc8f-49d3-86c6-80e4d42bb751": {
+        "role": "editor",
+        "value": {
+          "id": "85fd7e74-fc8f-49d3-86c6-80e4d42bb751",
+          "version": 10,
+          "type": "text",
+          "discussion": [
+            "9398c83e-2286-4dea-bd40-55b08481f7b8"
+          ],
+          "created_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "created_time": 1521893657640,
+          "last_edited_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "last_edited_time": 1521893695153,
+          "parent_id": "4578ba89-e454-450a-9db3-4e0ee1193965",
+          "parent_table": "block",
+          "alive": true
+        }
+      },
+      "9398c83e-2286-4dea-bd40-55b08481f7b8": {
+        "role": "editor",
+        "value": {
+          "id": "9398c83e-2286-4dea-bd40-55b08481f7b8",
+          "version": 4,
+          "type": "comment",
+          "properties": {
+            "title": [
+              [
+                "春天里 "
+              ],
+              [
+                "‣",
+                [
+                  [
+                    "p",
+                    "60c4b78e-277f-441d-b858-31a5467a12d1"
+                  ]
+                ]
+              ]
+            ]
+          },
+          "created_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "created_time": 1521893695151,
+          "last_edited_by": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "last_edited_time": 1521893695153,
+          "parent_id": "85fd7e74-fc8f-49d3-86c6-80e4d42bb751",
+          "parent_table": "block",
+          "alive": true
+        }
+      }
+    },
+    "space": {
+      "851081ff-0ab1-4f63-aa69-8b258047489a": {
+        "role": "editor",
+        "value": {
+          "id": "851081ff-0ab1-4f63-aa69-8b258047489a",
+          "version": 8,
+          "name": "Baisheng's Workspace",
+          "permissions": [
+            {
+              "role": "editor",
+              "type": "user_permission",
+              "user_id": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10"
+            }
+          ],
+          "beta_enabled": false,
+          "pages": [
+            "60c4b78e-277f-441d-b858-31a5467a12d1",
+            "51680381-f25c-4dd7-bb56-bbdce8b6a96a",
+            "c8305d13-0446-4fe8-8f46-32bf1e84207c",
+            "0ebe5f75-b154-4185-930c-d93869912873",
+            "f8b5c3c6-2163-45cb-be6d-06165ca9f087",
+            "d31d7011-1d5a-4249-b817-1c97ee08a1d7",
+            "fb053477-f032-4989-85fd-1431341aa7ff",
+            "6c2e3b95-1d3b-475b-92c1-a6e409ccfe3b",
+            "a21d8556-a816-40bb-8143-5d1f8f7c785e",
+            "51856c02-25e0-4f86-b1ce-13e3670be9eb",
+            "e0669e32-a4bc-486a-81de-305c150a0f30",
+            "46ca7816-85a5-49da-9773-da48434b9746",
+            "a00fd4a1-e19d-428c-8fb8-5171ab082008",
+            "9e295ecf-5e81-4dbb-8a07-24daab8b3059",
+            "4578ba89-e454-450a-9db3-4e0ee1193965"
+          ]
+        }
+      }
+    },
+    "notion_user": {
+      "33e41f0b-9c5f-4241-9f62-3e90559ab8f2": {
+        "role": "reader",
+        "value": {
+          "id": "33e41f0b-9c5f-4241-9f62-3e90559ab8f2",
+          "version": 14,
+          "email": "example1@makenotion.com",
+          "given_name": "Brian",
+          "family_name": "Park",
+          "profile_photo": "https://static.notion-static.com/82234322-0114-4439-bdf1-70a04f9ef8be/Brian_(1).png",
+          "mobile_onboarding_completed": true,
+          "onboarding_completed": true,
+          "time_zone": "America/Los_Angeles"
+        }
+      },
+      "4b723c12-e06d-4354-9951-aef27cabf6f1": {
+        "role": "reader",
+        "value": {
+          "id": "4b723c12-e06d-4354-9951-aef27cabf6f1",
+          "version": 14,
+          "email": "example5@makenotion.com",
+          "given_name": "Ivan",
+          "family_name": "Zhao",
+          "profile_photo": "https://s3-us-west-2.amazonaws.com/notion-static/3WTIC2lQk6a34fR2Bq5w_ivan.png",
+          "mobile_onboarding_completed": true,
+          "onboarding_completed": true,
+          "time_zone": "America/Los_Angeles"
+        }
+      },
+      "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10": {
+        "role": "editor",
+        "value": {
+          "id": "c80e87a1-4fd2-45b7-9783-06f3cd0d0f10",
+          "version": 6,
+          "email": "baisheng@gmail.com",
+          "given_name": "Baisheng",
+          "family_name": "Liu",
+          "profile_photo": "https://lh3.googleusercontent.com/-gAW4AqtnNPA/AAAAAAAAAAI/AAAAAAAACAU/UllZm1KVMtM/photo.jpg?sz=50",
+          "mobile_onboarding_completed": true,
+          "onboarding_completed": true,
+          "time_zone": "Asia/Shanghai"
+        }
+      }
+    }
+  },
+  "cursor": {
+    "stack": []
+  }
+}

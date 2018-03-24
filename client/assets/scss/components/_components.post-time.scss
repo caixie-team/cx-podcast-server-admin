@@ -1,0 +1,12 @@
+.c-post-time {
+  display: inline-block;
+  line-height: 1;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
+
+  &.is-placeholder {
+    @include placeholder;
+  }
+}

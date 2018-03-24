@@ -34,7 +34,7 @@
       </div>
 
     </header-cake>
-    <post-header :post="detail"/>
+    <post-header :post="detail" v-model="detail"/>
 
     <div class="c-post-assets__main-header">
       <span class="c-section-header__label">
@@ -52,23 +52,24 @@
     </div>
 
     <!--{{detail}}-->
-<!---->
+    <!---->
     <!--<draggable v-model="assetList" v-if="isTopic">-->
-      <!--<post-asset :asset="item"-->
-                  <!--:order="assetList.length - index"-->
-                  <!--v-for="(item,index) in assetList"-->
-                  <!--:key="item.id"/>-->
+    <!--<post-asset :asset="item"-->
+    <!--:order="assetList.length - index"-->
+    <!--v-for="(item,index) in assetList"-->
+    <!--:key="item.id"/>-->
     <!--</draggable>-->
-    <div class="c-async-load__placeholder u-mt-large" v-if="!isLoading"></div>
+
+    <!--<div class="c-async-load__placeholder" v-if="!isLoading"></div>-->
     <post-audio-player
       theme="#14aaf5"
       preload="metadata"
       mode="circulation"
       :defaultPic="detail.featured_image"
-      :music="assetList[0]"
-      :list="assetList"
+      :music="detail.block[0]"
+      :list="detail.block"
       :on-remove="handelRemove"
-      v-else/>
+      v-if="detail.block"/>
   </div>
 </template>
 <script>
@@ -82,6 +83,7 @@
   import '~/icons/gridicons-plus-small'
   import '~/icons/gridicons-cog'
 
+  // 如果 post type === album 将处理音频播放列表
   export default {
     // layout: 'post-editor',
     // name: 'PostEditor',
@@ -91,17 +93,23 @@
       PostAudioPlayer,
       PostHeader
     },
+    async fetch ({store, params}) {
+      await store.dispatch('loadUsers')
+      await store.dispatch('getPostDetail', params.id)
+    },
     async asyncData ({app, params}) {
-      await app.store.dispatch('loadUsers')
-      if (params.id && !Object.is(Number(params.id), NaN)) {
-        await app.store.dispatch('getPostDetail', params.id)
-      } else {
+      // await app.store.dispatch('loadUsers')
+      // if (params.id && !Object.is(Number(params.id), NaN)) {
+      //   await app.store.dispatch('getPostDetail', params.id)
+      //   await this.getAssets(params.id, 1)
+      //
+      // } else {
         // await app.store.commit('podcast/INIT')
-        return {
+        // return {
           // episodeList: [],
-          category: params.category
-        }
-      }
+          // category: params.category
+        // }
+      // }
     },
     data () {
       return {
@@ -127,7 +135,6 @@
     },
     mounted () {
       // this.selectedUser = Object.assign({}, this.user)
-      this.getAssets(1)
     },
     computed: {
       featuredImage () {
@@ -184,13 +191,13 @@
         console.log('id remove')
         console.log(item)
       },
-      getAssets (page) {
+      async getAssets (postId, page) {
         const params = {
-          id: this.detail.id,
+          id: postId,
           page: page,
           format: this.detail.format
         }
-        this.$store.dispatch('getPostAssetList', params)
+        await this.$store.dispatch('getPostAssetList', params)
         this.isLoading = this.assets.fetching
       },
       updateTitle (e) {
