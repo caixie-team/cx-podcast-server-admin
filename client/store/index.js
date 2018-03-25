@@ -135,15 +135,33 @@ export const actions = {
       this.$toast.error('作者更新失败')
     }
   },
+  async savePostDetail ({commit}, {form}) {
+    commit('post/SAVE_DETAIL')
+    const {data} = await this.$axios.post(`/apps/${this.getters.appId}/posts/${form.id}`, form)
+    if (data && data.errno === 0) {
+      commit('post/SAVE_DETAIL_SUCCESS')
+      this.$toast.success('内容保存成功')
+    } else {
+      commit('post/SAVE_DETAIL_FAILURE')
+      this.$toast.success('内容保存失败')
+    }
+  },
+
+  async addPostBlock ({commit}, block) {
+
+  },
+  async sortPostBlock ({commit}, block) {},
+  // 更新并返回完整数据
   async updatePostDetail ({commit}, {form}) {
     commit('post/UPDATE_DETAIL')
-    const {data} = await this.$axios.post(`/apps/${this.getters.appId}/posts/${form.id}`, form)
+    const {data} = await this.$axios.post(`/apps/${this.getters.appId}/posts/${form.id}?model=full`, form)
     if (data && data.errno === 0) {
       commit('post/UPDATE_DETAIL_SUCCESS', data)
     } else {
       commit('post/UPDATE_DETAIL_FAILURE')
     }
   },
+
   // -----------------------------
   // POST LIST
   // -----------------------------

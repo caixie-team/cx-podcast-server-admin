@@ -123,8 +123,8 @@ module.exports = {
     comments: true
   },
   modules: [
-    '@nuxtjs/component-cache',
-    ['@nuxtjs/component-cache', {maxAge: 1000 * 60 * 60}],
+    // '@nuxtjs/component-cache',
+    // ['@nuxtjs/component-cache', {maxAge: 1000 * 60 * 60}],
     '@nuxtjs/axios',
     '~/modules/auth',
     // '@nuxtjs/proxy',
@@ -193,6 +193,7 @@ module.exports = {
   },
   plugins: [
     {src: '~plugins/route.js', ssr: false},
+    {src: '~plugins/filters.js'},
     {src: '~/plugins/moment.js'},
     {src: '~/plugins/nuxt-client-init.js', ssr: false},
     {src: '~plugins/vee-validate.js'},

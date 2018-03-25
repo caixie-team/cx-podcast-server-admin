@@ -16,6 +16,7 @@ import nuxt_plugin_toast_93da30a0 from 'nuxt_plugin_toast_93da30a0' // Source: .
 import nuxt_plugin_axios_2c3ac9fe from 'nuxt_plugin_axios_2c3ac9fe' // Source: ./axios.js
 import nuxt_plugin_authplugin_6884e725 from 'nuxt_plugin_authplugin_6884e725' // Source: ./auth/auth.plugin.js
 import nuxt_plugin_route_17b85036 from 'nuxt_plugin_route_17b85036' // Source: ../client/plugins/route.js (ssr: false)
+import nuxt_plugin_filters_2b4f519a from 'nuxt_plugin_filters_2b4f519a' // Source: ../client/plugins/filters.js
 import nuxt_plugin_moment_57893d7e from 'nuxt_plugin_moment_57893d7e' // Source: ../client/plugins/moment.js
 import nuxt_plugin_nuxtclientinit_3893cbb9 from 'nuxt_plugin_nuxtclientinit_3893cbb9' // Source: ../client/plugins/nuxt-client-init.js (ssr: false)
 import nuxt_plugin_veevalidate_3f7cf8b3 from 'nuxt_plugin_veevalidate_3f7cf8b3' // Source: ../client/plugins/vee-validate.js
@@ -163,6 +164,7 @@ async function createApp (ssrContext) {
   
   if (typeof nuxt_plugin_axios_2c3ac9fe === 'function') await nuxt_plugin_axios_2c3ac9fe(app.context, inject)
   if (typeof nuxt_plugin_authplugin_6884e725 === 'function') await nuxt_plugin_authplugin_6884e725(app.context, inject)
+  if (typeof nuxt_plugin_filters_2b4f519a === 'function') await nuxt_plugin_filters_2b4f519a(app.context, inject)
   if (typeof nuxt_plugin_moment_57893d7e === 'function') await nuxt_plugin_moment_57893d7e(app.context, inject)
   if (typeof nuxt_plugin_veevalidate_3f7cf8b3 === 'function') await nuxt_plugin_veevalidate_3f7cf8b3(app.context, inject)
   if (typeof nuxt_plugin_vuejsmodal_f50827f4 === 'function') await nuxt_plugin_vuejsmodal_f50827f4(app.context, inject)

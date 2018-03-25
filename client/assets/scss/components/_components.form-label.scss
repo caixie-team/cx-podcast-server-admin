@@ -1,0 +1,17 @@
+.c-form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+
+  .c-form-label__required {
+    color: $orange-fire;
+    font-weight: normal;
+    margin-left: 6px;
+  }
+}
+.c-form-label .c-form-checkbox + span,
+.c-form-label input[type="checkbox"] + span,
+.c-form-label input[type="radio"] + span {
+  font-weight: normal;
+}

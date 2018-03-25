@@ -22,11 +22,62 @@
     min-width: 100px;
   }
 
+  .c-post-assets__header-button {
+    align-items: center;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    font-weight: normal;
+    justify-content: center;
+    min-width: 140px;
+  }
+
+  .c-post-assets__header-button {
+    align-items: center;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    font-weight: normal;
+    justify-content: center;
+    min-width: 140px;
+
+    &:hover {
+      background-color: #FAFAFA;
+    }
+  }
+
+  .c-post-assets__header-button .gridicon.gridicons-cloud-upload {
+    top: 6px;
+  }
+
+  .c-post-assets__header-button__text {
+    margin-top: 3px;
+    white-space: nowrap;
+  }
+
+  .c-section__subtitle {
+    font-size: 11px;
+    color: #537994;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    height: 16px;
+  }
+
+  /*.c-upload-list {*/
+  /*display: flex;*/
+  /*flex-direction: row;*/
+  /*}*/
 </style>
 
 <template>
   <div class="c-main ">
-    <header-cake :title="'修改【' + detail.title + '】'">
+    <header-cake
+      class="is-compact"
+      :title="'修改【' + detail.title + '】'">
       <div slot="action">
         <!--<button class="c-button is-compact c-editor-publish-button is-primary">发布</button>-->
         <button class="c-button is-compact c-editor-publish-button is-primary is-busy">出版</button>
@@ -38,20 +89,29 @@
 
     <div class="c-post-assets__main-header">
       <span class="c-section-header__label">
-        <span class="c-section-header__label-text">资源列表</span>
+        <span class="c-section-header__label-text">
+            资源列表
+            <small class="c-section__subtitle">
+              {{detail.block.length}} 条
+            </small>
+        </span>
         <span class="c-count" v-if="detail.assets">{{detail.assets.length}}</span>
       </span>
-      <div class="c-posts__header-buttons">
-        <a class="c-button c-header-button" style="color: #767576; fill: #767576;">
+      <upload :accept="accept"
+              :multiple="multiple"
+              :on-success="handleSuccess"
+              @receive-files="handleFiles" ref="uploader">
+        <a class="c-button c-post-assets__header-button "
+           style="color: #767576; fill: #767576;">
           <svgicon name="gridicons-cloud-upload"
                    class="gridicon gridicons-cloud-upload"
                    style="width: 18px; height: 18px;" color="none #767576;"/>
           <span class="c-header-button__text">上传资源</span>
         </a>
-      </div>
+      </upload>
+
     </div>
 
-    <!--{{detail}}-->
     <!---->
     <!--<draggable v-model="assetList" v-if="isTopic">-->
     <!--<post-asset :asset="item"-->
@@ -61,6 +121,40 @@
     <!--</draggable>-->
 
     <!--<div class="c-async-load__placeholder" v-if="!isLoading"></div>-->
+    <div class="c-upload-list u-mb-medium" v-if="fileList.length > 0">
+
+      <compact-card v-for="file in fileList"
+                    :key="file.id"
+                    :class="{'is-highlight is-error' : file.error}" style="background: #FAFAFA;">
+        <div class="c-upload-item u-flex">
+          <div class="c-upload-item__header u-width-50">
+            {{file.name}}
+          </div>
+          <div class="c-upload-item__content u-width-25 u-flex"
+               style="font-size: 14px; flex-direction: column; text-align: center;">
+            {{file.size | formatSize}}
+            <span v-if="file.error" class="u-text-danger" style="font-size: 13px;">
+            <svgicon name="gridicons-notice" color="none #ed4d4d" height="16" width="16"/>
+            {{file.error | formatError}}
+          </span>
+          </div>
+          <div class="c-upload-item__progress u-width-25  u-flex u-align-items-center u-justify-end"
+               style="font-size: 13px;">
+            <button class="c-button is-compact" style="min-width: 98px;" v-if="file.error"
+                    @click="removeErrorFile(file)">取消
+            </button>
+
+            <div class="c-progress-bar is-compact is-pulsing"
+                 v-else-if="(file.active || file.progress !== '0.00') && !file.success">
+              <div class="c-progress-bar__progress" :style="{width: file.progress + '%'}"></div>
+            </div>
+            <span class="u-text-success" v-else-if="file.success">上传成功</span>
+            <span class="u-text-mute" v-else>队列</span>
+          </div>
+        </div>
+      </compact-card>
+    </div>
+
     <post-audio-player
       theme="#14aaf5"
       preload="metadata"
@@ -78,11 +172,15 @@
   import {PostAudioPlayer} from '~/components/players'
   import HeaderCake from '~/components/header-cake'
   import PostHeader from '~/components/post-header/post-header'
+  import Upload from '~/components/upload'
 
   import '~/icons/gridicons-cloud-upload'
   import '~/icons/gridicons-plus-small'
   import '~/icons/gridicons-cog'
+  import '~/icons/gridicons-notice'
+  import FoldableCard from '~/components/foldable-card'
 
+  import {CompactCard} from '~/components/card'
   // 如果 post type === album 将处理音频播放列表
   export default {
     // layout: 'post-editor',
@@ -91,7 +189,10 @@
       HeaderCake,
       EmptyContent,
       PostAudioPlayer,
-      PostHeader
+      PostHeader,
+      Upload,
+      FoldableCard,
+      CompactCard
     },
     async fetch ({store, params}) {
       await store.dispatch('loadUsers')
@@ -104,15 +205,20 @@
       //   await this.getAssets(params.id, 1)
       //
       // } else {
-        // await app.store.commit('podcast/INIT')
-        // return {
-          // episodeList: [],
-          // category: params.category
-        // }
+      // await app.store.commit('podcast/INIT')
+      // return {
+      // episodeList: [],
+      // category: params.category
+      // }
       // }
     },
     data () {
       return {
+        accept: 'audio/mp3',
+        uploading: false,
+        collapsed: true,
+        multiple: true,
+        fileList: [],
         isToggleSetting: false,
         creating: false,
         isVisible: false,
@@ -183,12 +289,13 @@
       }
     },
     methods: {
+      handleFiles (files) {
+        this.fileList = files
+      },
       toggleSetting () {
-        console.log('lalalal')
         this.isToggleSetting = !this.isToggleSetting
       },
       handelRemove (item) {
-        console.log('id remove')
         console.log(item)
       },
       async getAssets (postId, page) {
@@ -209,6 +316,17 @@
       },
       authorToggle () {
         this.isVisible = !this.isVisible
+      },
+      removeErrorFile (file) {
+        this.$refs.uploader.remove(file)
+      },
+      handleSuccess (success, data) {
+        this.$store.commit('post/ADD_BLOCK', data.response.data)
+        this.$refs.uploader.remove(data)
+        // 文件上传成功后执行添加一条内容，然后将内容关联至当前
+        // 添加至列表。。。
+        // 创建一条新的 post 内容。。。。
+        // this.detail.block.shift(data.response.data)
       }
     }
   }

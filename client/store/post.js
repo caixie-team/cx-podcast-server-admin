@@ -67,6 +67,24 @@ export const mutations = {
   },
 
   //
+  // 仅保存, 更新状态
+  //
+  SAVE_DETAIL (state) {
+    state.detail.saving = true
+  },
+  SAVE_DETAIL_SUCCESS (state, action) {
+    state.detail.saving = false
+  },
+  SAVE_DETAIL_FAILURE (state) {
+    state.detail.saving = false
+  },
+  //
+  // 添加 block
+  //
+  ADD_BLOCK (state, blockItem) {
+    state.detail.data.block.unshift(blockItem)
+  },
+  //
   // UPDATE Detail
   //
   UPDATE_DETAIL (state) {

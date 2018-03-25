@@ -86,7 +86,7 @@
         files: [],
         progress: 'success',
         uploadProgress: '',
-        size: 1024 * 1024 * 10,
+        size: 1024 * 1024 * 20,
         list: [],
       }
     },
@@ -109,7 +109,15 @@
         return this.action
       }
     },
+    watch: {
+      files (val) {
+        this.$emit('receive-files', val)
+      }
+    },
     methods: {
+      remove (item) {
+        this.$refs.upload.remove(item)
+      },
       inputFile (newFile, oldFile) {
         if (newFile && !oldFile) {
           console.log('add file')
@@ -149,7 +157,7 @@
             // console.log('success', newFile.success, newFile)
             console.log('input file....')
 
-            this.onSuccess(newFile.success, newFile.response.data)
+            this.onSuccess(newFile.success, newFile, this.$refs.upload)
           }
         }
 

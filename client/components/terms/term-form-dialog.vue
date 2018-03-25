@@ -136,7 +136,6 @@
         this.form = {
         }
         this.termModal = false
-        // this.$modal.hide('demo-login');
       },
       handlePreview (url) {
         this.form.featured_image = url
@@ -144,11 +143,11 @@
       handleProgress (progress) {
         this.uploading = true
       },
-      handleSuccess (success, data) {
+      handleSuccess (success, file) {
         this.uploading = false
-        this.form.featured_image = data.url
+        this.form.featured_image = file.response.data.url
         this.form.meta = {
-          '_thumbnail_id': data.id
+          '_thumbnail_id': file.response.data.id
         }
       },
       async handleSubmit () {

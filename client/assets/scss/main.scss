@@ -137,9 +137,11 @@
 @import "components/components.card";
 @import "components/components.foldable-card";
 @import "components/components.choice";
+@import "components/components.checkbox";
 @import "components/components.close";
 @import "components/components.dropdown";
 @import "components/components.field";
+@import "components/components.form-label";
 @import "components/components.form-fieldset";
 @import "components/components.form-legend";
 @import "components/components.form-section-heading";
@@ -226,6 +228,7 @@
 
 @import "components/components.back-top";
 
+@import "components/components.progress-bar";
 @import "components/components.empty-content";
 // avatar
 @import "components/components.edit-avatar";
@@ -246,6 +249,7 @@
 @import "components/components.search";
 @import "components/components.search-card";
 @import "components/components.spinner";
+@import "components/components.spinner-line";
 @import "components/components.header-button";
 
 @import "components/components.infinite-scroll";
@@ -271,6 +275,8 @@
 @import "components/components.post-asset-actions";
 @import "components/components.post-asset-header";
 
+// Checklist
+@import "components/components.checklist";
 // Taxonomy
 @import "components/components.taxonomy-manager";
 @import "components/components.term-form-dialog";
