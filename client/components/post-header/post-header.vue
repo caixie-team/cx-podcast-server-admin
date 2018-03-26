@@ -82,6 +82,7 @@
           </checkbox-group>
 
         </fieldset>
+        {{form.content}}
         <counted-textarea label="内容介绍"
                           :value="form.content"
                           name="summary"
@@ -213,8 +214,12 @@
       updateTitle (e) {
         this.form.title = e.target.value
       },
-      updateContent (e) {
-        this.from.content = e.target.value
+      updateContent (val) {
+        this.form = Object.assign({}, this.form, {content: val})
+        // this.form = {
+        //   content: val
+        // }
+        // this.from.content = val
       },
       handleZoom () {
         this.collapsed = !this.collapsed

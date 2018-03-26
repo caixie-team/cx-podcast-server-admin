@@ -75,7 +75,7 @@
         this.content = val
       },
       content (val) {
-        this.$emit('content-change', val)
+        this.$emit('change', val)
       }
     }
   }
