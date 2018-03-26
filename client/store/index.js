@@ -1,3 +1,6 @@
+import {getLocalStorage, getCookie} from '../utils/assist'
+import {isEmpty} from 'lodash'
+
 export const state = () => ({
   backHref: '/',
   toHref: '/'
@@ -26,6 +29,30 @@ export const getters = {
   }
 }
 
+/**
+ * 处理当前应用
+ * @param store
+ * @param req
+ * @returns {Promise<void>}
+ */
+const syncCurrentApp = async (store, req) => {
+
+  let curApp = store.state.org.currentApp
+  if (isEmpty(curApp)) {
+    curApp = getCookie('__app', req)
+  }
+  if (isEmpty(curApp)) {
+    curApp = getLocalStorage('__app')
+  }
+  if (isEmpty(curApp)) {
+    curApp = req.session.__org.apps[0]
+  }
+  if (typeof curApp === 'string') {
+    curApp = JSON.parse(curApp)
+  }
+  store.commit('org/SET_CURRENT_APP', curApp)
+}
+
 // global actions
 export const actions = {
   // 全局服务初始化
@@ -33,10 +60,17 @@ export const actions = {
     if (!Object.is(req.session.__org, undefined)) {
       await store.commit('org/SET_ORG_DETAIL', req.session.__org)
     }
+    // 同步当前应用信息
+    await syncCurrentApp(store, req)
     // await store.commit('org/SET_CURRENT_APP', req.session.__org.apps[0])
   },
   async nuxtClientInit ({commit}, context) {
+    console.log('init.....')
   },
+
+  // async setCurrentApp ({commit}, curApp) {
+  //   commit('org/SET_CURRENT_APP', curApp)
+  // },
 
   // 获取全局配置
   async loadAppInfo ({commit}) {
@@ -146,11 +180,18 @@ export const actions = {
       this.$toast.success('内容保存失败')
     }
   },
+  //
+  // BLOCKS
+  //
+  async removePostBlockItem({commit}, item) {
 
+  },
   async addPostBlock ({commit}, block) {
 
   },
-  async sortPostBlock ({commit}, block) {},
+  async sortPostBlock ({commit}, block) {
+    // commit('post/SET_BLOCK', block)
+  },
   // 更新并返回完整数据
   async updatePostDetail ({commit}, {form}) {
     commit('post/UPDATE_DETAIL')

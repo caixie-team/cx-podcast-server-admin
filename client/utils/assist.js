@@ -1,5 +1,8 @@
 /* eslint-disable func-style,no-extra-parens */
 // 判断参数是否是其中之一
+import Cookies from "js-cookie";
+import { parse as parseCookie } from 'cookie'
+
 export const oneOf = (value, validList) => {
   for (let i = 0; i < validList.length; i++) {
     if (value === validList[i]) {
@@ -145,4 +148,42 @@ export function setMatchMedia () {
     }
     window.matchMedia = window.matchMedia || matchMediaPolyfill
   }
+}
+
+
+export function setLocalStorage (name, value) {
+  if (typeof localStorage !== 'undefined') {
+    if (value) {
+      localStorage.setItem(name, value)
+    } else {
+      localStorage.removeItem(name)
+    }
+  }
+}
+
+export function getLocalStorage (name) {
+  if (typeof localStorage !== 'undefined') {
+    return localStorage.getItem(name)
+  }
+}
+
+export function setCookie (name, value, options = {}) {
+  if (!process.browser) {
+    return
+  }
+
+  if (value) {
+    Cookies.set(name, value, options)
+  } else {
+    Cookies.remove(name, options)
+  }
+}
+
+export function getCookie (name, req) {
+  const cookieStr = process.browser
+    ? document.cookie
+    : req.headers.cookie
+
+  const cookies = parseCookie(cookieStr || '') || {}
+  return cookies[name]
 }

@@ -62,14 +62,13 @@
                  placeholder="请输入标题"
                  name="title"
                  v-validate="'required'"
-                 @change="updateTitle" :disabled="isSaving">
-
+                 @change="updateTitle"
+                 :disabled="isSaving">
           <form-input-validation :isError="errors.has('title')" v-show="errors.has('title')">
             {{ errors.first('title') }}
           </form-input-validation>
         </div>
         <fieldset class="c-form-fieldset">
-          <!--{{form.categories}}-->
           <legend class="c-form-legend">类别
             <small class="c-form-legend__subtitle">
               {{selectdCategory}}
@@ -77,7 +76,7 @@
           </legend>
 
           <checkbox-group v-model="form.categories">
-            <checkbox :label="term.term_id" v-for="term in categories" :key="term.id">
+            <checkbox :label="term.term_id" v-for="term in terms" :key="term.id">
               {{term.name}}
             </checkbox>
           </checkbox-group>
@@ -109,7 +108,7 @@
 
   import Upload from '~/components/upload'
   import Spinner from '~/components/spinner'
-  import {map, difference} from 'lodash'
+  import {map, xor} from 'lodash'
 
   import '~/icons/gridicons-add-image'
 
@@ -134,6 +133,13 @@
       post: {
         type: Object,
         require: true
+      },
+      terms: {
+        type: Array,
+        require: true,
+        default () {
+          return []
+        }
       }
     },
     data () {
@@ -167,9 +173,6 @@
       }
     },
     computed: {
-      // isSaving () {
-      //   return this.$store.state.post.detail.saving
-      // },
       selectdCategory () {
         if (this.form.categories.length === 1) {
           return this.value.categories[0].name
@@ -177,12 +180,12 @@
           return this.form.categories.length + ' 分类'
         }
       },
-      categories () {
-        return this.$store.state.categories.data.list
-      },
+      // categories () {
+      //   return this.$store.state.categories.data.list
+      // },
       isChange: {
         get () {
-          const cateArray = difference(this.form.categories, map(this.value.categories, 'term_id'))
+          const cateArray = xor(this.form.categories, map(this.value.categories, 'term_id'))
           return this.errors.has('title') ||
             cateArray.length > 0 ||
             this.form.title !== this.value.title ||

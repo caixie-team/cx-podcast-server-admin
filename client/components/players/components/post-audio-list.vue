@@ -4,25 +4,18 @@
     :class="{'aplayer-list-hide': !show}"
     ref="list">
     <div ref="items">
-
-    <draggable v-model="musicList">
-      <!--&lt;!&ndash;-->
-      <post-audio
-        class="play-item"
-        v-for="(aMusic, index) of musicList"
-        :key="index"
-        :index="index"
-        :aMusic="aMusic"
-        @selectsong="$emit('selectsong', aMusic)"
-        @removesong="$emit('removesong', aMusic)"
-        :class="{'aplayer-list-light': aMusic === currentMusic}" />
-        <!--&ndash;&gt;-->
-      <!--<post-audio-asset-->
-        <!--v-for="(aMusic, index) of musicList"-->
-        <!--:asset="aMusic"-->
-        <!--:key="index"-->
-        <!--:order="index + 1"/>-->
-    </draggable>
+      <draggable v-model="musicList">
+        <post-audio
+          class="play-item"
+          v-for="(aMusic, index) of musicList"
+          :key="index"
+          :index="index"
+          :aMusic="aMusic"
+          @selectsong="$emit('selectsong', aMusic)"
+          @removesong="handleRemove"
+          @updated="handleUpdated"
+          :class="{'aplayer-list-light': aMusic === currentMusic}"/>
+      </draggable>
     </div>
   </div>
 </template>
@@ -30,8 +23,8 @@
 <script>
   import Draggable from 'vuedraggable'
   import PostAudioAsset from '~/components/post-assets/post-audio-asset'
-
   import PostAudio from './post-audio'
+
   export default {
     components: {
       Draggable,
@@ -49,17 +42,17 @@
           return []
         }
       },
+      list: {
+        type: Array,
+        default () {
+          return []
+        }
+      },
       show: {
         type: Boolean,
         default: true,
       },
       currentMusic: Object,
-      // musicList: {
-      //   type: Array,
-      //   default () {
-      //     return []
-      //   }
-      // },
       playIndex: {
         type: Number,
         default: 0,
@@ -72,19 +65,22 @@
         musicList: this.value
       }
     },
-    mounted () {
-      // this.$el.style.height = `${this.$el.offsetHeight}px`
-      // this.$refs.items.style.height = `${this.$el.offsetHeight}px`
-      // this.$nextTick(() => {
-      //   this.$el.style.height = `${this.$el.offsetHeight}px`
-      //   this.$refs.items.style.height = `${this.$el.offsetHeight}px`
-      // })
+    computed: {
+      // musicList () {
+      //   return this.value
+      // }
     },
     methods: {
-      handleAbort (item) {
+      handleRemove (song) {
+        for (let i = 0; i < this.musicList.length; i++) {
+          if (this.musicList[i].id === song.id) {
+            this.musicList.splice(i, 1)
+          }
+        }
+        this.$emit('remove-song', song)
       },
-      handleConfirm (item) {
-        console.log(item)
+      handleUpdated (song) {
+        this.$emit('update-song', song)
       }
     },
     watch: {
@@ -123,20 +119,20 @@
       }
 
       &:hover {
-        background: mix( $primary, $white, 1.5% );
+        background: mix($primary, $white, 1.5%);
         /*&:before {*/
-          /*background-color: #25e8c8;*/
-          /*background-image: -webkit-linear-gradient(left, #25e8c8, #32c1ff);*/
-          /*background-image: linear-gradient(to right, #25e8c8, #32c1ff);*/
-          /*border-top-right-radius: 3px;*/
-          /*content: "";*/
-          /*display: block;*/
-          /*height: 8px;*/
+        /*background-color: #25e8c8;*/
+        /*background-image: -webkit-linear-gradient(left, #25e8c8, #32c1ff);*/
+        /*background-image: linear-gradient(to right, #25e8c8, #32c1ff);*/
+        /*border-top-right-radius: 3px;*/
+        /*content: "";*/
+        /*display: block;*/
+        /*height: 8px;*/
         /*}*/
       }
 
       &.aplayer-list-light {
-        background: mix( $primary, $white, 3.5% );
+        background: mix($primary, $white, 3.5%);
 
         .aplayer-list-cur {
           display: inline-block;
@@ -152,11 +148,12 @@
         /*top: 5px;*/
         cursor: pointer;
         transition: background-color .3s;
-        background: mix( $primary, $white, 8.5% );
+        background: mix($primary, $white, 8.5%);
         box-shadow: inset 4px 0 0 0 $primary;
 
       }
-      .aplayer-list-title {}
+      .aplayer-list-title {
+      }
       .aplayer-list-index {
         color: #666;
         margin-right: 12px;
@@ -180,7 +177,7 @@
           justify-content: space-between;
         }
         .c-post-asset__content {
-          padding:12px;
+          padding: 12px;
         }
         .aplayer {
           font-family: Arial, Helvetica, sans-serif;
@@ -209,7 +206,7 @@
           bottom: 0;
           left: 0;
           width: 0;
-          background: mix( $primary, $white, 8.5% );
+          background: mix($primary, $white, 8.5%);
           box-shadow: inset 4px 0 0 0 $primary;
           //border-radius: .5rem 0 0 .5rem;
         }
@@ -233,7 +230,7 @@
       // If the episode is unapproved and collapsed, color it yellow.
       &.is-unapproved.is-collapsed {
         .c-post-asset__header {
-          background: mix( $alert-yellow, $white, 8.5% );
+          background: mix($alert-yellow, $white, 8.5%);
           box-shadow: inset 4px 0 0 0 $alert-yellow;
         }
       }

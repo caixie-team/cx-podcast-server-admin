@@ -41,7 +41,8 @@
         @nextmode="setNextMode"
       />
     </div>
-    <toolbar />
+    <toolbar/>
+
     <music-list
       :show="showList && !isMiniMode"
       :current-music="currentMusic"
@@ -49,8 +50,10 @@
       :play-index="playIndex"
       :listmaxheight="listmaxheight || listMaxHeight"
       :theme="currentTheme"
+      @music-list-change="handleListChange"
       @selectsong="onSelectSong"
-      @removesong="onRemoveSong"
+      @remove-song="onRemoveSong"
+      @update-song="onUpdateSong"
     />
     <audio ref="audio"></audio>
   </div>
@@ -167,34 +170,26 @@
       listMaxHeight: String,
       music: {
         type: Object,
-        required: true,
-        validator (value) {
-          const song = value
-          if (!song.url || !song.title || !song.author) {
-            song.title = song.title || 'Untitled'
-            song.author = song.author || 'Unknown'
-            return false
-          }
-          return true
-        },
+        required: true
       },
+      /*      music: {
+              type: Object,
+              required: true,
+              validator (value) {
+                const song = value
+                if (!song.url || !song.title || !song.author) {
+                  song.title = song.title || 'Untitled'
+                  song.author = song.author || 'Unknown'
+                  return false
+                }
+                return true
+              },
+            },*/
       list: {
         type: Array,
         default () {
           return []
-        },
-        validator (value) {
-          const songs = value
-          for (let i = 0; i < songs.length; i++) {
-            const song = songs[i]
-            if (!song.url || !song.title || !song.author) {
-              song.title = song.title || 'Untitled'
-              song.author = song.author || 'Unknown'
-              return false
-            }
-          }
-          return true
-        },
+        }
       },
       float: {
         type: Boolean,
@@ -213,7 +208,8 @@
         internalMusic: this.music,
         internalMode: this.mode,
         isPlaying: false,
-        isMobile: /mobile/i.test(window.navigator.userAgent),
+        isMobile: false,
+        // isMobile: /mobile/i.test(window.navigator.userAgent),
         playStat: {
           duration: 0,
           loadedTime: 0,
@@ -232,7 +228,9 @@
         floatOffsetLeft: 0,
         floatOffsetTop: 0,
 
-        selfAdaptingTheme: null
+        selfAdaptingTheme: null,
+
+        musicList: [...this.list]
       }
     },
     computed: {
@@ -266,9 +264,10 @@
       playMode () {
         return this.internalMode
       },
-      musicList () {
-        return this.list
-      },
+      // musicList () {
+      //   return [...this.list]
+      // return this.list
+      // },
       currentPicStyleObj () {
         if (this.currentMusic && this.currentMusic.pic) {
           return {
@@ -368,9 +367,14 @@
         }
       },
       onRemoveSong (song) {
-        this.onRemove(song)
-        // console.log('remove')
-        // console.log(song)
+        if (this.internalMusic.id === song.id) {
+          this.internalMusic = this.musicList[0]
+        }
+      },
+      onUpdateSong (song) {
+        if (this.internalMusic.id === song.id) {
+          this.internalMusic = song
+        }
       },
       jumpToTime (time) {
         this.audio.currentTime = time
@@ -536,6 +540,9 @@
         } else {
           this.selfAdaptingTheme = null
         }
+      },
+      handleListChange (list) {
+        this.$emit('change-list', list)
       }
     },
     watch: {
@@ -570,6 +577,9 @@
           // self-adapting theme color
           this.setSelfAdaptingTheme()
         },
+      },
+      list (val) {
+        this.musicList = [...val]
       }
     },
     mounted () {
@@ -590,7 +600,7 @@
 
 </script>
 
-<style lang="scss" >
+<style lang="scss">
   @import "./scss/variables";
 
   .aplayer-narrow {
@@ -624,7 +634,7 @@
         border-bottom: 1px solid #e9e9e9;
 
         box-sizing: border-box;
-        box-shadow: 0 1px 3px 0 rgba(0,0,0,0.15);
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
       }
 
       .aplayer-list {

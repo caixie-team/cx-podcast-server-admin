@@ -66,22 +66,7 @@
       this.originalData = Object.assign({}, this.watchData)
     },
     mounted () {
-      const that = this
       this.isExpanded = this.expanded
-      // const oldData = this.watchData
-      // this.$watch('watchData', {
-      //   deep: true,
-      //   handler: (val, oldVal) => {
-      //     if (val.title !== this.originalData.title) {
-      //       that.dataStatus = 'editing'
-      //     } else {
-      //       this.dataStatus = ''
-      //     }
-      //   }
-      // })
-//      this.$watch(this.watchData, () => {
-//        this.dataStatus = 'editing'
-//      }, {deep: true})
     },
 
     computed: {

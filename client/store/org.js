@@ -1,3 +1,5 @@
+import {setCookie, setLocalStorage} from "../utils/assist";
+
 export const state = () => {
   return {
     id: '',
@@ -22,19 +24,16 @@ export const state = () => {
 export const mutations = {
   SET_ORG_DETAIL (state, data) {
     state.detail.data = data
-    state.currentApp = data.apps[0]
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('__orgId', data.id)
-
-      // if (value) {
-      //   localStorage.setItem(name, value)
-      // } else {
-      //   localStorage.removeItem(name)
-      // }
-    }
+    // 这里可以设定默认 app
+    // state.currentApp = data.apps[0]
+    // if (typeof localStorage !== 'undefined') {
+    //   localStorage.setItem('__orgId', data.id)
+    // }
   },
   SET_CURRENT_APP (state, action) {
     state.currentApp = action
+    setCookie('__app', JSON.stringify(action))
+    setLocalStorage('__app', JSON.stringify(action))
   },
   CONFIG (state, action) {
     state.id = action.id

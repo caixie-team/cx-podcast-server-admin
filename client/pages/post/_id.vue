@@ -85,7 +85,10 @@
       </div>
 
     </header-cake>
-    <post-header :post="detail" v-model="detail"/>
+    <post-header
+      :post="detail"
+      :terms="categories"
+      v-model="detail"/>
 
     <div class="c-post-assets__main-header">
       <span class="c-section-header__label">
@@ -112,7 +115,6 @@
 
     </div>
 
-    <!---->
     <!--<draggable v-model="assetList" v-if="isTopic">-->
     <!--<post-asset :asset="item"-->
     <!--:order="assetList.length - index"-->
@@ -122,7 +124,6 @@
 
     <!--<div class="c-async-load__placeholder" v-if="!isLoading"></div>-->
     <div class="c-upload-list u-mb-medium" v-if="fileList.length > 0">
-
       <compact-card v-for="file in fileList"
                     :key="file.id"
                     :class="{'is-highlight is-error' : file.error}" style="background: #FAFAFA;">
@@ -154,7 +155,6 @@
         </div>
       </compact-card>
     </div>
-
     <post-audio-player
       theme="#14aaf5"
       preload="metadata"
@@ -162,8 +162,8 @@
       :defaultPic="detail.featured_image"
       :music="detail.block[0]"
       :list="detail.block"
-      :on-remove="handelRemove"
-      v-if="detail.block"/>
+      @change-list="handleListChange"
+      v-if="detail.block.length > 0"/>
   </div>
 </template>
 <script>
@@ -181,6 +181,8 @@
   import FoldableCard from '~/components/foldable-card'
 
   import {CompactCard} from '~/components/card'
+  import {map} from 'lodash'
+
   // 如果 post type === album 将处理音频播放列表
   export default {
     // layout: 'post-editor',
@@ -193,6 +195,10 @@
       Upload,
       FoldableCard,
       CompactCard
+    },
+    validate ({params}) {
+      // Must be a number
+      return /^\d+$/.test(params.id)
     },
     async fetch ({store, params}) {
       await store.dispatch('loadUsers')
@@ -239,9 +245,6 @@
           {id: 4, name: 'trash', title: '回收站'}]
       }
     },
-    mounted () {
-      // this.selectedUser = Object.assign({}, this.user)
-    },
     computed: {
       featuredImage () {
         if (this.curFeaturedImage) {
@@ -275,28 +278,19 @@
       },
       title () {
         return this.detail.title ? this.detail.title : '标题'
-      },
-      assets () {
-        return this.$store.state.post.assetList
-      },
-      assetList: {
-        get () {
-          return this.$store.state.post.assetList.data.data
-        },
-        set (value) {
-          this.$store.commit('post/UPDATE_ASSET_LIST', value)
-        }
       }
     },
     methods: {
+      // 列表删除
+      // handleRemove (song) {
+        // this.$store.dispath('removeBlockItem', song)
+        // this.$store.commit('post/REMOVE_BLOCK_ITEM', song)
+      // },
       handleFiles (files) {
         this.fileList = files
       },
       toggleSetting () {
         this.isToggleSetting = !this.isToggleSetting
-      },
-      handelRemove (item) {
-        console.log(item)
       },
       async getAssets (postId, page) {
         const params = {
@@ -320,13 +314,20 @@
       removeErrorFile (file) {
         this.$refs.uploader.remove(file)
       },
+      // 处理排序
+      handleListChange (list) {
+        const form = {
+          id: this.detail.id,
+          author: this.detail.author,
+          block: list ? map(list, 'id') : map(this.detail.block, 'id')
+        }
+        this.$store.dispatch('savePostDetail', {form: form})
+      },
+      // 内容添加成功的处理
       handleSuccess (success, data) {
+        // 添加 block 并更新 block
         this.$store.commit('post/ADD_BLOCK', data.response.data)
         this.$refs.uploader.remove(data)
-        // 文件上传成功后执行添加一条内容，然后将内容关联至当前
-        // 添加至列表。。。
-        // 创建一条新的 post 内容。。。。
-        // this.detail.block.shift(data.response.data)
       }
     }
   }

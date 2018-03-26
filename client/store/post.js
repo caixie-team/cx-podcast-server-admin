@@ -84,6 +84,25 @@ export const mutations = {
   ADD_BLOCK (state, blockItem) {
     state.detail.data.block.unshift(blockItem)
   },
+  SET_BLOCK (state, block) {
+    state.detail.data.block = block
+  },
+  UPDATE_BLOCK_ITEM (state, item) {
+    // let block = state.detail.data.block
+    for (let i = 0; i < state.detail.data.block.length; i++) {
+      if (state.detail.data.block[i].id === item.id) {
+        state.detail.data.block[i].title = item.title
+        // 其它待添加
+      }
+    }
+  },
+  REMOVE_BLOCK_ITEM (state, item) {
+    for (let i = 0; i < state.detail.data.block.length; i++) {
+      if (state.detail.data.block[i].id === item.id) {
+        state.detail.data.block.splice(i, 1)
+      }
+    }
+  },
   //
   // UPDATE Detail
   //
@@ -95,7 +114,7 @@ export const mutations = {
     state.detail.saving = false
   },
   UPDATE_DETAIL_SUCCESS (state, action) {
-    state.detail= action.data
+    state.detail = action.data
     state.detail.saving = false
   },
   UPDATE_DETAIL_FAILURE (state) {
