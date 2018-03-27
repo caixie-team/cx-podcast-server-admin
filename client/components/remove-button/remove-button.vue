@@ -13,7 +13,6 @@
     props: {
       onRemove: {
         type: Function,
-        required: true,
         default () {
           return {}
         }

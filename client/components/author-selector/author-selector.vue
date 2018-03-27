@@ -65,8 +65,6 @@
       },
       _toggleShowAuthor () {
         this.showAuthorMenu = !this.showAuthorMenu
-        // console.log(this.users)
-        // console.log('toggle show author...')
       }
     }
   }

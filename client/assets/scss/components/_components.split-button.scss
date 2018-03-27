@@ -1,0 +1,26 @@
+.c-split-button {
+  // So both buttons drop together
+  display: inline-block;
+}
+.c-split-button__main {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+
+  .has-icon-text & .gridicon {
+    margin-right: 4px;
+    top: 4px;
+    margin-top: -8px;
+  }
+}
+.c-split-button__toggle {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.gridicon.c-split-button__toggle-icon {
+  transition: transform 0.2s cubic-bezier( 0.175, 0.885, 0.32, 1.275 );
+
+  .c-split-button.is-menu-visible & {
+    transform: rotate( 180deg );
+  }
+}

@@ -1,4 +1,9 @@
 <script type="text/jsx">
-  const hr = <hr class="c-popover__menu-separator" />
-  export default () => hr
+  export default {
+    name: 'MenuSeparator',
+
+    render () {
+      return (<hr class="c-popover__menu-separator" />)
+    }
+  }
 </script>

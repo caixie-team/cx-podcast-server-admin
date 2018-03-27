@@ -52,6 +52,7 @@
     },
     methods: {
       async handleAuthorSelect (author) {
+        this.$emit('change-author', author.id)
         await this.$store.dispatch('changePostAuthor',
           {id: this.post.id, author: author.id, data: author})
       }

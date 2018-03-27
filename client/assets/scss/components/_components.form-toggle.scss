@@ -1,0 +1,134 @@
+// ==========================================================================
+// FormToggle
+// ==========================================================================
+
+.c-form-toggle[type="checkbox"] {
+  display: none;
+}
+
+.c-form-toggle__switch {
+  position: relative;
+  display: inline-block;
+  border-radius: 12px;
+  box-sizing: border-box;
+  padding: 2px;
+  width: 40px;
+  height: 24px;
+  vertical-align: middle;
+  align-self: flex-start;
+  outline: 0;
+  cursor: pointer;
+  transition: all .4s ease, box-shadow 0s;
+
+  &:before,
+  &:after {
+    position: relative;
+    display: block;
+    content: "";
+    width: 20px;
+    height: 20px;
+  }
+  &:after {
+    left: 0;
+    border-radius: 50%;
+    background: $white;
+    transition: all .2s ease;
+  }
+  &:before {
+    display: none;
+  }
+  .accessible-focus &:focus{
+    box-shadow: 0 0 0 2px $primary;
+  }
+}
+
+.c-form-toggle__label {
+  cursor: pointer;
+  font-size: 14px;
+
+  .is-disabled & {
+    cursor: default;
+  }
+
+  .c-form-toggle__label-content {
+    flex: 0 1 100%;
+    margin-left: 12px;
+  }
+}
+
+.c-form-toggle {
+  .accessible-focus &:focus {
+    + .c-form-toggle__label .c-form-toggle__switch {
+      box-shadow: 0 0 0 2px $primary;
+    }
+    &:checked + .c-form-toggle__label .c-form-toggle__switch {
+      box-shadow: 0 0 0 2px $blue-light;
+    }
+  }
+
+  & + .c-form-toggle__label .c-form-toggle__switch {
+    background: $gray-lighten-10;
+  }
+
+  &:not( :disabled ) {
+    + .c-form-toggle__label:hover .c-form-toggle__switch {
+      background: $gray-lighten-20;
+    }
+  }
+
+  &:checked{
+    + .c-form-toggle__label .c-form-toggle__switch {
+      background: $primary;
+
+      &:after {
+        left: 16px;
+      }
+    }
+  }
+
+  &:checked:not( :disabled ) {
+    + .c-form-toggle__label:hover .c-form-toggle__switch {
+      background: $blue-light;
+    }
+  }
+
+  &:disabled {
+    + label.c-form-toggle__label span.c-form-toggle__switch {
+      opacity: 0.25;
+      cursor: default;
+    }
+  }
+}
+
+// Classes for toggle state before action is complete (updating plugin or something)
+.c-form-toggle.is-toggling {
+  + .c-form-toggle__label .c-form-toggle__switch {
+    background: $primary;
+  }
+  &:checked {
+    + .c-form-toggle__label .c-form-toggle__switch {
+      background: $gray-lighten-20;
+    }
+  }
+}
+
+.c-form-toggle.is-compact {
+  + .c-form-toggle__label .c-form-toggle__switch {
+    border-radius: 8px;
+    width: 24px;
+    height: 16px;
+
+    &:before,
+    &:after {
+      width: 12px;
+      height: 12px;
+    }
+  }
+  &:checked {
+    + .c-form-toggle__label .c-form-toggle__switch {
+      &:after{
+        left: 8px;
+      }
+    }
+  }
+}

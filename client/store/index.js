@@ -224,7 +224,7 @@ export const actions = {
     commit('posts/GET_SHORT_LIST', {category: category, data: data.data})
   },
 
-  async getPostsFullList ({commit}, params = {page: 1, status: 'auto-draft'}) {
+  async getPostsFullList ({commit}, params = {page: 1}) {
     params.pagesize = 12
     commit('posts/REQUEST_FULL_LIST')
     const {data} = await this.$axios.get(`/apps/${this.getters.appId}/posts`, {params})

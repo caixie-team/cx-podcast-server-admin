@@ -23,8 +23,8 @@
       <div class="c-card c-posts-browser-list__elements"  v-if="myList.length > 0">
         <post-browser-item
           :id="item.id"
-          v-for="item in myList"
-          :key="item.id"
+          v-for="(item, index) in myList"
+          :key="index"
           :title="item.title"
           :link="`/post/${item.id}`"
           :icon="`${item.featured_image}?imageMogr2/thumbnail/100x100/q/90/format/jpg/interlace/1`"

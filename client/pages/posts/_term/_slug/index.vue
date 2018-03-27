@@ -51,8 +51,8 @@
           case 'featured': {
             const query = {
               page: 1,
-              category: params.slug,
-              status: 'auto-draft'
+              category: params.slug
+              // status: 'auto-draft'
             }
             await app.store.dispatch('getPostsFullList', query)
             return {term: {slug: params.slug, name: '精选'}}
@@ -60,8 +60,8 @@
           case 'popular': {
             const query = {
               page: 1,
-              category: params.slug,
-              status: 'auto-draft'
+              category: params.slug
+              // status: 'auto-draft'
             }
             await app.store.dispatch('getPostsFullList', query)
             return {term: {slug: params.slug, name: '热门'}}
@@ -69,8 +69,8 @@
           case 'new': {
             const query = {
               page: 1,
-              category: params.slug,
-              status: 'auto-draft'
+              category: params.slug
+              // status: 'auto-draft'
             }
             await app.store.dispatch('getPostsFullList', query)
             return {term: {slug: params.slug, name: '最新'}}
@@ -79,8 +79,8 @@
             const term = (await app.$axios.$get(`/apps/${app.store.getters.appId}/categories/slug:${params.slug}`)).data
             const query = {
               page: 1,
-              category: params.slug,
-              status: 'auto-draft'
+              category: params.slug
+              // status: 'auto-draft'
             }
             await app.store.dispatch('getPostsFullList', query)
             return {

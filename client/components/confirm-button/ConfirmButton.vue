@@ -3,7 +3,7 @@
      @mousedown.stop="handleClick">
     <slot>删除</slot>
     <div v-if="showConfirm">
-      <span class="confirm" @click="handleConfirm">
+      <span class="confirm" @click.stop="handleConfirm">
         <svgicon class="gridicon "
                  name="gridicons-checkmark-circle" color="none #fff"/>
 

@@ -12,7 +12,7 @@
   <!--</button>-->
 </template>
 <script>
-  import Button from '~/components/button'
+  import {CButton} from '~/components/button'
 
   export default {
     name: 'HeaderCakeBack',
@@ -32,7 +32,7 @@
       }
     },
     components: {
-      Btn: Button
+      Btn: CButton
     },
     computed: {
       classes () {

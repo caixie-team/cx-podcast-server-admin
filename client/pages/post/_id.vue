@@ -79,16 +79,15 @@
       class="is-compact"
       :title="'修改【' + detail.title + '】'">
       <div slot="action">
-        <!--<button class="c-button is-compact c-editor-publish-button is-primary">发布</button>-->
-        <button class="c-button is-compact c-editor-publish-button is-primary is-busy">出版</button>
-        <!--<button class="c-button is-compact c-editor-publish-button is-primary">更新</button>-->
+        <publish-button :status="fullForm.status"
+                        @publish="handlePublish"
+                        @action="handlePublishAction"/>
       </div>
-
     </header-cake>
     <post-header
-      :post="detail"
       :terms="categories"
-      v-model="detail"/>
+      v-model="detail"
+      @change="handleFormUpdate"/>
 
     <div class="c-post-assets__main-header">
       <span class="c-section-header__label">
@@ -173,15 +172,23 @@
   import HeaderCake from '~/components/header-cake'
   import PostHeader from '~/components/post-header/post-header'
   import Upload from '~/components/upload'
+  import FoldableCard from '~/components/foldable-card'
+  import {CompactCard} from '~/components/card'
+  import PublishButton from '~/components/post-publish-button'
+
+  // import SplitButton from '~/components/split-button'
+  // import PopoverMenuItem from '~/components/popover/menu-item'
+  // import MenuSeparator from '~/components/popover/menu-separator'
+
+  import {map} from 'lodash'
 
   import '~/icons/gridicons-cloud-upload'
   import '~/icons/gridicons-plus-small'
   import '~/icons/gridicons-cog'
   import '~/icons/gridicons-notice'
-  import FoldableCard from '~/components/foldable-card'
-
-  import {CompactCard} from '~/components/card'
-  import {map} from 'lodash'
+  import '~/icons/gridicons-bookmark'
+  import '~/icons/gridicons-not-visible'
+  // import {CButton} from '~/components/button'
 
   // 如果 post type === album 将处理音频播放列表
   export default {
@@ -194,7 +201,11 @@
       PostHeader,
       Upload,
       FoldableCard,
-      CompactCard
+      CompactCard,
+      // SplitButton,
+      // PopoverMenuItem,
+      // MenuSeparator,
+      PublishButton
     },
     validate ({params}) {
       // Must be a number
@@ -237,6 +248,7 @@
         post: {
           title: '标题'
         },
+        fullForm: Object.assign({}, this.fullForm, this.detail),
         curFeaturedImage: '',
         navList: [
           {id: 1, name: 'all', title: '全部'},
@@ -244,6 +256,9 @@
           {id: 3, name: 'approved', title: '已审核'},
           {id: 4, name: 'trash', title: '回收站'}]
       }
+    },
+    mounted () {
+      this.fullForm = Object.assign({}, this.fullForm, this.detail)
     },
     computed: {
       featuredImage () {
@@ -281,11 +296,37 @@
       }
     },
     methods: {
-      // 列表删除
-      // handleRemove (song) {
-        // this.$store.dispath('removeBlockItem', song)
-        // this.$store.commit('post/REMOVE_BLOCK_ITEM', song)
-      // },
+      async handlePublish (sticky) {
+        this.fullForm = Object.assign({}, this.fullForm,
+          {
+            status: 'publish',
+            categories: map(this.fullForm.categories, 'term_id'),
+            sticky: sticky ? sticky : false
+          })
+        if (!Object.is(this.fullForm.block, undefined)) {
+          Reflect.deleteProperty(this.fullForm, 'block')
+        }
+        await this.$store.dispatch('savePostDetail', {form: this.fullForm})
+        this.$router.push('/posts/term/new')
+      },
+      async handlePublishAction (action) {
+        // 发布并推荐置顶 stickys
+        if (action === 'publish') {
+          await this.handlePublish(true)
+        }
+        if (action === 'un-publish') {
+          await this.$store.dispatch('savePostDetail', {
+            form: {
+              id: this.detail.id,
+              author: this.fullForm.author,
+              status: 'draft',
+              sticky: false
+            }
+          })
+          this.fullForm.status = 'draft'
+          this.fullForm.sticky = false
+        }
+      },
       handleFiles (files) {
         this.fileList = files
       },
@@ -314,6 +355,10 @@
       removeErrorFile (file) {
         this.$refs.uploader.remove(file)
       },
+
+      handleFormUpdate (form) {
+        this.fullForm = Object.assign({}, this.fullForm, form)
+      },
       // 处理排序
       handleListChange (list) {
         const form = {
@@ -328,6 +373,11 @@
         // 添加 block 并更新 block
         this.$store.commit('post/ADD_BLOCK', data.response.data)
         this.$refs.uploader.remove(data)
+      }
+    },
+    watch: {
+      detail (val) {
+        this.fullForm = Object.assign({}, this.fullForm, val)
       }
     }
   }

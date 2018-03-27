@@ -2,27 +2,18 @@
   <foldable-card expanded>
     <div slot="header">
       <div class="c-async-load__placeholder" v-if="isUsersFetching"></div>
-      <editor-author :post="post" v-else/>
-
+      <editor-author
+        @change-author="handleChangeAuthor"
+        :post="value" v-else/>
     </div>
     <div slot="summary">内容信息</div>
 
     <div slot="expandedSummary">
-      <button class="c-button c-editor-sticky is-sticky is-borderless u-mr-small" type="button">
-        <svg class="gridicon gridicons-bookmark" height="24" width="24" xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 24 24">
-          <g>
-            <path d="M17 3H7c-1.105 0-2 .896-2 2v16l7-4 7 4V5c0-1.104-.896-2-2-2z"></path>
-          </g>
-        </svg>
-      </button>
-      <a :class="{'c-button is-compact is-borderless c-post-settings__button': true, 'is-focus' : isToggleSetting}"
-         @click="toggleSetting">
-        <svgicon name="gridicons-cog" class="gridicon"/>
-      </a>
-      <!--<button class="c-button is-compact u-mr-small">设置封面</button>-->
-      <!--<button class="c-button is-compact is-primary">更新</button>-->
-      <!--<button class="c-button is-compact is-primary">发布</button>-->
+      <toggle @change="handleToggleChange"
+              v-model="isSticky"
+              :disabled="!(value.status === 'publish')"
+              compact>推荐
+      </toggle>
     </div>
     <div class="c-form-fieldset">
       <label class="c-form-label">
@@ -32,11 +23,15 @@
       <div @click.prevent="handleZoom"
            :class="classes"
            :style="collapsed ? `background-image: url(${form.featured_image});` : ''"
-           v-if="form.featured_image">
-        <remove-button :on-remove="handleRemove"/>
-
+           v-if="form.featured_image"
+           style="box-sizing: border-box; border: 1px solid #d7d6d7; ">
+        <confirm-button @confirm="handleRemove"
+                        style="position: absolute;top: 0;right: 0;">
+          <remove-button/>
+        </confirm-button>
         <spinner style="position: relative; top: 50%;" v-if="uploading"/>
-        <img :src="form.featured_image" class="c-post-image__image" v-if="!collapsed"/>
+        <img :src="form.featured_image"
+             class="c-post-image__image" v-if="!collapsed"/>
       </div>
 
       <upload class="c-button"
@@ -74,7 +69,6 @@
               {{selectdCategory}}
             </small>
           </legend>
-
           <checkbox-group v-model="form.categories">
             <checkbox :label="term.term_id" v-for="term in terms" :key="term.id">
               {{term.name}}
@@ -82,7 +76,6 @@
           </checkbox-group>
 
         </fieldset>
-        {{form.content}}
         <counted-textarea label="内容介绍"
                           :value="form.content"
                           name="summary"
@@ -90,7 +83,7 @@
                           v-if="form.content" :disabled="isSaving"/>
         <div class="c-form-buttons-bar">
           <button :class="{'c-button c-form-button is-primary': true, 'disabled' : !isChange, 'is-busy' : isSaving}"
-                  @click.prevent="handleSubmit" :disabled="isSaving">保存
+                  @click.prevent="handleSubmit" :disabled="isSaving">保存内容
           </button>
         </div>
       </form>
@@ -106,10 +99,10 @@
   import ConfirmButton from '~/components/confirm-button'
   import FormInputValidation from '~/components/forms/form-input-validation'
   import {Checkbox, CheckboxGroup} from '~/components/checkbox'
-
   import Upload from '~/components/upload'
   import Spinner from '~/components/spinner'
-  import {map, xor} from 'lodash'
+  import {map, xor, find} from 'lodash'
+  import Toggle from '~/components/form-toggle'
 
   import '~/icons/gridicons-add-image'
 
@@ -125,15 +118,12 @@
       CheckboxGroup: CheckboxGroup,
       CountedTextarea,
       Upload,
-      Spinner
+      Spinner,
+      Toggle
     },
     props: {
       value: {
         type: Object
-      },
-      post: {
-        type: Object,
-        require: true
       },
       terms: {
         type: Array,
@@ -150,6 +140,7 @@
         uploading: false,
         collapsed: true,
         isToggleSetting: false,
+        isSticky: !!this.value.sticky,
         // curFeaturedImage: this.post.featured_image,
         form: Object.assign({}, {
           id: this.value.id,
@@ -162,13 +153,9 @@
       }
     },
     watch: {
-      value (val) {
-        // this.form = Object.assign({}, val)
-      },
-      'form.categories': {
+      form: {
         handler (val) {
-          // console.log(val)
-          this.$emit('post-form-update', val)
+          this.$emit('change', val)
         },
         deep: true
       }
@@ -176,22 +163,22 @@
     computed: {
       selectdCategory () {
         if (this.form.categories.length === 1) {
-          return this.value.categories[0].name
+          const curCategory = find(this.terms, ['term_id', this.form.categories[0]])
+          if (curCategory) {
+            return curCategory.name
+          }
         } else {
           return this.form.categories.length + ' 分类'
         }
       },
-      // categories () {
-      //   return this.$store.state.categories.data.list
-      // },
       isChange: {
         get () {
+          // !Object.is(this.form.meta, undefined)
           const cateArray = xor(this.form.categories, map(this.value.categories, 'term_id'))
           return this.errors.has('title') ||
             cateArray.length > 0 ||
             this.form.title !== this.value.title ||
-            this.form.content !== this.value.content ||
-            !Object.is(this.form.meta, undefined)
+            this.form.content !== this.value.content
         },
         set (val) {
           this.isChange = this.isSaving
@@ -216,30 +203,59 @@
       },
       updateContent (val) {
         this.form = Object.assign({}, this.form, {content: val})
-        // this.form = {
-        //   content: val
-        // }
-        // this.from.content = val
       },
+      //
+      // Picture Handle
+      //
       handleZoom () {
         this.collapsed = !this.collapsed
       },
       handleRemove () {
+        this.collapsed = true
         this.form.featured_image = ''
         this.form = Object.assign({}, this.form, {
           meta: {
             _thumbnail_id: -1
           }
         })
+        this.$store.dispatch('savePostDetail', {
+          form: {
+            id: this.form.id,
+            author: this.form.author,
+            meta: this.form.meta
+          }
+        })
+      },
+
+      //
+      // Toggle Handle
+      //
+      handleToggleChange (checked) {
+        console.log(this.form.author)
+        this.$store.dispatch('savePostDetail', {
+          form: {
+            id: this.form.id,
+            author: this.form.author,
+            sticky: checked
+          }
+        })
       },
       toggleSetting () {
         this.isToggleSetting = !this.isToggleSetting
       },
+
+      //
+      // Files handle
+      //
       onUpload () {
+        this.collapsed = true
         this.uploading = true
       },
       handlePreview (url) {
         this.form.featured_image = url
+      },
+      handleChangeAuthor (authorId) {
+        this.form.author = authorId
       },
       handleProgress (progress) {
         this.uploading = true
@@ -251,8 +267,18 @@
             _thumbnail_id: file.response.data.id
           }
         })
+        this.$store.dispatch('savePostDetail', {
+          form: {
+            id: this.form.id,
+            author: this.form.author,
+            meta: this.form.meta
+          }
+        })
         this.uploading = false
       },
+      //
+      // Form Handle
+      //
       async handleSubmit () {
         this.isSaving = true
         await this.$validator.validateAll()

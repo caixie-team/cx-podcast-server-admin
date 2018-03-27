@@ -1,3 +1,5 @@
-import Button from './button.vue'
+import CButton from './button.vue'
+import CButtonGroup from './button-group'
 
-export default Button
+export {CButton, CButtonGroup}
+
