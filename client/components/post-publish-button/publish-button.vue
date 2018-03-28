@@ -1,8 +1,8 @@
 <template>
-  <split-button :label="label"
-                icon="gridicons-globe"
-                @click="$emit('publish')"
-                :disabledMain="!isPublish">
+  <split-button
+    class="c-editor-ground-control__publish-button"
+    :label="label"
+    @click="$emit('publish')">
     <popover-menu-item :disabled="isPublish" @click.native.stop="$emit('action', 'publish')">
       <svgicon name="gridicons-bookmark" width="18" height="18" class="gridicon"/>
       发布并推荐
@@ -13,6 +13,7 @@
       撤消发布
     </popover-menu-item>
   </split-button>
+
 </template>
 <script>
   import SplitButton from '~/components/split-button'
@@ -40,7 +41,7 @@
         return this.status === 'publish'
       },
       label () {
-        return this.status === 'publish' ? '内容已发布' : '内容发布'
+        return this.status === 'publish' ? '更新' : '发布'
       }
     }
   }

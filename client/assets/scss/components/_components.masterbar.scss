@@ -377,7 +377,7 @@ $autobar-height: 20px;
   }
 }
 
-.c-masterbar__toggle-drafts.button.is-borderless {
+.c-masterbar__toggle-drafts.c-button.is-borderless {
   background: $white;
   height: 36px;
   margin: 5px 8px 5px -10px;
@@ -435,7 +435,7 @@ $autobar-height: 20px;
   right: 8px;
 }
 
-.c-masterbar__recent-drafts-see-all.button.is-compact {
+.c-masterbar__recent-drafts-see-all.c-button.is-compact {
   display: block;
   padding: 8px 16px;
   border-top: 1px solid lighten( $gray, 20 );

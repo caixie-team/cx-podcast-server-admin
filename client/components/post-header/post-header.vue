@@ -1,11 +1,19 @@
+
 <template>
   <foldable-card expanded>
-    <div slot="header">
-      <div class="c-async-load__placeholder" v-if="isUsersFetching"></div>
+      <input type="text"
+             :value="form.title"
+             autocomplete="off"
+             placeholder="请输入标题"
+             name="title"
+             v-validate="'required'"
+             @change="updateTitle"
+             :disabled="isSaving" slot="header">
+
+<!--      <div class="c-async-load__placeholder" v-if="isUsersFetching"></div>
       <editor-author
         @change-author="handleChangeAuthor"
-        :post="value" v-else/>
-    </div>
+        :post="value" v-else/>-->
     <div slot="summary">内容信息</div>
 
     <div slot="expandedSummary">

@@ -2,9 +2,11 @@
   <span :class="classes">
     <button
       :class="{'c-button c-split-button__main': true,
-      'is-compact': compact, 'is-primary': primary}"
+      'is-compact': compact,
+      'is-primary': primary}"
+      :style="{width: width + 'px'}"
       @click.stop="$emit('click')"
-      :disabled="!disabledMain">
+      :disabled="disabledMain">
         <svgicon :name="icon" class="gridicon" v-if="icon"/>
         {{label}}
     </button>
@@ -20,7 +22,9 @@
 
     <popover-menu :isVisible="isMenuVisible"
                   @close="hideMenu"
-                  class="c-split-button__menu c-popover"
+                  :autoPosition="false"
+                  position="bottom left"
+                  className="c-split-button__menu c-popover"
                   reference="splitButtonToggle">
       <slot></slot>
     </popover-menu>
@@ -43,12 +47,15 @@
         type: String
       },
       compact: {
-        type: Boolean,
-        default: true
+        type: Boolean
       },
       primary: {
         type: Boolean,
         default: true
+      },
+      width: {
+        type: Number,
+        default: 80
       },
       disabled: {
         type: Boolean

@@ -1,5 +1,5 @@
-.edit-post-status__sticky,
-.edit-post-status__pending-review {
+.c-edit-post-status__sticky,
+.c-edit-post-status__pending-review {
   align-content: center;
   display: flex;
   justify-content: space-between;
@@ -12,7 +12,7 @@
   }
 }
 
-.edit-post-status__label-text {
+.c-edit-post-status__label-text {
   color: $gray-text;
   font-size: 13px;
   line-height: 1.7;
@@ -22,24 +22,24 @@
       display: none;
     }
 
-    &:hover .info-popover {
+    &:hover .c-info-popover {
       display: inline-block;
     }
   }
 }
 
-.edit-post-status .select-dropdown__container {
+.c-edit-post-status .select-dropdown__container {
   // ensure 100% width
   display: block;
 }
 
-.edit-post-status__revert-to-draft {
+.c-edit-post-status__revert-to-draft {
   display: block;
   margin: 16px 0 8px;
   width: 100%;
 }
 
-.edit-post-status__full-date {
+.c-edit-post-status__full-date {
   color: $gray-text;
   font-size: 13px;
   display: flex;
@@ -55,7 +55,7 @@
   }
 }
 
-.edit-post-status__future-label {
+.c-edit-post-status__future-label {
   background: $blue-medium;
   border-radius: 2px;
   color: $white;
@@ -70,18 +70,18 @@
   text-transform: uppercase;
 }
 
-.edit-post-status__post-schedule {
+.c-edit-post-status__post-schedule {
   box-sizing: border-box;
   display: block;
   padding: 0 16px;
   width: 237px;
 
-  .async-load {
+  .c-async-load {
     margin: 16px 0;
     width: auto;
   }
 }
 
-.edit-post-status .form-toggle__label .form-toggle__label-content {
+.c-edit-post-status .c-form-toggle__label .c-form-toggle__label-content {
   margin: 0;
 }

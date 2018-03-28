@@ -18,9 +18,9 @@
     transform: rotate(45deg);
   }
 
-  .c-editor-publish-button {
-    min-width: 100px;
-  }
+  /*.c-editor-publish-button {*/
+  /*min-width: 100px;*/
+  /*}*/
 
   .c-post-assets__header-button {
     align-items: center;
@@ -74,99 +74,148 @@
 </style>
 
 <template>
-  <div class="c-main ">
-    <header-cake
-      class="is-compact"
-      :title="'修改【' + detail.title + '】'">
-      <div slot="action">
-        <publish-button :status="fullForm.status"
-                        @publish="handlePublish"
-                        @action="handlePublishAction"/>
-      </div>
-    </header-cake>
-    <post-header
-      :terms="categories"
-      v-model="detail"
-      @change="handleFormUpdate"/>
 
-    <div class="c-post-assets__main-header">
+  <div class="c-post-editor">
+    <div class="c-post-editor__inner">
+      <editor-ground-control v-model="detail"/>
+    </div>
+    <div class="c-post-editor__content">
+      <div class="c-editor-action-bar">
+        <div class="c-editor-action-bar__cell is-left">
+          <button class="c-editor-status-label__placeholder c-editor-status-label">
+            <strong>正在加载文章…</strong>
+          </button>
+        </div>
+        <div class="c-editor-action-bar__cell is-center">
+          <div class="c-async-load__placeholder" v-if="isUsersFetching"></div>
+          <editor-author
+            @change-author="handleChangeAuthor"
+            :post="detail" v-else/>
+        </div>
+        <div class="c-editor-action-bar__cell is-right">
+          <button class="c-button c-editor-sticky is-sticky is-borderless" type="button">
+            <svg class="gridicon gridicons-bookmark" height="24" width="24" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24">
+              <g>
+                <path d="M17 3H7c-1.105 0-2 .896-2 2v16l7-4 7 4V5c0-1.104-.896-2-2-2z"></path>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="c-post-editor__inner-content">
+      <div class="c-post-editor__header">
+
+      <div class="c-editor-title">
+        <!--<div class="c-editor-permalink">-->
+          <!--<svg class="gridicon gridicons-link c-editor-permalink__toggle" height="24" width="24"-->
+               <!--xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">-->
+            <!--<g>-->
+              <!--<path-->
+                <!--d="M17 13H7v-2h10v2zm1-6h-1c-1.63 0-3.065.792-3.977 2H18c1.103 0 2 .897 2 2v2c0 1.103-.897 2-2 2h-4.977c.913 1.208 2.347 2 3.977 2h1c2.21 0 4-1.79 4-4v-2c0-2.21-1.79-4-4-4zM2 11v2c0 2.21 1.79 4 4 4h1c1.63 0 3.065-.792 3.977-2H6c-1.103 0-2-.897-2-2v-2c0-1.103.897-2 2-2h4.977C10.065 7.792 8.63 7 7 7H6c-2.21 0-4 1.79-4 4z"></path>-->
+            <!--</g>-->
+          <!--</svg>-->
+        <!--</div>-->
+        <textarea tabindex="1" class="textarea-autosize c-editor-title__input" placeholder="标题" aria-label="编辑标题" rows="1"
+                  style="overflow: hidden; word-wrap: break-word; height: 62px;">asdf</textarea></div>
+      </div>
+      <div class="c-main">
+        <!--    <header-cake
+              class="is-compact"
+              :title="title">
+              <div slot="action">
+                <publish-button :status="fullForm.status"
+                                @publish="handlePublish"
+                                @action="handlePublishAction"/>
+              </div>
+            </header-cake>-->
+        <post-header
+          :terms="categories"
+          v-model="detail"
+          @change="handleFormUpdate"/>
+        <div class="c-post-assets__main-header">
       <span class="c-section-header__label">
         <span class="c-section-header__label-text">
             资源列表
             <small class="c-section__subtitle">
-              {{detail.block.length}} 条
+              {{blockCount}} 条
             </small>
         </span>
-        <span class="c-count" v-if="detail.assets">{{detail.assets.length}}</span>
+        <!--<span class="c-count" v-if="detail.assets">{{detail.assets.length}}</span>-->
       </span>
-      <upload :accept="accept"
-              :multiple="multiple"
-              :on-success="handleSuccess"
-              @receive-files="handleFiles" ref="uploader">
-        <a class="c-button c-post-assets__header-button "
-           style="color: #767576; fill: #767576;">
-          <svgicon name="gridicons-cloud-upload"
-                   class="gridicon gridicons-cloud-upload"
-                   style="width: 18px; height: 18px;" color="none #767576;"/>
-          <span class="c-header-button__text">上传资源</span>
-        </a>
-      </upload>
+          <upload :accept="accept"
+                  :multiple="multiple"
+                  :on-success="handleSuccess"
+                  @receive-files="handleFiles" ref="uploader">
+            <a class="c-button c-post-assets__header-button "
+               style="color: #767576; fill: #767576;">
+              <svgicon name="gridicons-cloud-upload"
+                       class="gridicon gridicons-cloud-upload"
+                       style="width: 18px; height: 18px;" color="none #767576;"/>
+              <span class="c-header-button__text">上传资源</span>
+            </a>
+          </upload>
 
-    </div>
+        </div>
 
-    <!--<draggable v-model="assetList" v-if="isTopic">-->
-    <!--<post-asset :asset="item"-->
-    <!--:order="assetList.length - index"-->
-    <!--v-for="(item,index) in assetList"-->
-    <!--:key="item.id"/>-->
-    <!--</draggable>-->
+        <!--<draggable v-model="assetList" v-if="isTopic">-->
+        <!--<post-asset :asset="item"-->
+        <!--:order="assetList.length - index"-->
+        <!--v-for="(item,index) in assetList"-->
+        <!--:key="item.id"/>-->
+        <!--</draggable>-->
 
-    <!--<div class="c-async-load__placeholder" v-if="!isLoading"></div>-->
-    <div class="c-upload-list u-mb-medium" v-if="fileList.length > 0">
-      <compact-card v-for="file in fileList"
-                    :key="file.id"
-                    :class="{'is-highlight is-error' : file.error}" style="background: #FAFAFA;">
-        <div class="c-upload-item u-flex">
-          <div class="c-upload-item__header u-width-50">
-            {{file.name}}
-          </div>
-          <div class="c-upload-item__content u-width-25 u-flex"
-               style="font-size: 14px; flex-direction: column; text-align: center;">
-            {{file.size | formatSize}}
-            <span v-if="file.error" class="u-text-danger" style="font-size: 13px;">
+        <!--<div class="c-async-load__placeholder" v-if="!isLoading"></div>-->
+        <div class="c-upload-list u-mb-medium" v-if="fileList.length > 0">
+          <compact-card v-for="file in fileList"
+                        :key="file.id"
+                        :class="{'is-highlight is-error' : file.error}" style="background: #FAFAFA;">
+            <div class="c-upload-item u-flex">
+              <div class="c-upload-item__header u-width-50">
+                {{file.name}}
+              </div>
+              <div class="c-upload-item__content u-width-25 u-flex"
+                   style="font-size: 14px; flex-direction: column; text-align: center;">
+                {{file.size | formatSize}}
+                <span v-if="file.error" class="u-text-danger" style="font-size: 13px;">
             <svgicon name="gridicons-notice" color="none #ed4d4d" height="16" width="16"/>
             {{file.error | formatError}}
           </span>
-          </div>
-          <div class="c-upload-item__progress u-width-25  u-flex u-align-items-center u-justify-end"
-               style="font-size: 13px;">
-            <button class="c-button is-compact" style="min-width: 98px;" v-if="file.error"
-                    @click="removeErrorFile(file)">取消
-            </button>
+              </div>
+              <div class="c-upload-item__progress u-width-25  u-flex u-align-items-center u-justify-end"
+                   style="font-size: 13px;">
+                <button class="c-button is-compact" style="min-width: 98px;" v-if="file.error"
+                        @click="removeErrorFile(file)">取消
+                </button>
 
-            <div class="c-progress-bar is-compact is-pulsing"
-                 v-else-if="(file.active || file.progress !== '0.00') && !file.success">
-              <div class="c-progress-bar__progress" :style="{width: file.progress + '%'}"></div>
+                <div class="c-progress-bar is-compact is-pulsing"
+                     v-else-if="(file.active || file.progress !== '0.00') && !file.success">
+                  <div class="c-progress-bar__progress" :style="{width: file.progress + '%'}"></div>
+                </div>
+                <span class="u-text-success" v-else-if="file.success">上传成功</span>
+                <span class="u-text-mute" v-else>队列</span>
+              </div>
             </div>
-            <span class="u-text-success" v-else-if="file.success">上传成功</span>
-            <span class="u-text-mute" v-else>队列</span>
-          </div>
+          </compact-card>
         </div>
-      </compact-card>
+        <post-audio-player
+          theme="#14aaf5"
+          preload="metadata"
+          mode="circulation"
+          :defaultPic="detail.featured_image"
+          :music="detail.block[0]"
+          :list="detail.block"
+          @change-list="handleListChange"
+          v-if="hasBlock"/>
+      </div>
+
     </div>
-    <post-audio-player
-      theme="#14aaf5"
-      preload="metadata"
-      mode="circulation"
-      :defaultPic="detail.featured_image"
-      :music="detail.block[0]"
-      :list="detail.block"
-      @change-list="handleListChange"
-      v-if="detail.block.length > 0"/>
   </div>
 </template>
 <script>
   /* eslint-disable no-empty prefer-const */
+  import {EditorGroundControl} from '~/components/post-editor'
   import EmptyContent from '~/components/empty-content'
   import {PostAudioPlayer} from '~/components/players'
   import HeaderCake from '~/components/header-cake'
@@ -175,10 +224,6 @@
   import FoldableCard from '~/components/foldable-card'
   import {CompactCard} from '~/components/card'
   import PublishButton from '~/components/post-publish-button'
-
-  // import SplitButton from '~/components/split-button'
-  // import PopoverMenuItem from '~/components/popover/menu-item'
-  // import MenuSeparator from '~/components/popover/menu-separator'
 
   import {map} from 'lodash'
 
@@ -189,45 +234,43 @@
   import '~/icons/gridicons-bookmark'
   import '~/icons/gridicons-not-visible'
   // import {CButton} from '~/components/button'
+  import EditorAuthor from '~/components/post-editor/editor-author'
 
   // 如果 post type === album 将处理音频播放列表
   export default {
-    // layout: 'post-editor',
-    // name: 'PostEditor',
+    layout: 'c-post-editor',
     components: {
+      EditorGroundControl,
       HeaderCake,
+      EditorAuthor,
       EmptyContent,
       PostAudioPlayer,
       PostHeader,
       Upload,
       FoldableCard,
       CompactCard,
-      // SplitButton,
-      // PopoverMenuItem,
-      // MenuSeparator,
       PublishButton
     },
-    validate ({params}) {
-      // Must be a number
-      return /^\d+$/.test(params.id)
-    },
-    async fetch ({store, params}) {
-      await store.dispatch('loadUsers')
-      await store.dispatch('getPostDetail', params.id)
-    },
+    // validate ({params}) {
+    //   return /^\d+$/.test(params.id)
+    // },
+    // async fetch ({store, params}) {
+    //   await store.dispatch('loadUsers')
+    //   await store.dispatch('getPostDetail', params.id)
+    // },
     async asyncData ({app, params}) {
-      // await app.store.dispatch('loadUsers')
-      // if (params.id && !Object.is(Number(params.id), NaN)) {
-      //   await app.store.dispatch('getPostDetail', params.id)
-      //   await this.getAssets(params.id, 1)
-      //
-      // } else {
-      // await app.store.commit('podcast/INIT')
-      // return {
-      // episodeList: [],
-      // category: params.category
-      // }
-      // }
+      await app.store.dispatch('loadUsers')
+      if (params.id && !Object.is(Number(params.id), NaN)) {
+        await app.store.dispatch('getPostDetail', params.id)
+        return {
+          isNew: false
+        }
+      } else {
+        await app.store.commit('post/INIT', app.$auth.state.user)
+        return {
+          isNew: true
+        }
+      }
     },
     data () {
       return {
@@ -245,9 +288,10 @@
         isBulkEdit: false,
         content: '',
         isLoading: false,
-        post: {
-          title: '标题'
-        },
+        // isNew: false,
+        // post: {
+        //   title: '标题'
+        // },
         fullForm: Object.assign({}, this.fullForm, this.detail),
         curFeaturedImage: '',
         navList: [
@@ -261,6 +305,12 @@
       this.fullForm = Object.assign({}, this.fullForm, this.detail)
     },
     computed: {
+      blockCount () {
+        return this.detail.block.length
+      },
+      hasBlock () {
+        return this.detail.block.length > 0
+      },
       featuredImage () {
         if (this.curFeaturedImage) {
           return this.curFeaturedImage
@@ -292,10 +342,17 @@
         return this.$store.state.categories.data.list
       },
       title () {
-        return this.detail.title ? this.detail.title : '标题'
+        if (this.isNew === true) {
+          return '新建'
+        }
+        return this.detail.title ? `修改【${this.detail.title}】` : '新建'
       }
     },
     methods: {
+      handleChangeAuthor (authorId) {
+        console.log(authorId)
+        // this.form.author = authorId
+      },
       async handlePublish (sticky) {
         this.fullForm = Object.assign({}, this.fullForm,
           {
@@ -370,9 +427,16 @@
       },
       // 内容添加成功的处理
       handleSuccess (success, data) {
+        let isNew = true
+        if (this.detail.block.length > 0) {
+          isNew = false
+        }
         // 添加 block 并更新 block
         this.$store.commit('post/ADD_BLOCK', data.response.data)
         this.$refs.uploader.remove(data)
+        if (isNew) {
+          this.handleListChange()
+        }
       }
     },
     watch: {

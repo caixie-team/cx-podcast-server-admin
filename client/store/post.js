@@ -49,6 +49,22 @@ export const state = () => {
 
 export const mutations = {
   //
+  // INIT
+  //
+  INIT (state, author) {
+    state.detail = Object.assign({}, state.detail, {
+        status: 'init',
+        data: {
+          author: author,
+          status: 'init',
+          name: '',
+          title: '',
+          content: '',
+          block: []
+        }
+      })
+  },
+  //
   // REQUEST Detail
   //
   CLEAR_DETAIL (state) {

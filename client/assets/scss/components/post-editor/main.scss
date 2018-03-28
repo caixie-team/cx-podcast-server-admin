@@ -28,7 +28,8 @@
 }
 
 .is-group-editor .o-layout__content {
-  padding: 47px 0 0;
+  //padding: 47px 0 0;
+  padding: 18px 0 0;
   overflow: inherit;
 }
 
@@ -98,7 +99,7 @@
 .c-post-editor .mce-container-body,
 .c-post-editor .tinymce {
   width: 100%;
-  max-width: 700px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
@@ -176,7 +177,7 @@
 
 .c-post-editor__header {
   position: relative;
-  padding-bottom: 27px;
+  //padding-bottom: 27px;
 }
 
 .c-post-editor__switch-mode {

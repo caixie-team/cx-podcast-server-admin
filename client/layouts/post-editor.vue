@@ -5,7 +5,7 @@
     <masterbar-logged-in :title="title" :sectionName="name"/>
     <div id="content" class="o-layout__content">
       <div id="primary" class="o-layout__primary">
-        <nuxt />
+        <nuxt/>
       </div>
       <div id="secondary" class="o-layout__secondary">
         <div class="editor-sidebar">
@@ -379,15 +379,25 @@
       // },
     },
     computed: {
+      fullWideLayout () {
+        return this.$store.state.options.fullWideLayout
+      },
+      editorLayout () {
+      },
+      currentLayoutFocus () {
+        return this.$store.state.options.layoutFocus
+      },
       classes () {
         // const focus = this.$store.state.options.layoutFocus
         const classArray = [
           'notouch',
-          'layout',
+          'o-layout',
           'is-default',
-          'is-group-editor',
-          'is-section-post-editor',
-          this.currentLayoutFocus === 'apps' ? 'focus-apps' : 'focus-sidebar'
+          this.$store.state.options.layoutStatus,
+          // 'is-section-posts-pages',
+          this.currentLayoutFocus ? this.currentLayoutFocus : 'focus-sidebar',
+          // this.currentLayoutFocus,
+          {'has-no-sidebar': this.fullWideLayout && this.currentLayoutFocus !== 'focus-sidebar'}
         ]
         return classArray
       }

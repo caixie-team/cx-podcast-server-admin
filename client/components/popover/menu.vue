@@ -8,13 +8,14 @@
         type: Boolean,
         default: true
       },
-      position: 'top',
+      position: String,
       isVisible: {
         type: Boolean
       },
       reference: {
         type: String
-      }
+      },
+      className: String
     },
     components: {
       Popover
@@ -27,9 +28,9 @@
     render () {
       return (
         <popover
+          className={this.className}
           reference={this.reference}
           isVisible={this.isVisible}
-          autoPosition={this.autoPosition}
           on-click-outside={this.hide}
           position={this.position}>
           <div ref="menu" class="c-popover__menu" tabIndex="-1">

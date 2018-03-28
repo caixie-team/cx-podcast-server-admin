@@ -57,13 +57,13 @@ export const mutations = {
     state.layoutFocus = 'focus-' + action
   },
   SET_LAYOUT_STATUS (state, action) {
-    // if (action === 'post' || action === 'post-id') {
-    //   state.layoutStatus = 'is-group-editor is-section-post-editor'
-    // } else {
-    if (action === 'apps') {
+    if (action === 'post' || action === 'post-id') {
+      state.layoutStatus = 'is-group-editor is-section-post-editor'
+    } else if (action === 'apps') {
       state.layoutStatus = 'is-group-apps'
+    } else {
+      state.layoutStatus = ''
     }
-    // }
   },
   SET_NEXT_LAYOUT_FOCUS (state, action) {
   },

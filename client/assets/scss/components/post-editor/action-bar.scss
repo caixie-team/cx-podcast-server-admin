@@ -67,7 +67,7 @@
   }
 }
 
-.post-editor__content .c-editor-action-bar {
+.c-post-editor__content .c-editor-action-bar {
   @include breakpoint( "<660px" ) {
     display: none;
   }
@@ -79,7 +79,7 @@
   }
 }
 
-.c-editor-action-bar .button {
+.c-editor-action-bar .c-button {
   color: $gray-darken-10;
   background: transparent;
   margin-left: 18px;
@@ -100,7 +100,7 @@
   }
 }
 
-.c-editor-action-bar__view-post-tooltip .popover__inner {
+.c-editor-action-bar__view-post-tooltip .c-popover__inner {
   white-space: nowrap;
 }
 
