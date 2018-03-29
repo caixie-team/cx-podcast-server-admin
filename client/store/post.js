@@ -88,8 +88,9 @@ export const mutations = {
   SAVE_DETAIL (state) {
     state.detail.saving = true
   },
-  SAVE_DETAIL_SUCCESS (state, action) {
+  SAVE_DETAIL_SUCCESS (state, data) {
     state.detail.saving = false
+    state.detail.data = Object.assign({}, state.detail.data, data)
   },
   SAVE_DETAIL_FAILURE (state) {
     state.detail.saving = false
@@ -192,15 +193,16 @@ export const mutations = {
     state.post.del = 'error'
   },
   CREATE (state) {
-    state.post.creating = true
+    state.detail.creating = true
   },
   CREATE_SUCCESS (state, action) {
-    // state.post.creating = true
-    state.post.data.id = action.data
+    state.detail.creating = false
+    // state.post.data.id = action.data
+    state.detail.data = action.data
     // Object.assign(state.user, user);
   },
   CREATE_FAILURE (state) {
-    state.post.creating = false
+    state.detail.creating = false
   },
   CREATE_CANCEL (state) {
     state.post.creating = false

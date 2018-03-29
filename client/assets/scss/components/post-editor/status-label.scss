@@ -1,4 +1,4 @@
-.editor-status-label {
+.c-editor-status-label {
   color: $gray;
   cursor: pointer;
   display: block;
@@ -7,7 +7,6 @@
   padding-left: 18px;
   text-align: left;
   text-transform: uppercase;
-
   .gridicon {
     display: inline-block;
     fill: lighten( $gray, 10% );
@@ -37,6 +36,6 @@
   }
 }
 
-.editor-status-label__placeholder {
+.c-editor-status-label__placeholder {
   padding-left: 0;
 }

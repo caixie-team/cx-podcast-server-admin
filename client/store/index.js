@@ -170,20 +170,44 @@ export const actions = {
     }
   },
   async savePostDetail ({commit}, {form}) {
+    const newData = Object.assign({}, form)
+
+    if (typeof form.author === 'object') {
+      form.author = form.author.id
+    } else {
+      Reflect.deleteProperty(newData, 'author')
+    }
+    if (!Object.is(newData.block, undefined)) {
+      Reflect.deleteProperty(newData, 'block')
+    }
     commit('post/SAVE_DETAIL')
     const {data} = await this.$axios.post(`/apps/${this.getters.appId}/posts/${form.id}`, form)
     if (data && data.errno === 0) {
-      commit('post/SAVE_DETAIL_SUCCESS')
+      commit('post/SAVE_DETAIL_SUCCESS', newData)
       this.$toast.success('内容保存成功')
     } else {
       commit('post/SAVE_DETAIL_FAILURE')
-      this.$toast.success('内容保存失败')
+      this.$toast.error('内容保存失败')
     }
+  },
+  async createPost ({commit}, {form}) {
+    commit('post/CREATE')
+    const {data} = await this.$axios.post(`/apps/${this.getters.appId}/posts/new`, form)
+    if (data.errno > 0) {
+      commit('post/CREATE_FAILURE')
+      this.$toast.error(data.data)
+
+    } else {
+      // const post = Object.assign(form, data.data)
+      commit('post/CREATE_SUCCESS', data)
+      history.pushState({state: 1}, 'Auto Save State', `/post/${data.data.id}`)
+    }
+    return data
   },
   //
   // BLOCKS
   //
-  async removePostBlockItem({commit}, item) {
+  async removePostBlockItem ({commit}, item) {
 
   },
   async addPostBlock ({commit}, block) {

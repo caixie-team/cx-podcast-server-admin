@@ -10,7 +10,7 @@
         :maxlength="maxlength"
         :placeholder="placeholder"
         class="c-counted-textarea__input c-form-textarea"
-        v-model="content"/>
+        v-model="content" @change="handleChange"/>
       <div class="c-counted-textarea__count-panel">
         {{ _wordCount(content) }} 个字
       </div>
@@ -68,6 +68,9 @@
           }
         }
         return count
+      },
+      handleChange (event) {
+        this.$emit('change', event.target.value)
       }
     },
     watch: {
@@ -75,7 +78,7 @@
         this.content = val
       },
       content (val) {
-        this.$emit('change', val)
+        this.$emit('input-change', val)
       }
     }
   }

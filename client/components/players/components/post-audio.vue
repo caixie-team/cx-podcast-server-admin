@@ -101,7 +101,12 @@
         await this.$validator.validateAll()
           .then(async (result) => {
             if (result) {
-              const {data} = await this.$axios.post(`/apps/${this.$store.getters.appId}/posts/${this.form.id}`, this.form)
+              const {data} = await this.$axios.post(`/apps/${this.$store.getters.appId}/posts/${this.form.id}`, {
+                id: this.form.id,
+                author: this.form.author,
+                title: this.form.title,
+                status: this.form.status
+              })
               if (data && data.errno === 0) {
                 this.$emit('updated', this.form)
                 // 同步更新标题
