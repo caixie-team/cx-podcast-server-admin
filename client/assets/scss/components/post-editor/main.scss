@@ -141,19 +141,19 @@
  * It's only done while an image is actively being dragged, because it interferes with TinyMCE
  * toolbar pinning/unpinning.
  */
-.c-post-editor__content-editor .c-editor-featured-image.has-active-drop-zone ~ div.tinymce-container {
+.c-post-editor__content-editor .c-editor-featured-image.has-active-drop-zone ~ div.c-tinymce-container {
   position: relative;
 }
 
-.c-post-editor .tinymce-container.c-editor-mode-tinymce .drop-zone.is-active {
+.c-post-editor .c-tinymce-container.c-editor-mode-tinymce .drop-zone.is-active {
   top: 75px; /* Move it below the TinyMCE toolbar, because it looks bad when they overlap */
 }
 
-.c-post-editor .tinymce-container.c-editor-mode-html .drop-zone.is-active {
+.c-post-editor .c-tinymce-container.c-editor-mode-html .drop-zone.is-active {
   top: 40px; /* Move it below the TinyMCE toolbar, because it looks bad when they overlap */
 }
 
-.c-post-editor .tinymce {
+.c-post-editor .c-tinymce {
   min-height: 100vh;
   resize: none;
   border-width: 0;
@@ -177,7 +177,7 @@
 
 .c-post-editor__header {
   position: relative;
-  //padding-bottom: 27px;
+  padding-bottom: 27px;
 }
 
 .c-post-editor__switch-mode {
@@ -195,33 +195,33 @@
   }
 }
 
-.c-post-editor__switch-mode .segmented-control__item {
+.c-post-editor__switch-mode .c-segmented-control__item {
   &:first-of-type {
-    .segmented-control__link {
+    .c-segmented-control__link {
       border-bottom-left-radius: 0;
     }
   }
 
   &:last-of-type {
-    .segmented-control__link {
+    .c-segmented-control__link {
       border-right-color: $gray-lighten-20;
       border-bottom-right-radius: 0;
     }
   }
 
   &.is-selected {
-    + .segmented-control__item .segmented-control__link {
+    + .c-segmented-control__item .c-segmented-control__link {
       border-left-color: $gray-lighten-20;
     }
   }
 }
 
-.c-post-editor__switch-mode .segmented-control__link {
+.c-post-editor__switch-mode .c-segmented-control__link {
   background: $gray-light;
   border-color: $gray-lighten-20;
 }
 
-.c-post-editor__switch-mode .segmented-control__item.is-selected .segmented-control__link {
+.c-post-editor__switch-mode .c-segmented-control__item.is-selected .c-segmented-control__link {
   border-color: $gray-lighten-20;
   border-bottom-color: $white;
   background-color: $white;
@@ -237,11 +237,11 @@
   }
 }
 
-.c-post-editor .drafts__list + .list-end::after {
+.c-post-editor .c-drafts__list + .c-list-end::after {
   background-color: $gray-lighten-30;
 }
 
-.c-post-editor .draft {
+.c-post-editor .c-draft {
   padding: 16px;
 }
 

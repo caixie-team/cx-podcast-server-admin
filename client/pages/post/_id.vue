@@ -1,80 +1,4 @@
-<style lang="scss">
-  .c-post-settings__button {
-    .gridicon {
-      top: 4px;
-      margin-left: 4px;
-    }
-    transition: all 0.15s ease-in-out;
-    svg {
-      transition: transform 0.3s ease-in-out;
-    }
-    &:hover {
-      cursor: pointer;
-    }
-
-  }
-
-  .is-focus.c-post-settings__button svg {
-    transform: rotate(45deg);
-  }
-
-  /*.c-editor-publish-button {*/
-  /*min-width: 100px;*/
-  /*}*/
-
-  .c-post-assets__header-button {
-    align-items: center;
-    border: none;
-    border-radius: 0;
-    display: flex;
-    flex-direction: column;
-    font-weight: normal;
-    justify-content: center;
-    min-width: 140px;
-  }
-
-  .c-post-assets__header-button {
-    align-items: center;
-    border: none;
-    border-radius: 0;
-    display: flex;
-    flex-direction: column;
-    font-weight: normal;
-    justify-content: center;
-    min-width: 140px;
-
-    &:hover {
-      background-color: #FAFAFA;
-    }
-  }
-
-  .c-post-assets__header-button .gridicon.gridicons-cloud-upload {
-    top: 6px;
-  }
-
-  .c-post-assets__header-button__text {
-    margin-top: 3px;
-    white-space: nowrap;
-  }
-
-  .c-section__subtitle {
-    font-size: 11px;
-    color: #537994;
-    font-weight: 400;
-    white-space: nowrap;
-    overflow: hidden;
-    position: relative;
-    height: 16px;
-  }
-
-  /*.c-upload-list {*/
-  /*display: flex;*/
-  /*flex-direction: row;*/
-  /*}*/
-</style>
-
 <template>
-
   <div class="c-post-editor">
     <div class="c-post-editor__inner">
       <editor-ground-control v-model="detail"/>
@@ -107,21 +31,21 @@
     <div class="c-post-editor__inner-content">
       <div class="c-post-editor__header">
 
-      <div class="c-editor-title">
-        <!--<div class="c-editor-permalink">-->
-          <!--<svg class="gridicon gridicons-link c-editor-permalink__toggle" height="24" width="24"-->
-               <!--xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">-->
-            <!--<g>-->
-              <!--<path-->
-                <!--d="M17 13H7v-2h10v2zm1-6h-1c-1.63 0-3.065.792-3.977 2H18c1.103 0 2 .897 2 2v2c0 1.103-.897 2-2 2h-4.977c.913 1.208 2.347 2 3.977 2h1c2.21 0 4-1.79 4-4v-2c0-2.21-1.79-4-4-4zM2 11v2c0 2.21 1.79 4 4 4h1c1.63 0 3.065-.792 3.977-2H6c-1.103 0-2-.897-2-2v-2c0-1.103.897-2 2-2h4.977C10.065 7.792 8.63 7 7 7H6c-2.21 0-4 1.79-4 4z"></path>-->
-            <!--</g>-->
-          <!--</svg>-->
-        <!--</div>-->
-        <textarea tabindex="1" class="textarea-autosize c-editor-title__input" placeholder="标题" aria-label="编辑标题" rows="1"
-                  style="overflow: hidden; word-wrap: break-word; height: 62px;">asdf</textarea></div>
+        <div class="c-editor-title">
+          <textarea tabindex="1" class="textarea-autosize c-editor-title__input"
+                    placeholder="标题"
+                    rows="1"
+                    style="overflow: hidden; word-wrap: break-word; height: 62px;"
+                    :value="detail.title">
+
+        </textarea>
+        </div>
+
       </div>
+
       <div class="c-main">
-        <!--    <header-cake
+        <!--
+        <header-cake
               class="is-compact"
               :title="title">
               <div slot="action">
@@ -129,21 +53,205 @@
                                 @publish="handlePublish"
                                 @action="handlePublishAction"/>
               </div>
-            </header-cake>-->
+            </header-cake>
+            -->
         <post-header
           :terms="categories"
           v-model="detail"
           @change="handleFormUpdate"/>
+        <!--
+        <div class="tinymce-container editor-mode-tinymce">
+          <div style="visibility: hidden;  border-width: 1px; width: 100%; padding-top: 38px;"
+               class="mce-tinymce mce-container mce-panel is-">
+            <div id="mceu_27-body" class="mce-container-body mce-stack-layout">
+              <div id="mceu_28" class="mce-toolbar-grp mce-container mce-panel mce-stack-layout-item mce-first"
+                   hidefocus="1" tabindex="-1" role="group">
+                <div id="mceu_28-body" class="mce-container-body mce-stack-layout">
+                  <div id="mceu_29" class="mce-container mce-toolbar mce-stack-layout-item mce-first" role="toolbar">
+                    <div id="mceu_29-body" class="mce-container-body mce-flow-layout">
+                      <div id="mceu_30" class="mce-container mce-flow-layout-item mce-first mce-last mce-btn-group"
+                           role="group">
+                        <div id="mceu_30-body">
+                          <div id="mceu_0"
+                               class="mce-widget mce-btn mce-wpcom-insert-menu mce-insert-menu mce-menubtn mce-first"
+                               tabindex="-1" aria-labelledby="mceu_0" role="button" aria-label="添加内容" aria-haspopup="true"
+                               aria-expanded="false">
+                            <button id="mceu_0-open" role="presentation" type="button" tabindex="-1">
+                              <div class="wpcom-insert-menu__menu" data-reactroot="">
+                                <svg class="gridicon gridicons-add-outline wpcom-insert-menu__menu-icon" height="24"
+                                     width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                  <g>
+                                    <path
+                                      d="M12 4c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8 3.59-8 8-8m0-2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm5 9h-4V7h-2v4H7v2h4v4h2v-4h4v-2z"></path>
+                                  </g>
+                                </svg>
+                                <span class="wpcom-insert-menu__menu-label">添加</span></div>
+                            </button>
+                          </div>
+                          <div id="mceu_1"
+                               class="mce-widget mce-btn mce-menubtn mce-fixed-width mce-listbox mce-btn-has-text"
+                               tabindex="-1" aria-labelledby="mceu_1" role="button" aria-haspopup="true"
+                               aria-expanded="false">
+                            <button id="mceu_1-open" role="presentation" type="button" tabindex="-1"><span
+                              class="mce-txt">段落</span> <i class="mce-caret"></i></button>
+                          </div>
+                          <div id="mceu_2" class="mce-widget mce-btn" tabindex="-1" role="button" aria-label="Bold">
+                            <button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-bold"></i>
+                            </button>
+                          </div>
+                          <div id="mceu_3" class="mce-widget mce-btn" tabindex="-1" role="button" aria-label="Italic">
+                            <button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-italic"></i>
+                            </button>
+                          </div>
+                          <div id="mceu_4" class="mce-widget mce-btn" tabindex="-1" role="button"
+                               aria-label="Bullet list">
+                            <button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-bullist"></i>
+                            </button>
+                          </div>
+                          <div id="mceu_5" class="mce-widget mce-btn" tabindex="-1" role="button"
+                               aria-label="Numbered list">
+                            <button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-numlist"></i>
+                            </button>
+                          </div>
+                          <div id="mceu_6" class="mce-widget mce-btn" tabindex="-1" role="button" aria-label="插入或编辑链接">
+                            <button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-link"></i>
+                            </button>
+                          </div>
+                          <div id="mceu_7" class="mce-widget mce-btn" tabindex="-1" role="button" aria-label="Blockquote">
+                            <button role="presentation" type="button" tabindex="-1"><i
+                              class="mce-ico mce-i-blockquote"></i></button>
+                          </div>
+                          <div id="mceu_8" class="mce-widget mce-btn" tabindex="-1" role="button" aria-label="Align left">
+                            <button role="presentation" type="button" tabindex="-1"><i
+                              class="mce-ico mce-i-alignleft"></i></button>
+                          </div>
+                          <div id="mceu_9" class="mce-widget mce-btn" tabindex="-1" role="button"
+                               aria-label="Align center">
+                            <button role="presentation" type="button" tabindex="-1"><i
+                              class="mce-ico mce-i-aligncenter"></i></button>
+                          </div>
+                          <div id="mceu_10" class="mce-widget mce-btn" tabindex="-1" role="button"
+                               aria-label="Align right">
+                            <button role="presentation" type="button" tabindex="-1"><i
+                              class="mce-ico mce-i-alignright"></i></button>
+                          </div>
+                          <div id="mceu_11" class="mce-widget mce-btn" tabindex="-1" role="button" aria-label="校对作品">
+                            <button role="presentation" type="button" tabindex="-1"><i
+                              class="mce-ico mce-i-spellchecker"></i></button>
+                          </div>
+                          <div id="mceu_12" class="mce-widget mce-btn" tabindex="-1" role="button"
+                               aria-label="插入“More”标签">
+                            <button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-wp_more"></i>
+                            </button>
+                          </div>
+                          <div id="mceu_13"
+                               class="mce-widget mce-btn mce-wpcom-icon-button mce-advanced mce-last mce-btn-has-text"
+                               tabindex="-1" role="button" aria-label="展开高级功能" aria-pressed="false">
+                            <button type="button" role="presentation" tabindex="-1">
+                              <svg class="gridicon gridicons-ellipsis" height="28" width="28"
+                                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <g>
+                                  <path
+                                    d="M7 12c0 1.104-.896 2-2 2s-2-.896-2-2 .896-2 2-2 2 .896 2 2zm12-2c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-7 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2z"></path>
+                                </g>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="mceu_31" class="mce-container mce-toolbar mce-stack-layout-item mce-last" role="toolbar"
+                       style="display: none;">
+                    <div id="mceu_31-body" class="mce-container-body mce-flow-layout">
+                      <div id="mceu_32" class="mce-container mce-flow-layout-item mce-first mce-last mce-btn-group"
+                           role="group">
+                        <div id="mceu_32-body">
+                          <div id="mceu_14" class="mce-widget mce-btn mce-first" tabindex="-1" role="button"
+                               aria-label="Strikethrough">
+                            <button role="presentation" type="button" tabindex="-1"><i
+                              class="mce-ico mce-i-strikethrough"></i></button>
+                          </div>
+                          <div id="mceu_15" class="mce-widget mce-btn" tabindex="-1" role="button" aria-label="Underline">
+                            <button role="presentation" type="button" tabindex="-1"><i
+                              class="mce-ico mce-i-underline"></i></button>
+                          </div>
+                          <div id="mceu_16" class="mce-widget mce-btn" tabindex="-1" role="button"
+                               aria-label="Horizontal line">
+                            <button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-hr"></i>
+                            </button>
+                          </div>
+                          <div id="mceu_17" class="mce-widget mce-btn" tabindex="-1" role="button" aria-label="Justify">
+                            <button role="presentation" type="button" tabindex="-1"><i
+                              class="mce-ico mce-i-alignjustify"></i></button>
+                          </div>
+                          <div id="mceu_18" class="mce-widget mce-btn mce-colorbutton" role="button" tabindex="-1"
+                               aria-haspopup="true" aria-label="Text color">
+                            <button role="presentation" hidefocus="1" type="button" tabindex="-1"><i
+                              class="mce-ico mce-i-forecolor"></i><span id="mceu_18-preview" class="mce-preview"></span>
+                            </button>
+                            <button type="button" class="mce-open" hidefocus="1" tabindex="-1"><i class="mce-caret"></i>
+                            </button>
+                          </div>
+                          <div id="mceu_19" class="mce-widget mce-btn" tabindex="-1" role="button"
+                               aria-label="Paste as text">
+                            <button role="presentation" type="button" tabindex="-1"><i
+                              class="mce-ico mce-i-pastetext"></i></button>
+                          </div>
+                          <div id="mceu_20" class="mce-widget mce-btn" tabindex="-1" role="button"
+                               aria-label="Clear formatting">
+                            <button role="presentation" type="button" tabindex="-1"><i
+                              class="mce-ico mce-i-removeformat"></i></button>
+                          </div>
+                          <div id="mceu_21" class="mce-widget mce-btn" tabindex="-1" role="button" aria-label="特殊字符">
+                            <button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-charmap"></i>
+                            </button>
+                          </div>
+                          <div id="mceu_22" class="mce-widget mce-btn" tabindex="-1" role="button"
+                               aria-label="Decrease indent">
+                            <button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-outdent"></i>
+                            </button>
+                          </div>
+                          <div id="mceu_23" class="mce-widget mce-btn" tabindex="-1" role="button"
+                               aria-label="Increase indent">
+                            <button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-indent"></i>
+                            </button>
+                          </div>
+                          <div id="mceu_24" class="mce-widget mce-btn" tabindex="-1" role="button" aria-label="Undo"
+                               aria-disabled="false">
+                            <button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-undo"></i>
+                            </button>
+                          </div>
+                          <div id="mceu_25" class="mce-widget mce-btn mce-disabled" tabindex="-1" role="button"
+                               aria-label="Redo" aria-disabled="true">
+                            <button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-redo"></i>
+                            </button>
+                          </div>
+                          <div id="mceu_26" class="mce-widget mce-btn mce-last" tabindex="-1" role="button"
+                               aria-label="键盘快捷键">
+                            <button role="presentation" type="button" tabindex="-1"><i class="mce-ico mce-i-wp_help"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+         -->
         <div class="c-post-assets__main-header">
-      <span class="c-section-header__label">
-        <span class="c-section-header__label-text">
-            资源列表
-            <small class="c-section__subtitle">
-              {{blockCount}} 条
-            </small>
-        </span>
-        <!--<span class="c-count" v-if="detail.assets">{{detail.assets.length}}</span>-->
-      </span>
+          <span class="c-section-header__label">
+            <span class="c-section-header__label-text">
+                资源列表
+                <small class="c-section__subtitle">
+                  {{blockCount}} 条
+                </small>
+            </span>
+            <!--<span class="c-count" v-if="detail.assets">{{detail.assets.length}}</span>-->
+          </span>
           <upload :accept="accept"
                   :multiple="multiple"
                   :on-success="handleSuccess"
@@ -158,6 +266,7 @@
           </upload>
 
         </div>
+        <!--<hr class="c-post-editor__header-divider">-->
 
         <!--<draggable v-model="assetList" v-if="isTopic">-->
         <!--<post-asset :asset="item"-->
@@ -446,6 +555,7 @@
     }
   }
 </script>
+
 <style lang="scss">
   .sortable-ghost {
     background: rgba(0, 0, 0, .25);
@@ -464,4 +574,93 @@
     border: 1px dashed #1d2531;
     transition: all 0.3s;
   }
+  .c-post-settings__button {
+    .gridicon {
+      top: 4px;
+      margin-left: 4px;
+    }
+    transition: all 0.15s ease-in-out;
+    svg {
+      transition: transform 0.3s ease-in-out;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+
+  }
+
+  .is-focus.c-post-settings__button svg {
+    transform: rotate(45deg);
+  }
+
+  /*.c-editor-publish-button {*/
+  /*min-width: 100px;*/
+  /*}*/
+
+  .c-post-assets__header-button {
+    align-items: center;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    font-weight: normal;
+    justify-content: center;
+    min-width: 140px;
+  }
+
+  .c-post-assets__header-button {
+    align-items: center;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    font-weight: normal;
+    justify-content: center;
+    min-width: 140px;
+
+    &:hover {
+      background-color: #FAFAFA;
+    }
+  }
+
+  .c-post-assets__header-button .gridicon.gridicons-cloud-upload {
+    top: 6px;
+  }
+
+  .c-post-assets__header-button__text {
+    margin-top: 3px;
+    white-space: nowrap;
+  }
+
+  .c-section__subtitle {
+    font-size: 11px;
+    color: #537994;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    height: 16px;
+  }
+
+  .textarea-autosize {
+    // Important because otherwise autosize height calculation is incorrect in Safari
+    transition: none !important;
+  }
+
+  /*.c-post-editor,*/
+  /*.c-block-inline-toolbar {*/
+  /*div.c-block-toolbar {*/
+  /**/
+  /*}*/
+  /*}*/
+
+  .mce-tinymce {
+    display: block;
+  }
+
+  .mce-tinymce {
+    visibility: inherit !important;
+    position: relative;
+  }
 </style>
+

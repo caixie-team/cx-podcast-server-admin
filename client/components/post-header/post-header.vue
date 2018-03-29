@@ -1,27 +1,95 @@
 
 <template>
-  <foldable-card expanded>
-      <input type="text"
-             :value="form.title"
-             autocomplete="off"
-             placeholder="请输入标题"
-             name="title"
-             v-validate="'required'"
-             @change="updateTitle"
-             :disabled="isSaving" slot="header">
+  <card>
+    <div class="c-form-fieldset">
+      <label class="c-form-label">
+        封面图
+      </label>
 
-<!--      <div class="c-async-load__placeholder" v-if="isUsersFetching"></div>
-      <editor-author
-        @change-author="handleChangeAuthor"
-        :post="value" v-else/>-->
+      <div @click.prevent="handleZoom"
+           :class="classes"
+           :style="collapsed ? `background-image: url(${form.featured_image});` : ''"
+           v-if="form.featured_image"
+           style="box-sizing: border-box; border: 1px solid #d7d6d7;border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;">
+        <confirm-button @confirm="handleRemove"
+                        style="position: absolute;top: 0;right: 0;">
+          <remove-button/>
+        </confirm-button>
+        <spinner style="position: relative; top: 50%;" v-if="uploading"/>
+        <img :src="form.featured_image"
+             class="c-post-image__image"
+             v-if="!collapsed"/>
+      </div>
+
+      <upload class="c-button"
+              :accept="accept"
+              :on-upload="onUpload"
+              :on-preview="handlePreview"
+              :on-progress="handleProgress"
+              :on-success="handleSuccess" v-show="!form.featured_image">
+        <svgicon name="gridicons-add-image"/>
+        上传封面图
+      </upload>
+
+    </div>
+    <div :class="{'u-mt-medium': form.featured_image }">
+        <!--        <div class="c-form-fieldset">
+                  <label class="c-form-label">
+                    标题
+                  </label>
+                  <input type="text"
+                         :value="form.title"
+                         autocomplete="off"
+                         placeholder="请输入标题"
+                         name="title"
+                         v-validate="'required'"
+                         @change="updateTitle"
+                         :disabled="isSaving">
+                  <form-input-validation :isError="errors.has('title')" v-show="errors.has('title')">
+                    {{ errors.first('title') }}
+                  </form-input-validation>
+                </div>-->
+        <fieldset class="c-form-fieldset">
+          <legend class="c-form-legend">类别
+            <small class="c-form-legend__subtitle">
+              {{selectdCategory}}
+            </small>
+          </legend>
+          <checkbox-group v-model="form.categories">
+            <checkbox :label="term.term_id" v-for="term in terms" :key="term.id">
+              {{term.name}}
+            </checkbox>
+          </checkbox-group>
+
+        </fieldset>
+        <counted-textarea label="内容介绍"
+                          :value="form.content"
+                          name="summary"
+                          @change="updateContent"
+                          v-if="form.content" :disabled="isSaving"/>
+<!--        <div class="c-form-buttons-bar">
+          <button :class="{'c-button c-form-button is-primary': true, 'disabled' : !isChange, 'is-busy' : isSaving}"
+                  @click.prevent="handleSubmit" :disabled="isSaving">保存内容
+          </button>
+        </div>-->
+    </div>
+
+  </card>
+
+<!--  <foldable-card expanded>
+
+    <div class="c-async-load__placeholder" v-if="isUsersFetching"></div>
+          <editor-author
+            @change-author="handleChangeAuthor"
+            :post="value" v-else/>
     <div slot="summary">内容信息</div>
 
     <div slot="expandedSummary">
-      <toggle @change="handleToggleChange"
-              v-model="isSticky"
-              :disabled="!(value.status === 'publish')"
-              compact>推荐
-      </toggle>
+    <toggle @change="handleToggleChange"
+                  v-model="isSticky"
+                  :disabled="!(value.status === 'publish')"
+                  compact>推荐
+          </toggle>
     </div>
     <div class="c-form-fieldset">
       <label class="c-form-label">
@@ -39,7 +107,9 @@
         </confirm-button>
         <spinner style="position: relative; top: 50%;" v-if="uploading"/>
         <img :src="form.featured_image"
-             class="c-post-image__image" v-if="!collapsed"/>
+             class="c-post-image__image"
+             style="border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;"
+             v-if="!collapsed"/>
       </div>
 
       <upload class="c-button"
@@ -55,22 +125,22 @@
     </div>
     <div :class="{'u-mt-medium': form.featured_image }">
       <form>
-        <div class="c-form-fieldset">
-          <label class="c-form-label">
-            标题
-          </label>
-          <input type="text"
-                 :value="form.title"
-                 autocomplete="off"
-                 placeholder="请输入标题"
-                 name="title"
-                 v-validate="'required'"
-                 @change="updateTitle"
-                 :disabled="isSaving">
-          <form-input-validation :isError="errors.has('title')" v-show="errors.has('title')">
-            {{ errors.first('title') }}
-          </form-input-validation>
-        </div>
+        &lt;!&ndash;        <div class="c-form-fieldset">
+                  <label class="c-form-label">
+                    标题
+                  </label>
+                  <input type="text"
+                         :value="form.title"
+                         autocomplete="off"
+                         placeholder="请输入标题"
+                         name="title"
+                         v-validate="'required'"
+                         @change="updateTitle"
+                         :disabled="isSaving">
+                  <form-input-validation :isError="errors.has('title')" v-show="errors.has('title')">
+                    {{ errors.first('title') }}
+                  </form-input-validation>
+                </div>&ndash;&gt;
         <fieldset class="c-form-fieldset">
           <legend class="c-form-legend">类别
             <small class="c-form-legend__subtitle">
@@ -96,10 +166,11 @@
         </div>
       </form>
     </div>
-  </foldable-card>
 
+  </foldable-card>-->
 </template>
 <script>
+  import {Card} from '~/components/card'
   import FoldableCard from '~/components/foldable-card'
   import EditorAuthor from '~/components/post-editor/editor-author'
   import CountedTextarea from '~/components/counted-textarea'
@@ -117,6 +188,7 @@
   export default {
     name: 'PostHeader',
     components: {
+      Card,
       FoldableCard,
       RemoveButton,
       ConfirmButton,
