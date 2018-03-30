@@ -20,7 +20,7 @@ export const state = () => {
         id: 0
       }
     },
-    list: {
+    likes: {
       fetching: false,
       data: {
         'count': 0,
@@ -29,14 +29,12 @@ export const state = () => {
         'currentPage': 1,
         'data': []
       }
-    }
+    },
+    views: {}
   }
 }
 
 export const mutations = {
-  SET_POST (state, detail) {
-    state.detail = detail
-  },
   DELETE (state) {
     state.detail.del = 'start'
   },
@@ -64,51 +62,21 @@ export const mutations = {
   CREATE_CANCEL (state) {
     state.detail.creating = false
   },
-  UPDATE_ITEM (state) {
-    state.saving = true
+  //
+  // 仅保存, 更新状态
+  //
+  UPDATE_DETAIL (state) {
+    state.detail.saving = true
   },
-  UPDATE_SUCCESS (state) {
-    state.item.saving = false
+  UPDATE_DETAIL_SUCCESS (state, data) {
+    state.detail.saving = false
+    state.detail.data = Object.assign({}, state.detail.data, data)
   },
-  // List
-  CLEAR_LIST (state) {
-    state.list.data = {
-      result: {
-        pagination: {
-          current_page: 0
-        },
-        data: []
-      }
-    }
+  UPDATE_DETAIL_FAILURE (state) {
+    state.detail.saving = false
   },
   UPLOAD_AVATAR_IMAGE (state, avatar) {
     state.data.avatar = avatar
-  },
-  REQUEST_LIST (state) {
-    state.list.fetching = true
-  },
-  GET_LIST_FAILURE (state) {
-    state.list.fetching = false
-  },
-  GET_LIST_SUCCESS (state, action) {
-    state.list.fetching = false
-    state.list.data = action.data
-  },
-  ADD_LIST_SUCCESS (state, action) {
-    state.list.fetching = false
-    state.list.data.data.push.apply(state.list.data.data, action.data.data)
-    state.list.data.count = action.data.count
-    state.list.data.currentPage = action.data.currentPage
-    state.list.data.totalPages = action.data.totalPages
-  },
-  // Detail
-  CLEAR_DETAIL (state) {
-    state.detail.data = {}
-  },
-  UPDATE_DETAIL (state, action) {
-    state.detail.saving = true
-    state.detail.data = Object.assign(state.detail.data, action)
-    // state.detail.data = action.data
   },
   REQUEST_DETAIL (state) {
     state.detail.fetching = true
@@ -120,17 +88,6 @@ export const mutations = {
   GET_DETAIL_SUCCESS (state, action) {
     state.detail.fetching = false
     state.detail.data = action.data
-  },
-  // Hot
-  REQUEST_HOT_LIST (state) {
-    state.hot.fetching = true
-  },
-  GET_HOT_LIST_FAILURE (state) {
-    state.hot.fetching = false
-  },
-  GET_HOT_LIST_SUCCESS (state, action) {
-    state.hot.fetching = false
-    state.hot.data = action.result
   },
 
   // 喜欢某篇文章

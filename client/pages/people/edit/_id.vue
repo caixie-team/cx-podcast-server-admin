@@ -1,9 +1,9 @@
 <template>
   <div>
-    <header-cake :title="form.user_nicename"/>
+    <header-cake :title="detail.user_nicename"/>
     <div class="c-card c-section-header is-compact">
       <div class="c-section-header__label">
-        <span class="c-section-header__label-text">{{form.user_nicename}} 的资料</span></div>
+        <span class="c-section-header__label-text">{{detail.user_nicename}} 的资料</span></div>
       <div class="c-section-header__actions"></div>
     </div>
     <div class="c-card c-me-profile-settings" v-if="!isSubscriber">
@@ -20,11 +20,10 @@
                class="c-edit-gravatar__image-container">
             <img alt="头像"
                  class="gravatar"
-                 :src="form.avatarUrl"
-                 height="100%"
-                 v-if="form.avatarUrl">
+                 :src="detail.avatarUrl"
+                 v-if="detail.avatarUrl" height="100%">
             <svgicon class="gravatar"
-                     name="gridicons-user-circle" color="none #008be8" scale="9.375" v-else/>
+                     name="gridicons-user-circle" color="none #FFF" scale="9.375" v-else/>
 
             <div class="c-edit-gravatar__label-container">
 
@@ -43,7 +42,7 @@
         <fieldset class="c-form-fieldset">
           <label for="usernameOrEmail" class="c-form-label">用户邮箱</label>
           <input id="usernameOrEmail" name="user_email" class="c-form-text-input"
-                 v-model="form.user_email"
+                 v-model="detail.user_email"
                  v-validate="'required|email'"
                  :class="{'c-input': true, 'is-error': errors.has('user_email') }"
                  type="email"
@@ -69,7 +68,7 @@
           <input type="text"
                  id="user_nicename"
                  name="user_nicename"
-                 v-model="form.user_nicename"
+                 v-model="detail.user_nicename"
                  placeholder="对外展示的昵称"
                  class="c-form-text-input">
         </fieldset>
@@ -78,22 +77,22 @@
           <select id="role"
                   name="role"
                   class="c-form-select"
-                  v-model="form.role">
+                  v-model="detail.role">
             <option value="author">作者</option>
             <option value="editor">编辑</option>
             <option value="administrator">管理员</option>
             <!--<option value="contributor">贡献者</option>-->
             <!--<option value="follower">粉丝</option>-->
           </select>
-          <p class="c-form-setting-explanation"></p>
+          <p class="c-form-setting-explanation">角色管理</p>
         </fieldset>
-        <fieldset class="c-form-fieldset">
+        <fieldset class="c-form-fieldset" v-if="detail.resume">
           <label for="summary" class="c-form-label">简介</label>
           <textarea
             id="summary"
             name="summary"
             placeholder="成员个人介绍"
-            class="c-form-textarea"></textarea>
+            class="c-form-textarea" :value="detail.resume.summary"></textarea>
         </fieldset>
         <p>
           <button type="submit"
@@ -168,7 +167,8 @@
           role: 'author',
           summary: ''
         },
-        isVisible: false
+        isVisible: false,
+        isSaving: false
       }
     },
     mounted () {
@@ -183,7 +183,7 @@
         return baseURL + '/file'
       },
       detail () {
-        return this.$store.state.users.detail.data
+        return this.$store.state.user.detail.data
       },
       uploadLabel () {
         return this.form.avatar ? '点击替换头像' : '点击上传头像'
@@ -195,7 +195,7 @@
         return this.$auth.state.user
       },
       newUser () {
-        return this.$store.state.users.detail
+        return this.$store.state.user.detail
       }
     },
     methods: {
@@ -207,32 +207,21 @@
       },
       handleSuccess (success, data) {
         this.uploading = false
-        this.form.avatar = data.url + '?imageMogr2/thumbnail/300x300/q/90/format/jpg/interlace/1'
-        this.form.meta.avatar = data.id
-        console.log(this.form.avatar)
+        this.form.avatarUrl = data.response.data.url + '?imageMogr2/thumbnail/300x300/q/90/format/jpg/interlace/1'
+        this.form.meta.avatar = data.response.id
+        this.isChange = true
       },
       async handleSubmit () {
         const that = this
-        that.isSave = true
+        that.isSaving = true
         await this.$validator.validateAll()
           .then(async (result) => {
             if (result) {
-              await this.$store.dispatch('addUser', {form: that.form})
-              // if (this.form.id) {
-              //   await this.$store.dispatch('updateUser', {form: that.form})
-              //   that.isSave = false
-              //   this.$router.replace('/people/team')
-              // } else {
-              //   await this.$store.dispatch('addUser', {form: that.form})
-              //   that.isSave = false
-              //   console.log(that.newUser.type)
-              if (that.newUser.creating && that.newUser.type !== 'exist') {
+              const res = await this.$store.dispatch('updateUser', {form: this.form})
+              if (!res) {
                 this.$router.replace('/people/team')
-              } else {
-                console.log('创建失败。。。')
               }
-              that.isSave = false
-              console.log('Correct them errors!')
+              that.isSaving = that.detail.saving
             }
           })
       }

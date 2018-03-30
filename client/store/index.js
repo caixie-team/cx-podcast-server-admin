@@ -276,26 +276,6 @@ export const actions = {
       commit('users/GET_LIST_FAILURE')
     }
   },
-  async getUser ({commit}, id) {
-    commit('users/REQUEST_DETAIL')
-    const data = (await this.$axios.get(`/apps/${this.getters.appId}/users/${id}`)).data
-    if (data && data.errno === 0) {
-      commit('users/GET_DETAIL_SUCCESS', data)
-    } else {
-      commit('users/GET_DETAIL_FAILURE')
-    }
-  },
-  async updateUser ({commit}, {form}) {
-    commit('users/UPDATE_DETAIL')
-    const {data} = await this.$axios.post(`/apps/${this.getters.appId}/users/${form.id}`, form)
-    if (data.errno > 0) {
-      // commit('users/UPDATE_FAILURE')
-    } else {
-      // commit('users/UPDATE_DETAIL', form)
-      // commit('users/UPDATE_SUCCESS')
-    }
-    return data
-  },
   async addUser ({commit}, {form}) {
     commit('users/CREATE')
     try {
@@ -318,6 +298,42 @@ export const actions = {
       }
       throw error
     }
+  },
+
+  //
+  // USER & ME
+  //
+  async getUser ({commit}, id) {
+    commit('user/REQUEST_DETAIL')
+    const data = (await this.$axios.get(`/apps/${this.getters.appId}/users/${id}`)).data
+    if (data && data.errno === 0) {
+      commit('user/GET_DETAIL_SUCCESS', data)
+    } else {
+      commit('user/GET_DETAIL_FAILURE')
+    }
+  },
+  async updateUser ({commit}, {form}) {
+    commit('user/UPDATE_DETAIL')
+    const {data} = await this.$axios.post(`/apps/${this.getters.appId}/users/${form.id}`, form)
+    if (data.errno > 0) {
+      commit('users/UPDATE_FAILURE')
+      this.$toast.error(data.data)
+      return data
+    } else {
+      // commit('users/UPDATE_DETAIL', form)
+      commit('user/UPDATE_SUCCESS', data.data)
+    }
+  },
+  async updateMe ({commit}, {form}) {
+    commit('users/UPDATE_DETAIL')
+    const {data} = await this.$axios.post(`/apps/${this.getters.appId}/users/${form.id}`, form)
+    if (data.errno > 0) {
+      // commit('users/UPDATE_FAILURE')
+    } else {
+      // commit('users/UPDATE_DETAIL', form)
+      // commit('users/UPDATE_SUCCESS')
+    }
+    return data
   }
 }
 // export default {

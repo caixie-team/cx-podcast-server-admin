@@ -27,7 +27,6 @@
             <!--</div>-->
           <featured-image v-model="featuredImage"
                           @change="handleFeaturedImage"/>
-
           <editor-form
             :terms="categories"
             v-model="detail"

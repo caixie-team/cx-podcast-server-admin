@@ -7,7 +7,7 @@
         </small>
       </legend>
       <checkbox-group v-model="form.categories">
-        <checkbox :label="term.term_id" v-for="term in terms" :key="term.id">
+        <checkbox :label="term.term_taxonomy_id" v-for="term in terms" :key="term.term_taxonomy_id">
           {{term.name}}
         </checkbox>
       </checkbox-group>
@@ -78,7 +78,7 @@
       selectdCategory () {
         if (this.form.categories.length === 1) {
           // const curCategory = find(this.terms, ['term_id', this.form.categories[0]])
-          const curCategory = find(this.terms, ['term_id', this.form.categories[0]])
+          const curCategory = find(this.terms, ['term_taxonomy_id', this.form.categories[0]])
           if (curCategory) {
             return curCategory.name
           }
@@ -88,7 +88,7 @@
       },
       isChange: {
         get () {
-          const cateArray = xor(this.form.categories, map(this.value.categories, 'term_id'))
+          const cateArray = xor(this.form.categories, map(this.value.categories, 'term_taxonomy_id'))
           return this.errors.has('title') ||
             cateArray.length > 0 ||
             this.form.title !== this.value.title ||

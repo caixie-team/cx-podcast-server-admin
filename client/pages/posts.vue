@@ -3,6 +3,7 @@
     <posts-browser-main-header :navs="navList" />
     <posts-browser v-if="!$route.params.slug"/>
     <nuxt-child :key="$route.params.slug" />
+
   </c-main>
 </template>
 <script>

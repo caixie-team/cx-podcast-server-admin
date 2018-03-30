@@ -10,7 +10,7 @@
             <span class="c-button-group">
             <nuxt-link to="/people/new"
                        class="c-button c-people-list-section-header__add-button is-compact">
-              <svgicon name="gridicons-user-add" style="height: 18px; width: 18px;"/>
+              <svgicon name="gridicons-user-add"  class="gridicon gridicons-user-add" style="height: 18px; width: 18px;"/>
               添加
               <!--<svgicon name="gridicons-user" style="height: 18px; width: 18px;"/>-->
             </nuxt-link>
@@ -38,8 +38,8 @@
               <div class="c-people-profile">
                 <div class="c-people-profile__gravatar">
                   <img class="gravatar"
-                       :src="profile.avatar"
-                       width="72" height="72" v-if="profile.avatar">
+                       :src="profile.avatarUrl"
+                       width="72" height="72" v-if="profile.avatarUrl">
                   <svgicon
                     name="gridicons-user-circle"
                     color="#fafafa #e0e6e8"
@@ -56,9 +56,9 @@
                     <!--<div class="c-people-profile__role-badge" :class="profile.type === 'wechat' ? 'type-wechat' : ''">-->
                       <!--<span>{{ getType(profile) }}</span>-->
                     <!--</div>-->
-                    <!--<div class="c-people-profile__role-badge c-role-administrator">-->
-                      <!--<span>{{ getRole(profile) }}</span>-->
-                    <!--</div>-->
+                    <div class="c-people-profile__role-badge c-role-administrator">
+                      <span>{{ getRole(profile) }}</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -186,16 +186,25 @@
         return addr
       },
       getRole (item) {
+        let role = ''
         switch (item.role) {
+          case 'administrator':
+            role = '管理员'
+            break
           case 'editor':
-            return '编辑'
+            role = '编辑'
+            break
           case 'author':
-            return '作者'
+            role = '作者'
+            break
           case 'subscriber':
-            return '订阅者'
+            role = '订阅者'
+            break
           default:
-            return '作者'
+            role = ''
+            break
         }
+        return role
       }
     },
     computed: {
