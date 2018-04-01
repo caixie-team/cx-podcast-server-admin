@@ -1,3 +1,36 @@
+<style lang="scss">
+  .c-upload__task-icon {
+    top: 13px;
+    background: #4ab866;
+    border-color: #4ab866;
+  }
+
+  .c-upload__task-icon {
+    display: block;
+    position: absolute;
+    top: 18px;
+    left: 24px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #c8d7e1;
+    border-radius: 16px;
+    background: #fff;
+    cursor: pointer;
+    &.is-completed {
+      top: 13px;
+      background: #4ab866;
+      border-color: #4ab866;
+    }
+  }
+
+  .c-upload-item__header {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: 600;
+    font-size: 13px;
+  }
+</style>
 <template>
   <div>
 
@@ -26,35 +59,43 @@
       </upload>
 
     </div>
-
     <div class="c-upload-list u-mb-medium" v-if="fileList.length > 0">
       <compact-card v-for="file in fileList"
                     :key="file.id"
                     :class="{'is-highlight is-error' : file.error}" style="background: #FAFAFA;">
-        <div class="c-upload-item u-flex">
+        <!--<span v-if="file.success">-->
+        <!--</span>-->
+        <div class="c-upload-item u-flex  u-align-items-center u-justify-center">
           <div class="c-upload-item__header u-width-50">
             {{file.name}}
           </div>
           <div class="c-upload-item__content u-width-25 u-flex"
                style="font-size: 14px; flex-direction: column; text-align: center;">
-            {{file.size | formatSize}}
+            <div class="c-progress-bar is-compact is-pulsing"
+                 v-if="(file.active || file.progress !== '0.00') && !file.success">
+              <div class="c-progress-bar__progress" :style="{width: file.progress + '%'}"></div>
+            </div>
+
+            <span class="u-flex  u-align-items-center u-justify-center" v-else-if="file.success"
+                  style="font-size: 12px; color: #4ab866;">
+              <svgicon name="gridicons-checkmark" class="gridicon gridicons-checkmark u-mr-small" color="none #4ab866"
+                       height="18" width="18"/>
+              {{file.size | formatSize}}
+            </span>
+            <span class="u-text-mute" v-else>队列</span>
             <span v-if="file.error" class="u-text-danger" style="font-size: 13px;">
-            <svgicon name="gridicons-notice" color="none #ed4d4d" height="16" width="16"/>
-            {{file.error | formatError}}
-          </span>
+              <svgicon name="gridicons-notice" color="none #ed4d4d" height="16" width="16"/>
+              {{file.error | formatError}}
+            </span>
           </div>
           <div class="c-upload-item__progress u-width-25  u-flex u-align-items-center u-justify-end"
                style="font-size: 13px;">
-            <button class="c-button is-compact" style="min-width: 98px;" v-if="file.error"
+            <button class="c-button is-compact u-mr-small"
                     @click="removeErrorFile(file)">取消
             </button>
-
-            <div class="c-progress-bar is-compact is-pulsing"
-                 v-else-if="(file.active || file.progress !== '0.00') && !file.success">
-              <div class="c-progress-bar__progress" :style="{width: file.progress + '%'}"></div>
-            </div>
-            <span class="u-text-success" v-else-if="file.success">上传成功</span>
-            <span class="u-text-mute" v-else>队列</span>
+            <button class="c-button is-compact is-primary"
+                    v-if="file.success"
+                    @click="handleConfirm(file)">确定</button>
           </div>
         </div>
       </compact-card>
@@ -70,6 +111,7 @@
   import Upload from '~/components/upload'
   import EmptyContent from '~/components/empty-content'
   import {CompactCard} from '~/components/card'
+  import '~/icons/gridicons-checkmark'
 
   export default {
     components: {
@@ -80,6 +122,12 @@
     props: {
       count: {
         type: Number
+      },
+      confirm: {
+        type: Function,
+        default () {
+          return {}
+        }
       }
     },
     data () {
@@ -108,16 +156,26 @@
       //   }
       //   this.$store.dispatch('savePostDetail', {form: form})
       // },
+      handleConfirm (file) {
+        if (!Object.is(file.response.data, undefined)) {
+          // this.$emit('confirm', file.response.data)
+          this.confirm(this.$refs.uploader, file)
+        } else {
+          // this.confirm(this.$refs.uploader, file)
+          return
+        }
+        // const {data} = await this.$axios.post(`/apps/${this.getters.appId}/posts/${form.id}`, form)
+      },
       // 内容添加成功的处理
       handleSuccess (success, data) {
-        this.$emit('uploaded', data)
-        this.$refs.uploader.remove(data)
+        // this.$emit('uploaded', data)
+        // this.$refs.uploader.remove(data)
 
         //   let isNew = true
-      //   if (this.detail.block.length > 0) {
-      //     isNew = false
-      //   }
-      //   添加 block 并更新 block
+        //   if (this.detail.block.length > 0) {
+        //     isNew = false
+        //   }
+        //   添加 block 并更新 block
         // this.$store.commit('post/ADD_BLOCK', data.response.data)
         // this.$refs.uploader.remove(data)
         // if (isNew) {

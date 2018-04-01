@@ -3,6 +3,7 @@
   <post-editor v-model="detail"
                :isNew="isNew"
                :isSaving="isSaving"
+               :add-asset-confirm="hundleAssetConfirm"
                @change="handleChange"
                @publish="handlePublish"
                @publish-action="handlePublishAction"/>
@@ -137,7 +138,6 @@
         if (this.isNew) {
           await this.$store.dispatch('createPost', {form: formData})
           this.isNew = this.isPostCreating
-          // console.log(this.detail.id)
           // if (!this.isPostCreating && !Object.is(this.detail.id, undefined)) {
           //   history.pushState({state: 1}, 'Auto Save State', `/post/${data.id}`)
           // }
@@ -238,6 +238,29 @@
         if (isNew) {
           this.handleListChange()
         }
+      },
+      hundleAssetConfirm (uploader, asset) {
+        if (asset !== null) {
+          console.log(asset)
+          uploader.remove(asset)
+          // post format 3 是音频
+          // const newBlock = {
+          //   title: asset.title,
+          //   name: asset.name,
+            // 默认 3
+            // format: 3,
+            // format: 'post-format-audio',
+            // type: '',
+            // block: [asset.id]
+          // }
+          // this.$store.dispatch('addPostBlock', newBlock)
+
+          // const newPost = Object.assign({}, asset, {format: [3]})
+          // Reflect.deleteProperty(newPost, 'id')
+          // Reflect.deleteProperty(newPost, 'id')
+        }
+        // asset file
+        // this.$store.dispatch('addPostBlock')
       }
     },
     watch: {

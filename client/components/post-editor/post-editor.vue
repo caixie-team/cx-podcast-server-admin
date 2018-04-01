@@ -35,7 +35,9 @@
 
         <!-- 资源列表 -->
         <editor-assets :count="detail.block.length"
-                       @uploaded="handleSuccess" v-if="!isNew">
+                       :confirm="handleAssetConfirm"
+                       @uploaded="handleSuccess"
+                       v-if="!isNew">
           <post-audio-player
             theme="#14aaf5"
             preload="metadata"
@@ -81,7 +83,13 @@
         require: true
       },
       isNew: Boolean,
-      isSaving: Boolean
+      isSaving: Boolean,
+      addAssetConfirm: {
+        type: Function,
+        default () {
+          return {}
+        }
+      }
     },
     data () {
       return {
@@ -159,18 +167,22 @@
         }
         this.$store.dispatch('savePostDetail', {form: form})
       },
+      handleAssetConfirm (uploader, data) {
+        this.addAssetConfirm(uploader, data)
+        // this.$emit('add-asset-confirm', data)
+      },
       // 内容添加成功的处理
       handleSuccess (data) {
         // console.log(data)
-        let isNew = true
-        if (this.detail.block.length > 0) {
-          isNew = false
-        }
+        // let isNew = true
+        // if (this.detail.block.length > 0) {
+        //   isNew = false
+        // }
         // 添加 block 并更新 block
-        this.$store.commit('post/ADD_BLOCK', data.response.data)
-        if (isNew) {
-          this.handleListChange()
-        }
+        // this.$store.commit('post/ADD_BLOCK', data.response.data)
+        // if (isNew) {
+        //   this.handleListChange()
+        // }
       }
     },
     watch: {

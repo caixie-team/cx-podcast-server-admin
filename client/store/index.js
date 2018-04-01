@@ -159,6 +159,7 @@ export const actions = {
       commit('posts/GET_DETAIL_FAILURE')
     }
   },
+
   async changePostAuthor ({commit}, form) {
     commit('post/UPDATE_DETAIL')
     const {data} = await this.$axios.post(`/apps/${this.getters.appId}/posts/${form.id}?action=change-author`, form)
@@ -169,6 +170,7 @@ export const actions = {
       this.$toast.error('作者更新失败')
     }
   },
+
   async savePostDetail ({commit}, {form}) {
     const newData = Object.assign({}, form)
 
@@ -190,6 +192,7 @@ export const actions = {
       this.$toast.error('内容保存失败')
     }
   },
+
   async createPost ({commit}, {form}) {
     commit('post/CREATE')
     const {data} = await this.$axios.post(`/apps/${this.getters.appId}/posts/new`, form)
@@ -211,7 +214,15 @@ export const actions = {
 
   },
   async addPostBlock ({commit}, block) {
-
+    const {data} = await this.$axios.post(`/apps/${this.getters.appId}/posts/new`, block)
+    if (data && data.errno === 0) {
+      commit('post/ADD_BLOCK', data.data)
+      this.$toast.success('添加成功')
+    } else {
+      this.$toast.error(data.data)
+    }
+    // 1 create new post {title, type, meta}
+    // 2 add to current post block 中，并更新 本地 block
   },
   async sortPostBlock ({commit}, block) {
     // commit('post/SET_BLOCK', block)
@@ -276,6 +287,7 @@ export const actions = {
       commit('users/GET_LIST_FAILURE')
     }
   },
+
   async addUser ({commit}, {form}) {
     commit('users/CREATE')
     try {
@@ -312,6 +324,7 @@ export const actions = {
       commit('user/GET_DETAIL_FAILURE')
     }
   },
+
   async updateUser ({commit}, {form}) {
     commit('user/UPDATE_DETAIL')
     const {data} = await this.$axios.post(`/apps/${this.getters.appId}/users/${form.id}`, form)
@@ -324,6 +337,7 @@ export const actions = {
       commit('user/UPDATE_SUCCESS', data.data)
     }
   },
+
   async updateMe ({commit}, {form}) {
     commit('users/UPDATE_DETAIL')
     const {data} = await this.$axios.post(`/apps/${this.getters.appId}/users/${form.id}`, form)
