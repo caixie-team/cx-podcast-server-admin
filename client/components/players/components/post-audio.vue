@@ -5,9 +5,10 @@
          class="u-flex u-align-items-center"
          style="height: 100%; width: 100%; cursor: pointer;">
       <!--<asset-actions v-if="isExpanded"/>-->
-      <div>
-        <span class="aplayer-list-cur" :style="{background: theme}"></span>
-        <span class="aplayer-list-index">{{ index + 1}}</span>
+      <span class="aplayer-list-cur" :style="{background: theme}"></span>
+      <div v-if="isExpanded" class="u-text-mute">时长：{{secondToTime(aMusic.duration)}} 分</div>
+      <div v-else>
+        <span class="aplayer-list-index">{{ index +1}}</span>
         <span class="aplayer-list-title">{{ form.title }}</span>
       </div>
     </div>
@@ -90,6 +91,21 @@
       }
     },
     methods: {
+      secondToTime (second) {
+        if (isNaN(second)) {
+          return '00:00'
+        }
+        const pad0 = (num) => {
+          return num < 10 ? '0' + num : '' + num
+        }
+
+        const min = Math.trunc(second / 60)
+        const sec = Math.trunc(second - min * 60)
+        const hours = Math.trunc(min / 60)
+// eslint-disable-next-line no-extra-parens
+        const minAdjust = Math.trunc((second / 60) - (60 * Math.trunc((second / 60) / 60)))
+        return second >= 3600 ? pad0(hours) + ':' + pad0(minAdjust) + ':' + pad0(sec) : pad0(min) + ':' + pad0(sec)
+      },
       updateTitle (e) {
         this.form.title = e.target.value
       },

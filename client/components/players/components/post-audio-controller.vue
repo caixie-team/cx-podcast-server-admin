@@ -96,7 +96,7 @@
           left: 0;
           top: 0;
           bottom: 0;
-          background: #aaa;
+          background: #8b898b;
           height: 2px;
           transition: all 0.5s ease;
         }

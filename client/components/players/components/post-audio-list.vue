@@ -9,7 +9,7 @@
           class="play-item"
           v-for="(aMusic, index) of musicList"
           :key="index"
-          :index="index"
+          :index="musicList.length - index-1"
           :aMusic="aMusic"
           @selectsong="$emit('selectsong', aMusic)"
           @removesong="handleRemove"

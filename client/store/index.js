@@ -217,9 +217,11 @@ export const actions = {
     const {data} = await this.$axios.post(`/apps/${this.getters.appId}/posts/new`, block)
     if (data && data.errno === 0) {
       commit('post/ADD_BLOCK', data.data)
-      this.$toast.success('添加成功')
+      // this.$toast.success('添加成功')
+      return block
     } else {
       this.$toast.error(data.data)
+      return null
     }
     // 1 create new post {title, type, meta}
     // 2 add to current post block 中，并更新 本地 block

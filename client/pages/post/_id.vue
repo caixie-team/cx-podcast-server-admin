@@ -3,7 +3,7 @@
   <post-editor v-model="detail"
                :isNew="isNew"
                :isSaving="isSaving"
-               :add-asset-confirm="hundleAssetConfirm"
+               :add-asset-confirm="handleAssetConfirm"
                @change="handleChange"
                @publish="handlePublish"
                @publish-action="handlePublishAction"/>
@@ -239,22 +239,26 @@
           this.handleListChange()
         }
       },
-      hundleAssetConfirm (uploader, asset) {
+      async handleAssetConfirm (uploader, file) {
+        const asset = file.response.data
         if (asset !== null) {
-          console.log(asset)
-          uploader.remove(asset)
+          // console.log(asset)
+          // uploader.remove(asset)
           // post format 3 是音频
-          // const newBlock = {
-          //   title: asset.title,
-          //   name: asset.name,
+          const newBlock = {
+            title: asset.title || asset.name,
+            name: asset.name,
             // 默认 3
-            // format: 3,
+            format: 3,
             // format: 'post-format-audio',
             // type: '',
-            // block: [asset.id]
-          // }
-          // this.$store.dispatch('addPostBlock', newBlock)
-
+            block: [asset.id]
+          }
+          const res = await this.$store.dispatch('addPostBlock', newBlock)
+          if (res) {
+            // this.$toast.success('添加成功')
+            uploader.remove(file)
+          }
           // const newPost = Object.assign({}, asset, {format: [3]})
           // Reflect.deleteProperty(newPost, 'id')
           // Reflect.deleteProperty(newPost, 'id')
