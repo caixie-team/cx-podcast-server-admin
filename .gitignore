@@ -29,7 +29,7 @@ node_modules/
 # output
 output/
 output.tar.gz
-
+.build/
 runtime/
 app/
 

@@ -2,7 +2,7 @@
   "apps": [{
     "name": "caixie-app",
     "script": "production.js",
-    "cwd": "/Users/basil/__/workspace/_myspace/caixie-app",
+    "cwd": "/home/caixie/caixie-client",
     "exec_mode": "fork",
     "max_memory_restart": "1G",
     "autorestart": true,
