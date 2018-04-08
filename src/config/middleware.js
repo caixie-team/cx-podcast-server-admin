@@ -1,14 +1,16 @@
 /* eslint-disable no-undef,no-unused-expressions */
-const {Nuxt, Builder} = require('nuxt')
+// const {Nuxt, Builder} = require('nuxt')
 const chalk = require('chalk')
 const path = require('path');
 const isDev = think.env === 'development';
 const IOredis = require('ioredis');
+const nuxt = require('../middleware/nuxt')
 const redis = new IOredis({
-  port: 6379,          // Redis port
+  port: isDev ? 6379 : 6377,          // Redis port
   host: isDev ? '127.0.0.1' : '114.55.230.6',   // Redis host
   family: 4,           // 4 (IPv4) or 6 (IPv6)
-  password: isDev ? '' : '__2017@picker-redis',
+  // password: isDev ? '' : '__2017@picker-redis',
+  password: isDev ? '' : '__@caixie-redis_v2',
   db: 0
 })
 
@@ -22,48 +24,19 @@ module.exports = [
   // },
   // {
   //   handle: 'resource',
-  //   enable: isDev,
+  //   enable: true,
   //   options: {
-  //     root: path.join(think.ROOT_PATH, 'www'),
+  //     root: path.join(think.ROOT_PATH, 'www', '.build'),
   //     publicPath: /^\/(static|favicon\.ico)/
   //   }
   // },
   // {
   //   handle: 'trace',
-  //   enable: !think.isCli,
-  //   options: {
-  //     contentType (ctx) {
-  //       // All request url starts of /api or request header contains `X-Requested-With: XMLHttpRequest` will output json error
-  //       const APIRequest = /^\/v*/.test(ctx.request.path);
-  //       const AJAXRequest = ctx.is('X-Requested-With', 'XMLHttpRequest');
-  //       return APIRequest || AJAXRequest ? 'json' : 'html';
-  //     },
-  //     // basic set as string, then put 404.html, 500.html into error folder
-  //     // templates: path.join(__dirname, 'error'),
-  //     // customed set as object
-  //     templates: {
-  //       404: path.join(__dirname, 'error/404.html'),
-  //       500: path.join(__dirname, 'error/500.html'),
-  //       502: path.join(__dirname, 'error/502.html')
-  //     },
-  //     sourceMap: false,
-  //     debug: isDev,
-  //     error (err, ctx) {
-  //       return console.error(err)
-  //     }
-  //   }
+  //   enable: !think.isCli
   // },
-  {
-    handle: 'payload',
-    options: {}
-  },
   // {
-  //   handle: 'router',
-  //   options: {
-  //     defaultModule: 'api',
-  //     defaultController: 'index',
-  //     defaultAction: 'index'
-  //   }
+  //   handle: 'payload',
+  //   options: {}
   // },
   {
     handle: (options, app) => {
