@@ -13,6 +13,7 @@
   import {PostsBrowserMainHeader} from '~/components/posts'
 
   export default {
+    middleware: ['auth'],
     name: 'posts',
     data () {
       return {

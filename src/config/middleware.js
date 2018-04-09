@@ -15,13 +15,13 @@ const redis = new IOredis({
 })
 
 module.exports = [
-  // {
-  //   handle: 'meta',
-  //   options: {
-  //     logRequest: isDev,
-  //     sendResponseTime: isDev
-  //   }
-  // },
+  {
+    handle: 'meta',
+    options: {
+      logRequest: isDev,
+      sendResponseTime: isDev
+    }
+  },
   // {
   //   handle: 'resource',
   //   enable: true,
@@ -30,14 +30,14 @@ module.exports = [
   //     publicPath: /^\/(static|favicon\.ico)/
   //   }
   // },
-  // {
-  //   handle: 'trace',
-  //   enable: !think.isCli
-  // },
-  // {
-  //   handle: 'payload',
-  //   options: {}
-  // },
+  {
+    handle: 'trace',
+    enable: !think.isCli
+  },
+  {
+    handle: 'payload',
+    options: {}
+  },
   {
     handle: (options, app) => {
       return async (ctx, next) => {
@@ -65,8 +65,6 @@ module.exports = [
     options: {}
   }
   // 'logic',
-  // 'controller',
-
-
+  // 'controller'
 ]
 
