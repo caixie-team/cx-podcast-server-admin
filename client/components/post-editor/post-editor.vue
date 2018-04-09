@@ -1,5 +1,11 @@
 <template>
   <div class="c-post-editor">
+    <!--<c-dialog-->
+      <!--v-model="showDialog"-->
+      <!--:on-close="closeDialog">-->
+      <!--<p>是否确定要永久删除“{{curTerm.name}}”？</p>-->
+    <!--</c-dialog>-->
+
     <div class="c-post-editor__inner">
       <editor-ground-control
         v-model="detail"
@@ -15,23 +21,23 @@
     <div class="c-post-editor__inner-content">
 
       <editor-header palceholder="请输入主题名"
-        v-model="detail.title" @change-title="handleTitle"/>
+                     v-model="detail.title" @change-title="handleTitle"/>
 
       <div class="c-main" v-if="!isNew">
-          <foldable-card expanded>
-            <div slot="header">
-              <h3 style="font-weight: 600;">内容信息</h3>
-            </div>
-            <!--<div slot="summary">-->
-              <!--内容详情-->
-            <!--</div>-->
+        <foldable-card expanded>
+          <div slot="header">
+            <h3 style="font-weight: 600;">内容信息</h3>
+          </div>
+          <!--<div slot="summary">-->
+          <!--内容详情-->
+          <!--</div>-->
           <featured-image v-model="featuredImage"
                           @change="handleFeaturedImage"/>
           <editor-form
             :terms="categories"
             v-model="detail"
             @change="handleFormUpdate"/>
-          </foldable-card>
+        </foldable-card>
 
         <!-- 资源列表 -->
         <editor-assets :count="detail.block.length"
@@ -63,6 +69,7 @@
   import {map} from 'lodash'
   import {Card} from '~/components/card'
   import FoldableCard from '~/components/foldable-card'
+  // import {CDialog} from '~/components/dialog'
 
   export default {
     name: 'PostEditor',
@@ -96,7 +103,8 @@
         detail: this.value,
         multiple: true,
         fileList: [],
-        accept: 'audio/mp3'
+        accept: 'audio/mp3',
+        showDialog: false
       }
     },
     computed: {
@@ -117,7 +125,14 @@
       }
     },
     methods: {
-
+      // closeDialog (action) {
+        // if (action === 'ok') {
+        //   this.$store.dispatch('deleteCategory', this.curTerm.slug)
+        // } else {
+        //   this.curTerm = {}
+        // }
+        // this.showDialog = false
+      // },
       handleMenuAction (action) {
         this.$emit('publish-action', action)
       },

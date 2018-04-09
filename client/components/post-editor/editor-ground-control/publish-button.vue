@@ -12,6 +12,10 @@
       <svgicon name="gridicons-not-visible" width="18" height="18" class="gridicon"/>
       撤消发布
     </popover-menu-item>
+    <popover-menu-item :disabled="isPublish" @click.native.stop="$emit('menu-action', 'trash')">
+      <svgicon name="gridicons-trash" width="18" height="18" class="gridicon" />
+      回收站
+    </popover-menu-item>
   </split-button>
 
 </template>

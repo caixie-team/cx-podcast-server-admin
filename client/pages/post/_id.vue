@@ -1,5 +1,4 @@
 <template>
-
   <post-editor v-model="detail"
                :isNew="isNew"
                :isSaving="isSaving"
@@ -181,8 +180,17 @@
               sticky: false
             }
           })
-          // this.fullForm.status = 'draft'
-          // this.fullForm.sticky = false
+        }
+        if (action === 'trash') {
+          await this.$store.dispatch('savePostDetail', {
+            form: {
+              id: this.detail.id,
+              author: this.detail.author,
+              status: 'trash',
+              sticky: false
+            }
+          })
+          this.$router.push('/posts/term/new')
         }
       },
       handleFiles (files) {
