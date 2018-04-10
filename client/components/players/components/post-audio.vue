@@ -8,7 +8,7 @@
       <span class="aplayer-list-cur" :style="{background: theme}"></span>
       <div v-if="isExpanded" class="u-text-mute">时长：{{secondToTime(aMusic.duration)}} 分</div>
       <div v-else>
-        <span class="aplayer-list-index">{{ index +1}}</span>
+        <!--<span class="aplayer-list-index">{{ index +1}}</span>-->
         <span class="aplayer-list-title">{{ form.title }}</span>
       </div>
     </div>
