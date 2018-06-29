@@ -4,6 +4,10 @@ Application created by [ThinkJS](http://www.thinkjs.org) And [Nuxt.js](https://g
 
 应用如果要正常使用，需要安装 Podcast 服务端，[podcast-server](https://github.com/baisheng/podcast-server).
 
+## Screenshot
+![](https://github.com/baisheng/podcast-app-manager/blob/master/doc/screenshot/login.png?raw=true)
+![](https://github.com/baisheng/podcast-app-manager/blob/master/doc/screenshot/homepage.png?raw=true)
+![](https://github.com/baisheng/podcast-app-manager/blob/master/doc/screenshot/detail.png?raw=true)
 ## Install dependencies
 
 ```
