@@ -7,7 +7,7 @@ const IOredis = require('ioredis');
 const nuxt = require('../middleware/nuxt')
 const redis = new IOredis({
   port: isDev ? 6379 : 6377,          // Redis port
-  host: isDev ? '127.0.0.1' : '114.55.230.6',   // Redis host
+  host: isDev ? '127.0.0.1' : '127.0.0.1',   // Redis host
   family: 4,           // 4 (IPv4) or 6 (IPv6)
   // password: isDev ? '' : '__2017@picker-redis',
   password: isDev ? '' : '__@caixie-redis_v2',
