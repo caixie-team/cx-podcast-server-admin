@@ -1,14 +1,29 @@
 <template>
-  <div id="app" :class="classes" ref="layout" v-cloak>
-    <keep-alive>
-      <logged-in></logged-in>
-    </keep-alive>
+  <div
+    v-cloak
+    id="app"
+    ref="layout"
+    :class="classes"
+  >
+    <!--<keep-alive>-->
+      <!--<logged-in/>-->
+    <!--</keep-alive>-->
     <!--<logged-out />-->
-    <div id="content" class="o-layout__content">
-      <div id="primary" class="o-layout__primary">
+    <div
+      id="content"
+      class="o-layout__content"
+    >
+      <div
+        id="primary"
+        class="o-layout__primary"
+      >
         <nuxt/>
       </div>
-      <div id="secondary" class="o-layout__secondary" v-if="!fullWideLayout">
+      <div
+        v-if="!fullWideLayout"
+        id="secondary"
+        class="o-layout__secondary"
+      >
         <div class="c-apps-navigation">
           <navigation/>
         </div>
@@ -18,31 +33,33 @@
 </template>
 
 <script>
-  import LoggedIn from './masterbar/logged-in'
-  import LoggedOut from './masterbar/logged-out'
-  import Navigation from '~/components/navigation'
+  // import LoggedIn from './masterbar/logged-in'
+  // import LoggedOut from './masterbar/logged-out'
+  import Navigation from '../components/navigation'
 
   export default {
     components: {
-      LoggedIn,
-      LoggedOut,
+      // LoggedIn,
+      // LoggedOut,
       Navigation
     },
-    data () {
+    data() {
       return {
         isLogged: false
       }
     },
     computed: {
-      postEditorLayout () {},
-      fullWideLayout () {
+      postEditorLayout() {
+      },
+      fullWideLayout() {
         return this.$store.state.options.fullWideLayout
       },
-      editorLayout () {},
-      currentLayoutFocus () {
+      editorLayout() {
+      },
+      currentLayoutFocus() {
         return this.$store.state.options.layoutFocus
       },
-      classes () {
+      classes() {
         // const focus = this.$store.state.options.layoutFocus
         // is-default is-group-editor is-section-post-editor focus-sidebar
         const classArray = [
@@ -51,7 +68,7 @@
           'is-default',
           this.$store.state.options.layoutStatus,
           // 'is-section-posts-pages',
-          this.currentLayoutFocus ? this.currentLayoutFocus  : 'focus-sidebar',
+          this.currentLayoutFocus ? this.currentLayoutFocus : 'focus-sidebar',
           // this.currentLayoutFocus,
           {'has-no-sidebar': this.fullWideLayout}
         ]

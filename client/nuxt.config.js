@@ -26,7 +26,7 @@ module.exports = {
   srcDir: PATHS.client,
   // buildDir: 'dist/',
   env: {
-    baseUrl: apiConfig.baseUrl,
+    baseUrl: apiConfig.baseURL,
     // HOST_URL: apiConfig.socketHost
   },
   serverMiddleware: [
@@ -43,7 +43,7 @@ module.exports = {
     analyze: process.argv.join('').includes('analyze'), // 分析
     maxChunkSize: 360000, // 单个包最大尺寸
     extractCSS: true, // 单独提取 css
-    publicPath: apiConfig.cdnUrl + '/_nuxt/',
+    // publicPath: apiConfig.cdnUrl + '/_nuxt/',
     postcss: {
       plugins: {'postcss-custom-properties': {warnings: false}}
     },
@@ -125,10 +125,10 @@ module.exports = {
 
   },
   plugins: [
-    {src: '~plugins/route.js', ssr: false},
+    // {src: '~plugins/route.js', ssr: false},
     {src: '~plugins/filters.js'},
-    {src: '~/plugins/moment.js'},
-    {src: '~/plugins/nuxt-client-init.js', ssr: false},
+    // {src: '~/plugins/moment.js'},
+    // {src: '~/plugins/nuxt-client-init.js', ssr: false},
     {src: '~plugins/vee-validate.js'},
     {src: '~/plugins/vue-js-modal'},
     {src: '~plugins/axios.js'},
@@ -138,7 +138,10 @@ module.exports = {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
-    ['@nuxtjs/axios', {baseURL: apiConfig.baseUrl}]
+    ['@nuxtjs/axios', {baseURL: apiConfig.baseURL}],
+    // '~/modules/auth',
+    '@nuxtjs/auth',
+    '@nuxtjs/toast'
   ],
 
   head: {
@@ -177,6 +180,7 @@ module.exports = {
     sizes: [16, 120, 144, 152, 192, 384, 512]
   },
   router: {
+    middleware: ['auth'],
     // middleware: ['change-page-col'],
     linkActiveClass: 'link-active',
     extendRoutes(routes) {

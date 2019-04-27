@@ -138,7 +138,7 @@ export async function setContext(app, context) {
       payload: context.payload,
       error: context.error,
       base: '/',
-      env: {}
+      env: {"baseUrl":"http://localhost:5000"}
     }
     // Only set once
     if (context.req) {

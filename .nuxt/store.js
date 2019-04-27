@@ -35,6 +35,7 @@ void (function updateModules() {
     module.hot.accept([
       '@/store/categories.js',
       '@/store/index.js',
+      '@/store/index.old.js',
       '@/store/option.js',
       '@/store/options.js',
       '@/store/org.js',

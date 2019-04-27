@@ -1232,7 +1232,7 @@
     webpack-node-externals "^1.7.2"
     webpackbar "^3.2.0"
 
-"@nuxtjs/auth@^4.0.0-rc.3":
+"@nuxtjs/auth@^4.5.3":
   version "4.5.3"
   resolved "https://registry.npm.taobao.org/@nuxtjs/auth/download/@nuxtjs/auth-4.5.3.tgz#e28a6846b21d9dc9545c7ff97abb01752587cd43"
   integrity sha1-4opoRrIdnclUXH/5ersBdSWHzUM=
@@ -1244,7 +1244,7 @@
     js-cookie "^2.2.0"
     lodash "^4.17.10"
 
-"@nuxtjs/axios@^5.1.0", "@nuxtjs/axios@^5.3.1":
+"@nuxtjs/axios@^5.3.1", "@nuxtjs/axios@^5.4.1":
   version "5.4.1"
   resolved "https://registry.npm.taobao.org/@nuxtjs/axios/download/@nuxtjs/axios-5.4.1.tgz#8dbc841e939c082271f7053edc1180bf5a441ee3"
   integrity sha1-jbyEHpOcCCJx9wU+3BGAv1pEHuM=

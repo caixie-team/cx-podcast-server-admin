@@ -4,13 +4,13 @@ import Auth from './auth.class'
 
 export default function (ctx, inject) {
   // Create  new Auth instance
-  let _orgId = '/'
-  if (process.browser) {
-    _orgId += ctx.store.getters.orgId
-  }
-  if (process.server) {
-    _orgId += ctx.req.session.__org.id
-  }
+  // let _orgId = '/'
+  // if (process.browser) {
+  //   _orgId += ctx.store.getters.orgId
+  // }
+  // if (process.server) {
+  //   _orgId += ctx.req.session.__org.id
+  // }
   // _orgId = ctx.req.session.__org.id
   const $auth = new Auth(ctx, {
     'fetchUserOnLogin': true,
@@ -22,7 +22,7 @@ export default function (ctx, inject) {
     'scopeKey': 'scope',
     'endpoints': {
       'login': {
-        'url': '/org' + _orgId + '/signin',
+        // 'url': '/org' + _orgId + '/signin',
         'method': 'post',
         'propertyName': 'token'
       },

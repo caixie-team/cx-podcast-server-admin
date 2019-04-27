@@ -1,26 +1,45 @@
+/**
+ * @file Eslint config / Commonjs module
+ * @module eslint.config
+ */
+
+const {isProdMode} = require('./client/environment')
+
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
   env: {
     browser: true,
-    node: true,
-    es6: true
+    node: true
   },
   parserOptions: {
-    sourceType: 'module'
+    parser: 'babel-eslint'
   },
+  extends: [
+    'plugin:vue/recommended',
+    // 'plugin:prettier/recommended'
+  ],
   //  https:// github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  // extends: 'standard',
-  //  required to lint *.vue files
   plugins: [
-    'html'
+    'html',
+    'vue',
+    // 'prettier'
   ],
   globals: {
-    think: true,
-    Promise: true
+    Set: true,
+    Howl: true,
+    window: true,
+    Reflect: true,
+    Promise: true,
+    arguments: true,
+    document: true,
+    localStorage: true,
+    FaceDetector: true,
+    requestAnimFrame: true,
   },
   //  add your custom rules here
   rules: {
+
+    // "prettier/prettier": "error",
 
     /*Possible Errors*/
 
@@ -34,7 +53,7 @@ module.exports = {
     "comma-dangle": [0, "never"],
 
     // 禁止在条件表达式中使用赋值语句
-    "no-cond-assign": 2,
+    "no-cond-assign": 0,
 
     // 禁止使用console
     "no-console": 0,
@@ -46,7 +65,7 @@ module.exports = {
     "no-control-regex": 2,
 
     // 禁止使用debugger语句
-    "no-debugger": process.env.NODE_ENV === 'production' ? 2 : 0,
+    "no-debugger": isProdMode ? 'error' : 'off',
 
     // 函数参数禁止重名
     "no-dupe-args": 2,
@@ -70,9 +89,9 @@ module.exports = {
     "no-extra-boolean-cast": 2,
 
     // 禁止使用多余的圆括号
-    "no-extra-parens": 2,
+    "no-extra-parens": 0,
 
-    // 禁止多余的冒号
+    // 禁止多余的分号
     "no-extra-semi": 2,
 
     // 禁止重复的函数声明
@@ -103,13 +122,13 @@ module.exports = {
     "no-unexpected-multiline": 0,
 
     // 禁止有执行不到的代码
-    "no-unreachable": 2,
+    "no-unreachable": 0,
 
     // 禁止和NaN作比较,推荐使用isNaN方法
     "use-isnan": 2,
 
     // 用来检测JSDoc是否完整和合法
-    // "valid-jsdoc": 2,
+    "valid-jsdoc": 2,
 
     // typeof操作符返回的结果会是 "undefined",  "object",  "boolean", "number", "string", 和  "function"之一。
 
@@ -146,7 +165,7 @@ module.exports = {
     //  [2, "multi", "consistent"] 保持前后语句的{ }一致
 
     //  default: [2, "all"] 全都需要{ }包围
-    "curly": 2,
+    "curly": 0,
 
     // 所有的switch语句都必须要有一个default分支
     "default-case": 2,
@@ -177,7 +196,7 @@ module.exports = {
     "eqeqeq": [0, "allow-null"],
 
     // 在for-in 循环中要使用if语句
-    "guard-for-in": 2,
+    "guard-for-in": 0,
 
     // 代码中禁止使用alert, confirm, and prompt
     "no-alert": 0,
@@ -208,7 +227,7 @@ module.exports = {
     "no-eq-null": 0,
 
     // 禁止使用eval函数
-    "no-eval": 2,
+    "no-eval": 0,
 
     // 禁止扩展native对象，不能向native的对象上面添加属性
     "no-extend-native": 2,
@@ -230,7 +249,10 @@ module.exports = {
     "no-floating-decimal": 2,
 
     // 禁止隐式转换，为了消除简写的类型转换
-    // "no-implicit-coercion": 1,
+    "no-implicit-coercion": 0,
+
+    // 禁止不必要的布尔转换
+    "no-extra-boolean-cast": 0,
 
     // 禁止在全局作用域里声明变量或函数
     "no-implicit-globals": 2,
@@ -700,7 +722,7 @@ module.exports = {
     "no-class-assign": 2,
 
     // 箭头函数的箭头和比较操作符 (>, <, <=, and >=)很相似，该规则要求在和比较操作符容易发生混淆时禁止使用箭头函数语法
-    "no-confusing-arrow": 2,
+    "no-confusing-arrow": 0,
 
     // 禁止修改const声明的变量
     "no-const-assign": 2,
@@ -712,7 +734,7 @@ module.exports = {
     "no-new-symbol": 2,
 
     // 该规则可以定义不允许在应用中导入的模块
-    "no-restricted-imports": [2,
+    "no-restricted-imports": [0,
 
       "assert", "buffer", "child_process", "cluster", "crypto", "dgram", "dns", "domain", "events", "freelist", "fs", "http", "https", "module", "net", "os", "path", "punycode", "querystring", "readline", "repl", "smalloc", "stream", "string_decoder", "sys", "timers", "tls", "tracing", "tty", "url", "util", "vm", "zlib"
 
@@ -739,10 +761,10 @@ module.exports = {
     "prefer-const": 1,
 
     // 推荐使用Reflect上的方法替代以前老方法
-    "prefer-reflect": 2,
+    "prefer-reflect": 1,
 
     //  在ES2015(ES6)中推荐使用剩余参数(...rest)代替arguments变量
-    "prefer-rest-params": 2,
+    "prefer-rest-params": 0,
 
     // 在ES2015(ES6)中推荐使用扩展符替代apply()方法
     "prefer-spread": 2,
@@ -757,7 +779,7 @@ module.exports = {
     "template-curly-spacing": [2, "never"],
 
     // yield*表达式中的*号前后是否留空格，默认after，比如yield* other()
-    "yield-star-spacing": [2, "after"]
+    "yield-star-spacing": [2, "after"],
 
   }
 }
