@@ -37,20 +37,20 @@ export const getters = {
  */
 const syncCurrentApp = async (store, req) => {
 
-  let curApp = store.state.org.currentApp
-  if (isEmpty(curApp)) {
-    curApp = getCookie('__app', req)
-  }
-  if (isEmpty(curApp)) {
-    curApp = getLocalStorage('__app')
-  }
-  if (isEmpty(curApp)) {
-    curApp = req.session.__org.apps[0]
-  }
-  if (typeof curApp === 'string') {
-    curApp = JSON.parse(curApp)
-  }
-  store.commit('org/SET_CURRENT_APP', curApp)
+  // let curApp = store.state.org.currentApp
+  // if (isEmpty(curApp)) {
+  //   curApp = getCookie('__app', req)
+  // }
+  // if (isEmpty(curApp)) {
+  //   curApp = getLocalStorage('__app')
+  // }
+  // if (isEmpty(curApp)) {
+  //   curApp = req.session.__org.apps[0]
+  // }
+  // if (typeof curApp === 'string') {
+  //   curApp = JSON.parse(curApp)
+  // }
+  // store.commit('org/SET_CURRENT_APP', curApp)
 }
 
 // global actions

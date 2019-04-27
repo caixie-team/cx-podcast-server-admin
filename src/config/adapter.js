@@ -1,7 +1,7 @@
-// const fileCache = require('think-cache-file');
+const fileCache = require('think-cache-file');
 const nunjucks = require('think-view-nunjucks');
 const fileSession = require('think-session-file');
-// const mysql = require('think-model-mysql');
+const mysql = require('think-model-mysql');
 const {Console, File, DateFile} = require('think-logger3');
 const path = require('path');
 const isDev = think.env === 'development';
@@ -10,26 +10,42 @@ const isDev = think.env === 'development';
  * cache adapter config
  * @type {Object}
  */
-// exports.cache = {
-//   type: 'file',
-//   common: {
-//     timeout: 24 * 60 * 60 * 1000 // millisecond
-//   },
-//   file: {
-//     handle: fileCache,
-//     cachePath: path.join(think.ROOT_PATH, 'runtime/cache'), // absoulte path is necessarily required
-//     pathDepth: 1,
-//     gcInterval: 24 * 60 * 60 * 1000 // gc interval
-//   }
-// };
+exports.cache = {
+  type: 'file',
+  common: {
+    timeout: 24 * 60 * 60 * 1000 // millisecond
+  },
+  file: {
+    handle: fileCache,
+    cachePath: path.join(think.ROOT_PATH, 'runtime/cache'), // absoulte path is necessarily required
+    pathDepth: 1,
+    gcInterval: 24 * 60 * 60 * 1000 // gc interval
+  }
+};
 
-exports.cache = require('./adapter/cache')
 /**
  * model adapter config
  * @type {Object}
  */
-exports.model = require('./adapter/model')
-// const isDev = think.env === 'development'
+exports.model = {
+  type: 'mysql',
+  common: {
+    logConnect: isDev,
+    logSql: isDev,
+    logger: msg => think.logger.info(msg)
+  },
+  mysql: {
+    handle: mysql,
+    database: '',
+    prefix: 'think_',
+    encoding: 'utf8',
+    host: '127.0.0.1',
+    port: '',
+    user: 'root',
+    password: 'root',
+    dateStrings: true
+  }
+};
 
 /**
  * session adapter config
@@ -39,8 +55,8 @@ exports.session = {
   type: 'file',
   common: {
     cookie: {
-      name: 'caixie'
-      // keys: ['signature key'],
+      name: 'thinkjs'
+      // keys: ['werwer', 'werwer'],
       // signed: true
     }
   },
@@ -48,13 +64,23 @@ exports.session = {
     handle: fileSession,
     sessionPath: path.join(think.ROOT_PATH, 'runtime/session')
   }
-}
+};
 
 /**
  * view adapter config
  * @type {Object}
  */
-exports.view = require('./adapter/view');
+exports.view = {
+  type: 'nunjucks',
+  common: {
+    viewPath: path.join(think.ROOT_PATH, 'view'),
+    sep: '_',
+    extname: '.html'
+  },
+  nunjucks: {
+    handle: nunjucks
+  }
+};
 
 /**
  * logger adapter config

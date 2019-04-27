@@ -1,0 +1,81 @@
+//
+// Table of content:
+//
+// Tools........... Dashboard's sass mixins & functions
+// Settings........ Dashboard's sass variables
+// Themes.......... Override default sass variables to apply different themes.
+// Base............ Resets, bare elements styling
+// Vendors......... Exteneral assests e.g. bootstrap-grid
+// Objects......... Layout-specific
+// Components...... UI-Kit, admin dashboard components
+// Utilities....... Helper classes e.g. display utilities
+//
+
+
+//
+// TOOLS
+//
+@import "tools/tools.rem";
+@import "tools/tools.clear-fix";
+@import "tools/tools.clear-text";
+@import "tools/tools.hex-to-rgb";
+@import "tools/tools.overflow-gradient";
+@import "tools/tools.linear-gradient";
+@import "tools/tools.respond-to";
+@import "tools/tools.calc";
+@import "tools/tools.breakpoints";
+@import "tools/tools.z-index";
+@import "tools/tools.animation";
+@import "tools/tools.placeholder";
+@import "tools/tools.long-content-fade";
+
+
+//
+// SETTINGS
+//
+
+// Global Settings
+@import "settings/settings.color";
+@import "settings/settings.color-schemes";
+@import "settings/settings.global";
+
+// UI-Kit Settings
+@import "settings/settings.alerts";
+@import "settings/settings.avatars";
+@import "settings/settings.badges";
+@import "settings/settings.breadcrumb";
+@import "settings/settings.buttons";
+@import "settings/settings.calendar";
+@import "settings/settings.card";
+@import "settings/settings.choice";
+@import "settings/settings.close";
+@import "settings/settings.divider";
+@import "settings/settings.dropdown";
+@import "settings/settings.field";
+@import "settings/settings.inputs";
+@import "settings/settings.forms";
+@import "settings/settings.modals";
+@import "settings/settings.nav";
+@import "settings/settings.navbar";
+@import "settings/settings.notifications";
+@import "settings/settings.pagination";
+@import "settings/settings.popovers";
+@import "settings/settings.progress";
+@import "settings/settings.range";
+@import "settings/settings.scrollbar";
+@import "settings/settings.select";
+@import "settings/settings.switches";
+@import "settings/settings.tables";
+@import "settings/settings.tabs";
+@import "settings/settings.toggle";
+@import "settings/settings.toolbar";
+@import "settings/settings.tooltips";
+
+@import "tools/tools.scrollbar";
+
+
+//
+// THEMES
+//
+//@import "themes/themes.dark"; // <== uncomment to use the dark theme
+
