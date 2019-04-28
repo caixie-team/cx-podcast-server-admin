@@ -158,9 +158,9 @@ module.exports = {
     strategies: {
       local: {
         endpoints: {
-          login: { url: apiConfig.baseURL + '/auth/login', method: 'post', propertyName: 'token' },
+          login: { url: apiConfig.baseURL + '/auth/login', method: 'post', propertyName: 'result.token' },
           logout: { url: apiConfig.baseURL + '/auth/logout', method: 'post' },
-          user: { url: apiConfig.baseURL + '/auth/user', method: 'get', propertyName: 'user' }
+          user: { url: apiConfig.baseURL + '/auth/user', method: 'get', propertyName: 'result' }
         },
         // tokenRequired: true,
         // tokenType: 'bearer',

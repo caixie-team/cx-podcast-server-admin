@@ -1,16 +1,10 @@
 /* eslint-disable radix,dot-notation */
-export default function ({ $axios, app, redirect }) {
+export default function ({$axios, app, redirect}) {
   // Set to all requests
-  // $axios.config.headers['Authorization'] = `Bearer ${app.$auth.token}`
-
-  // OR for each request
-  // axios.onRequest(() => {
-  //   config.headers['Authorization'] = 'Bearer xxx'
-  // })
   $axios.onRequest(config => {
-    // console.log(app.$auth.token)
     config.headers['Content-Type'] = 'application/json';
-    config.headers['Authorization'] = `Bearer ${app.$auth.token}`;
+    // config.headers['Authorization'] = `Bearer ${app.$auth.token}`;
+    config.headers['Authorization'] = `${app.$auth.getToken('local')}`;
     console.log('Making request to ' + config.url);
   })
 

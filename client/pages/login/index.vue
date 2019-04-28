@@ -155,6 +155,9 @@
           this.$route.query.redirect &&
           decodeURIComponent(this.$route.query.redirect)
         )
+      },
+      user() {
+        return this.$auth.state.user
       }
       // logo_url () {
       //   return this.org.logo_url === undefined || null ? '../assets/img/logo.png' : this.org.logo_url
@@ -175,6 +178,8 @@
                 }
               }).then(async () => {
                 // console.log('Successfully connected')
+                // this.$auth.user()
+                console.log(this.isLogin);
                 this.$toast.success('Successfully connected')
               }).catch(err => {
                 // console.log(err)
