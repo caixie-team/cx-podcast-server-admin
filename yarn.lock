@@ -1254,7 +1254,7 @@
     axios-retry "^3.1.2"
     consola "^2.5.6"
 
-"@nuxtjs/component-cache@^1.1.1":
+"@nuxtjs/component-cache@^1.1.4":
   version "1.1.4"
   resolved "https://registry.npm.taobao.org/@nuxtjs/component-cache/download/@nuxtjs/component-cache-1.1.4.tgz#4015e0ab3499dbaac80866b47c62b9936fda41f8"
   integrity sha1-QBXgqzSZ26rICGa0fGK5k2/aQfg=
@@ -1286,7 +1286,7 @@
   dependencies:
     "@nuxtjs/pwa-utils" "3.0.0-beta.14"
 
-"@nuxtjs/proxy@^1.1.4", "@nuxtjs/proxy@^1.3.3":
+"@nuxtjs/proxy@^1.3.3":
   version "1.3.3"
   resolved "https://registry.npm.taobao.org/@nuxtjs/proxy/download/@nuxtjs/proxy-1.3.3.tgz#3de3d9f073e8e57167168100940be2a824a220e0"
   integrity sha1-PePZ8HPo5XFnFoEAlAviqCSiIOA=
@@ -2936,7 +2936,8 @@ boom@2.x.x:
 
 bounding-client-rect@^1.0.5:
   version "1.0.5"
-  resolved "http://registry.npm.taobao.org/bounding-client-rect/download/bounding-client-rect-1.0.5.tgz#99e2cd2602d07f22ea3beee420534504fd4424cf"
+  resolved "https://registry.npm.taobao.org/bounding-client-rect/download/bounding-client-rect-1.0.5.tgz#99e2cd2602d07f22ea3beee420534504fd4424cf"
+  integrity sha1-meLNJgLQfyLqO+7kIFNFBP1EJM8=
   dependencies:
     get-document "1"
 

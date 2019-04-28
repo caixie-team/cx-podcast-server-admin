@@ -17,11 +17,11 @@
               <form @submit.prevent="handleSubmit">
                 <div class="c-card c-login__form">
                   <div class="c-login__form-userdata">
-                    <label for="usernameOrEmail">用户名</label>
+                    <label for="identifier">用户名</label>
                     <input
-                      id="usernameOrEmail"
-                      v-model="form.email"
-                      v-validate="'required|email'"
+                      id="identifier"
+                      v-model="form.identifier"
+                      v-validate="'required'"
                       name="email"
                       class="form-text-input"
                       :class="{'input': true, 'is-error': errors.has('user_login') }"
@@ -104,7 +104,7 @@
             viewBox="0 0 24 24"
           >
             <g>
-              <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+              <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
             </g>
           </svg>
           返回
@@ -118,6 +118,7 @@
 <script>
   import FormInputValidation from '../../components/forms/form-input-validation'
   import CHero from '~/components/hero'
+
   export default {
     layout: 'logged-out',
     middleware: ['auth'],
@@ -125,14 +126,14 @@
       CHero,
       FormInputValidation
     },
-    data () {
+    data() {
       return {
         options: {
           auth: false
         },
         loginHasError: false,
         form: {
-          email: '',
+          identifier: '',
           password: ''
         },
         errmsg: '',
@@ -146,10 +147,10 @@
       // org () {
       //   return this.$store.state.org.detail.data
       // },
-      isLogin () {
+      isLogin() {
         return this.$auth.state.loggedIn
       },
-      redirect () {
+      redirect() {
         return (
           this.$route.query.redirect &&
           decodeURIComponent(this.$route.query.redirect)
@@ -159,17 +160,19 @@
       //   return this.org.logo_url === undefined || null ? '../assets/img/logo.png' : this.org.logo_url
       // }
     },
-    mounted () {
+    mounted() {
     },
     methods: {
-      async handleSubmit () {
-        await this.$validator.validateAll()
+      handleSubmit() {
+        this.$validator.validateAll()
           .then(async (result) => {
             if (result) {
               this.disabled = true
-              await this.$auth.login({
-                propertyName: 'data.token',
-                data: this.form
+              this.$auth.login({
+                data: {
+                  'identifier': this.form.identifier,
+                  'password': this.form.password,
+                }
               }).then(async () => {
                 // console.log('Successfully connected')
                 this.$toast.success('Successfully connected')
@@ -179,8 +182,6 @@
                 this.disabled = false
 
               })
-            } else {
-              this.$toast.success('Successfully connected')
             }
           })
 

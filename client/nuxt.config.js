@@ -26,7 +26,8 @@ module.exports = {
   srcDir: PATHS.client,
   // buildDir: 'dist/',
   env: {
-    baseUrl: apiConfig.baseURL,
+    API_HOST: apiConfig.baseURL,
+    API_PORT: 8360
     // HOST_URL: apiConfig.socketHost
   },
   serverMiddleware: [
@@ -130,7 +131,7 @@ module.exports = {
     // {src: '~/plugins/moment.js'},
     // {src: '~/plugins/nuxt-client-init.js', ssr: false},
     {src: '~plugins/vee-validate.js'},
-    {src: '~/plugins/vue-js-modal'},
+    {src: '~plugins/vue-js-modal'},
     {src: '~plugins/axios.js'},
     {src: '~plugins/svgicon', ssr: false},
     {src: '~plugins/vue-infinite-scroll', ssr: false}
@@ -138,12 +139,34 @@ module.exports = {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
-    ['@nuxtjs/axios', {baseURL: apiConfig.baseURL}],
-    // '~/modules/auth',
+    '@nuxtjs/axios',
     '@nuxtjs/auth',
+    // '~/modules/auth',
+    '@nuxtjs/proxy',
     '@nuxtjs/toast'
   ],
-
+  axios: {
+    // baseURL: apiConfig.baseURL,
+    proxy: true // Can be also an object with default options
+  },
+  proxy: {
+    '/api': {
+      target: apiConfig.baseURL
+    }
+  },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: apiConfig.baseURL + '/auth/login', method: 'post', propertyName: 'token' },
+          logout: { url: apiConfig.baseURL + '/auth/logout', method: 'post' },
+          user: { url: apiConfig.baseURL + '/auth/user', method: 'get', propertyName: 'user' }
+        },
+        // tokenRequired: true,
+        // tokenType: 'bearer',
+      }
+    }
+  },
   head: {
     title: '北京采撷科技',
     // script: [
@@ -154,7 +177,7 @@ module.exports = {
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: '      width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'},
-      // { name: 'viewport', content: ' width = device-width，initial-scale = 1，maximum-scale = 1，minimum-scale = 1，user-scalable = no' },
+      // { name: 'viewporte', content: ' width = device-width，initial-scale = 1，maximum-scale = 1，minimum-scale = 1，user-scalable = no' },
       {hid: 'description', name: 'description', content: pkg.description},
       {'http-equiv': 'pragma', content: 'no-cache'},
       {'http-equiv': 'cache-control', content: 'no-cache'},

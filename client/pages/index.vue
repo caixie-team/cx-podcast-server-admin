@@ -1,7 +1,7 @@
 <template>
-  <main>
+  <c-main>
     <slot></slot>
-  </main>
+  </c-main>
 </template>
 
 <script lang="es">

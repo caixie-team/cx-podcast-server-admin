@@ -9,8 +9,9 @@ export default function ({ $axios, app, redirect }) {
   // })
   $axios.onRequest(config => {
     // console.log(app.$auth.token)
-    config.headers['Authorization'] = `Bearer ${app.$auth.token}`
-    console.log('Making request to ' + config.url)
+    config.headers['Content-Type'] = 'application/json';
+    config.headers['Authorization'] = `Bearer ${app.$auth.token}`;
+    console.log('Making request to ' + config.url);
   })
 
   $axios.onError(error => {
